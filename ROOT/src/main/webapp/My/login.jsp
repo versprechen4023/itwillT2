@@ -11,7 +11,7 @@ if (session != null && session.getAttribute("userId") != null){ //userId값이 �
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 페이지</title>
+<title>로그인 페이지test</title>
 </head>
 <body>
 <form action="login.do" method="post" name="fr">

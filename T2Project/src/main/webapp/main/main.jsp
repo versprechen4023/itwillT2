@@ -97,9 +97,30 @@
                 </div>
             </div>
         </section>
+        <section>
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/03.jpg" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="p-5">
+                            <h2 class="display-4">추가섹션테스트</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Footer-->
         <footer class="py-5 bg-black">
-            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Your Website 2023</p></div>
+            <div class="container px-5">
+            <p class="m-0 text-center text-white small">
+            상호명 : 아이티윌2팀(주) |<br>
+            Copyright &copy; <script>document.write(new Date().getFullYear());</script>
+			All rights reserved 
+            </p>
+            </div>
         </footer>
         <!-- 제이쿼리 로드 -->
         <script src="js/jquery-min.js"></script>

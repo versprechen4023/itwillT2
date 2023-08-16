@@ -31,20 +31,20 @@
 	<!-- 추가css -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="../css/animate.css"> <!-- 외부 자원인 주소.css 파일을  stylesheet로 연결 시켜 사용 한다. -->
+	<link rel="stylesheet" href="./css/animate.css"> <!-- 외부 자원인 주소.css 파일을  stylesheet로 연결 시켜 사용 한다. -->
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="../css/icomoon.css">
+	<link rel="stylesheet" href="./css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="./css/bootstrap.css">
 	<!-- Flexslider  -->
-	<link rel="stylesheet" href="../css/flexslider.css">
+	<link rel="stylesheet" href="./css/flexslider.css">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="./css/style.css">
 	<!-- 메인페이지 css 오버라이드  -->
-	<link rel="stylesheet" href="../css/main_gr.css">
+	<link rel="stylesheet" href="./css/main_gr.css">
 
 	<!-- Modernizr JS -->
-	<script src="../js/modernizr-2.6.2.min.js"></script>
+	<script src="./js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -64,8 +64,9 @@
 				<!-- 비디오 자동실행 오른쪽에 autoplay muted 추가 controls 명시하면 사용자가 비디오 멈출 수 있음-->
 					<div class="video-container">
 						<video id="video" autoplay loop muted style="max-width: 100%; height: auto;">
-							<source src="../images/parkpark.mp4" type="video/mp4">
+							<source src="./images/parkpark.mp4" type="video/mp4">
 						</video>
+						<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 						<div class="video-text">이름</div>
 					</div>
 				</div>
@@ -83,7 +84,7 @@
 						</div>
 						<div class="col-lg-6">
 							<div class="p-5">
-								<img class="img-responsive img-circle" src="../images/dog.jpg"
+								<img class="img-responsive img-circle" src="./images/dog.jpg"
 									alt="..." />
 							</div>
 						</div>
@@ -96,7 +97,7 @@
 					<div class="row gx-5 align-items-center">
 						<div class="col-lg-6 order-lg-2">
 							<div class="p-5">
-								<img class="img-responsive img-circle" src="../images/dog.jpg" 
+								<img class="img-responsive img-circle" src="./images/dog.jpg" 
 									alt="엑박시출력할텍스트" />
 							</div>
 						</div>
@@ -119,7 +120,7 @@
 						</div>
 						<div class="col-lg-6">
 							<div class="p-5">
-								<img class="img-responsive img-circle" src="../images/dog.jpg"
+								<img class="img-responsive img-circle" src="./images/dog.jpg"
 									alt="..." />
 							</div>
 						</div>
@@ -134,7 +135,7 @@
 						data-animate-effect="fadeInLeft">
 						<div class="blog-entry">
 							<!-- HOME 페이지 RECENT BLOG 이미지 칸 -->
-							<a href="#" class="blog-img"><img src="../images/img-1.jpg"
+							<a href="#" class="blog-img"><img src="./images/img-1.jpg"
 								class="img-responsive"
 								alt=""></a>
 							<div class="desc">
@@ -155,7 +156,7 @@
 						data-animate-effect="fadeInLeft">
 						<div class="blog-entry">
 							<!-- HOME 페이지 RECENT BLOG 이미지 칸 -->
-							<a href="#" class="blog-img"><img src="../images/img-2.jpg"
+							<a href="#" class="blog-img"><img src="./images/img-2.jpg"
 								class="img-responsive"
 								alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
 							<div class="desc">
@@ -175,7 +176,7 @@
 					<div class="col-md-4 col-sm-6 col-padding animate-box"
 						data-animate-effect="fadeInLeft">
 						<div class="blog-entry">
-							<a href="#" class="blog-img"><img src="../images/img-3.jpg"
+							<a href="#" class="blog-img"><img src="./images/img-3.jpg"
 								class="img-responsive"
 								alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
 							<div class="desc">
@@ -197,22 +198,22 @@
 	</div><!-- 페이지 엔드 -->
 
 	<!-- jQuery -->
-	<script src="../js/jquery.min.js"></script>
+	<script src="./js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
-	<script src="../js/jquery.easing.1.3.js"></script>
+	<script src="./js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
 	<!-- Waypoints -->
-	<script src="../js/jquery.waypoints.min.js"></script>
+	<script src="./js/jquery.waypoints.min.js"></script>
 	<!-- Flexslider -->
-	<script src="../js/jquery.flexslider-min.js"></script>
+	<script src="./js/jquery.flexslider-min.js"></script>
 	
 	
 	<!-- MAIN JS -->
-	<script src="../js/main.js"></script>
+	<script src="./js/main.js"></script>
 	
      <!--스타일시트연계 자바스크립트 -->
-     <script src="../js/my.js"></script>
+     <script src="./js/my.js"></script>
 
 	</body>
 </html>

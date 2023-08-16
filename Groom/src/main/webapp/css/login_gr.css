@@ -1,0 +1,248 @@
+@charset "UTF-8";
+
+body {
+  background: #F5F5DC;
+}
+/*편안한? 따뜻한 색감 일단 베이지[큰배경색]*/
+
+#fh5co-aside {
+   background: #FDF5E6;
+  /*큰배경색과 조화 이루는 네비바 색 [왼쪽네비바배경색] */
+}
+
+/* div box styling */
+.container {
+  margin: auto;
+  width: 650px;
+  max-width: 1200px;
+  height: 550px;
+  position: relative;
+  
+}
+/* 전체틀 */
+
+.welcome {
+  background: #f6f6f6;
+  width: 700px;
+  height: 700px;
+  position: absolute;
+  top: 30%;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+/* 박스틀 */
+
+.leftbox {
+  position: absolute;
+  top: -19%;
+  left: 5%;
+  background: #EAC7CC;
+  width: 350px;
+  height: 7000px;
+  border-radius: 5px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease-in-out;
+  z-index: 2;
+}
+
+
+
+.rightbox {
+  position: absolute;
+  width: 60%;
+  transition: 1s all ease;
+}
+
+
+
+.rightbox {
+  right: -2%;
+}
+
+.forgot{
+  text-align:center;
+  font-size: 11.5px;
+  
+}
+
+/* font & button styling */
+h1 {
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+  margin-top: 95px;
+  text-transform: uppercase;
+  color: #f6f6f6;
+  font-size: 2.5em;
+  letter-spacing: 8px;
+}
+
+.title {
+  font-family: "Lora", serif;
+  color: #8E9AAF;
+  font-size: 2em;
+  line-height: 1.1em;
+  letter-spacing: 3px;
+  text-align: center;
+  font-weight: 300;
+  margin-top: 20%;
+}
+
+.desc {
+  margin-top: -8px;
+  font-size: 1em;
+}
+
+.account {
+  margin-top: 45%;
+  font-size: 12px;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.7em;
+  letter-spacing: 2px;
+  color: #8E9AAF;
+  text-align: center;
+}
+
+span {
+  color: #DB7093;
+} /* 강조하는 색(빨강)*/
+
+.dog {
+  position: absolute;
+  width: 160px;
+  height: 155px;
+  top: 46%;
+  left: 29%;
+  opacity: 0.7;
+}
+/* 동물사진 혹은 미용하는 사진*/
+
+
+
+button {
+  padding: 10px;
+  font-family: "Open Sans", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  border-radius: 10px;
+  margin: auto;
+  outline: none;
+  display: flex;
+  /* display : flex; 로 설정했으나 로그인버튼과 회원가입버튼 수평구조실패
+  버튼 라인 손 볼 필요.. */
+}
+button.login:hover {
+  background: #EAC7CC;
+  color: #f6f6f6;
+  transition: background-color 1s ease-out;
+}
+
+.button.login {
+  margin-top: 3%;
+  background: #f6f6f6;
+  color: #ce7d88;
+  border: solid 1px #EAC7CC;
+}
+
+
+.button.signup {
+  padding: 12px;
+  font-family: "Open Sans", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  border-radius: 10px;
+  margin: auto;
+  outline: none;
+  display: block;
+}
+
+.button.signup:hover {
+  background: #EAC7CC;
+  color: #f6f6f6;
+  transition: background-color 1s ease-out;
+}
+
+
+/* form styling */
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 7px;
+}
+
+.more-padding {
+  padding-top: 35px;
+}
+.more-padding input {
+  padding: 12px;
+}
+.more-padding .submit {
+  margin-top: 45px;
+}
+
+.submit {
+  margin-top: 25px;
+  padding: 12px;
+  border-color: #ce7d88;
+}
+.submit:hover {
+  background: #CBC0D3;
+  border-color: #bfb1c9;
+}
+
+input {
+  background: #EAC7CC;
+  width: 65%;
+  color: #ce7d88;
+  border: none;
+  border-bottom: 1px solid rgba(246, 246, 246, 0.5);
+  padding: 9px;
+  margin: 7px;
+}
+input::placeholder {
+  color: #f6f6f6;
+  letter-spacing: 2px;
+  font-size: 1.1em;
+  font-weight: 70;
+}
+input:focus {
+  color: #ce7d88;
+  outline: none;
+  border-bottom: 1.2px solid rgba(206, 125, 136, 0.7);
+  font-size: 1em;
+  transition: 0.8s all ease;
+}
+input:focus::placeholder {
+  opacity: 0;
+}
+
+label {
+  font-family: "Open Sans", sans-serif;
+  color: #ce7d88;
+  font-size: 0.8em;
+  letter-spacing: 0.5px;
+}
+
+.checkbox {
+  display: inline;
+  white-space: nowrap;
+  position: relative;
+  left: -60px;
+  top: 5px;
+}
+
+input[type=checkbox] {
+  width: 15px;
+  background: #ce7d88;
+}
+
+.checkbox input[type=checkbox]:checked + label {
+  color: #ce7d88;
+  transition: 0.5s all ease;
+}
+

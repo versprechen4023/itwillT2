@@ -47,26 +47,26 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 	
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="../css/animate.css">
+	<link rel="stylesheet" href="./css/animate.css">
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="../css/icomoon.css">
+	<link rel="stylesheet" href="./css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="./css/bootstrap.css">
 	<!-- Flexslider  -->
-	<link rel="stylesheet" href="../css/flexslider.css">
+	<link rel="stylesheet" href="./css/flexslider.css">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="./css/style.css">
 	<!-- overwrite style  -->
-	<link rel="stylesheet" href="../css/my.css">
+	<link rel="stylesheet" href="./css/my.css">
 
 	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
+	<script src="./js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
-<link rel="stylesheet" href="../css/login_gr.css">
+<link rel="stylesheet" href="./css/login_gr.css">
 
 	</head>
 	<body>

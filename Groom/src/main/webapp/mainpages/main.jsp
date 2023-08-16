@@ -66,7 +66,7 @@
 						<video id="video" autoplay loop muted style="max-width: 100%; height: auto;">
 							<source src="./images/parkpark.mp4" type="video/mp4">
 						</video>
-						<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+						
 						<div class="video-text">이름</div>
 					</div>
 				</div>

@@ -38,6 +38,7 @@
 /* 	비디오 관련 쪽 */
 .video-container {
     position: relative;
+    margin-bottom: 200px; /* 요청하신 그림과 간격주는거 */
 }
 /* 	비디오 왼쪽 상단 텍스트 설정 */
 .video-text {

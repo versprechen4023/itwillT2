@@ -217,11 +217,11 @@ function callImportAPI() {
             //코드레스나 다른팀에서 api사용하는코드 분석해서 DB에서 값을 가져올 필요가있음
             amount: val, 
             //가격 
-            buyer_email: 'iamport@siot.do',
-            buyer_name: 'itwillbsT2',
-            buyer_tel: '010-1234-5678',
-            buyer_addr: '부산광역시 부산진구 부전동',
-            buyer_postcode: '123-456',
+//             buyer_email: 'iamport@siot.do',
+//             buyer_name: 'itwillbsT2',
+//             buyer_tel: '010-1234-5678',
+//             buyer_addr: '부산광역시 부산진구 부전동',
+//             buyer_postcode: '123-456',
             m_redirect_url: 'https://www.yourdomain.com/payments/complete'
             /*  
                 모바일 결제시,

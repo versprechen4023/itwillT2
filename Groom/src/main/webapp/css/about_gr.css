@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.text-container { /* Groom대표이사(텍스트)와 회사대표 서명(이미지) 나란히 배치 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.text { /* Groom대표이사(텍스트)를 오른쪽 아래로 배치 */
+	margin-left: 150px;
+}
+
+.image-ceo { /* 회사대표 서명(이미지) */
+	margin-left: 20px;
+}
+
+.groom-info { /* 회사 소개글 */
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 50px;
+}
+
+.custom-line-height { /* 회사 소개글 줄 간격 */
+	line-height: 1.7;
+}

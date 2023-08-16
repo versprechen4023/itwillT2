@@ -40,26 +40,25 @@
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
 
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
-
+	<!-- 파비콘 적용 코드 -->
+    <link rel="icon" href="images/favicon.ico" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 	
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="../css/animate.css">
+	<link rel="stylesheet" href="./css/animate.css">
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="../css/icomoon.css">
+	<link rel="stylesheet" href="./css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="./css/bootstrap.css">
 	<!-- Flexslider  -->
-	<link rel="stylesheet" href="../css/flexslider.css">
+	<link rel="stylesheet" href="./css/flexslider.css">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="./css/style.css">
 	<!-- overwrite style  -->
-	<link rel="stylesheet" href="../css/my.css">
+	<link rel="stylesheet" href="./css/my.css">
 
 	<!-- Modernizr JS -->
-	<script src="../js/modernizr-2.6.2.min.js"></script>
+	<script src="./js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -69,7 +68,7 @@
 	<body>
 	<div id="fh5co-page">
 		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-<%-- 		<jsp:include page="../inc/aside.jsp"></jsp:include> --%>
+<%-- 		<jsp:include page="./inc/aside.jsp"></jsp:include> --%>
 
 		<div id="fh5co-main">
 			<div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
@@ -155,22 +154,22 @@
 	</div>
 
 	<!-- jQuery -->
-	<script src="../js/jquery.min.js"></script>
+	<script src="./js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
-	<script src="../js/jquery.easing.1.3.js"></script>
+	<script src="./js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
 	<!-- Waypoints -->
-	<script src="../js/jquery.waypoints.min.js"></script>
+	<script src="./js/jquery.waypoints.min.js"></script>
 	<!-- Flexslider -->
-	<script src="../js/jquery.flexslider-min.js"></script>
+	<script src="./js/jquery.flexslider-min.js"></script>
 	<!-- Google Map -->
 <!-- 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script> -->
-<!-- 	<script src="../js/google_map.js"></script> -->
+<!-- 	<script src="./js/google_map.js"></script> -->
 	
 	
 	<!-- MAIN JS -->
-	<script src="../js/main.js"></script>
+	<script src="./js/main.js"></script>
 
 	</body>
 </html>

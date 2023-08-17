@@ -7,63 +7,14 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Marble &mdash; Free HTML5 Bootstrap Website Template by FreeHTML5.co</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
-	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FreeHTML5.co" />
-
-  	<!-- 
-	//////////////////////////////////////////////////////
-
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FreeHTML5.co
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	-->
-
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
-
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="./css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="./css/icomoon.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="./css/bootstrap.css">
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="./css/flexslider.css">
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="./css/signup_gr.css">
-
-	<!-- Modernizr JS -->
-	<script src="./js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+	<!-- 헤드호출 -->
+	<jsp:include page="../inc/head.jsp"></jsp:include>
 
 	</head>
+	
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="./css/signup_gr.css">
+	
 	<body>
  <h1> 그루미 회원 가입 </h1>
 		<form>
@@ -71,9 +22,9 @@
 			  <div>
 				<label class="imp">아이디</label>
 				<div>
-				  <input type="text" placeholder="예 : marketkurly12" required >
-				  <button type="button">중복확인</button>
+				  <input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요" required name="id" >
 				</div>
+				<span id="idmsg">아이디 입력 테스트</span>
 			  </div>
 		
 			  <div>
@@ -147,28 +98,39 @@
 			<button type="submit">가입하기</button>
 		
 		  </form> 
-		
 
+<script type="text/javascript">
 
-
-
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
-	<!-- Google Map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
+$('#id').keyup(function(){
 	
-	
-	<!-- MAIN JS -->
-	<script src="js/main.js"></script>
+	  $.ajax({
+		  url : "test.gr",
+		  data: {"id": $('#id').val()},
+		  success:function(data){
+			  const result = $.trim(data);
+			  if(result=="yes" && !$('#id').val() == ""){
+			
+			  $('#idmsg').css('color','green');
+			  $('#idmsg').text("사용가능한 아이디입니다.");
+			  $('#submit').removeAttr('disabled');
+			  return;
+			  }else if ( result=="no" && !$('#id').val() == ""){
+			 
+			  $('#idmsg').css('color','red');
+			  $('#idmsg').text("이미 존재하는 아이디입니다.");  
+			  $('#submit').attr('disabled','disabled');
+			  return;
+			  }
+		  }//success 콜백함수 종료지점
+	  });// ajax
+	  if($('#id').val() == ""){
+		  $('#idmsg').css('color','red');
+		  $('#idmsg').text("아이디를 입력해주세요.");  
+		  $('#submit').attr('disabled','disabled'); 
+		  return;
+	  }//id값이 빈칸일경우 입력하라는 내용 출력
+ }); // 아이디중복확인 종료
+</script>
 
 	</body>
 </html>

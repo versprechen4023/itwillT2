@@ -8,65 +8,14 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Marble &mdash; Free HTML5 Bootstrap Website Template by FreeHTML5.co</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
-	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FreeHTML5.co" />
+	<!-- 헤드호출 -->
+	<jsp:include page="../inc/head.jsp"></jsp:include>
 
-  	<!-- 
-	//////////////////////////////////////////////////////
-
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FreeHTML5.co
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	-->
-
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<!-- 파비콘 적용 코드 -->
-    <link rel="icon" href="images/favicon.ico" />
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="./css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="./css/icomoon.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="./css/bootstrap.css">
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="./css/flexslider.css">
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="./css/style.css">
+	</head>
 	
 	<!-- css추가  -->
 	<link rel="stylesheet" href="./css/about_gr.css">
-
-	<!-- Modernizr JS -->
-	<script src="./js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-
-	</head>
+	
 	<body>
 	<div id="fh5co-page">
 		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
@@ -115,7 +64,7 @@
                      <br><br><br><p style="text-align: right;">Groom 대표 이사</p><br><br>	  		
 		       </div>               
 		  <div class="image-ceo"><!-- 회사 대표(조현민) 서명 이미지 -->	
-                 <img src="../images/ceo2.png" width="110px" height="40px">
+                 <img src="./images/ceo2.png" width="110px" height="40px">
                      </div>
                 </div>
 		   	
@@ -130,21 +79,21 @@
     <div style="flex: 1; margin: 0;"> <!-- 간격 분배 조절 -->
         <div class="fh5co-text" style="margin-bottom: 0; text-align: center; margin-right: -270px;">
             <h3 style="display: block; margin: 0; font-size: 14px;">
-                <img src="../images/scissors.png" width="25px" height="25px" style="margin-bottom: 15px;"><br>미용</h3><br>
+                <img src="./images/scissors.png" width="25px" height="25px" style="margin-bottom: 15px;"><br>미용</h3><br>
             <p style="margin-bottom: 20px;">기본컷, 디자인컷</p>
         </div>
     </div>
     <div style="flex: 1; margin: 0 ;">
         <div class="fh5co-text" style="margin-bottom: 0; text-align: center; margin-left: 4px;">
             <h3 style="display: block; margin: 0; font-size: 14px;">
-                <img src="../images/soap.png" width="25px" height="25px" style="margin-bottom: 15px;"><br>목욕</h3><br>
+                <img src="./images/soap.png" width="25px" height="25px" style="margin-bottom: 15px;"><br>목욕</h3><br>
             <p style="margin-bottom: 20px;">청결 관리</p>
         </div>
     </div>
     <div style="flex: 1; margin: 0;">
         <div class="fh5co-text" style="margin-bottom: 0; text-align: center; margin-left: -250px; margin-right: 30px;">
             <h3 style="display: block; margin: 0; font-size: 14px;">
-                <img src="../images/hot-bath.png" width="25px" height="25px" style="margin-bottom: 15px;"><br>스파</h3><br>
+                <img src="./images/hot-bath.png" width="25px" height="25px" style="margin-bottom: 15px;"><br>스파</h3><br>
             <p style="margin-bottom: 20px;">아로마, 탄산</p>
         </div>
     </div>

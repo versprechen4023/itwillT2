@@ -8,15 +8,21 @@
 	</h1>
 	<nav id="fh5co-main-menu" role="navigation">
 		<ul>
-			<li><a href="index.jsp">로그인</a>|<a href="index.html">로그아웃</a></li>
+			<li><a href="login.gr">로그인</a>|<a href="singup.gr">회원가입</a></li>
 			<li><a href="blog.html">ABOUT</a></li>
 			<li><a href="portfolio.html">이용안내</a></li>
 			<li><a href="about.html">예약하기</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">카테고리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">공지사항</a></li>
-					<li><a href="#">게시판</a></li>
+					<li><a href="notice.gr">notice</a></li>
+					<li><a href="qna.gr">qna</a></li>
+					<li><a href="about.gr">about</a></li>
+					<li><a href="blog.gr">blog</a></li>
+					<li><a href="contact.gr">contact</a></li>
+					<li><a href="portfolio.gr">portfolio</a></li>
+					<li><a href="review.gr">review</a></li>
+					<li><a href="testabout.gr">testabout</a></li>
 				</ul></li>
 		</ul>
 	</nav>

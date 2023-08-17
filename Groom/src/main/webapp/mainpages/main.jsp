@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
+<<<<<<< HEAD
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Marble &mdash; Free HTML5 Bootstrap Website Template by FreeHTML5.co</title>
@@ -48,8 +49,16 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+=======
+	<!-- 헤드호출 -->
+	<jsp:include page="../inc/head.jsp"></jsp:include>
+>>>>>>> refs/remotes/origin/KJS
 
 	</head>
+	
+	<!-- 메인페이지 css 오버라이드  -->
+	<link rel="stylesheet" href="./css/main_gr.css">
+	
 	<body>
 	<div id="fh5co-page">
         <!-- 사이드바호출 -->

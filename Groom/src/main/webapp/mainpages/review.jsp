@@ -58,7 +58,7 @@
 <!-- div  -->	
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 		<div class="blog-entry">                             <!-- ↗ 블로그 페이지 이동시 보여지는 칸 이미지 -->
-			<a href="#" class="blog-img"><img src="images/dog1.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+			<a href="#" class="blog-img"><img src="./images/dog1.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
 		<div class="review-desc">
 			<h3><a href="#">미미</a>
 			<small>원장 딩딩동</small><small> / 서면점</small></h3>
@@ -72,7 +72,7 @@
 <!-- div  -->
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 		<div class="blog-entry">                             <!-- ↗ 블로그 페이지 이동시 보여지는 칸 이미지 -->
-			<a href="#" class="blog-img"><img src="images/dog2.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+			<a href="#" class="blog-img"><img src="./images/dog2.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
 		<div class="review-desc">
 			<h3><a href="#">미용</a>
 			<small>원장 동동동</small><small> / 서면점</small></h3>
@@ -86,7 +86,7 @@
 <!-- div  -->			
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 		<div class="blog-entry">                             <!-- ↗ 블로그 페이지 이동시 보여지는 칸 이미지 -->
-			<a href="#" class="blog-img"><img src="images/dog3.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+			<a href="#" class="blog-img"><img src="./images/dog3.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
 		<div class="review-desc">
 			<h3><a href="#">목욕</a>
 			<small>원장 동동동</small><small> / 서면점</small></h3>
@@ -100,7 +100,7 @@
 <!-- div  -->			
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 		<div class="blog-entry">                             <!-- ↗ 블로그 페이지 이동시 보여지는 칸 이미지 -->
-			<a href="#" class="blog-img"><img src="images/dog4.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+			<a href="#" class="blog-img"><img src="./images/dog4.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
 		<div class="review-desc">
 			<h3><a href="#">산책</a>
 			<small>원장 동동동</small><small> / 서면점</small></h3>
@@ -114,7 +114,7 @@
 <!-- div  -->			
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 		<div class="blog-entry">                             <!-- ↗ 블로그 페이지 이동시 보여지는 칸 이미지 -->
-			<a href="#" class="blog-img"><img src="images/dog5.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+			<a href="#" class="blog-img"><img src="./images/dog5.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
 		<div class="review-desc">
 			<h3><a href="#">또컷</a>
 			<small>원장 딩딩동</small><small> / 서면점</small></h3>
@@ -128,7 +128,7 @@
 <!-- div  -->
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 		<div class="blog-entry">                             <!-- ↗ 블로그 페이지 이동시 보여지는 칸 이미지 -->
-			<a href="#" class="blog-img"><img src="images/#.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+			<a href="#" class="blog-img"><img src="./images/dog6.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
 		<div class="review-desc">
 			<h3><a href="#">커트</a>
 			<small>원장 동동동</small><small> / 서면점</small></h3>
@@ -142,7 +142,7 @@
 <!-- div  -->			
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 		<div class="blog-entry">                             <!-- ↗ 블로그 페이지 이동시 보여지는 칸 이미지 -->
-			<a href="#" class="blog-img"><img src="images/dog7.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+			<a href="#" class="blog-img"><img src="./images/dog7.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
 		<div class="review-desc">
 			<h3><a href="#">커트</a>
 			<small>원장 동동동</small><small> / 서면점</small></h3>
@@ -156,7 +156,7 @@
 <!-- div  -->			
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 		<div class="blog-entry">                             <!-- ↗ 블로그 페이지 이동시 보여지는 칸 이미지 -->
-			<a href="#" class="blog-img"><img src="images/dog8.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+			<a href="#" class="blog-img"><img src="./images/dog8.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
 		<div class="review-desc">
 			<h3><a href="#">커트</a>
 			<small>원장 동동동</small><small> / 서면점</small></h3>

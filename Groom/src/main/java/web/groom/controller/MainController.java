@@ -10,64 +10,64 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("*.gr") //.gr 어노테이션 매핑 선언
+@WebServlet("*.gr") //.gr 메인 어노테이션 매핑 선언
 public class MainController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String page = request.getServletPath();
+		String sPath = request.getServletPath();
 		
 		 //메인화면페이지
-		 if (page.equals("/main.gr")) {
-	            webForward(request, response, "mainpages", "main");
+		 if (sPath.equals("/main.gr")) {
+	            webForward(request, response, "mainsPaths", "main");
 	     }
 		 
 		 //멤버페이지
-		 if (page.equals("/login.gr")) {
+		 if (sPath.equals("/login.gr")) {
 	            webForward(request, response, "member", "login");
 	     }
 		 
-		 if (page.equals("/singup.gr")) {
+		 if (sPath.equals("/singup.gr")) {
 	            webForward(request, response, "member", "singup");
 	     }
 		 
 		 //보드페이지
-		 if (page.equals("/notice.gr")) {
+		 if (sPath.equals("/notice.gr")) {
 	            webForward(request, response, "board", "notice");
 	     }
 		 
-		 if (page.equals("/qna.gr")) {
+		 if (sPath.equals("/qna.gr")) {
 	            webForward(request, response, "board", "notice");
 	     }
 		 
 		 //메인페이지관련
-		 if (page.equals("/about.gr")) {
-	            webForward(request, response, "mainpages", "about");
+		 if (sPath.equals("/about.gr")) {
+	            webForward(request, response, "mainsPaths", "about");
 	     }
 		 
-		 if (page.equals("/blog.gr")) {
-	            webForward(request, response, "mainpages", "blog");
+		 if (sPath.equals("/blog.gr")) {
+	            webForward(request, response, "mainsPaths", "blog");
 	     }
 		 
-		 if (page.equals("/contact.gr")) {
-	            webForward(request, response, "mainpages", "contact");
+		 if (sPath.equals("/contact.gr")) {
+	            webForward(request, response, "mainsPaths", "contact");
 	     }
 		 
-		 if (page.equals("/portfolio.gr")) {
-	            webForward(request, response, "mainpages", "portfolio");
+		 if (sPath.equals("/portfolio.gr")) {
+	            webForward(request, response, "mainsPaths", "portfolio");
 	     }
 		 
-		 if (page.equals("/review.gr")) {
-	            webForward(request, response, "mainpages", "review");
+		 if (sPath.equals("/review.gr")) {
+	            webForward(request, response, "mainsPaths", "review");
 	     }
 		 
-		 if (page.equals("/testabout.gr")) {
-	            webForward(request, response, "mainpages", "testabout");
+		 if (sPath.equals("/testabout.gr")) {
+	            webForward(request, response, "mainsPaths", "testabout");
 	     }
 		 
 		 
 		 //AJAX관련
-		 if (page.equals("/test.gr")) {
+		 if (sPath.equals("/test.gr")) {
 			 
 			     System.out.println("ajax테스트");
 			     boolean result = false;
@@ -99,8 +99,8 @@ public class MainController extends HttpServlet {
 		doProcess(request, response);
 	}
 	
-	public void webForward(HttpServletRequest request, HttpServletResponse response, String folder, String page) throws ServletException, IOException {
-		request.getRequestDispatcher("/"+folder+"/"+page+".jsp").forward(request, response);
+	public void webForward(HttpServletRequest request, HttpServletResponse response, String folder, String pageName) throws ServletException, IOException {
+		request.getRequestDispatcher("/"+folder+"/"+pageName+".jsp").forward(request, response);
 	}
 
 }

@@ -20,26 +20,6 @@ public class MainController extends HttpServlet {
 		 //메인화면페이지
 		 if (sPath.equals("/main.gr")) {
 	            webForward(request, response, "main", "main");
-	     }
-		 
-		 
-		 //AJAX관련
-		 if (sPath.equals("/test.gr")) {
-			 
-			     System.out.println("ajax테스트");
-			     boolean result = false;
-				 response.setContentType("text/html; charset=UTF-8");
-				 String id = request.getParameter("id");
-				
-				  System.out.println(id);
-				  String get = "test";
-				  PrintWriter out = response.getWriter();
-				  if(id.equals(get)){
-					  result = true;
-				  }else{
-					  result = false;
-				  }
-				  out.print(Boolean.toString(result));
 	     }   
 		
 	}

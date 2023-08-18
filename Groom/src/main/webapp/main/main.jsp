@@ -6,6 +6,7 @@
 	<head>
 	<!-- 헤드호출 -->
 	<jsp:include page="../inc/head.jsp"></jsp:include>
+
 	</head>
 	
 	<!-- 메인페이지 css 오버라이드  -->

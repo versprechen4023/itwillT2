@@ -7,7 +7,7 @@
 	class="border js-fullheight">
     
 	<h1 id="fh5co-logo"><a href="index.html">Groom </a></h1>
-	<p id="fh5co-main-login_signup" role="navigation"><a href="#">로그인</a>  |  <a href="#">회원가입</a></p>
+	<p id="fh5co-main-login_signup" role="navigation"><a href="login.me">로그인</a>  |  <a href="singup.me">회원가입</a></p>
 	<nav id="fh5co-main-menu" role="navigation">
 		<ul>
 			<li><a href="blog.html">ABOUT</a></li>

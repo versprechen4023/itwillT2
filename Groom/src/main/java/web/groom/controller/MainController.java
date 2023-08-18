@@ -20,8 +20,7 @@ public class MainController extends HttpServlet {
 		 //메인화면페이지
 		 if (sPath.equals("/main.gr")) {
 	            webForward(request, response, "main", "main");
-	     }
-		
+		 }
 	}
 
 	@Override

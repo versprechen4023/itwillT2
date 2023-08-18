@@ -118,7 +118,7 @@
 $('#id').keyup(function(){
 	
 	  $.ajax({
-		  url : "test.gr",
+		  url : "test.aj",
 		  data: {"id": $('#id').val()},
 		  success:function(data){
 			  const result = $.trim(data);

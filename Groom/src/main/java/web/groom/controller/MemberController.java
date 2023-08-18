@@ -17,8 +17,12 @@ public class MemberController extends HttpServlet {
 		String sPath = request.getServletPath();
 		
 		 //페이지이동
-		 if (sPath.equals("/something.me")) {
-	            
+		 if (sPath.equals("/login.me")) {
+			 webForward(request, response, "member", "login");
+	     }
+		 
+		 if (sPath.equals("/singup.me")) {
+			 webForward(request, response, "member", "singup");   
 	     }
 		 
 		 

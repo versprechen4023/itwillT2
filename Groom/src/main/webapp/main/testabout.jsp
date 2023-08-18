@@ -9,7 +9,7 @@
 	<head>
 	<!-- 헤드호출 -->
 	<jsp:include page="../inc/head.jsp"></jsp:include>
-
+	
 	</head>
 	
 		<!-- overwrite style  -->

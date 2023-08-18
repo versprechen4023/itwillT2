@@ -14,7 +14,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
-@WebServlet("*.up") //.gr 어노테이션 매핑 선언
+@WebServlet("*.up") //.up 어노테이션 매핑 선언
 public class UploadController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +23,7 @@ public class UploadController extends HttpServlet {
 		String contextPath = request.getContextPath(); // 프로젝트 명 추출/Groom
 		String page = uri.substring(contextPath.length()); //substring을 이용하여 contextPath(/Groom)뒤인 페이지명(main.gr)등을 추출
 		 
-		 if (page.equals("/upload.up")) {
+		if (page.equals("/upload.up")) {
 			 
 			   // 업로드된 파일을 저장할 디렉토리 경로
 			    String uploadPath = "C:\\Users\\Administrator\\git\\itwillt2\\Groom\\src\\main\\webapp\\upload";
@@ -57,8 +57,15 @@ public class UploadController extends HttpServlet {
 		        } else {
 		            System.out.println("파일없음");
 		        }
-	 }
-		
+	     }
+		 
+		 if (page.equals("/time.up")) {
+			 String date = request.getParameter("datepicker");
+			 String time = request.getParameter("timepicker");
+			 
+			 System.out.println(date);
+			 System.out.println(time);
+		 }
 		
 	}
 

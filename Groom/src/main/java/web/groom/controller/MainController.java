@@ -15,9 +15,7 @@ public class MainController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String uri = request.getRequestURI(); // uri의 주소 추출 /Groom/main.gr
-		String contextPath = request.getContextPath(); // 프로젝트 명 추출/Groom
-		String page = uri.substring(contextPath.length()); //substring을 이용하여 contextPath(/Groom)뒤인 페이지명(main.gr)등을 추출
+		String page = request.getServletPath();
 		
 		 //메인화면페이지
 		 if (page.equals("/main.gr")) {
@@ -72,6 +70,7 @@ public class MainController extends HttpServlet {
 		 if (page.equals("/test.gr")) {
 			 
 			     System.out.println("ajax테스트");
+			     boolean result = false;
 				 response.setContentType("text/html; charset=UTF-8");
 				 String id = request.getParameter("id");
 				
@@ -79,10 +78,11 @@ public class MainController extends HttpServlet {
 				  String get = "test";
 				  PrintWriter out = response.getWriter();
 				  if(id.equals(get)){
-					  out.print("yes");
+					  result = true;
 				  }else{
-					  out.print("no");
+					  result = false;
 				  }
+				  out.print(Boolean.toString(result));
 	     }   
 		
 	}

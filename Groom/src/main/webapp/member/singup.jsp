@@ -98,7 +98,21 @@
 			<button type="submit">가입하기</button>
 		
 		  </form> 
-
+	<!-- jQuery -->
+	<script src="./js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="./js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="./js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="./js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="./js/jquery.flexslider-min.js"></script>
+	
+	
+	<!-- MAIN JS -->
+	<script src="./js/main.js"></script>
+	
 <script type="text/javascript">
 
 $('#id').keyup(function(){
@@ -108,13 +122,13 @@ $('#id').keyup(function(){
 		  data: {"id": $('#id').val()},
 		  success:function(data){
 			  const result = $.trim(data);
-			  if(result=="yes" && !$('#id').val() == ""){
+			  if(result=="true" && !$('#id').val() == ""){
 			
 			  $('#idmsg').css('color','green');
 			  $('#idmsg').text("사용가능한 아이디입니다.");
 			  $('#submit').removeAttr('disabled');
 			  return;
-			  }else if ( result=="no" && !$('#id').val() == ""){
+			  }else if ( result=="false" && !$('#id').val() == ""){
 			 
 			  $('#idmsg').css('color','red');
 			  $('#idmsg').text("이미 존재하는 아이디입니다.");  

@@ -19,50 +19,7 @@ public class MainController extends HttpServlet {
 		
 		 //메인화면페이지
 		 if (sPath.equals("/main.gr")) {
-	            webForward(request, response, "mainsPaths", "main");
-	     }
-		 
-		 //멤버페이지
-		 if (sPath.equals("/login.gr")) {
-	            webForward(request, response, "member", "login");
-	     }
-		 
-		 if (sPath.equals("/singup.gr")) {
-	            webForward(request, response, "member", "singup");
-	     }
-		 
-		 //보드페이지
-		 if (sPath.equals("/notice.gr")) {
-	            webForward(request, response, "board", "notice");
-	     }
-		 
-		 if (sPath.equals("/qna.gr")) {
-	            webForward(request, response, "board", "notice");
-	     }
-		 
-		 //메인페이지관련
-		 if (sPath.equals("/about.gr")) {
-	            webForward(request, response, "mainsPaths", "about");
-	     }
-		 
-		 if (sPath.equals("/blog.gr")) {
-	            webForward(request, response, "mainsPaths", "blog");
-	     }
-		 
-		 if (sPath.equals("/contact.gr")) {
-	            webForward(request, response, "mainsPaths", "contact");
-	     }
-		 
-		 if (sPath.equals("/portfolio.gr")) {
-	            webForward(request, response, "mainsPaths", "portfolio");
-	     }
-		 
-		 if (sPath.equals("/review.gr")) {
-	            webForward(request, response, "mainsPaths", "review");
-	     }
-		 
-		 if (sPath.equals("/testabout.gr")) {
-	            webForward(request, response, "mainsPaths", "testabout");
+	            webForward(request, response, "main", "main");
 	     }
 		 
 		 

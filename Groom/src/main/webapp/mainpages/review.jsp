@@ -11,31 +11,9 @@
 	<link rel="stylesheet" href="./css/review_gr.css">
 	
 	<body>
-<!-- =============================  네비게이션바 ============================= -->
-	<div id="fh5co-page">
-	<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-	<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
-	<h1 id="fh5co-logo"><a href="index.html">Groom </a></h1>
-    <p id="fh5co-main-login_signup" role="navigation"><a href="#">로그인</a>  |  <a href="#">회원가입</a></p>
-	<nav id="fh5co-main-menu" role="navigation">
-		<ul>
-			<li><a href="about.html">회사소개</a></li>
-			<li><a href="portfolio.html">예약하기</a></li>
-			<li class="fh5co-active"><a href="reviewTest.jsp">전체리뷰</a></li>
-			<li><a href="#">커뮤니티</a></li>
-		</ul>
-	</nav>
-
-	<div class="fh5co-footer">
-		<p><small>&copy; 2016 Blend Free HTML5. All Rights Reserved.</span> <span>Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> </span> <span>Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></span></small></p>
-		<ul>
-			<li><a href="#"><i class="icon-facebook2"></i></a></li>
-			<li><a href="#"><i class="icon-twitter2"></i></a></li>
-			<li><a href="#"><i class="icon-instagram"></i></a></li>
-			<li><a href="#"><i class="icon-linkedin2"></i></a></li>
-		</ul>
-	</div>
-	</aside>
+	
+<!-- =============================  네비게이션바 ============================= -->	
+<jsp:include page="../inc/aside.jsp"></jsp:include>
 <!-- =============================  네비게이션바 ============================= -->
 
 

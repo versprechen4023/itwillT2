@@ -4,21 +4,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<!-- 데이트피커 타임피커를 사용하기위한 j쿼리 -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!--  데이트피커 커스텀 css-->
+<link rel="stylesheet" type="text/css" href="css/datepicker_gr.css">
+
+<!--  타임피커라인 -->
+<link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="css/res_timepicker.css"> -->
+
 <title>Insert title here</title>
 </head>
 <body>
 <form action="time.up" method="post">
+	<label for="list" class="label">지점목록</label>
+	<select class="" id="list" name="list">
+		<option value="서면점">서면점</option>
+		<option value="김해점">김해점</option>
+	</select>
+	<br>
     <label for="datepicker">날짜 선택:</label>
-    <input type="text" id="datepicker" name="datepicker">
+    <input type="text" id="datepicker" name="datepicker" autocomplete="off">
     <br>
     <label for="timepicker">시간 선택:</label>
-    <input type="time" id="timepicker" name="timepicker">
+    <input type="text" id="timepicker" name="timepicker" autocomplete="off">
     <br>
     <input type="submit" value="전송">
 </form>
+
 <script>
 $(document).ready(function() {
 	
@@ -38,8 +56,6 @@ $(document).ready(function() {
     dayNamesShort: ['일','월','화','수','목','금','토'],
     dayNamesMin: ['일','월','화','수','목','금','토'],
     showMonthAfterYear: true,
-    changeMonth: true,
-    changeYear: true,
     yearSuffix: '년',
     
     //날짜 비활성화 관련 함수들
@@ -72,6 +88,16 @@ $(document).ready(function() {
    // 최대 날짜 범위 년도, 달, 일로되어있음 지금은 23년8월+4(12월까지)하고 최대날짜는 31일로 되어있음 문제가있는데 년도가 넘어가면 계산식이바뀜
    maxDate: new Date(currentYear, currentMonth + 4, 31)
    
+	});
+	
+	$('#timepicker').timepicker({
+		timeFormat:'H:mm',
+		interval:30,
+		startTime:'09:00',
+		minTime:'09:00',
+		maxTime: '18:00',
+		dynamic:false,
+		scrollbar:true,
 	});
 
 });

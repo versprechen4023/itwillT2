@@ -26,7 +26,7 @@ public class UploadController extends HttpServlet {
 		if (page.equals("/upload.up")) {
 			 
 			   // 업로드된 파일을 저장할 디렉토리 경로
-			    String uploadPath = "C:\\Users\\Administrator\\git\\itwillt2\\Groom\\src\\main\\webapp\\upload";
+			    String uploadPath = "C:\\Users\\ITWILL\\git\\itwillt2\\Groom\\src\\main\\webapp\\upload";
 //			    String uploadPath = request.getServletContext().getRealPath("/test");
 
 		        // 업로드된 파일을 저장할 디렉토리 생성
@@ -60,11 +60,15 @@ public class UploadController extends HttpServlet {
 	     }
 		 
 		 if (page.equals("/time.up")) {
+			 
+			 request.setCharacterEncoding("utf-8");
 			 String date = request.getParameter("datepicker");
 			 String time = request.getParameter("timepicker");
+			 String list = request.getParameter("list");
 			 
 			 System.out.println(date);
 			 System.out.println(time);
+			 System.out.println(list);
 		 }
 		
 	}

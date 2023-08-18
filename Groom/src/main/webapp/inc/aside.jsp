@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<link rel="stylesheet" href="./css/aside_gr.css">
+
 <aside id="fh5co-aside" role="complementary"
 	class="border js-fullheight">
-
-	<h1 id="fh5co-logo">
-		<a href="index.html">로고들어갈곳</a>
-	</h1>
+    
+	<h1 id="fh5co-logo"><a href="index.html">Groom </a></h1>
+	<p id="fh5co-main-login_signup" role="navigation"><a href="#">로그인</a>  |  <a href="#">회원가입</a></p>
 	<nav id="fh5co-main-menu" role="navigation">
 		<ul>
-			<li><a href="login.gr">로그인</a>|<a href="singup.gr">회원가입</a></li>
 			<li><a href="blog.html">ABOUT</a></li>
 			<li><a href="portfolio.html">이용안내</a></li>
 			<li><a href="about.html">예약하기</a></li>

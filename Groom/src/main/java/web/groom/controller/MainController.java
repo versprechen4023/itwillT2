@@ -20,9 +20,9 @@ public class MainController extends HttpServlet {
 		 //메인화면페이지
 		 if (sPath.equals("/main.gr")) {
 	            webForward(request, response, "main", "main");
-		 }
-	}
 
+	     }
+	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

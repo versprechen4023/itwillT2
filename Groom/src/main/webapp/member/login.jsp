@@ -9,103 +9,98 @@
 	<head>
 	<!-- 헤드호출 -->
 	<jsp:include page="../inc/head.jsp"></jsp:include>
-
 	</head>
 	
-<!-- 	login css 추가 -->
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="./css/member_gr.css">
+	
+	<!-- 로그인 스타일  -->
 	<link rel="stylesheet" href="./css/login_gr.css">
 	
 	<body>
-	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
+	  <form>
+	  
+<!-- 로고 자리 -->		
+		<h1 style="margin-top: -55px; margin-bottom: 55px;"> Groom(로고) </h1>
+		
+<!-- 테두리선 시작 -->
+			<div class="membership" style="border: 1px solid #ccc; border-radius: 10px; padding: 30px;">
+			 
+<!-- 아이디 -->
+			  <div>
+				<label class="imp2" style="font-size: 16px;">ID</label>
+				<div>
+				  <input type="text" id="id" placeholder="아이디를 입력하세요" required name="id" style="width: 390px; ">
+				</div>
+			  </div>
+		
+<!-- 비밀번호 -->
+			  <div>
+				<br><label class="imp2" style="font-size: 16px;">Password</label>
+				<div>
+				  <input type="password" placeholder="비밀번호를 입력해주세요." required style="width: 390px;">
+			    </div>
+			  </div>
+		
+			 
+<!-- 가로줄 추가 -->
+		<hr style="margin: 20px 0; border: 2 solid #ccc;">
+		
 
-			<h1 id="fh5co-logo"><a href="index.html">Groom</a></h1>
-			<nav id="fh5co-main-menu" role="navigation">
-				<ul>
-					<li><a href="index.html">로그인</a>|<a href="index.html">회원가입</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="portfolio.html">Portfolio</a></li>
-					<li><a href="about.html">About</a></li>
-					<li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">카테고리
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">공지사항</a></li>
-                        <li><a href="#">게시판</a></li>
-                    </ul>
-                	</li>
-				</ul>
-			</nav>
+<!-- 로그인 버튼 -->
+		<div id="button">
+			<button type="submit" style="width: 390px; font-size: 16px; margin-left: 0; ">로그인</button>
+		   </div>
+	    </div>   
+<!-- 테두리선 끝 -->
 
-			<div class="fh5co-footer">
-				<p><small>&copy; <script>document.write(new Date().getFullYear());</script> Blend Free HTML5. All Rights Reserved.</small></p>
-				<ul>
-					<li><a href="#"><i class="icon-facebook2"></i></a></li>
-					<li><a href="#"><i class="icon-twitter2"></i></a></li>
-					<li><a href="#"><i class="icon-instagram"></i></a></li>
-					<li><a href="#"><i class="icon-linkedin2"></i></a></li>
-				</ul>
-			</div>
-
-		</aside>
-
-<!-- -->
-		<div class="container">
-  <div class="welcome">
-    <div class="leftbox">
-
-      <div class="signin">
-        <h1>GROOM</h1>
-        <form class="more-padding" autocomplete="off">
-          <input type="text" placeholder="사용자이름">
-          <input type="password" placeholder="비밀번호">
-          <div class="checkbox">
-            <input type="checkbox" id="remember" /><label for="remember">사용자이름 기억하기</label>
-          </div>
-
-		<button class="button submit" id="loging">로그인</button>
-		<button class="button signup" id="signup">회원가입</button>
-        <!-- 로그인버튼과 회원가입 버튼이 수평이 안됨 -->
-        
-         <div class="forgot">
-          <a href="새로운팝업창이나 페이지이동">사용자이름/비밀번호를 잊어버리셨나요?</a>
-        </div>
-        </form>
-        
-        
+		   	       
+<!-- 회원가입 | 아이디비밀번호 찾기 -->       
+	 <div class="centered-text">
+         <p>
+            <b class="custom-text">회원가입</b>
+            <span class="vertical-line"></span>
+            <b class="custom-text">아이디/비밀번호 찾기</b>
+        </p>
       </div>
-    </div>
-       <div class="rightbox">
-      <h2 class="title"><span>이 달</span>의 행사</h2>
-      <p class="desc"> 신규미용고객 <span>20% 할인</span></p>
-      <img class="dog" src="images/2.jpg"/>
-      <p class="account">행사기간 : 23.08.01 - 23.08.31</p>
       
-    </div>
-  </div>
- </div>
-
-</div>
+    </form> 
+		  
+		  
 		
-		
-	
+		 
+<script type="text/javascript">
 
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
+$('#id').keyup(function(){
 	
-	
-	<!-- MAIN JS -->
-	<script src="js/main.js"></script>
+	  $.ajax({
+		  url : "test.gr",
+		  data: {"id": $('#id').val()},
+		  success:function(data){
+			  const result = $.trim(data);
+			  if(result=="yes" && !$('#id').val() == ""){
+			
+			  $('#idmsg').css('color','green');
+			  $('#idmsg').text("사용가능한 아이디입니다.");
+			  $('#submit').removeAttr('disabled');
+			  return;
+			  }else if ( result=="no" && !$('#id').val() == ""){
+			 
+			  $('#idmsg').css('color','red');
+			  $('#idmsg').text("이미 존재하는 아이디입니다.");  
+			  $('#submit').attr('disabled','disabled');
+			  return;
+			  }
+		  }//success 콜백함수 종료지점
+	  });// ajax
+	  if($('#id').val() == ""){
+		  $('#idmsg').css('color','red');
+		  $('#idmsg').text("아이디를 입력해주세요.");  
+		  $('#submit').attr('disabled','disabled'); 
+		  return;
+	  }//id값이 빈칸일경우 입력하라는 내용 출력
+ }); // 아이디중복확인 종료
+</script>
 
 	</body>
 </html>
-

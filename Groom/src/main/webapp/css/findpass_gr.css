@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+
+/* 아이디 */
+imp2 {
+	color: #ccc;
+}
+
+/* 회원가입 아이디찾기 정렬 */
+.centered-text {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+/* 회원가입 아이디찾기 정렬 */
+.custom-text {
+	font-size: 15px;
+	color: gray;
+}
+
+/* 회원가입 아이디찾기 사이 세로줄 */
+.vertical-line {
+	border-left: 1px solid gray;
+	margin: 0 10px;
+	height: 20px;
+}

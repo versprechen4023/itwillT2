@@ -16,8 +16,12 @@ public class ReviewController extends HttpServlet {
 		String sPath = request.getServletPath();
 		
 		 //페이지이동
-		 if (sPath.equals("/something.re")) {
-	            
+		 if (sPath.equals("/review.re")) {
+			 webForward(request, response, "review", "review");
+	     }
+		 
+		 if (sPath.equals("/writereview.re")) {
+			 webForward(request, response, "review", "writereview");
 	     }
 		 
 		 

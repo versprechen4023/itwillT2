@@ -25,6 +25,18 @@ public class MemberController extends HttpServlet {
 			 webForward(request, response, "member", "singup");   
 	     }
 		 
+		 if (sPath.equals("/findid.me")) {
+			 webForward(request, response, "member", "findid");   
+	     }
+		 
+		 if (sPath.equals("/findpass.me")) {
+			 webForward(request, response, "member", "findpass");   
+	     }
+		 
+		 if (sPath.equals("/modifyinfo.me")) {
+			 webForward(request, response, "member", "modifyinfo");   
+	     }
+		 
 		 
 	}
 

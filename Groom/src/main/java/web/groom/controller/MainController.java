@@ -21,10 +21,7 @@ public class MainController extends HttpServlet {
 		 if (sPath.equals("/main.gr")) {
 	            webForward(request, response, "main", "main");
 	     }
-		 
-		 if (sPath.equals("/my.gr")) {
-	            webForward(request, response, "main", "main");
-	     }
+
 		
 	}
 

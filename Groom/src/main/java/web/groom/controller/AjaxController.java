@@ -49,6 +49,7 @@ public class AjaxController extends HttpServlet {
 		//AJAX관련 이메일 인증번호 검증
 		 if (sPath.equals("/verify.aj")) {
 			 
+			 //인증번호 가져옴
 			 String userVerificationCode = request.getParameter("verificationCode");
 			 
 			 //인증번호테스트하기위한 부분

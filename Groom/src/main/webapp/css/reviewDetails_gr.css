@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+
+  .container {
+    display: flex;
+/*     border: 1px solid #ccc; */
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+  
+  .table-container {
+    flex: 60%;
+    margin: 0 10px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 60%;
+    margin-bottom: 10px;
+     margin-left: auto;
+    margin-right: auto;
+    border-spacing: 50px;
+    
+  }
+  
+  th, td {
+/*     padding: 10px; */
+	padding-left: 40px;
+/* 	padding-right: 10px; */
+
+    text-align: left;
+/*     border: 1px solid blue; */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+  }
+  
+  .reviewPet{
+  	width: 600px;
+  	height: 400px;
+    text-align: center;
+/*     margin-left: 35px; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .w1{
+  	font-weight: bold;
+  	padding-top: 15px;
+  	padding-bottom: 5px;
+  	background-color: #ccc;
+  }
+  
+  .w2{
+/*   	font-weight: bold; */
+  	padding-bottom: 10px;
+  	background-color: #ccc;
+
+  }
+  .w3{
+  	padding-bottom: 10px;
+  }
+  
+    .w4{
+  	font-weight: bold;
+  	padding-top: 10px;
+  	padding-bottom: 10px;
+  	background-color: #ccc;
+  }
+  
+  .w5{
+  	padding-top: 10px;
+  	padding-bottom: 10px;
+  }
+  
+  .wbtn{
+  	float: right;
+  	margin-right: 10px;
+  	background-color: pink;
+  	color: white;
+  }
+  

@@ -20,7 +20,10 @@ public class MypageController extends HttpServlet {
 	            
 	     }
 		 
-		 
+		 if (sPath.equals("/mypage.my")) {
+			 
+			 webForward(request, response, "mypage", "mypage");
+	     }
 	}
 
 	@Override

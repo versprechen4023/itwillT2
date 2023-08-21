@@ -24,6 +24,10 @@ public class ReviewController extends HttpServlet {
 			 webForward(request, response, "review", "writereview");
 	     }
 		 
+		 if (sPath.equals("/reviewDetails.re")) {
+			 webForward(request, response, "review", "reviewDetails");
+	     }
+		 
 		 
 	}
 

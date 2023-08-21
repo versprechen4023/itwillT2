@@ -64,43 +64,7 @@
         </p>
       </div>
       
-    </form> 
-		  
-		  
-		
-		 
-<script type="text/javascript">
-
-$('#id').keyup(function(){
-	
-	  $.ajax({
-		  url : "test.gr",
-		  data: {"id": $('#id').val()},
-		  success:function(data){
-			  const result = $.trim(data);
-			  if(result=="yes" && !$('#id').val() == ""){
-			
-			  $('#idmsg').css('color','green');
-			  $('#idmsg').text("사용가능한 아이디입니다.");
-			  $('#submit').removeAttr('disabled');
-			  return;
-			  }else if ( result=="no" && !$('#id').val() == ""){
-			 
-			  $('#idmsg').css('color','red');
-			  $('#idmsg').text("이미 존재하는 아이디입니다.");  
-			  $('#submit').attr('disabled','disabled');
-			  return;
-			  }
-		  }//success 콜백함수 종료지점
-	  });// ajax
-	  if($('#id').val() == ""){
-		  $('#idmsg').css('color','red');
-		  $('#idmsg').text("아이디를 입력해주세요.");  
-		  $('#submit').attr('disabled','disabled'); 
-		  return;
-	  }//id값이 빈칸일경우 입력하라는 내용 출력
- }); // 아이디중복확인 종료
-</script>
+    </form> 	  
 
 	</body>
 </html>

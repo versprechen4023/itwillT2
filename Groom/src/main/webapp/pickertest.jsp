@@ -92,7 +92,7 @@ $(document).ready(function() {
 	
 	$('#timepicker').timepicker({
 		timeFormat:'H:mm',
-		interval:30,
+		interval:60,
 		startTime:'09:00',
 		minTime:'09:00',
 		maxTime: '18:00',

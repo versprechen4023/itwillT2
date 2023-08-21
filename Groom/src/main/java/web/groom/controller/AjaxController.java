@@ -36,6 +36,7 @@ public class AjaxController extends HttpServlet {
 					  result = false;
 				  }
 				  out.print(Boolean.toString(result));
+				  out.close();
 	     }
 		 
 		 //AJAX관련 이메일 인증코드 발송
@@ -61,6 +62,7 @@ public class AjaxController extends HttpServlet {
 			 response.setContentType("text/html; charset=UTF-8");
 			 PrintWriter out = response.getWriter();
 			 out.print(Boolean.toString(result));
+			 out.close();
          }
 		
 	}

@@ -63,6 +63,14 @@
 				</div>
 			  </div>
 			  
+<!-- 이메일 -->
+			  <div>
+				<br><label class="imp2">이메일</label>
+				<div>
+				<input type="text" placeholder="이메일을 입력하세요" required>
+				</div>
+			  </div>
+			  
 <!-- 휴대폰번호 -->
 			  <div>
 				<br><label class="imp2">휴대폰번호</label>
@@ -74,16 +82,7 @@
 				  
 				</div>
 			  </div>
-		
-<!-- 주소 -->
-			  <div>
-				<br><label class="imp2">주소</label>
-				<div>
-				  <input type="text" placeholder="도로명, 지번, 건물명 검색" required>
-				  <img src="https://res.kurly.com/kurly/ico/2021/search_20_20_333.svg" alt="search">
-				</div>
-		
-			  </div>
+			  
            </div>
 			
 		

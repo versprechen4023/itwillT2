@@ -22,6 +22,11 @@ public class MainController extends HttpServlet {
 	            webForward(request, response, "main", "main");
 
 	     }
+		 
+		 if (sPath.equals("/storeInfo.gr")) {
+	            webForward(request, response, "main", "storeInfo");
+
+	     }
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,5 +1,25 @@
 @charset "UTF-8";
 
+
+button {
+  width: 50%;
+  font-size: 0.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 20px;
+  margin-left: 10px;
+  border-radius: 4px;
+  color: white;
+  background: black;
+  transition: 0.3s;
+}
+
+button[type="submit"] {
+  background: black;
+  color: white;
+}
+
+
 body {
 	display: flex;
 	justify-content: center;

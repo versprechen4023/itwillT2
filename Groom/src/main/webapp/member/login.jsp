@@ -28,7 +28,7 @@
 			 
 <!-- 아이디 -->
 			  <div>
-				<label class="imp2" style="font-size: 16px;">ID</label>
+				<label class="imp2" style="font-size: 16px;">아이디</label>
 				<div>
 				  <input type="text" id="id" placeholder="아이디를 입력하세요" required name="id" style="width: 390px; ">
 				</div>
@@ -36,9 +36,9 @@
 		
 <!-- 비밀번호 -->
 			  <div>
-				<br><label class="imp2" style="font-size: 16px;">Password</label>
+				<br><label class="imp2" style="font-size: 16px;">비밀번호</label>
 				<div>
-				  <input type="password" placeholder="비밀번호를 입력해주세요." required style="width: 390px;">
+				  <input type="password" placeholder="비밀번호를 입력하세요" required style="width: 390px;">
 			    </div>
 			  </div>
 		
@@ -55,14 +55,13 @@
 <!-- 테두리선 끝 -->
 
 		   	       
-<!-- 회원가입 | 아이디비밀번호 찾기 -->       
-	 <div class="centered-text">
-         <p>
-            <b class="custom-text">회원가입</b>
-            <span class="vertical-line"></span>
-            <b class="custom-text">아이디/비밀번호 찾기</b>
-        </p>
-      </div>
+<div class="centered-text">
+    <p>
+        <a href="회원가입_링크_주소" class="custom-text"><b>회원가입</b></a>
+        <span class="vertical-line"></span>
+        <a href="아이디_비밀번호_찾기_링크_주소" class="custom-text"><b>아이디/비밀번호 찾기</b></a>
+    </p>
+</div>
       
     </form> 	  
 

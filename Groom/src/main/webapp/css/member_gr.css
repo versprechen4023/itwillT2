@@ -138,10 +138,9 @@ button {
   text-transform: uppercase;
   padding: 20px;
   margin-left: 10px;
-  border: 1px solid #ee6a7b;
   border-radius: 4px;
-  color: #ee6a7b;
-  background: white;
+  color: white;
+  background: black;
   transition: 0.3s;
 }
 
@@ -150,8 +149,8 @@ button:hover {
 }
 
 button[type="submit"] {
-  background: #ee6a7b;
   color: #fff;
+  background: black;
 }
 
 

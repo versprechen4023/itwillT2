@@ -44,9 +44,14 @@ public class MemberController extends HttpServlet {
 			
 			//memberdto 값 존재여부로 로그인 성공여부 확인
 			if(memberdto != null) {
-			
+				
+				System.out.println("로그인성공");
+				
 				//값이 존재하면 세션에 id저장
 				HttpSession session = request.getSession();
+				
+				//멤버dto값 출력
+				System.out.println(memberdto);
 				
 				//세션에 id, salt, role, userNum 값 저장
 				session.setAttribute("id", memberdto.getId());
@@ -57,9 +62,10 @@ public class MemberController extends HttpServlet {
 				//세션저장완료후 메인으로 이동
 				response.sendRedirect("main.gr");
 			} else {
-				
-				//자바스크립트 페이지에서 에러를 출력할지 아니면 여기서 프린트라이트를 사용할지?
-				webForward(request, response, "member", "msg");
+				System.out.println("로그인실패");
+//				//자바스크립트 페이지에서 에러를 출력할지 아니면 여기서 프린트라이트를 사용할지?
+//				webForward(request, response, "member", "msg");
+				response.sendRedirect("main.gr");
 			}
 	     }
 		 
@@ -70,13 +76,18 @@ public class MemberController extends HttpServlet {
 		 
 		 // 회원가입 로직 수행
 		 if (sPath.equals("/singupPro.me")) {
-			
+
 			//멤버서비스 객체생성
 			ser = new MemberService();
 				
 			//메서드호출(리퀘스트 값 넘겨주기)
-			ser.insertMember(request);
+			MemberDTO memberdto = ser.insertMember(request);
 			
+			if(memberdto != null) {
+				System.out.println("회원가입 성공");
+			} else {
+				System.out.println("회원가입 실패");
+			}
 			//로그인 화면이동
 			response.sendRedirect("login.me");
 				

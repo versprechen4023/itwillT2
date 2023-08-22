@@ -3,6 +3,7 @@ package web.groom.dto;
 import java.sql.Timestamp;
 
 public class MemberDTO {
+	
 	private int num;
 	private String id;
 	private String pass;
@@ -80,6 +81,13 @@ public class MemberDTO {
 	}
 	public void setPoint(int point) {
 		this.point = point;
+	}
+	
+	@Override
+	public String toString() {
+		return "MemberDTO [num=" + num + ", id=" + id + ", pass=" + pass + ", salt=" + salt + ", role=" + role
+				+ ", name=" + name + ", phone=" + phone + ", email=" + email + ", regDate=" + regDate + ", count="
+				+ count + ", point=" + point + "]";
 	}
 	
 }

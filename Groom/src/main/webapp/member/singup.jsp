@@ -20,21 +20,21 @@
        <h1 style="margin-top: 70px; margin-bottom: -10px;"> Groom(로고) </h1>
        	  
 <!-- 아이디 -->
-         <form>
+         <form action="singupPro.me" id="singup" name="signup" method="post">
 			<div class="membership">
 			  <div>
 				<label class="imp">아이디</label>
 				<div>
-				  <input type="text" id="id" name="id" placeholder="아이디를 입력하세요" required name="id" >
+				  <input type="text" id="u_id" name="u_id" placeholder="아이디를 입력하세요" required>
 				</div>
-				<span id="idmsg">test</span>
+				<span id="idmsg"></span>
 			  </div>
 			  
 <!-- 비밀번호 -->
 			  <div>
 				<br><label class="imp">비밀번호</label>
 				<div>
-				  <input type="password" placeholder="비밀번호를 입력하세요" required>
+				  <input type="password" id="u_pass" name="u_pass" placeholder="비밀번호를 입력하세요" required>
 			    </div>
 			    <span>8~15자 영문, 숫자를 입력해주세요.</span>
 			  </div>
@@ -43,7 +43,7 @@
 			  <div>
 				<br><label class="imp">비밀번호 확인</label>
 				<div>
-				<input type="password" placeholder="비밀번호를 한 번 더 입력하세요" required>
+				<input type="password" id="u_pass2" name="u_pass2" placeholder="비밀번호를 한 번 더 입력하세요" required>
 				</div>
 				<span>비밀번호가 일치하지 않습니다.</span>
 			  </div>
@@ -52,7 +52,7 @@
 			  <div>
 				<br><label class="imp">이름</label>
 				<div>
-				<input type="text" placeholder="이름을 입력하세요" required>
+				<input type="text" id="u_name" name="u_name" placeholder="이름을 입력하세요" required>
 				</div>
 				<span>한글, 영문 대/소문자를 사용해 주세요.</span>
 			  </div>
@@ -61,10 +61,10 @@
 			  <div>
 				<br><label class="imp">이메일</label>
 				<div>
-				  <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required>
+				  <input type="email" id="u_email" name="u_email" placeholder="이메일을 입력하세요" required>
 				  
               <!-- 이메일 인증번호 받기 버튼 -->
-				  <button type="button" style="font-size: 13px;" name="email2" onclick="sendVerificationEmail();">인증번호 받기</button>
+				  <button type="button" style="font-size: 13px;" name="u_email2" onclick="sendVerificationEmail();">인증번호 받기</button>
 				</div>
 			  </div>
 			  
@@ -73,63 +73,34 @@
 				<div>
 				  <input type="text" id="verificationCode" name="verificationCode" required readonly>
 				</div>
-				<span id="emailmsg">인증번호입력.</span>
+				<span id="emailmsg"></span>
 			  </div>
 		
             </div>
 <!--       멤버십클래스 끝 -->
-			
-			
-<!-- 이용약관동의 -->		
-              <div class="terms">
-			    <label class="imp" required>이용약관동의</label>
-		
-			  <div>
-				<h3><input type="checkbox"><span class="ico"></span>전체 동의합니다.</h3>
-				<p> 선택 항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</p>
-			  </div>
-		
-			  <div>
-				<input type="checkbox"><span class="ico"></span>이용약관동의<span>(필수)</span>
-				<a href="#"></a>
-			  </div>
-		
-			  <div>
-				<input type="checkbox"><span class="ico"></span>개인정보 수집·동의<span>(필수)</span>
-				<a href="#"></a>        
-			  </div>
-		
-			  <div>
-				<input type="checkbox"><span class="ico"></span>개인정보 수집·동의<span>(선택)</span>
-				<a href="#"></a>   
-			  </div>
-			  
-			  <div>
-				<input type="checkbox"><span class="ico"></span>본인은 만 14세 이상입니다.<span>(필수)</span>
-			  </div>
-			</div>
 		
 <!-- 가입하기 버튼 -->
-			<button type="submit" style="font-size: 13px;">가입하기</button>
+			<button type="submit" id="submit" name="submit" style="font-size: 13px;">가입하기</button>
 		  </form>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 //아이디 중복검사
-$('#id').keyup(function(){
+$('#u_id').keyup(function(){
 	
 	  $.ajax({
-		  url : "test.aj",
-		  data: {"id": $('#id').val()},
+		  type: "POST",
+		  url : "checkId.aj",
+		  data: {"u_id": $('#u_id').val()},
 		  success:function(data){
 			  const result = $.trim(data);
-			  if(result=="true" && !$('#id').val() == ""){
+			  if(result=="false" && !$('#u_id').val() == ""){
 			
 			  $('#idmsg').css('color','green');
 			  $('#idmsg').text("사용가능한 아이디입니다.");
 			  $('#submit').removeAttr('disabled');
 			  return;
-			  }else if ( result=="false" && !$('#id').val() == ""){
+			  }else if ( result=="true" && !$('#u_id').val() == ""){
 			 
 			  $('#idmsg').css('color','red');
 			  $('#idmsg').text("이미 존재하는 아이디입니다.");  
@@ -138,19 +109,18 @@ $('#id').keyup(function(){
 			  }
 		  }//success 콜백함수 종료지점
 	  });// ajax
-	  if($('#id').val() == ""){
+	  if($('#u_id').val() == ""){
 		  $('#idmsg').css('color','red');
 		  $('#idmsg').text("아이디를 입력해주세요.");  
 		  $('#submit').attr('disabled','disabled'); 
 		  return;
 	  }//id값이 빈칸일경우 입력하라는 내용 출력
  }); // 아이디중복확인 종료
-</script>
 
-<script>
+
 //이메일 인증관련
 function sendVerificationEmail() {
-	var email = $("#email").val();
+	var email = $("#u_email").val();
 
     if (validateEmail(email)) {
       $.ajax({
@@ -176,9 +146,7 @@ function sendVerificationEmail() {
     var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     return regExp.test(email); //이건나중에 test 이름의 자바스크립트 코드 하나 더 만들어서 한번더 포커스되게함
   }
-</script>
 
-<script>
 //이메일인증
 $('#verificationCode').keyup(function(){
 	

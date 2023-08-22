@@ -10,8 +10,9 @@ import web.groom.dao.MemberDAO;
 public class MemberService {
 	
 	MemberDAO memberdao = null;
-
-	public void insertMember(HttpServletRequest request) {
+	MemberDTO memberdto = null;
+	
+	public MemberDTO insertMember(HttpServletRequest request) {
 		
 		try {
 
@@ -19,31 +20,32 @@ public class MemberService {
 			request.setCharacterEncoding("UTF-8");
 			
 			// 리퀘스트 파라미터값 변수에 저장
-			String getId = request.getParameter("id");
-			String getPass = request.getParameter("pass");
-			String getName = request.getParameter("name");
-			String getPhone = request.getParameter("Phone");
-			String getEmail = request.getParameter("email");
+			String getId = request.getParameter("u_id");
+			String getPass = request.getParameter("u_pass");
+			String getName = request.getParameter("u_name");
+			String getPhone = request.getParameter("u_Phone");
+			String getEmail = request.getParameter("u_email");
 			Timestamp getDate = new Timestamp(System.currentTimeMillis());
 
 			// MemberDTO에 객체생성후 파라미터값 저장
-			MemberDTO memberDTO = new MemberDTO();
-			memberDTO.setId(getId);
-			memberDTO.setPass(getPass);
-			memberDTO.setName(getName);
-			memberDTO.setPhone(getPhone);
-			memberDTO.setEmail(getEmail);
-			memberDTO.setRegDate(getDate);
+			memberdto = new MemberDTO();
+			memberdto.setId(getId);
+			memberdto.setPass(getPass);
+			memberdto.setName(getName);
+			memberdto.setPhone(getPhone);
+			memberdto.setEmail(getEmail);
+			memberdto.setRegDate(getDate);
 
 			// MemberDAO에 값을 전달하고 로직처리 수행
 			memberdao = new MemberDAO();
 
-			memberdao.insertMember(memberDTO);
+			memberdto = memberdao.insertMember(memberdto);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
+		return memberdto;
 	}
 
 	public MemberDTO userCheck(HttpServletRequest request) {
@@ -56,8 +58,8 @@ public class MemberService {
 			request.setCharacterEncoding("UTF-8");
 			
 			// 리퀘스트 파라미터값 변수에 저장
-			String getid = request.getParameter("id");
-			String getpass = request.getParameter("pass");
+			String getid = request.getParameter("u_id");
+			String getpass = request.getParameter("u_pass");
 
 			// MemberDAO에 값을 전달하고 로직처리 수행
 			memberDTO = new MemberDAO().userCheck(getid, getpass);
@@ -67,5 +69,27 @@ public class MemberService {
 		}
 		
 		return memberDTO;
+	}
+	
+	public boolean searchId(HttpServletRequest request) {
+		
+	    boolean result = true;
+	    
+		try {
+
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			
+			// 리퀘스트 파라미터값 변수에 저장
+			String getid = request.getParameter("u_id");
+
+			// MemberDAO에 값을 전달하고 로직처리 수행
+			result = new MemberDAO().searchId(getid);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 }

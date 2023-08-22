@@ -25,7 +25,7 @@
 			  <div>
 				<label class="imp">아이디</label>
 				<div>
-				  <input type="text" id="u_id" name="u_id" placeholder="아이디를 입력하세요" required>
+				  <input type="text" id="u_id" name="u_id" placeholder="아이디를 입력하세요">
 				</div>
 				<span id="idmsg"></span>
 			  </div>
@@ -34,50 +34,60 @@
 			  <div>
 				<br><label class="imp">비밀번호</label>
 				<div>
-				  <input type="password" id="u_pass" name="u_pass" placeholder="비밀번호를 입력하세요" required>
+				  <input type="password" id="u_pass" name="u_pass" placeholder="비밀번호를 입력하세요">
 			    </div>
-			    <span>8~15자 영문, 숫자를 입력해주세요.</span>
+			    <span id="passtest"></span>
 			  </div>
 		
 <!-- 비밀번호 확인 -->
 			  <div>
 				<br><label class="imp">비밀번호 확인</label>
 				<div>
-				<input type="password" id="u_pass2" name="u_pass2" placeholder="비밀번호를 한 번 더 입력하세요" required>
+				<input type="password" id="u_pass2" name="u_pass2" placeholder="비밀번호를 한 번 더 입력하세요">
 				</div>
-				<span>비밀번호가 일치하지 않습니다.</span>
+				<span id="passmsg"></span>
 			  </div>
 		
 <!-- 이름 -->
 			  <div>
 				<br><label class="imp">이름</label>
 				<div>
-				<input type="text" id="u_name" name="u_name" placeholder="이름을 입력하세요" required>
+				<input type="text" id="u_name" name="u_name" placeholder="이름을 입력하세요">
 				</div>
-				<span>한글, 영문 대/소문자를 사용해 주세요.</span>
+				<span id="namemsg"></span>
+			  </div>
+			  
+<!-- 전화번호 -->
+			  <div>
+				<br><label class="imp">전화번호</label>
+				<div>
+				<input type="text" id="u_phone" name="u_phone" maxlength="11" placeholder="전화번호를 입력하세요">
+				</div>
+				<span id="phonemsg"></span>
 			  </div>
 			  
 <!-- 이메일 -->
 			  <div>
 				<br><label class="imp">이메일</label>
 				<div>
-				  <input type="email" id="u_email" name="u_email" placeholder="이메일을 입력하세요" required>
+				  <input type="email" id="u_email" name="u_email" placeholder="이메일을 입력하세요">
 				  
               <!-- 이메일 인증번호 받기 버튼 -->
 				  <button type="button" style="font-size: 13px;" name="u_email2" onclick="sendVerificationEmail();">인증번호 받기</button>
 				</div>
+				<span id="emailtest"></span>
 			  </div>
 			  
 			  <div>
 				<br><label class="imp">인증번호입력</label>
 				<div>
-				  <input type="text" id="verificationCode" name="verificationCode" required readonly>
+				  <input type="text" id="verificationCode" name="verificationCode" readonly>
 				</div>
 				<span id="emailmsg"></span>
 			  </div>
 		
             </div>
-<!--       멤버십클래스 끝 -->
+<!-- 멤버십클래스 끝 -->
 		
 <!-- 가입하기 버튼 -->
 			<button type="submit" id="submit" name="submit" style="font-size: 13px;">가입하기</button>
@@ -85,6 +95,46 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+
+$('#singup').submit(function() {
+	
+	if($('#u_id').val() == ""){
+		$('#u_id').focus();
+		return false;
+	}
+	
+	if($('#u_pass').val() == ""){
+		$('#u_pass').focus();
+		return false;
+	}
+	
+	if($('#u_pass2').val() == ""){
+		$('#u_pass2').focus();
+		return false;
+	}
+	
+	if($('#u_name').val() == ""){
+		$('#u_name').focus();
+		return false;
+	}
+	
+	if($('#u_phone').val() == ""){
+		$('#u_phone').focus();
+		return false;
+	}
+	
+	if($('#u_email').val() == ""){
+		$('#u_phone').focus();
+		return false;
+	}
+	
+	if($('#verificationCode').val() == ""){
+		$('#verificationCode').focus();
+		return false;
+	}
+
+});//submit기능 제어 끝
+
 //아이디 중복검사
 $('#u_id').keyup(function(){
 	
@@ -129,6 +179,7 @@ function sendVerificationEmail() {
         data: { email: email },
         success: function(response) {
           alert("이메일로 인증번호가 전송되었습니다.");
+          $('#emailtest').text("");
           $("#verificationCode").removeAttr("readonly");
           $('#verificationCode').attr('placeholder','인증번호를 입력해주세요'); 
         },
@@ -137,14 +188,15 @@ function sendVerificationEmail() {
         }
       });
     } else {
-      alert("유효한 이메일 주소를 입력해주세요.");
+     $('#emailtest').css('color','red');
+	 $('#emailtest').text("유효한 이메일 주소를 입력해주세요.");
     }
  }
    
   //이메일 정규식 유효성 검사
   function validateEmail(email) {
     var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    return regExp.test(email); //이건나중에 test 이름의 자바스크립트 코드 하나 더 만들어서 한번더 포커스되게함
+    return regExp.test(email); //test메서드로 정규식 검사만함
   }
 
 //이메일인증
@@ -171,6 +223,76 @@ $('#verificationCode').keyup(function(){
 		  }//success 콜백함수 종료지점
 	  });// ajax
 }); // 이메일인증번호확인 종료
+
+//비밀번호 정규성 여부 검사
+$('#u_pass').keyup(function() {
+	  
+	  //기존패스워드 수정시 비밀번호 확인부분 강제호출
+	  $('#u_pass2').trigger('keyup');
+	  var password = $('#u_pass').val();
+	  
+	  if(!validatePassword(password)){
+		$('#passtest').css('color','red');
+		$('#passtest').text("비밀번호는 8자이상의 영문, 숫자, 특수문자가 포함되어야 합니다.");
+		$('#submit').attr('disabled','disabled');
+	    return;
+	    
+	  } else {
+		$('#passtest').text("");
+		$('#submit').removeAttr('disabled');
+		return;
+	  }
+	  
+	  function validatePassword(password) {
+		  var regExp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[#^()_=+@$!%*?&])[A-Za-z\d#^()_=+@$!%*?&]{8,}$/;
+		  return regExp.test(password);
+	  }
+});//비밀번호 정규성 여부 검사 끝
+
+//비밀번호 일치여부 검사
+$('#u_pass2').keyup(function() {
+
+	  var pass1 = $('#u_pass').val();
+	  var pass2 = $('#u_pass2').val();
+	  
+	  if(pass1 == pass2 && pass1 !== "" && pass2 !== ""){
+		$('#passmsg').css('color','green');
+		$('#passmsg').text("비밀번호가 일치합니다.");
+	    $('#submit').removeAttr('disabled');
+	    return;
+	    
+	  } else {
+		$('#passmsg').css('color','red');
+		$('#passmsg').text("비밀번호가 일치하지 않습니다.");  
+		$('#submit').attr('disabled','disabled');
+		return;
+	  }
+ 	   
+});//비밀번호 일치여부 검사 끝
+
+//이름 정규성 여부 검사
+$('#u_name').keyup(function() {
+
+	  var name = $('#u_name').val();
+	  
+	  if(!validateName(name)){
+		$('#namemsg').css('color','red');
+		$('#namemsg').text("올바른 이름을 입력해주세요 한글, 영/대소문자만 사용가능 합니다.");
+		$('#submit').attr('disabled','disabled');
+	    return;
+	    
+	  } else {
+		  $('#namemsg').text("");  
+		  $('#submit').removeAttr('disabled');
+		  return;
+	  }
+	  
+	  function validateName(name) {
+		 var regExp = /^[a-zA-Z가-힣]+$/;
+		 return regExp.test(name);
+	  }
+});//이름 정규식 여부 검사 끝
+
 </script>
 	</body>
 </html>

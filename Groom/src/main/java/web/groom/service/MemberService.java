@@ -23,7 +23,7 @@ public class MemberService {
 			String getId = request.getParameter("u_id");
 			String getPass = request.getParameter("u_pass");
 			String getName = request.getParameter("u_name");
-			String getPhone = request.getParameter("u_Phone");
+			String getPhone = request.getParameter("u_phone");
 			String getEmail = request.getParameter("u_email");
 			Timestamp getDate = new Timestamp(System.currentTimeMillis());
 

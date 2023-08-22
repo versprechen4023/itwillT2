@@ -61,7 +61,7 @@
 			  <div>
 				<br><label class="imp">전화번호</label>
 				<div>
-				<input type="text" id="u_phone" name="u_phone" maxlength="11" placeholder="전화번호를 입력하세요">
+				<input type="text" id="u_phone" name="u_phone" maxlength="11" placeholder="-없이 전화번호를 입력하세요 예시:01012341234">
 				</div>
 				<span id="phonemsg"></span>
 			  </div>
@@ -99,36 +99,50 @@
 $('#singup').submit(function() {
 	
 	if($('#u_id').val() == ""){
+		$('#idmsg').css('color','red');
+		$('#idmsg').text("아이디를 입력해주세요."); 
 		$('#u_id').focus();
 		return false;
 	}
 	
 	if($('#u_pass').val() == ""){
+		$('#passtest').css('color','red');
+		$('#passtest').text("비밀번호를 입력해주세요.");
 		$('#u_pass').focus();
 		return false;
 	}
 	
 	if($('#u_pass2').val() == ""){
+		$('#passmsg').css('color','red');
+		$('#passmsg').text("비밀번호를 재입력해주세요.");  
 		$('#u_pass2').focus();
 		return false;
 	}
 	
 	if($('#u_name').val() == ""){
+		$('#namemsg').css('color','red');
+		$('#namemsg').text("이름을 입력해주세요.");
 		$('#u_name').focus();
 		return false;
 	}
 	
 	if($('#u_phone').val() == ""){
+		$('#phonemsg').css('color','red');
+		$('#phonemsg').text("전화번호를 입력해주세요.");
 		$('#u_phone').focus();
 		return false;
 	}
 	
 	if($('#u_email').val() == ""){
-		$('#u_phone').focus();
+		$('#emailtest').css('color','red');
+		$('#emailtest').text("이메일을 입력해주세요.");
+		$('#u_email').focus();
 		return false;
 	}
 	
 	if($('#verificationCode').val() == ""){
+		$('#emailmsg').css('color','red');
+		$('#emailmsg').text("인증번호를 기입하십시오.");
 		$('#verificationCode').focus();
 		return false;
 	}
@@ -137,7 +151,10 @@ $('#singup').submit(function() {
 
 //아이디 중복검사
 $('#u_id').keyup(function(){
-	
+	  
+	  var id = $("#u_id").val();
+	  
+	  if(validateId(id)){
 	  $.ajax({
 		  type: "POST",
 		  url : "checkId.aj",
@@ -165,9 +182,20 @@ $('#u_id').keyup(function(){
 		  $('#submit').attr('disabled','disabled'); 
 		  return;
 	  }//id값이 빈칸일경우 입력하라는 내용 출력
- }); // 아이디중복확인 종료
+	  
+	  } else {
+		$('#idmsg').css('color','red');
+		$('#idmsg').text("아이디는 영문, 숫자만 입력가능합니다.");  
+	  }
+	  
+ });// 아이디중복확인 종료
 
-
+//아이디 정규식 유효성 검사
+ function validateId(id) {
+   var regExp = /^[a-zA-Z0-9]*$/;
+   return regExp.test(id); //test메서드로 정규식 검사만함
+ }
+ 
 //이메일 인증관련
 function sendVerificationEmail() {
 	var email = $("#u_email").val();
@@ -182,16 +210,16 @@ function sendVerificationEmail() {
           $('#emailtest').text("");
           $("#verificationCode").removeAttr("readonly");
           $('#verificationCode').attr('placeholder','인증번호를 입력해주세요'); 
-        },
+        },//success 콜백함수 종료지점
         error: function(xhr, status, error) {
           alert("이메일 전송 중 오류가 발생했습니다. 다시 시도해주세요.");
-        }
-      });
+        }//error 콜백함수 종료지점
+      });// ajax
     } else {
      $('#emailtest').css('color','red');
 	 $('#emailtest').text("유효한 이메일 주소를 입력해주세요.");
-    }
- }
+    }//이메일 정규식이 유효하지않을경우 출력할 메시지
+ }//이메일인증종료
    
   //이메일 정규식 유효성 검사
   function validateEmail(email) {
@@ -292,6 +320,29 @@ $('#u_name').keyup(function() {
 		 return regExp.test(name);
 	  }
 });//이름 정규식 여부 검사 끝
+
+//전화번호 정규성 여부 검사
+$('#u_phone').keyup(function() {
+
+	  var phone = $('#u_phone').val();
+	  
+	  if(!validatePhone(phone)){
+		$('#phonemsg').css('color','red');
+		$('#phonemsg').text("- 없이 올바른 전화번호를 입력해주십시오.");
+		$('#submit').attr('disabled','disabled');
+	    return;
+	    
+	  } else {
+		  $('#phonemsg').text("");  
+		  $('#submit').removeAttr('disabled');
+		  return;
+	  }
+	  
+	  function validatePhone(phone) {
+		 var regExp = /^[0-9]{9,11}$/;
+		 return regExp.test(phone);
+	  }
+});//전화번호 정규식 여부 검사 끝
 
 </script>
 	</body>

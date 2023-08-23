@@ -12,7 +12,7 @@
 	<!-- 메인페이지 css 오버라이드  -->
 	<link rel="stylesheet" href="./css/main_gr.css">
 	
-	<body>
+	<body> <!--  옆에 사이드바(네비바) 주소는 aside.jsp에서 수정해야함.  -->
 	<div id="fh5co-page">
         <!-- 사이드바호출 -->
 		<jsp:include page="../inc/aside.jsp"></jsp:include>

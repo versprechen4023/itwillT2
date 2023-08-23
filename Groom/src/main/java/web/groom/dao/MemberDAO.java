@@ -277,4 +277,74 @@ public MemberDTO searchPhone(String phone) {
 		return memberdto;
 	}
 	
+public MemberDTO findid(String name, String email) {
+		
+		MemberDTO memberDTO = null;
+
+		try {
+
+			con = new SQLConnection().getConnection();
+
+			String SQL = "SELECT u.u_id FROM user u JOIN user2 u2 on u.u_num = u2.u_num  WHERE u2.u_name=? AND u2.u_email = ? ";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			
+			System.out.println("memberdao " + name + email); // 임시로 데이터 값을 받는지 체크하기 위해 넣은 것.
+
+
+			if (rs.next()) {
+				memberDTO = new MemberDTO();
+				
+				memberDTO.setId(rs.getString("u_id"));
+				
+			
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+			dbClose();
+			
+		}
+		return memberDTO;
+	} // findid 
+	
+	public MemberDTO findpass(String id , String email) {
+		
+		MemberDTO memberDTO = null;
+		
+
+		try {
+			
+			
+
+			con = new SQLConnection().getConnection();
+			String SQL = "SELECT u.u_pass FROM user u JOIN user2 u2 on u.u_num = u2.u_num  WHERE u.u_id=? AND u2.u_email = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			
+			System.out.println("memberdao " + id + email); // 임시로 데이터 값을 받는지 체크하기 위해 넣은 것.
+
+			if (rs.next()) {
+
+				memberDTO.setId(rs.getString("u_pass"));
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+			dbClose();
+			
+		}
+		return memberDTO;
+	} // findpass
+	
 }

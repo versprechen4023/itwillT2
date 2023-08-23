@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="./css/findid_gr.css">
 	
 	<body>
-	  <form>
+	  <form action="findidresult.me" method="post">
 	  
 <!-- 로고 자리 -->		
 		<h1 style="margin-top: -55px; margin-bottom: 55px;"> Groom(로고) </h1>
@@ -30,15 +30,15 @@
 			  <div>
 				<br><label class="imp2" style="font-size: 16px;">이름</label>
 				<div>
-				<input type="text" placeholder="이름을 입력하세요" required>
+				<input type="text"  id ="u_name"  name ="u_name" placeholder="이름을 입력하세요" required >
 				</div>
 			  </div>
 		
 <!-- 이메일 -->
 			  <div>
-				<br><label class="imp2" style="font-size: 16px;">이메일</label>
+				<br><label class="imp2"  style="font-size: 16px;">이메일</label>
 				<div>
-				<input type="text" placeholder="이메일을 입력하세요" required>
+				<input type="text" id="u_email" name="u_email"placeholder="이메일을 입력하세요" required>
 				</div>
 			  </div>
 				 
@@ -56,9 +56,9 @@
 		   	       
 <div class="centered-text">
     <p>
-        <a href="회원가입_링크_주소" class="custom-text"><b>회원가입</b></a>
+        <a href="signup.me" class="custom-text"><b>회원가입</b></a>
         <span class="vertical-line"></span>
-        <a href="아이디_비밀번호_찾기_링크_주소" class="custom-text"><b>비밀번호 찾기</b></a>
+        <a href="findpass.me" class="custom-text"><b>비밀번호 찾기</b></a>
     </p>
 </div>
       

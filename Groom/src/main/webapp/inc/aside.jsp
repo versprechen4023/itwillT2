@@ -5,7 +5,7 @@
    String id = (String)session.getAttribute("id");
    String salt = (String)session.getAttribute("salt"); 
    String role = (String)session.getAttribute("role"); 
-   String num = (String)session.getAttribute("num"); 
+   Integer num = (Integer)session.getAttribute("num"); 
 %>
 <link rel="stylesheet" href="./css/aside_gr.css">
 
@@ -24,20 +24,16 @@ if(id == null){
 %>
 	<nav id="fh5co-main-menu" role="navigation">
 		<ul>
-			<li><a href="blog.html">ABOUT</a></li>
-			<li><a href="portfolio.html">이용안내</a></li>
+			<li><a href="blog.gr">ABOUT</a></li>
+			<li><a href="portfolio.gr">이용안내</a></li>
 			<li><a href="myorder.or">예약하기</a></li>
+			<li><a href="review.re">리뷰</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">카테고리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="notice.gr">notice</a></li>
-					<li><a href="qna.gr">qna</a></li>
-					<li><a href="about.gr">about</a></li>
-					<li><a href="blog.gr">blog</a></li>
+					<li><a href="notice.bo">공지사항</a></li>
+					<li><a href="qna.bo">qna</a></li>
 					<li><a href="contact.gr">contact</a></li>
-					<li><a href="portfolio.gr">portfolio</a></li>
-					<li><a href="review.gr">review</a></li>
-					<li><a href="testabout.gr">testabout</a></li>
 				</ul></li>
 		</ul>
 	</nav>

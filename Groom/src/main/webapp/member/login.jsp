@@ -67,9 +67,11 @@
 
 	<div class="centered-text">
 		<p>
-			<a href="회원가입_링크_주소" class="custom-text"><b>회원가입</b></a> <span
-				class="vertical-line"></span> <a href="아이디_비밀번호_찾기_링크_주소"
-				class="custom-text"><b>아이디/비밀번호 찾기</b></a>
+			<a href="signup.me" class="custom-text"><b>회원가입</b></a> 
+			<span class="vertical-line"></span> 
+			<a href="findid.me" class="custom-text"><b>아이디 찾기</b></a>
+			<span class="vertical-line"></span> 
+			<a href="findpass.me" class="custom-text"><b>비밀번호 찾기</b></a>
 		</p>
 	</div>
 

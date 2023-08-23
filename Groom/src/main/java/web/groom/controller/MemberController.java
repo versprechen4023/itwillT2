@@ -97,8 +97,54 @@ public class MemberController extends HttpServlet {
 			 webForward(request, response, "member", "findid");   
 	     }
 		 
-		 if (sPath.equals("/findpass.me")) {
-			 webForward(request, response, "member", "findpass");   
+         if (sPath.equals("/findidresult.me")) {
+	
+			 
+			 ser = new MemberService();
+			 MemberDTO memberDTO = ser.findid(request);
+			 String name = request.getParameter("u_name");
+			 String email = request.getParameter("u_email");
+			 
+			 System.out.println(name);
+			 System.out.println(email);
+			 
+			 System.out.println(memberDTO);
+			 
+			 if ( memberDTO != null ) {
+				 
+				
+			 request.setAttribute("memberDTO" , memberDTO);
+			 webForward(request, response, "member", "findidresult");
+				  
+				 System.out.println("아이디 찾기 성공 ");
+			 } else  {
+				 System.out.println("아이디 찾기 실패 ");
+			 }
+			 
+	     }
+         
+         if (sPath.equals("/findpass.me")) {
+			 
+			 ser = new MemberService();
+			 MemberDTO memberDTO = ser.findpass(request);
+			 String id = request.getParameter("u_id");
+			 String email = request.getParameter("u_email");
+			 
+			 System.out.println(id);
+			 System.out.println(email);
+			 
+			 System.out.println(memberDTO);
+			 if ( memberDTO != null ) {
+				 
+				
+				  request.setAttribute("memberDTO" , memberDTO);
+				  webForward(request, response, "member", "findpassresult");
+				  
+				 System.out.println("비밀번호 찾기 성공 ");
+			 } else  {
+				 System.out.println("비밀번호 찾기 실패 ");
+			 }
+			 
 	     }
 		 
 		 if (sPath.equals("/modifyinfo.me")) {

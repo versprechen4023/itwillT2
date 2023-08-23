@@ -46,7 +46,7 @@ public class MemberService {
 		}
 		
 		return memberdto;
-	}
+	} //insertmember
 
 	public MemberDTO userCheck(HttpServletRequest request) {
 		
@@ -69,7 +69,7 @@ public class MemberService {
 		}
 		
 		return memberdto;
-	}
+	} //usercheck 
 	
 	public MemberDTO searchId(HttpServletRequest request) {
 			    
@@ -89,7 +89,7 @@ public class MemberService {
 		}
 		
 		return memberdto;
-	}
+	} // searchid
 	
 	public MemberDTO searchPhone(HttpServletRequest request) {
 	    
@@ -130,4 +130,54 @@ public MemberDTO searchEmail(HttpServletRequest request) {
 		
 		return memberdto;
 	}
+public MemberDTO findid (HttpServletRequest request) {
+	
+	MemberDTO memberDTO = new MemberDTO();
+	
+	 memberDTO = null;
+	
+	 try {
+		 
+		 String name = request.getParameter("u_name");
+		 String email = request.getParameter("u_email");
+		 MemberDAO memberDAO = new MemberDAO();
+		 
+		 memberDTO= memberDAO.findid(name, email);
+		 
+		 
+		
+	} catch (Exception e) {
+		
+		e.printStackTrace();
+		
+	}
+	
+	return memberDTO;
+} // finid
+
+public MemberDTO findpass (HttpServletRequest request) {
+	
+	MemberDTO memberDTO = new MemberDTO();
+	
+	 memberDTO = null;
+	
+	 try {
+		 
+		 String id = request.getParameter("u_id");
+		 String email = request.getParameter("u_email");
+		 MemberDAO memberDAO = new MemberDAO();
+		 
+		 memberDTO= memberDAO.findid(id, email);
+		 
+		 
+		
+	} catch (Exception e) {
+		
+		e.printStackTrace();
+		
+	}
+	
+	return memberDTO;
+} // findpass
+
 }

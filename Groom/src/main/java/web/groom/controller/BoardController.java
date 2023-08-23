@@ -20,6 +20,15 @@ public class BoardController extends HttpServlet {
 	            
 	     }
 		 
+		 if (sPath.equals("/notice.bo")) {
+	            webForward(request, response, "board", "notice");
+
+	     }
+		 
+		 if (sPath.equals("/qna.bo")) {
+	            webForward(request, response, "board", "qna");
+
+	     }
 		 
 	}
 

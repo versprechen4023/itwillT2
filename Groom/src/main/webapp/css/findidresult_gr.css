@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	text-align: center;
+}
+
+/* 회원가입 비밀번호찾기 정렬 */
+.centered-text {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+/* 회원가입 비밀번호찾기 정렬 */
+.custom-text {
+	font-size: 15px;
+	color: gray;
+}
+
+
+.membership {
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	padding: 30px;
+}
+
+.h1 {
+	margin-top: --55px;
+	margin-bottom : 55px;
+	
+	
+}
+
+.idresult {
+	color : blue;
+	font-size : 24px;
+	text-align: center;
+}
+
+p {
+	font-size : 30px;
+}
+
+

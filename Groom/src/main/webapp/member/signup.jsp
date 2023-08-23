@@ -154,6 +154,13 @@ $('#u_id').keyup(function(){
 	  
 	  var id = $("#u_id").val();
 	  
+	  if(id == ""){
+		  $('#idmsg').css('color','red');
+		  $('#idmsg').text("아이디를 입력해주세요.");
+		  $('#submit').attr('disabled','disabled');
+		  return;
+	  }//id값이 빈칸일경우 입력하라는 내용 출력
+	  
 	  if(validateId(id)){
 	  $.ajax({
 		  type: "POST",
@@ -176,12 +183,6 @@ $('#u_id').keyup(function(){
 			  }
 		  }//success 콜백함수 종료지점
 	  });// ajax
-	  if(id == ""){
-		  $('#idmsg').css('color','red');
-		  $('#idmsg').text("아이디를 입력해주세요.");
-		  $('#submit').attr('disabled','disabled');
-		  return;
-	  }//id값이 빈칸일경우 입력하라는 내용 출력
 	  
 	  } else{
 		$('#idmsg').css('color','red');
@@ -201,7 +202,14 @@ $('#u_id').keyup(function(){
 //전화번호 중복검사
 $('#u_phone').keyup(function() {
  	  
- 	  var phone = $('#u_phone').val();
+ 	 var phone = $('#u_phone').val();
+ 	  
+ 	 if(phone == ""){
+		  $('#phonemsg').css('color','red');
+		  $('#phonemsg').text("전화번호를 입력해주세요.");
+		  $('#submit').attr('disabled','disabled');
+		  return;
+	  }//전화번호값이 빈칸일경우 입력하라는 내용 출력
  	  
  	  if(validatePhone(phone)){
  	  $.ajax({
@@ -225,12 +233,6 @@ $('#u_phone').keyup(function() {
  			  }
  		  }//success 콜백함수 종료지점
  	  });// ajax
- 	  if(phone == ""){
- 		  $('#phonemsg').css('color','red');
- 		  $('#phonemsg').text("전화번호를 입력해주세요.");
- 		  $('#submit').attr('disabled','disabled');
- 		  return;
- 	  }//전화번호값이 빈칸일경우 입력하라는 내용 출력
  	  
  	  } else {
  		$('#phonemsg').css('color','red');
@@ -251,7 +253,15 @@ $('#u_email').keyup(function(){
   	  
   	  var email = $("#u_email").val();
   	  
-  	  if (validateEmail(email)) {
+  	  if(email == ""){
+		  $('#emailtest').css('color','red');
+		  $('#emailtest').text("이메일을 입력해주세요.");
+		  $('#submit').attr('disabled','disabled');
+		  $('#u_email2').attr('disabled','disabled');
+		  return;
+	  }//이메일값이 빈칸일경우 입력하라는 내용 출력
+		  
+	  if(validateEmail(email)) {
   	  $.ajax({
   		  type: "POST",
   		  url : "checkEmail.aj",
@@ -275,13 +285,8 @@ $('#u_email').keyup(function(){
   			  }
   		  }//success 콜백함수 종료지점
   	  });// ajax
-  	  if(email == ""){
-  		  $('#emailtest').css('color','red');
-  		  $('#emailtest').text("이메일을 입력해주세요.");
-  		  $('#submit').attr('disabled','disabled');
-  		  $('#u_email2').attr('disabled','disabled');
-  		  return;
-  	  }//이메일값이 빈칸일경우 입력하라는 내용 출력
+  	 
+  	  
   	  
   	  } else {
   		$('#emailtest').css('color','red');

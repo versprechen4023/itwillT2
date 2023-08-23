@@ -5,7 +5,7 @@
    String id = (String)session.getAttribute("id");
    String salt = (String)session.getAttribute("salt"); 
    String role = (String)session.getAttribute("role"); 
-   Integer num = (Integer)session.getAttribute("num"); 
+   String num = (String)session.getAttribute("num"); 
 %>
 <link rel="stylesheet" href="./css/aside_gr.css">
 

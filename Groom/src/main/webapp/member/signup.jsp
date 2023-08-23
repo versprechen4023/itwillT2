@@ -306,7 +306,7 @@ function sendVerificationEmail() {
       $.ajax({
         type: "POST",
         url: "email.aj",
-        data: { email: email },
+        data: {"u_email": email },
         success: function(response) {
           alert("이메일로 인증번호가 전송되었습니다.");
           $('#emailtest').text("");

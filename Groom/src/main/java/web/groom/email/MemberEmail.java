@@ -36,7 +36,7 @@ public class MemberEmail {
 		props.put("mail.smtp.ssl.trust", host);
 		
 		// 이메일 메시지 작성
-		String sendToEmail = request.getParameter("email"); //메일을 보낼 대상
+		String sendToEmail = request.getParameter("u_email"); //메일을 보낼 대상
 		String subject = "GROOM 회원가입 이메일 인증 코드";
 		String content = 
 				"GROOM 회원가입 이메일 인증 코드 입니다"+

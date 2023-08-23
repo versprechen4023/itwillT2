@@ -23,7 +23,7 @@
 				
 				<div class="row">
 					<div class="col-md-4">
-						<h2>Get In Touch</h2>
+						<h2>예약주문</h2>
 					</div>
 				</div>
 				<form action="">
@@ -32,38 +32,46 @@
 							<div class="row">
 								<div class="col-md-3">
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="예약자명">
+										<p>예약자명</p>
+										<input type="text" class="form-control" value="여기에 JSP태그" readonly>
 									</div>
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="연락처">
+									    <p>연락처</p>
+										<input type="text" class="form-control" value="여기에 JSP태그" readonly>
 									</div>
 								</div>
 								<div class="col-md-3">
 								    <div class="form-group">
-										<select class="" id="list" name="list">
+								    	<p>매장선택</p>
+										<select class="form-control" id="list" name="list">
 											<option value="test">매장을 선택하세요</option>
 											<option value="A">서면점</option>
 											<option value="B">김해점</option>
 										</select>
 									</div>
 									<div class="form-group">
-										<select class="" id="list" name="list">
-											<option value="test">예약할 서비스를 선택하세요</option>
+										<p>서비스선택</p>
+										<select class="form-control" id="list" name="list">
+											<option value="test">서비스를 선택하세요</option>
 											<option value="A">[미용]대형견 15KG</option>
 										</select>
 									</div>
+										<p>날짜선택</p>
 									<div class="form-group">
-										<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="날짜">
+										<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="날짜" readonly>
 									</div>
+										<p>예약선택</p>
 									<div class="form-group">
-										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="시간">
+										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="타임피커구현필요" readonly>
 									</div>
+										<p>예상예약요금</p>
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="예상금액">
+										<input type="text" class="form-control" value="여기에 JSP태그" readonly>
 									</div>
 								</div>
 								
 								<div class="col-md-3">
+									<p>요구사항기입</p>
 									<div class="form-group">
 										<textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="전달할말"></textarea>
 									</div>
@@ -146,6 +154,10 @@
 <link rel="stylesheet" type="text/css" href="./css/datepicker_gr.css">
 	
 <script type="text/javascript">
+//사용자가 매장을 선택하면 매장선택값을 AJAX로 처리 -> DB조회후 특정매장에 따른 예약 가능날짜를반환 -> 사용자가 예약 날짜 선택가능
+//사용자가 예약 날짜를 선택하면 예약날짜선택값을 AJAX로처리 -> DB조회후 선택한 날짜에 대한 예약가능 시간을 반환 -> 사용자가 예약 시간 선택가능
+//사용자가 예약 시간을 선택하면 예약시간선택값을 AJAX로처리 -> DB조회후 시간이 야간일경우 금액추가? 자바단에서 최종금액계산 -> 사용자에게 예상금액 반환후 표시
+
 //기존 템플릿 J쿼리충돌 해결 함수
 var $j = jQuery.noConflict();
 
@@ -173,7 +185,7 @@ $j(document).ready(function() {
     beforeShowDay: function(date) {
        var day = date.getDay();
        var dateString = $j.datepicker.formatDate('yy-mm-dd', date); // 선택한 날짜를 형식에 맞게 문자열로 변환
-       var disabledDates = ["2023-08-17"]; 
+       var disabledDates = ["2023-08-21"]; 
        
 // 비활성화할 날짜들 배열로 저장 나중에 서버에서가져오면댈듯 
 //        ArrayList<String> data = new ArrayList<>();

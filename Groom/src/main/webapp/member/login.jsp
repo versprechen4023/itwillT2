@@ -35,9 +35,10 @@
 			<div>
 				<label class="imp2" style="font-size: 16px;">아이디</label>
 				<div>
-					<input type="text" id="u_id" name="u_id" placeholder="아이디를 입력하세요" required
+					<input type="text" id="u_id" name="u_id" placeholder="아이디를 입력하세요"
 						name="id" style="width: 390px;">
 				</div>
+				<span id="idmsg"></span>
 			</div>
 
 			<!-- 비밀번호 -->
@@ -45,9 +46,10 @@
 				<br>
 				<label class="imp2" style="font-size: 16px;">비밀번호</label>
 				<div>
-					<input type="password" id="u_pass" name="u_pass" placeholder="비밀번호를 입력하세요" required
+					<input type="password" id="u_pass" name="u_pass" placeholder="비밀번호를 입력하세요"
 						style="width: 390px;">
 				</div>
+				<span id="passtest"></span>
 			</div>
 
 
@@ -73,5 +75,27 @@
 
     </form>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+$('#login').submit(function() {
+	
+	if($('#u_id').val() == ""){
+		$('#idmsg').css('color','red');
+		$('#idmsg').text("아이디를 입력해주세요."); 
+		$('#u_id').focus();
+		return false;
+	}
+	
+	if($('#u_pass').val() == ""){
+		$('#passtest').css('color','red');
+		$('#passtest').text("비밀번호를 입력해주세요.");
+		$('#u_pass').focus();
+		return false;
+	}
+
+});//submit기능 제어 끝
+
+</script>
 </body>
 </html>

@@ -20,7 +20,7 @@
        <h1 style="margin-top: 70px; margin-bottom: -10px;"> Groom(로고) </h1>
        	  
 <!-- 아이디 -->
-         <form action="signupPro.me" id="singup" name="signup" method="post">
+         <form action="signupPro.me" id="signup" name="signup" method="post">
 			<div class="membership">
 			  <div>
 				<label class="imp">아이디</label>
@@ -96,7 +96,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
-$('#singup').submit(function() {
+$('#signup').submit(function() {
 	
 	if($('#u_id').val() == ""){
 		$('#idmsg').css('color','red');

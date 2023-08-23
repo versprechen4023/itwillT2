@@ -32,13 +32,7 @@ public class AjaxController extends HttpServlet {
 			MemberDTO memberdto = ser.searchId(request);
 			
 			// memberdto 객체유무로 id중복검증 확인
-			boolean result = true;
-			
-			if(memberdto != null) {
-				result = true;
-			} else {
-				result = false;
-			}
+			boolean result = (memberdto != null) ? true : false;
 			
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
@@ -57,13 +51,7 @@ public class AjaxController extends HttpServlet {
 			MemberDTO memberdto = ser.searchPhone(request);
 
 			// memberdto 객체유무로 전화번호 중복검증 확인
-			boolean result = true;
-
-			if (memberdto != null) {
-				result = true;
-			} else {
-				result = false;
-			}
+			boolean result = (memberdto != null) ? true : false;
 
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
@@ -82,13 +70,7 @@ public class AjaxController extends HttpServlet {
 			MemberDTO memberdto = ser.searchEmail(request);
 
 			// memberdto 객체유무로 이메일 중복검증 확인
-			boolean result = true;
-
-			if (memberdto != null) {
-				result = true;
-			} else {
-				result = false;
-			}
+			boolean result = (memberdto != null) ? true : false;
 
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");

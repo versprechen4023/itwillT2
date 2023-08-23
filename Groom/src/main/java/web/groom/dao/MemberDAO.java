@@ -9,12 +9,13 @@ import web.groom.dto.MemberDTO;
 import web.groom.security.MemberSecurity;
 
 public class MemberDAO {
-
+	
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	PreparedStatement pstmt2 = null;
 	ResultSet rs = null;
 	ResultSet rs2 = null;
+	MemberDTO memberdto = null;
 
 
 	public void dbClose() {
@@ -37,13 +38,12 @@ public class MemberDAO {
 		
 		try {
 			
-			//아이디 중복여부 검사 아이디 있으면 true반환
-			boolean checkId = searchId(memberdto.getId());
-			
-			//불린값 통해서 중복확인
-			if(checkId) {
+			//아이디 중복여부 검사 아이디 있으면 memberdtoCheck에 객체있음 아닐 경우 Check 객체 null
+			MemberDTO memberdtoCheck = searchId(memberdto.getId());
+			if(memberdtoCheck != null) {
 				System.out.println("이미 아이디 있으므로 동작안함");
-				memberdto = null; // 멤버 DTO 저장소해제
+			    memberdto = null; // 멤버 DTO 저장소해제
+			    memberdtoCheck = null; // 검증쪽 저장소 해제
 				
 			} else {
 				
@@ -88,6 +88,8 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			memberdto = null; // 에러 발생시 멤버 DTO 저장소해제
+			security = null; //저장소 할당 해제
+			
 		} finally {
 			dbClose();
 			security = null; //저장소 할당 해제
@@ -98,8 +100,8 @@ public class MemberDAO {
 
 	public MemberDTO userCheck(String id, String pass) {
 		
-		//memberdto를 넘겨주기위한 변수선언
-		MemberDTO memberdto = null;
+		//memberdto를 넘겨주기위한 초기화
+		memberdto = null;
 		
 		//암호화 메서드 실행을 위해 객체생성
 		MemberSecurity security = new MemberSecurity();
@@ -172,6 +174,9 @@ public class MemberDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			memberdto = null; // 에러 발생시 멤버 DTO 저장소해제
+			security = null; //저장소 할당 해제
+			
 		} finally {
 			dbClose();
 			security = null; //저장소 할당 해제
@@ -179,9 +184,9 @@ public class MemberDAO {
 		return memberdto;
 	}
 	
-	public boolean searchId(String id) {
+	public MemberDTO searchId(String id) {
 		
-		boolean checkId = true;
+		memberdto = null;
 		
 		try {
 			//db연결
@@ -192,19 +197,84 @@ public class MemberDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
-			// id 있으면 checkId 는 true 없으면 false
+			// id 있으면 memberdto 객체생성후 값저장후 넘김 Id없는 경우 memberdto는 null로 넘김
 			if(rs.next()) {
-				checkId = true;
+				memberdto = new MemberDTO();
+				memberdto.setId(id);
 			} else {
-				checkId = false;
+				memberdto = null;
 			}
 
 		} catch(Exception e) {
 			e.printStackTrace();
+			memberdto = null; // 에러 발생시 멤버 DTO 저장소해제
 		} finally {
 			dbClose();
 		}
 		
-		return checkId;
+		return memberdto;
 	}
+	
+public MemberDTO searchPhone(String phone) {
+		
+		memberdto = null;
+		
+		try {
+			//db연결
+			con = new SQLConnection().getConnection();
+			
+			String SQL = "SELECT * FROM user2 WHERE u_phone = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, phone);
+			rs = pstmt.executeQuery();
+			
+			// 전화번호 있으면 memberdto 객체생성후 값저장후 넘김 전화번호없는 경우 memberdto는 null로 넘김
+			if(rs.next()) {
+				memberdto = new MemberDTO();
+				memberdto.setPhone(phone);
+			} else {
+				memberdto = null;
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+			memberdto = null; // 에러 발생시 멤버 DTO 저장소해제
+		} finally {
+			dbClose();
+		}
+		
+		return memberdto;
+	}
+
+	public MemberDTO searchEmail(String email) {
+		
+		memberdto = null;
+		
+		try {
+			//db연결
+			con = new SQLConnection().getConnection();
+			
+			String SQL = "SELECT * FROM user2 WHERE u_email = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			
+			// email 있으면 memberdto 객체생성후 값저장후 넘김 email없는 경우 memberdto는 null로 넘김
+			if(rs.next()) {
+				memberdto = new MemberDTO();
+				memberdto.setEmail(email);
+			} else {
+				memberdto = null;
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+			memberdto = null; // 에러 발생시 멤버 DTO 저장소해제
+		} finally {
+			dbClose();
+		}
+		
+		return memberdto;
+	}
+	
 }

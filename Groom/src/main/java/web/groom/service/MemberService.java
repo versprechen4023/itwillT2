@@ -50,7 +50,7 @@ public class MemberService {
 
 	public MemberDTO userCheck(HttpServletRequest request) {
 		
-		MemberDTO memberDTO = null;
+		memberdto = null;
 		
 		try {
 
@@ -62,18 +62,36 @@ public class MemberService {
 			String getpass = request.getParameter("u_pass");
 
 			// MemberDAO에 값을 전달하고 로직처리 수행
-			memberDTO = new MemberDAO().userCheck(getid, getpass);
+			memberdto = new MemberDAO().userCheck(getid, getpass);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return memberDTO;
+		return memberdto;
 	}
 	
-	public boolean searchId(HttpServletRequest request) {
+	public MemberDTO searchId(HttpServletRequest request) {
+			    
+		try {
+
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			
+			// 리퀘스트 파라미터값 변수에 저장
+			String getId = request.getParameter("u_id");
+
+			// MemberDAO에 값을 전달하고 로직처리 수행
+			memberdto = new MemberDAO().searchId(getId);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-	    boolean result = true;
+		return memberdto;
+	}
+	
+	public MemberDTO searchPhone(HttpServletRequest request) {
 	    
 		try {
 
@@ -81,15 +99,35 @@ public class MemberService {
 			request.setCharacterEncoding("UTF-8");
 			
 			// 리퀘스트 파라미터값 변수에 저장
-			String getid = request.getParameter("u_id");
+			String getPhone = request.getParameter("u_phone");
 
 			// MemberDAO에 값을 전달하고 로직처리 수행
-			result = new MemberDAO().searchId(getid);
+			memberdto = new MemberDAO().searchPhone(getPhone);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return result;
+		return memberdto;
+	}
+	
+public MemberDTO searchEmail(HttpServletRequest request) {
+	    
+		try {
+
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			
+			// 리퀘스트 파라미터값 변수에 저장
+			String getEmail = request.getParameter("u_email");
+
+			// MemberDAO에 값을 전달하고 로직처리 수행
+			memberdto = new MemberDAO().searchEmail(getEmail);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberdto;
 	}
 }

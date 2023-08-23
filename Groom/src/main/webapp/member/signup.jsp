@@ -20,7 +20,7 @@
        <h1 style="margin-top: 70px; margin-bottom: -10px;"> Groom(로고) </h1>
        	  
 <!-- 아이디 -->
-         <form action="singupPro.me" id="singup" name="signup" method="post">
+         <form action="signupPro.me" id="singup" name="signup" method="post">
 			<div class="membership">
 			  <div>
 				<label class="imp">아이디</label>
@@ -73,7 +73,7 @@
 				  <input type="email" id="u_email" name="u_email" placeholder="이메일을 입력하세요">
 				  
               <!-- 이메일 인증번호 받기 버튼 -->
-				  <button type="button" style="font-size: 13px;" name="u_email2" onclick="sendVerificationEmail();">인증번호 받기</button>
+				  <button type="button" style="font-size: 13px;" id="u_email2" name="u_email2" onclick="sendVerificationEmail();">인증번호 받기</button>
 				</div>
 				<span id="emailtest"></span>
 			  </div>
@@ -158,44 +158,146 @@ $('#u_id').keyup(function(){
 	  $.ajax({
 		  type: "POST",
 		  url : "checkId.aj",
-		  data: {"u_id": $('#u_id').val()},
+		  data: {"u_id": id},
 		  success:function(data){
 			  const result = $.trim(data);
-			  if(result=="false" && !$('#u_id').val() == ""){
+			  if(result=="false" && !id == ""){
 			
 			  $('#idmsg').css('color','green');
 			  $('#idmsg').text("사용가능한 아이디입니다.");
 			  $('#submit').removeAttr('disabled');
 			  return;
-			  }else if ( result=="true" && !$('#u_id').val() == ""){
+			  }else if ( result=="true" && !id == ""){
 			 
 			  $('#idmsg').css('color','red');
-			  $('#idmsg').text("이미 존재하는 아이디입니다.");  
+			  $('#idmsg').text("이미 존재하는 아이디입니다.");
 			  $('#submit').attr('disabled','disabled');
 			  return;
 			  }
 		  }//success 콜백함수 종료지점
 	  });// ajax
-	  if($('#u_id').val() == ""){
+	  if(id == ""){
 		  $('#idmsg').css('color','red');
-		  $('#idmsg').text("아이디를 입력해주세요.");  
-		  $('#submit').attr('disabled','disabled'); 
+		  $('#idmsg').text("아이디를 입력해주세요.");
+		  $('#submit').attr('disabled','disabled');
 		  return;
 	  }//id값이 빈칸일경우 입력하라는 내용 출력
 	  
-	  } else {
+	  } else{
 		$('#idmsg').css('color','red');
-		$('#idmsg').text("아이디는 영문, 숫자만 입력가능합니다.");  
+		$('#idmsg').text("아이디는 영문, 숫자만 입력가능합니다.");
+		$('#submit').attr('disabled','disabled');
+		return;
 	  }
 	  
- });// 아이디중복확인 종료
+});// 아이디중복확인 종료
 
-//아이디 정규식 유효성 검사
+ //아이디 정규식 유효성 검사
  function validateId(id) {
    var regExp = /^[a-zA-Z0-9]*$/;
    return regExp.test(id); //test메서드로 정규식 검사만함
  }
  
+//전화번호 중복검사
+$('#u_phone').keyup(function() {
+ 	  
+ 	  var phone = $('#u_phone').val();
+ 	  
+ 	  if(validatePhone(phone)){
+ 	  $.ajax({
+ 		  type: "POST",
+ 		  url : "checkPhone.aj",
+ 		  data: {"u_phone": phone},
+ 		  success:function(data){
+ 			  const result = $.trim(data);
+ 			  if(result=="false" && !phone == ""){
+ 			
+ 			  $('#phonemsg').css('color','green');
+ 			  $('#phonemsg').text("사용가능한 전화번호입니다.");
+ 			  $('#submit').removeAttr('disabled');
+ 			  return;
+ 			  }else if ( result=="true" && !phone == ""){
+ 			 
+ 			  $('#phonemsg').css('color','red');
+ 			  $('#phonemsg').text("이미 등록된 전화번호입니다.");
+ 			  $('#submit').attr('disabled','disabled');
+ 			  return;
+ 			  }
+ 		  }//success 콜백함수 종료지점
+ 	  });// ajax
+ 	  if(phone == ""){
+ 		  $('#phonemsg').css('color','red');
+ 		  $('#phonemsg').text("전화번호를 입력해주세요.");
+ 		  $('#submit').attr('disabled','disabled');
+ 		  return;
+ 	  }//전화번호값이 빈칸일경우 입력하라는 내용 출력
+ 	  
+ 	  } else {
+ 		$('#phonemsg').css('color','red');
+ 		$('#phonemsg').text("- 없이 올바른 전화번호를 입력해주십시오.");
+ 		$('#submit').attr('disabled','disabled');
+ 		return
+ 	  }
+ 	  
+ });// 전화번호중복확인 종료
+
+  //전화번호 정규식 유효성 검사
+  function validatePhone(phone) {
+ 		 var regExp = /^[0-9]{9,11}$/;
+ 		 return regExp.test(phone);
+  }
+//이메일 중복검사
+$('#u_email').keyup(function(){
+  	  
+  	  var email = $("#u_email").val();
+  	  
+  	  if (validateEmail(email)) {
+  	  $.ajax({
+  		  type: "POST",
+  		  url : "checkEmail.aj",
+  		  data: {"u_email": email},
+  		  success:function(data){
+  			  const result = $.trim(data);
+  			  if(result=="false" && !email == ""){
+  			
+  			  $('#emailtest').css('color','green');
+  			  $('#emailtest').text("사용가능한 이메일입니다.");
+  			  $('#submit').removeAttr('disabled');
+  			  $('#u_email2').removeAttr('disabled');
+  			  return;
+  			  }else if ( result=="true" && !email == ""){
+  			 
+  			  $('#emailtest').css('color','red');
+  			  $('#emailtest').text("이미 등록된 이메일입니다.");
+  			  $('#submit').attr('disabled','disabled');
+  			  $('#u_email2').attr('disabled','disabled');
+  			  return;
+  			  }
+  		  }//success 콜백함수 종료지점
+  	  });// ajax
+  	  if(email == ""){
+  		  $('#emailtest').css('color','red');
+  		  $('#emailtest').text("이메일을 입력해주세요.");
+  		  $('#submit').attr('disabled','disabled');
+  		  $('#u_email2').attr('disabled','disabled');
+  		  return;
+  	  }//이메일값이 빈칸일경우 입력하라는 내용 출력
+  	  
+  	  } else {
+  		$('#emailtest').css('color','red');
+  		$('#emailtest').text("유효한 이메일 주소를 입력해주세요.");
+  		$('#u_email2').attr('disabled','disabled');
+  		return;
+  	  }
+  	  
+  });// 이메일중복확인 종료
+
+  //이메일 정규식 유효성 검사
+  function validateEmail(email) {
+    var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    return regExp.test(email);
+  }
+  
 //이메일 인증관련
 function sendVerificationEmail() {
 	var email = $("#u_email").val();
@@ -215,10 +317,7 @@ function sendVerificationEmail() {
           alert("이메일 전송 중 오류가 발생했습니다. 다시 시도해주세요.");
         }//error 콜백함수 종료지점
       });// ajax
-    } else {
-     $('#emailtest').css('color','red');
-	 $('#emailtest').text("유효한 이메일 주소를 입력해주세요.");
-    }//이메일 정규식이 유효하지않을경우 출력할 메시지
+    }
  }//이메일인증종료
    
   //이메일 정규식 유효성 검사
@@ -244,7 +343,7 @@ $('#verificationCode').keyup(function(){
 			  }else if ( result=="false" && !$('#verificationCode').val() == ""){
 			 
 			  $('#emailmsg').css('color','red');
-			  $('#emailmsg').text("인증번호가 일치하지 않습니다.");  
+			  $('#emailmsg').text("인증번호가 일치하지 않습니다.");
 			  $('#submit').attr('disabled','disabled');
 			  return;
 			  }
@@ -291,7 +390,7 @@ $('#u_pass2').keyup(function() {
 	    
 	  } else {
 		$('#passmsg').css('color','red');
-		$('#passmsg').text("비밀번호가 일치하지 않습니다.");  
+		$('#passmsg').text("비밀번호가 일치하지 않습니다.");
 		$('#submit').attr('disabled','disabled');
 		return;
 	  }
@@ -310,7 +409,7 @@ $('#u_name').keyup(function() {
 	    return;
 	    
 	  } else {
-		  $('#namemsg').text("");  
+		  $('#namemsg').text("");
 		  $('#submit').removeAttr('disabled');
 		  return;
 	  }
@@ -320,29 +419,6 @@ $('#u_name').keyup(function() {
 		 return regExp.test(name);
 	  }
 });//이름 정규식 여부 검사 끝
-
-//전화번호 정규성 여부 검사
-$('#u_phone').keyup(function() {
-
-	  var phone = $('#u_phone').val();
-	  
-	  if(!validatePhone(phone)){
-		$('#phonemsg').css('color','red');
-		$('#phonemsg').text("- 없이 올바른 전화번호를 입력해주십시오.");
-		$('#submit').attr('disabled','disabled');
-	    return;
-	    
-	  } else {
-		  $('#phonemsg').text("");  
-		  $('#submit').removeAttr('disabled');
-		  return;
-	  }
-	  
-	  function validatePhone(phone) {
-		 var regExp = /^[0-9]{9,11}$/;
-		 return regExp.test(phone);
-	  }
-});//전화번호 정규식 여부 검사 끝
 
 </script>
 	</body>

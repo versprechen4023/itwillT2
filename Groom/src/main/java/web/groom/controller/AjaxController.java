@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.groom.dto.MemberDTO;
 import web.groom.email.MemberEmail;
 import web.groom.email.VerifyEmail;
 import web.groom.service.MemberService;
@@ -28,8 +29,67 @@ public class AjaxController extends HttpServlet {
 			MemberService ser = new MemberService();
 
 			// 아이디 중복검사를 위해 리퀘스트 값 넘김
-			boolean result = ser.searchId(request);
+			MemberDTO memberdto = ser.searchId(request);
 			
+			// memberdto 객체유무로 id중복검증 확인
+			boolean result = true;
+			
+			if(memberdto != null) {
+				result = true;
+			} else {
+				result = false;
+			}
+			
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Boolean.toString(result));
+			out.close();
+		}
+		
+		// AJAX관련 전화번호중복검사쪽
+		if (sPath.equals("/checkPhone.aj")) {
+
+			// 전화번호 중복검사를 위한 멤버 서비스 객체생성
+			MemberService ser = new MemberService();
+
+			// 전화번호 중복검사를 위해 리퀘스트 값 넘김
+			MemberDTO memberdto = ser.searchPhone(request);
+
+			// memberdto 객체유무로 전화번호 중복검증 확인
+			boolean result = true;
+
+			if (memberdto != null) {
+				result = true;
+			} else {
+				result = false;
+			}
+
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Boolean.toString(result));
+			out.close();
+		}
+		
+		// AJAX관련 이메일중복검사쪽
+		if (sPath.equals("/checkEmail.aj")) {
+
+			// 이메일 중복검사를 위한 멤버 서비스 객체생성
+			MemberService ser = new MemberService();
+
+			// 이메일 중복검사를 위해 리퀘스트 값 넘김
+			MemberDTO memberdto = ser.searchEmail(request);
+
+			// memberdto 객체유무로 이메일 중복검증 확인
+			boolean result = true;
+
+			if (memberdto != null) {
+				result = true;
+			} else {
+				result = false;
+			}
+
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

@@ -70,12 +70,12 @@ public class MemberController extends HttpServlet {
 	     }
 		 
 		 //회원가입 페이지 이동
-		 if (sPath.equals("/singup.me")) {
-			 webForward(request, response, "member", "singup");   
+		 if (sPath.equals("/signup.me")) {
+			 webForward(request, response, "member", "signup");   
 	     }
 		 
 		 // 회원가입 로직 수행
-		 if (sPath.equals("/singupPro.me")) {
+		 if (sPath.equals("/signupPro.me")) {
 
 			//멤버서비스 객체생성
 			ser = new MemberService();

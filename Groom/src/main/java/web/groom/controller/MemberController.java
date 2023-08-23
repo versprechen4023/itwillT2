@@ -31,7 +31,7 @@ public class MemberController extends HttpServlet {
 		 //로그인 페이지 이동
 		 if (sPath.equals("/login.me")) {
 			 webForward(request, response, "member", "login");
-	     }
+	     }// end_of_login.me
 		 
 		 //로그인 로직 수행
 		 if (sPath.equals("/loginPro.me")) {
@@ -67,12 +67,12 @@ public class MemberController extends HttpServlet {
 //				webForward(request, response, "member", "msg");
 				response.sendRedirect("main.gr");
 			}
-	     }
+	     }//end_of_loginPro.me
 		 
 		 //회원가입 페이지 이동
 		 if (sPath.equals("/signup.me")) {
 			 webForward(request, response, "member", "signup");   
-	     }
+	     }//end_of_singup.me
 		 
 		 // 회원가입 로직 수행
 		 if (sPath.equals("/signupPro.me")) {
@@ -91,7 +91,7 @@ public class MemberController extends HttpServlet {
 			//로그인 화면이동
 			response.sendRedirect("login.me");
 				
-		 }//end_of_insertPro.me
+		 }//end_of_singupPro.me
 		 
 		 if (sPath.equals("/findid.me")) {
 			 webForward(request, response, "member", "findid");   
@@ -105,6 +105,14 @@ public class MemberController extends HttpServlet {
 			 webForward(request, response, "member", "modifyinfo");   
 	     }
 		 
+		 //로그아웃 로직 수행
+		 if (sPath.equals("/logout.me")) {
+			//세션초기화
+			HttpSession session = request.getSession();
+			session.invalidate();
+			//메인으로 
+			response.sendRedirect("main.me"); 
+	     }//end_of_logout.me
 		 
 	}
 

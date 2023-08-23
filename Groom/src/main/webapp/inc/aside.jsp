@@ -1,18 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
+<% 
+   String id = (String)session.getAttribute("id");
+   String salt = (String)session.getAttribute("salt"); 
+   String role = (String)session.getAttribute("role"); 
+   String num = (String)session.getAttribute("num"); 
+%>
 <link rel="stylesheet" href="./css/aside_gr.css">
 
 <aside id="fh5co-aside" role="complementary"
 	class="border js-fullheight">
     
-	<h1 id="fh5co-logo"><a href="index.html">Groom </a></h1>
+	<h1 id="fh5co-logo"><a href="main.gr">Groom </a></h1>
+<%
+if(id == null){
+%>
 	<p id="fh5co-main-login_signup" role="navigation"><a href="login.me">로그인</a>  |  <a href="signup.me">회원가입</a></p>
+<%} else {
+    %><p id="fh5co-main-login_signup" role="navigation"><a href="logout.me">로그아웃</a>  |  <a href="mypage.my">마이페이지</a></p>
+<%  } 
+
+%>
 	<nav id="fh5co-main-menu" role="navigation">
 		<ul>
 			<li><a href="blog.html">ABOUT</a></li>
 			<li><a href="portfolio.html">이용안내</a></li>
-			<li><a href="about.html">예약하기</a></li>
+			<li><a href="myorder.or">예약하기</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">카테고리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">

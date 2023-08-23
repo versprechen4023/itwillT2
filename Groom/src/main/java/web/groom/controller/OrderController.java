@@ -20,6 +20,11 @@ public class OrderController extends HttpServlet {
 	            
 	     }
 		 
+		 //예약하기페이지 이동
+		 if (sPath.equals("/myorder.or")) {
+			 webForward(request, response, "order", "myorder");
+	     }
+		 
 		 
 	}
 

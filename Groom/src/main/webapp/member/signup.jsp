@@ -195,7 +195,7 @@ $('#u_id').keyup(function(){
  //아이디 정규식 유효성 검사
  function validateId(id) {
    var regExp = /^[a-zA-Z0-9]*$/;
-   return regExp.test(id); //test메서드로 정규식 검사만함
+   return regExp.test(id);
  }
  
 //전화번호 중복검사

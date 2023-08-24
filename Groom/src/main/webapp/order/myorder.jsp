@@ -17,6 +17,9 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 	</head>
 	
 	<body>
+    <!-- 	css설정 -->
+	<link rel="stylesheet" href="./css/myorder_gr.css">
+	
 	<div id="fh5co-page">
 		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 		<!-- 사이드바호출 -->
@@ -66,7 +69,7 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 									</div>
 										<p>예약선택</p>
 									<div class="form-group">
-										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="타임피커구현필요" readonly>
+										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="타임피커입력">
 									</div>
 										<p>예상예약요금</p>
 									<div class="form-group">
@@ -77,7 +80,7 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 								<div class="col-md-3">
 									<p>요구사항기입</p>
 									<div class="form-group">
-										<textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="전달할말"></textarea>
+										<textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="전달할말"></textarea>
 									</div>
 									
 									<div class="form-group">
@@ -156,7 +159,12 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 
 <!--  데이트피커 커스텀 css-->
 <link rel="stylesheet" type="text/css" href="./css/datepicker_gr.css">
-	
+
+<!-- jQuery Timepicker 라이브러리 추가 -->
+<link rel="stylesheet" href="./css/jquery.timepicker.css">
+<script src="./js/jquery.timepicker.js"></script>
+
+
 <script type="text/javascript">
 //사용자가 매장을 선택하면 매장선택값을 AJAX로 처리 -> DB조회후 특정매장에 따른 예약 가능날짜를반환 -> 사용자가 예약 날짜 선택가능
 //사용자가 예약 날짜를 선택하면 예약날짜선택값을 AJAX로처리 -> DB조회후 선택한 날짜에 대한 예약가능 시간을 반환 -> 사용자가 예약 시간 선택가능
@@ -203,7 +211,7 @@ $j(document).ready(function() {
 <%--             <% } %> --%>
 //         ]; 같은느낌?
 
-       var isDisabled = ($.inArray(dateString, disabledDates) !== -1);
+       var isDisabled = ($j.inArray(dateString, disabledDates) !== -1);
        return [(day !== 0 && day !== 6 && !isDisabled)]; // 일요일(0)과 토요일(6)을 제외한 날짜만 선택 가능
    },
    
@@ -216,7 +224,23 @@ $j(document).ready(function() {
    maxDate: new Date(currentYear, currentMonth + 4, 31)
    
 	});
+	
+	// DB에서 가져온 비활성화할 시간 데이터를 JSON등의 배열로가져온다
+	// 문제는 20:00일경우 거기서 +1분을 더한형태로 disableTimeRanges에 집어넣어야함
+	// 백단에서 계산이 이루어지고 값을 넘겨줘야 할듯..
+	
+    var disabledTimes = ["20:00", "20:01"];
 
+    // 타임피커 초기화
+    $j('#timepicker').timepicker({
+      timeFormat: 'H:i',
+      step: 60,
+      minTime: '09:00', // 최소 시간
+      maxTime: '18:00', // 최대 시간
+      disableTextInput : true,
+      listWidth : 1,
+      disableTimeRanges : [['17:00', '17:01']]
+    });
 });
 
 </script>

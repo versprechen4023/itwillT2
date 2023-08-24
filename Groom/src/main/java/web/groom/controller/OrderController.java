@@ -29,6 +29,16 @@ public class OrderController extends HttpServlet {
 		 //예약하기페이지 이동
 		 if (sPath.equals("/myorder.or")) {
 			 
+			 //유저 세션 검증
+			 String id = (String)request.getSession().getAttribute("id");
+			 
+			 //세션에 id값이 존재하지않을 경우 로그인 페이지로 이동
+			 if (id == null){
+				 response.sendRedirect("login.me");
+			 } 
+			 
+			 //정상적으로 로그인되어있을 경우 유저정보를 가져오기위한 로직
+			 else {
 			 // 유저의 정보를 가져오기위한 멤버서비스 객체생성
 			 ser = new MemberService();
 			 
@@ -46,6 +56,7 @@ public class OrderController extends HttpServlet {
 			 webForward(request, response, "order", "myorder");
 			 } else {
 				 System.out.println("세션만료됨 에러발생");
+			 }
 			 }
 	     }
 		 

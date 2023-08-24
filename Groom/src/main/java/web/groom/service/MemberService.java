@@ -111,7 +111,7 @@ public class MemberService {
 		return memberdto;
 	}
 	
-public MemberDTO searchEmail(HttpServletRequest request) {
+	public MemberDTO searchEmail(HttpServletRequest request) {
 	    
 		try {
 
@@ -130,7 +130,8 @@ public MemberDTO searchEmail(HttpServletRequest request) {
 		
 		return memberdto;
 	}
-public MemberDTO findid (HttpServletRequest request) {
+	
+	public MemberDTO findid (HttpServletRequest request) {
 	
 	MemberDTO memberDTO = new MemberDTO();
 	
@@ -153,9 +154,9 @@ public MemberDTO findid (HttpServletRequest request) {
 	}
 	
 	return memberDTO;
-} // finid
+	} // finid
 
-public MemberDTO findpass (HttpServletRequest request) {
+	public MemberDTO findpass (HttpServletRequest request) {
 	
 	MemberDTO memberDTO = new MemberDTO();
 	
@@ -178,6 +179,16 @@ public MemberDTO findpass (HttpServletRequest request) {
 	}
 	
 	return memberDTO;
-} // findpass
+	} // findpass
 
+	public MemberDTO getMemberInfo(HttpServletRequest request) {
+		
+		//유저 번호 가져오기
+		int num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+		
+		// MemberDAO에 값을 전달하고 로직처리 수행
+		memberdto = new MemberDAO().getMemberInfo(num);
+		
+		return memberdto;
+	}
 }

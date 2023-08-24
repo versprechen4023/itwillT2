@@ -215,7 +215,7 @@ public class MemberDAO {
 		return memberdto;
 	}
 	
-public MemberDTO searchPhone(String phone) {
+	public MemberDTO searchPhone(String phone) {
 		
 		memberdto = null;
 		
@@ -277,9 +277,9 @@ public MemberDTO searchPhone(String phone) {
 		return memberdto;
 	}
 	
-public MemberDTO findid(String name, String email) {
+	public MemberDTO findid(String name, String email) {
 		
-		MemberDTO memberDTO = null;
+		memberdto = null;
 
 		try {
 
@@ -295,22 +295,18 @@ public MemberDTO findid(String name, String email) {
 
 
 			if (rs.next()) {
-				memberDTO = new MemberDTO();
+				memberdto = new MemberDTO();
 				
-				memberDTO.setId(rs.getString("u_id"));
+				memberdto.setId(rs.getString("u_id"));
 				
-			
-
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			
 			dbClose();
-			
 		}
-		return memberDTO;
+		return memberdto;
 	} // findid 
 	
 	public MemberDTO findpass(String id , String email) {
@@ -347,4 +343,40 @@ public MemberDTO findid(String name, String email) {
 		return memberDTO;
 	} // findpass
 	
+	public MemberDTO getMemberInfo(int num) {
+		
+		memberdto = null;
+		
+		try {
+			
+			//db연결
+			con = new SQLConnection().getConnection();
+			
+			String SQL = "SELECT * FROM user2 WHERE u_num = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			
+			// 유저번호에 따른 개인정보 저장
+			if(rs.next()) {
+				memberdto = new MemberDTO();
+				memberdto.setName(rs2.getString("u_name"));
+				memberdto.setPhone(rs2.getString("u_phone"));
+				memberdto.setEmail(rs2.getString("u_email"));
+				memberdto.setRegDate(rs2.getTimestamp("u_regdate"));
+				memberdto.setCount(rs2.getInt("u_count"));
+				memberdto.setPoint(rs2.getInt("u_point"));
+			} else {
+				memberdto = null;
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+			memberdto = null; // 에러 발생시 멤버 DTO 저장소해제
+		} finally {
+			dbClose();
+		}
+		
+		return memberdto;
+	}// getMemberInfo
 }

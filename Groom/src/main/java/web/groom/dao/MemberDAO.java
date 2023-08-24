@@ -278,17 +278,14 @@ public class MemberDAO {
 		return memberdto;
 	} // findid 
 	
-	public MemberDTO findpass(String id , String email) {
+	public MemberDTO findPass(String id, String email) {
 		
-		MemberDTO memberDTO = null;
-		
+		memberdto = null;
 
 		try {
 			
-			
-
 			con = new SQLConnection().getConnection();
-			String SQL = "SELECT u.u_pass FROM user u JOIN user2 u2 on u.u_num = u2.u_num  WHERE u.u_id=? AND u2.u_email = ?";
+			String SQL = "SELECT u.u_num FROM user u JOIN user2 u2 on u.u_num = u2.u_num WHERE u.u_id=? AND u2.u_email = ?";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setString(1, id);
 			pstmt.setString(2, email);
@@ -296,10 +293,12 @@ public class MemberDAO {
 			
 			System.out.println("memberdao " + id + email); // 임시로 데이터 값을 받는지 체크하기 위해 넣은 것.
 
-			if (rs.next()) {
-
-				memberDTO.setId(rs.getString("u_pass"));
-
+			// 값 일치하면 memberdto 객체생성후 값저장후 넘김 값일치 없는 경우 memberdto는 null로 넘김
+			if(rs.next()) {
+				memberdto = new MemberDTO();
+				memberdto.setNum(rs.getInt("u_num"));
+			} else {
+				memberdto = null;
 			}
 
 		} catch (Exception e) {
@@ -309,9 +308,41 @@ public class MemberDAO {
 			dbClose();
 			
 		}
-		return memberDTO;
+		return memberdto;
 	} // findpass
 	
+	public MemberDTO resetPass(String hashedPassword, String salt, int u_num) {
+		
+		memberdto = null;
+
+		try {
+			
+			con = new SQLConnection().getConnection();
+			String SQL = "UPDATE user SET u_pass = ?, u_salt = ? WHERE u_num = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, hashedPassword);
+			pstmt.setString(2, salt);
+			pstmt.setInt(3, u_num);
+			int result = pstmt.executeUpdate();
+			
+
+			// 값 일치하면 memberdto 객체생성후 값저장후 넘김 값일치 없는 경우 memberdto는 null로 넘김
+			if(result != 0) {
+				memberdto = new MemberDTO();
+			} else {
+				memberdto = null;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			memberdto = null;
+		} finally {
+			dbClose();
+		}
+		return memberdto;
+	} // resetPass
+
+
 	public MemberDTO getMemberInfo(int num) {
 		
 		memberdto = null;

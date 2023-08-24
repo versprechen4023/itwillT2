@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="./css/login_gr.css">
 	
 	<body>
-	  <form>
+	  <form action="findpassresult.me" id="findpass" name="findpass" method="post">
 	  
 <!-- 로고 자리 -->		
 		<h1 style="margin-top: -55px; margin-bottom: 55px;"> Groom(로고) </h1>
@@ -30,16 +30,28 @@
 			  <div>
 				<label class="imp2" style="font-size: 16px;">아이디</label>
 				<div>
-				  <input type="text" id="id" placeholder="아이디를 입력하세요" required name="id" style="width: 390px; ">
+				  <input type="text" id ="u_id" name ="u_id" placeholder="아이디를 입력하세요" style="width: 390px; ">
 				</div>
 			  </div>
 		
 <!-- 이메일 -->
 			  <div>
-				<br><label class="imp2" style="font-size: 16px;">이메일</label>
+				<br><label class="imp">이메일</label>
 				<div>
-				<input type="text" placeholder="이메일을 입력하세요" required>
+				  <input type="email" id="u_email" name="u_email" placeholder="이메일을 입력하세요">
+				  
+              <!-- 이메일 인증번호 받기 버튼 -->
+				  <button type="button" style="font-size: 13px;" id="u_email2" name="u_email2" onclick="sendEmail();">인증번호 받기</button>
 				</div>
+				<span id="emailtest"></span>
+			  </div>
+			  
+			  <div>
+				<br><label class="imp">인증번호입력</label>
+				<div>
+				  <input type="text" id="verificationCode" name="verificationCode" readonly>
+				</div>
+				<span id="emailmsg"></span>
 			  </div>
 		
 			 
@@ -49,7 +61,7 @@
 
 <!-- 비밀번호 찾기 버튼 -->
 		<div id="button">
-			<button type="submit" style="width: 390px; font-size: 16px; margin-left: 0; ">비밀번호 찾기</button>
+			<button type="submit" id="submit" name="submit" style="width: 390px; font-size: 16px; margin-left: 0; ">비밀번호 찾기</button>
 		   </div>
 	    </div>   
 <!-- 테두리선 끝 -->
@@ -59,11 +71,114 @@
     <p>
         <a href="signup.me" class="custom-text"><b>회원가입</b></a>
         <span class="vertical-line"></span>
-        <a href="fineid.me" class="custom-text"><b>아이디 찾기</b></a>
+        <a href="findid.me" class="custom-text"><b>아이디 찾기</b></a>
     </p>
 </div>
       
     </form> 	  
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
 
+$('#findpass').submit(function() {
+	
+	if($('#u_id').val() == ""){
+		$('#idmsg').css('color','red');
+		$('#idmsg').text("아이디를 입력해주세요."); 
+		$('#u_id').focus();
+		return false;
+	}
+	
+	if($('#u_email').val() == ""){
+		$('#emailtest').css('color','red');
+		$('#emailtest').text("이메일을 입력해주세요.");
+		$('#u_email').focus();
+		return false;
+	}
+	
+	if($('#verificationCode').val() == ""){
+		$('#emailmsg').css('color','red');
+		$('#emailmsg').text("인증번호를 기입하십시오.");
+		$('#verificationCode').focus();
+		return false;
+	}
+
+});//submit기능 제어 끝
+
+//이메일 인증관련
+function sendEmail() {
+	var email = $("#u_email").val();
+
+    if (validateEmail(email)) {
+      $.ajax({
+        type: "POST",
+        url: "email.aj",
+        data: {"u_email": email },
+        success: function(response) {
+          alert("이메일로 인증번호가 전송되었습니다.");
+          $('#emailtest').text("");
+          $("#verificationCode").removeAttr("readonly");
+          $('#verificationCode').attr('placeholder','인증번호를 입력해주세요'); 
+        },//success 콜백함수 종료지점
+        error: function(xhr, status, error) {
+          alert("이메일 전송 중 오류가 발생했습니다. 다시 시도해주세요.");
+        }//error 콜백함수 종료지점
+      });// ajax
+    } else {
+    	alert("잘못된 이메일이 입력되었습니다");
+    	return;
+    }
+ }//이메일인증종료
+   
+  //이메일 정규식 유효성 검사
+  function validateEmail(email) {
+    var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    return regExp.test(email); //test메서드로 정규식 검사만함
+  }
+
+//이메일인증
+$('#verificationCode').keyup(function(){
+	
+	  $.ajax({
+		  url : "verify.aj",
+		  data: {"verificationCode": $('#verificationCode').val()},
+		  success:function(data){
+			  const result = $.trim(data);
+			  if(result=="true" && !$('#verificationCode').val() == ""){
+			
+			  $('#emailmsg').css('color','green');
+			  $('#emailmsg').text("인증번호가 일치합니다.");
+			  $('#submit').removeAttr('disabled');
+			  return;
+			  }else if ( result=="false" && !$('#verificationCode').val() == ""){
+			 
+			  $('#emailmsg').css('color','red');
+			  $('#emailmsg').text("인증번호가 일치하지 않습니다.");
+			  $('#submit').attr('disabled','disabled');
+			  return;
+			  }
+		  }//success 콜백함수 종료지점
+	  });// ajax
+}); // 이메일인증번호확인 종료
+
+$('#u_id').keyup(function() {
+
+	  var id = $('#u_id').val();
+	  
+	  if(id != ""){
+		$('#idmsg').text("");
+	    return;
+	  }
+});
+
+$('#u_email').keyup(function() {
+
+	  var email = $('#u_email').val();
+	  
+	  if(email != ""){
+		$('#emailtest').text("");
+	    return;
+	  }
+});
+</script>
 	</body>
 </html>

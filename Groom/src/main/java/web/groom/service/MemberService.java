@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import javax.servlet.http.HttpServletRequest;
 
 import web.groom.dto.MemberDTO;
+import web.groom.security.MemberSecurity;
 import web.groom.dao.MemberDAO;
 
 public class MemberService {
@@ -167,30 +168,64 @@ public class MemberService {
 	return memberDTO;
 	} // finid
 
-	public MemberDTO findpass (HttpServletRequest request) {
+	public MemberDTO findPass (HttpServletRequest request) {
 	
-	MemberDTO memberDTO = new MemberDTO();
-	
-	 memberDTO = null;
+	 memberdto = null;
 	
 	 try {
-		 
-		 String id = request.getParameter("u_id");
-		 String email = request.getParameter("u_email");
-		 MemberDAO memberDAO = new MemberDAO();
-		 
-		 memberDTO= memberDAO.findid(id, email);
-		 
-		 
+
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			
+			// 리퀘스트 파라미터값 변수에 저장
+			String getId = request.getParameter("u_id");
+			String getEmail = request.getParameter("u_email");
+			
+			
+			// MemberDAO에 값을 전달하고 로직처리 수행
+			memberdto = new MemberDAO().findPass(getId, getEmail);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-	} catch (Exception e) {
-		
-		e.printStackTrace();
-		
-	}
+		return memberdto;
+		 
+	}// findpass
 	
-	return memberDTO;
-	} // findpass
+	public MemberDTO resetPass (HttpServletRequest request) {
+		
+		 try {
+
+				// 한글 인코딩 처리
+				request.setCharacterEncoding("UTF-8");
+				
+				// 입력받은 비밀번호, 유저번호 변수에저장
+				String getPass = request.getParameter("u_pass");
+				int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+				
+				//비밀번호 재설정을 위한 해시비밀번호 얻기
+				//시큐리티 클래스 객체생성
+				MemberSecurity security = new MemberSecurity();
+				
+				//솔트 재생성
+				String salt = security.generateSalt();
+				
+				//비밀번호 재설정
+				String hashedPassword = security.hashPassword(getPass, salt);
+				
+				// MemberDAO에 재설정 값을 전달하고 로직처리 수행
+				memberdto = new MemberDAO().resetPass(hashedPassword, salt, u_num);
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return memberdto;
+			 
+	}// findpass
 
 	public MemberDTO getMemberInfo(HttpServletRequest request) {
 		

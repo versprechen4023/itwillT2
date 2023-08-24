@@ -97,6 +97,25 @@ $('#login').submit(function() {
 	}
 
 });//submit기능 제어 끝
+$('#u_id').keyup(function() {
+
+	  var id = $('#u_id').val();
+	  
+	  if(id != ""){
+		$('#idmsg').text("");
+	    return;
+	  }
+});
+
+$('#u_pass').keyup(function() {
+
+	  var pass = $('#u_pass').val();
+	  
+	  if(pass != ""){
+		$('#passtest').text("");
+	    return;
+	  }
+});
 
 </script>
 </body>

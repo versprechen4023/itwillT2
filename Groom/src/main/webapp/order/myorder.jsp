@@ -1,6 +1,10 @@
+<%@page import="web.groom.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%
+MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
+%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -33,11 +37,11 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<p>예약자명</p>
-										<input type="text" class="form-control" value="여기에 JSP태그" readonly>
+										<input type="text" class="form-control" value="<%=memberInfo.getName() %>" readonly>
 									</div>
 									<div class="form-group">
 									    <p>연락처</p>
-										<input type="text" class="form-control" value="여기에 JSP태그" readonly>
+										<input type="text" class="form-control" value="<%=memberInfo.getPhone() %>" readonly>
 									</div>
 								</div>
 								<div class="col-md-3">

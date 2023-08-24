@@ -130,28 +130,53 @@ public class MemberController extends HttpServlet {
 	     }
          
          if (sPath.equals("/findpass.me")) {
+			 webForward(request, response, "member", "findpass");   
+	     }
+         
+         if (sPath.equals("/findpassresult.me")) {
 			 
-			 ser = new MemberService();
-			 MemberDTO memberDTO = ser.findpass(request);
-			 String id = request.getParameter("u_id");
-			 String email = request.getParameter("u_email");
-			 
-			 System.out.println(id);
-			 System.out.println(email);
-			 
-			 System.out.println(memberDTO);
-			 if ( memberDTO != null ) {
-				 
+        	//멤버서비스 객체생성
+ 			ser = new MemberService();
+ 				
+ 			//메서드호출(리퀘스트 값 넘겨주기)
+			MemberDTO memberDTO = ser.findPass(request);
+			
+			if ( memberDTO != null ) {
 				
-				  request.setAttribute("memberDTO" , memberDTO);
-				  webForward(request, response, "member", "findpassresult");
-				  
-				 System.out.println("비밀번호 찾기 성공 ");
-			 } else  {
-				 System.out.println("비밀번호 찾기 실패 ");
-			 }
+			//값이 존재하면 세션에 유저 번호 저장
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("num", String.valueOf(memberDTO.getNum()));
+			
+			webForward(request, response, "member", "resetpassword");
+
+		     System.out.println("비밀번호 재설정가능");
+			} else  {
+			 System.out.println("비밀번호 재설정안됨");
+			}
 			 
 	     }
+         
+         if (sPath.equals("/resetpassword.me")) {
+			 
+         	//멤버서비스 객체생성
+  			ser = new MemberService();
+  			
+  			
+  			//메서드호출(리퀘스트 값 넘겨주기)
+ 			MemberDTO memberDTO = ser.resetPass(request);
+ 			
+ 			if ( memberDTO != null ) {
+ 			
+ 			response.sendRedirect("login.me");
+
+ 			System.out.println("비밀번호 재설정됨");
+ 			} else  {
+ 			System.out.println("비밀번호 재설정안됨");
+ 			}
+ 			
+ 			
+ 	     }
 		 
 		 if (sPath.equals("/modifyinfo.me")) {
 			 webForward(request, response, "member", "modifyinfo");   

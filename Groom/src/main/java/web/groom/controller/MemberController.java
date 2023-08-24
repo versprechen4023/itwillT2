@@ -85,8 +85,14 @@ public class MemberController extends HttpServlet {
 			
 			if(memberdto != null) {
 				System.out.println("회원가입 성공");
+				//세션초기화
+				HttpSession session = request.getSession();
+				session.invalidate();
 			} else {
 				System.out.println("회원가입 실패");
+				//세션초기화
+				HttpSession session = request.getSession();
+				session.invalidate();
 			}
 			//로그인 화면이동
 			response.sendRedirect("login.me");
@@ -157,7 +163,7 @@ public class MemberController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.invalidate();
 			//메인으로 
-			response.sendRedirect("main.me"); 
+			response.sendRedirect("main.gr"); 
 	     }//end_of_logout.me
 		 
 	}

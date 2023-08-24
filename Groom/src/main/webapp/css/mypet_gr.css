@@ -1,0 +1,116 @@
+  body {
+    background-color: #FAF5FA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px; /* 섹션 크기 조정 */
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: -160px; /* 로고 위치 조정 */
+  }
+
+  .logo {
+    text-align: center;
+    margin-bottom: 130px; /* 로고 위치 조정 */
+  }
+
+  .container {
+    width: 100%;
+    max-width: 500px; /* 폼 최대 너비 조정 */
+    margin-top : -55px;
+  }
+
+ /* placeholder의 글씨 크기 조정 */
+  ::placeholder {
+    font-size: 12px; /* 작게 조정하려는 크기로 변경하세요 */
+  }
+
+  .labelstyle {
+    margin: 10px 0; /* 라벨 위 아래 간격 조정 */
+    font-weight: bold; /* 굵은 글꼴 추가 */
+  }
+
+  input[type="text"], select, textarea {
+    margin: 10px 0; /* 입력 필드 위 아래 간격 조정 */
+    font-size: 16px;
+  }
+
+  button {
+    width: 50%;
+    font-size: 1.3rem;
+    font-weight: bold; /* 굵은 글꼴 추가 */
+    text-transform: uppercase;
+    padding: 15px;
+    margin-left: 10px;
+    border-radius: 4px;
+    color: white;
+    background: black;
+    transition: 0.3s;
+  }
+  
+/*     특이사항(textarea) 스타일 */
+/*   textarea { */
+/*     resize: none; 텍스트 영역 크기 조절 금지 */
+/*     width: 100%; 가로 폭 100%로 설정 */
+/*     height: 150px; 높이를 원하는 값으로 조절 */
+/*   } */
+
+/* 특이사항 글 쓰는 영역 스타일 */  
+.editable-area {
+  width: 275px;
+  height: 150px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 12px;
+}
+
+/* textarea placeholder 같은 "내용을 입력해주세요". 사용자가 글 쓰는 순간 사라짐 */
+.editable-area:empty:before {
+  content: attr(data-placeholder);
+  color: #999;
+}
+  
+/*   라디오 버튼 ------> */
+  .select {
+    padding: 10px 10px;
+}
+.select input[type=radio]{
+    display: none;
+}
+.select input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 24px;
+    width: 90px;
+    border: 1px solid #333;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:13px;
+}
+.select input[type=radio]+label{
+    background-color: #fff;
+    color: #333;
+}
+.select input[type=radio]:checked+label{
+    background-color: #333;
+    color: #fff;
+}
+
+/* <----- 라디오 버튼 */

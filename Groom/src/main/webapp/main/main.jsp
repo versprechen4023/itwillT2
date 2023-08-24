@@ -172,9 +172,6 @@
 	
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
-	
-     <!--스타일시트연계 자바스크립트 -->
-     <script src="./js/my.js"></script>
 
 	</body>
 </html>

@@ -7,13 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
- <link rel="stylesheet" type="text/css" href="../css/mypet_gr.css">
+ <link rel="stylesheet" type="text/css" href="./css/mypet_gr.css">
 
 </head>
 <body>
 
 <div class="logo">
-  <img src="../images/logo01.png" alt="logo" width="100%" height="225px">
+  <img src="./images/logo01.png" alt="logo" width="100%" height="225px">
 </div>
 
 <div class="content-wrapper">

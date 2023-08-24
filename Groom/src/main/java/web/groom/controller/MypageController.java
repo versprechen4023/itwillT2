@@ -24,6 +24,11 @@ public class MypageController extends HttpServlet {
 			 
 			 webForward(request, response, "mypage", "mypage");
 	     }
+
+		 if (sPath.equals("/mypet.my")) {
+			 
+			 webForward(request, response, "mypage", "mypet");
+		 }
 	}
 
 	@Override

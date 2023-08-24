@@ -15,7 +15,6 @@
 
 <!-- Theme style  -->
 <link rel="stylesheet" href="./css/member_gr.css">
-
 <!-- 리뷰작성페이지 스타일  -->
 <link rel="stylesheet" href="./css/writereview_gr.css">
 
@@ -85,7 +84,7 @@
 
 <!-- 적립 안내 문구 -->
 <div style="text-align: center;">
-  <p>* 리뷰 작성 시 결제금액의 1% 적립</p>
+  <p>* 리뷰 작성 시 n포인트 적립</p>
 </div>
 
 

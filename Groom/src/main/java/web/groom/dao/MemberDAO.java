@@ -360,12 +360,12 @@ public class MemberDAO {
 			// 유저번호에 따른 개인정보 저장
 			if(rs.next()) {
 				memberdto = new MemberDTO();
-				memberdto.setName(rs2.getString("u_name"));
-				memberdto.setPhone(rs2.getString("u_phone"));
-				memberdto.setEmail(rs2.getString("u_email"));
-				memberdto.setRegDate(rs2.getTimestamp("u_regdate"));
-				memberdto.setCount(rs2.getInt("u_count"));
-				memberdto.setPoint(rs2.getInt("u_point"));
+				memberdto.setName(rs.getString("u_name"));
+				memberdto.setPhone(rs.getString("u_phone"));
+				memberdto.setEmail(rs.getString("u_email"));
+				memberdto.setRegDate(rs.getTimestamp("u_regdate"));
+				memberdto.setCount(rs.getInt("u_count"));
+				memberdto.setPoint(rs.getInt("u_point"));
 			} else {
 				memberdto = null;
 			}

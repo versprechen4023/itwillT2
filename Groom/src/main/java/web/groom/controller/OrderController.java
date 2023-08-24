@@ -38,6 +38,8 @@ public class OrderController extends HttpServlet {
 			 // request에 유저 정보 있는 memberInfo 저장
 			 request.setAttribute("memberInfo", memberInfo);
 			 
+			 System.out.println(memberInfo);
+			 
 			 // 멤버인포에 정상적으로 값이 있으면 정보들고 myorder페이지로 페이지이동
 			 if(memberInfo != null) {
 			 webForward(request, response, "order", "myorder");

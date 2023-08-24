@@ -3,7 +3,6 @@
 
 <% 
    String id = (String)session.getAttribute("id");
-   String salt = (String)session.getAttribute("salt"); 
    String role = (String)session.getAttribute("role"); 
    String num = (String)session.getAttribute("num"); 
 %>

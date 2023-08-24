@@ -35,11 +35,22 @@ public class MemberService {
 			memberdto.setPhone(getPhone);
 			memberdto.setEmail(getEmail);
 			memberdto.setRegDate(getDate);
+			
 
 			// MemberDAO에 값을 전달하고 로직처리 수행
 			memberdao = new MemberDAO();
-
-			memberdto = memberdao.insertMember(memberdto);
+			
+			//중복여부 검사 id, phone, email
+			MemberDTO IdCheck = memberdao.searchId(memberdto.getId());
+			MemberDTO emailCheck = memberdao.searchEmail(memberdto.getEmail());
+			MemberDTO phoneCheck = memberdao.searchPhone(memberdto.getPhone());
+			if(IdCheck == null && emailCheck == null && phoneCheck == null) {
+				// 중복검증 확인후 db에 데이터 삽입 준비
+				memberdto = memberdao.insertMember(memberdto);	
+			} else {
+			// 중복있을시 DB삽입 거부
+			memberdto = null;
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

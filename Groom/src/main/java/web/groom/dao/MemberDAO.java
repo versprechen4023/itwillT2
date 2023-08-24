@@ -37,17 +37,6 @@ public class MemberDAO {
 		MemberSecurity security = new MemberSecurity();
 		
 		try {
-			
-			//아이디 중복여부 검사 아이디 있으면 memberdtoCheck에 객체있음 아닐 경우 Check 객체 null
-			MemberDTO memberdtoCheck = searchId(memberdto.getId());
-			if(memberdtoCheck != null) {
-				System.out.println("이미 아이디 있으므로 동작안함");
-			    memberdto = null; // 멤버 DTO 저장소해제
-			    memberdtoCheck = null; // 검증쪽 저장소 해제
-				
-			} else {
-				
-				// 중복검증 false 반환시 db에 데이터 삽입 준비
 				
 				//db연결
 				con = new SQLConnection().getConnection();
@@ -81,7 +70,7 @@ public class MemberDAO {
 					memberdto.setSalt(salt);
 					memberdto.setRole(role);
 				}
-			}
+			
 			
 			
 			
@@ -130,36 +119,16 @@ public class MemberDAO {
 				if (hashedPassword.equals(inputHashedPassword)) {
 					System.out.println("비밀번호 일치");
 					
-					//유저번호 변수에 저장
-					int userNum = rs.getInt("u_num");
-					
-					//memberdto에 값을 저장하기위해 추가 DB 접근
-					String SQL2 = "SELECT * FROM user2 WHERE u_num = ?";
-					pstmt2 = con.prepareStatement(SQL2);
-					pstmt2.setInt(1, userNum);
-					rs2 = pstmt2.executeQuery();
-					
 					//DB로부터 정보받아 memberdto에 값입력
 					memberdto = new MemberDTO();
 					
 					//첫번째 테이블로부터 값받아 입력
-					memberdto.setNum(userNum);
+					memberdto.setNum(rs.getInt("u_num"));
 					memberdto.setId(rs.getString("u_id"));
 					memberdto.setPass(hashedPassword);
 					memberdto.setSalt(salt);
 					memberdto.setRole(rs.getString("u_role"));
 					
-					//두번째 테이블로부터 값받아 입력
-					if(rs2.next()) {
-					memberdto.setName(rs2.getString("u_name"));
-					memberdto.setPhone(rs2.getString("u_phone"));
-					memberdto.setEmail(rs2.getString("u_email"));
-					memberdto.setRegDate(rs2.getTimestamp("u_regdate"));
-					memberdto.setCount(rs2.getInt("u_count"));
-					memberdto.setPoint(rs2.getInt("u_point"));
-					}
-					//나중에 반려동물 기본정보도 저장할꺼면 DTO에 추가로 가능
-					//rs3.getInt...
 				}
 				
 				//비밀번호 불일치시 로그인 실패

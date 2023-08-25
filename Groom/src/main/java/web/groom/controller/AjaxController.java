@@ -2,6 +2,8 @@ package web.groom.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import web.groom.dto.MemberDTO;
+import web.groom.dto.OrderDTO;
 import web.groom.email.MemberEmail;
 import web.groom.email.VerifyEmail;
 import web.groom.service.MemberService;
+import web.groom.service.OrderService;
 
 @WebServlet("*.aj") // .Ajax Ajax관련 어노테이션 매핑 선언
 public class AjaxController extends HttpServlet {
@@ -105,7 +112,31 @@ public class AjaxController extends HttpServlet {
 			out.print(Boolean.toString(result));
 			out.close();
 		}
+		
+		// 예약관련 AJAX테스트
+		if (sPath.equals("/test.aj")) {
+		    
+		    OrderService orderService = new OrderService();
+		 	List<OrderDTO> serviceDate = orderService.getServiceDate(request);
+		 			
+		    JSONArray arr = new JSONArray();
+		    
+		    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		    
+			for(OrderDTO orderDTO : serviceDate) {
+				
+				JSONObject object = new JSONObject();
+				object.put("date", format.format(orderDTO.getDate()));
+				// 배열 한칸에 저장
+				arr.add(object);
+			}
 
+		    response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    PrintWriter printWriter = response.getWriter();
+		    printWriter.println(arr);
+		    printWriter.close();
+		}
 	}
 
 	@Override

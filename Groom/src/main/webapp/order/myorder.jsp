@@ -51,7 +51,7 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 								    <div class="form-group">
 								    	<p>매장선택</p>
 										<select class="form-control" id="list" name="list">
-											<option value="test">매장을 선택하세요</option>
+											<option value="" disabled selected>매장을 선택하세요</option>
 											<option value="A">서면점</option>
 											<option value="B">김해점</option>
 										</select>
@@ -59,7 +59,7 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 									<div class="form-group">
 										<p>서비스선택</p>
 										<select class="form-control" id="list" name="list">
-											<option value="test">서비스를 선택하세요</option>
+											<option value="" disabled selected>서비스를 선택하세요</option>
 											<option value="A">[미용]대형견 15KG</option>
 										</select>
 									</div>
@@ -173,6 +173,9 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 //기존 템플릿 J쿼리충돌 해결 함수
 var $j = jQuery.noConflict();
 
+//비활성화할 날짜
+var disabledDates = []; //여기에 비활성화활 데이터들 JSON으로 가져와서 넣기
+
 $j(document).ready(function() {
 	
 	//날짜구하는함수
@@ -197,21 +200,8 @@ $j(document).ready(function() {
     beforeShowDay: function(date) {
        var day = date.getDay();
        var dateString = $j.datepicker.formatDate('yy-mm-dd', date); // 선택한 날짜를 형식에 맞게 문자열로 변환
-       var disabledDates = ["2023-08-21"]; 
-       
-// 비활성화할 날짜들 배열로 저장 나중에 서버에서가져오면댈듯 
-//        ArrayList<String> data = new ArrayList<>();
-//        data.add("2023-08-17");
-//        data.add("2023-08-18");
-//        data.add("2023-08-19");
-//        request.setAttribute("data", data);
-// var disabledDates = [
-<%--             <% for (String date : data) { %> --%>
-<%--                 "<%= date %>", --%>
-<%--             <% } %> --%>
-//         ]; 같은느낌?
 
-       var isDisabled = ($j.inArray(dateString, disabledDates) !== -1);
+       var isDisabled = ($j.inArray(dateString, disabledDates) !== -1);//비활성화될 데이터들 데이터 변환해서 최종적으로 일자 보여주기전에 비활성화해서 반환
        return [(day !== 0 && day !== 6 && !isDisabled)]; // 일요일(0)과 토요일(6)을 제외한 날짜만 선택 가능
    },
    
@@ -220,8 +210,8 @@ $j(document).ready(function() {
    yearRange: currentYear + ':' + (currentYear + 1),
    // 최소 날짜 범위 년도, 달, 일로되어있음 지금은 23년8월17일로 되어있어서 8월18일부터 선택가능
    minDate: new Date(currentYear, currentMonth, currentDate+1),
-   // 최대 날짜 범위 년도, 달, 일로되어있음 지금은 23년8월+4(12월까지)하고 최대날짜는 31일로 되어있음 문제가있는데 년도가 넘어가면 계산식이바뀜
-   maxDate: new Date(currentYear, currentMonth + 4, 31)
+   // 최대 날짜 범위 +숫자m은 달제한 +숫자w는 주제한
+   maxDate: "+3w"
    
 	});
 	
@@ -240,6 +230,30 @@ $j(document).ready(function() {
       disableTextInput : true,
       listWidth : 1,
       disableTimeRanges : [['17:00', '17:01']]
+    });
+    
+    //여기서부터 AJAX처리
+    
+    //지점선택에 대한 AJAX처리
+    $('#list').change(function() {
+        // 밸류값 가져오기
+        var Value = $(this).val();
+
+        // AJAX 요청.
+        $.ajax({
+            url: 'test.aj',
+            data: { "Value": Value }, // 선택된 값을 서버로 전송
+            dataType: 'json',
+            success: function(result) {
+            	disabledDates = result.map(function(item) {
+                    return item.date;
+                });
+            	alert(disabledDates);
+            },
+            error: function(xhr, status, error) {
+            	alert("no");
+            }
+        });
     });
 });
 

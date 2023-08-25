@@ -1,6 +1,7 @@
 package web.groom.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,7 +43,7 @@ public class BoardController extends HttpServlet {
 				pageDTO.setCurrentPage(currentPage);
 				
 				// BoardService 객체생성
-				boardService = new BoardService();
+				BoardService boardService = new BoardService();
 	// List<BoardDTO> boardList = getBoardList(); 메서드 호출
 				List<BoardDTO> boardList=boardService.getBoardList(pageDTO);
 			 request.setAttribute("boardList", boardList);

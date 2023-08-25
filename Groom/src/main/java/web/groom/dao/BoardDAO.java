@@ -23,16 +23,6 @@ import web.groom.dto.PageDTO;
 		PreparedStatement pstmt=null;
 		ResultSet rs =null;
 		
-		
-		// 1,2단계 디비연결
-		public Connection getConnection() throws Exception {
-			Context init = new InitialContext();
-			DataSource ds=(DataSource)init.lookup("java:comp/env/jdbc/c1d2304t2");
-			con=ds.getConnection();
-			return con;
-		}
-		
-		
 		// 기억장소 해제
 		public void dbClose() {
 
@@ -48,7 +38,7 @@ import web.groom.dto.PageDTO;
 			try {
 				
 				//1,2 디비연결
-				con = getConnection();
+				con = new SQLConnection().getConnection();
 				
 				// sql 
 				String sql="select * from notice order by n_num desc limit ?, ?";
@@ -91,7 +81,7 @@ import web.groom.dto.PageDTO;
 			int num = 0;
 			try {
 				// db연결
-				con=getConnection();
+				con = new SQLConnection().getConnection();
 
 				// sql 실행
 				String sql = "select max(num) from board;";
@@ -116,7 +106,7 @@ import web.groom.dto.PageDTO;
 			System.out.println("BoardDAO insertBoard()");
 			try {
 				// db연결
-				con=getConnection();
+				con = new SQLConnection().getConnection();
 				
 				// sql 실행
 				String sql = "insert into notice(NoticeNum,NoticeSubject,NoticeContent,NoticeReadcount,NoticeIssuedate) values(?,?,?,?,?)";
@@ -142,7 +132,7 @@ import web.groom.dto.PageDTO;
 			int count = 0;
 			try {
 				// 
-				con=getConnection();
+				con = new SQLConnection().getConnection();
 				
 				// sql 실행
 				String sql = "select count(*) from board;";
@@ -168,7 +158,7 @@ import web.groom.dto.PageDTO;
 			BoardDTO boardDTO = null;
 			try {
 				// db연결
-				con = getConnection();
+				con = new SQLConnection().getConnection();
 				
 				// sql 실행
 				String sql="select * from board where num = ?";

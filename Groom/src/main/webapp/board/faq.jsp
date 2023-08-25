@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 <div id="fh5co-page">
 	<div id="fh5co-main">
 
-<h2>공지사항</h2>
+<h2>FAQ</h2>
 	<div>
 	 <table id="qtable1">
 	 <tr id="qtr">

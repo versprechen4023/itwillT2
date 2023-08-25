@@ -1,0 +1,137 @@
+@charset "UTF-8";
+h2{
+		margin-left: 60px;
+		margin-top: 30px;
+		font-weight: bold;
+	}
+#qtable1 {
+border-collapse: collapse;
+width: 85%;
+/* border: 1px solid #ddd; */
+margin-top: 20px;
+margin-left: 90px;
+background-color: white;
+}
+		
+/* 		검색창,버튼 테이블 */
+		#qtable2{
+			border-collapse: collapse;
+width: 85%;
+margin-top: 10px;
+margin-left: 90px;
+/* background-color: white; */
+		}
+		
+		
+		
+th, td {
+padding: 8px;
+text-align: left;
+text-align: center;
+border: none;
+}
+#qtr, #qtr td{
+	padding: 8px;
+text-align: left;
+text-align: center;
+border-bottom: 1px solid #ddd;
+}
+th {
+background-color: #ddd;
+}
+/* tr:hover { */
+/* background-color: rgb(241, 241, 241); */
+/* } */
+#qtr:hover{
+	background-color: rgb(241, 241, 241);;
+}
+/* 검색창 */
+#searchkey{
+			padding:6px;
+			border: 2px solid #ddd;
+			display: inline-block; /* 검색창을 인라인 블록 요소로 설정하여 나란히 배치 */
+			margin: 0;
+			vertical-align: middle; /* 콤보상자와 수직 정렬 */
+			
+}
+/* 콤보상자 */
+.combo-box{
+	display: inline-block; /* 콤보상자를 인라인 블록 요소로 설정하여 나란히 배치 */
+/* 			margin-right: 5px; /* 원하는 간격 설정 */
+			
+			
+}
+/* 콤보상자 크기,색상 */
+#combo-select{
+	height: 39px;
+	border: 2px solid #ddd;
+}
+/* 버튼 */
+#searchbtn{
+	border: none;
+	background-color: #228896;
+	color:white;
+	border-radius: 5px;
+	padding: 6px 15px;
+	margin-left: 10px;
+}
+/* 글쓰기버튼+답글X버튼 */
+#writebtn{
+	border: none;
+	background-color: #228896;
+	color:white;
+	border-radius: 5px;
+	padding: 6px 15px;
+	margin-left: 400px;
+}
+#rebtn{
+	border: none;
+	background-color: #228896;
+	color:white;
+	border-radius: 5px;
+	padding: 6px 15px;
+/* 	margin-left: 200px; */
+}
+/* th간 간격 */
+#lnum{
+	width: 8%;
+}
+#lsub{
+	width: 50%;
+}
+#lname{
+	width:12%;
+}
+#ldate{
+	width: 20%;
+}
+#lcount{
+	width: 5%;
+}
+#lre{
+	width: 5%;
+}
+table #subject{
+	text-align: left;
+}
+/* 페이지 */
+.pagination {
+		 display: flex; /* 주축(main axis)과 교차축(cross axis)을 기반으로 유연하게 배치하고 정렬 */
+		 justify-content: center; /* 주축을 기준으로 중앙 정렬 */
+			align-items: center; /* 교차축을 기준으로 중앙 정렬 */
+		 margin-top: 10px;
+		}
+	
+		.pagination a {
+		 color: #228896;
+		 padding: 6px 12px;
+		 margin: 0 5px;
+		 border: 1px solid #228896;
+		 text-decoration: none;
+		 border-radius: 5px;
+		}
+	
+		.pagination a:hover {
+		 background-color: #228896;
+		 color: white;
+		}

@@ -1,3 +1,5 @@
+<%@page import="web.groom.dto.BoardDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="UTF-8"%>
     
@@ -171,6 +173,10 @@
     </style>
 </head>
 <body>
+<%
+
+List<BoardDTO> boardList=(List<BoardDTO>)request.getAttribute("boardList");
+%>
     <h2>공지사항</h2>
 <div>
     <table>
@@ -180,66 +186,76 @@
             <th id="ldate">작성일</th>
             <th id="lcount">조회수</th>
         </tr>
+        
+        <%
+        for(int i=0; i<boardList.size(); i++){
+        	BoardDTO boardDTO = boardList.get(i);
+        
+        %>
         <tr>
-            <td>10</td>
-            <td id="subject"><a href="#">	</a></td>
-            <td>	</td>
-            <td>	</td>
+            <td><%=boardDTO.getNum() %></td>
+            <td id="subject"><a href="#"><%=boardDTO.getSubject() %></a></td>
+            <td><%=boardDTO.getDate() %>	</td>
+            <td><%=boardDTO.getContent() %>	</td>
         </tr>
-        <tr>
-            <td>9</td>
-            <td id="subject"><a href="#">	</a></td>
-            <td>	</td>
-            <td>	</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td id="subject"><a href="#">	</a></td>
-            <td>	</td>
-            <td>	</td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td id="subject"><a href="#">	</a></td>
-            <td>	</td>
-            <td>	</td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td id="subject"><a href="#">	</a></td>
-            <td>	</td>
-            <td>	</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td id="subject"><a href="#">	</a></td>
-            <td>	</td>
-            <td>	</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td id="subject"><a href="#">	</a></td>
-            <td>	</td>
-            <td>	</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td id="subject"><a href="#">	</a></td>
-            <td>	</td>
-            <td>	</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td id="subject"><a href="#">두 번째 게시물</a></td>
-            <td>2023-08-09</td>
-            <td>50</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td id="subject"><a href="#">첫 번째 게시물</a></td>
-            <td>2023-08-09</td>
-            <td>100</td>
-        </tr>
+        <%
+        }
+        %>
+        
+<!--         <tr> -->
+<!--             <td>9</td> -->
+<!--             <td id="subject"><a href="#">	</a></td> -->
+<!--             <td>	</td> -->
+<!--             <td>	</td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--             <td>8</td> -->
+<!--             <td id="subject"><a href="#">	</a></td> -->
+<!--             <td>	</td> -->
+<!--             <td>	</td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--             <td>7</td> -->
+<!--             <td id="subject"><a href="#">	</a></td> -->
+<!--             <td>	</td> -->
+<!--             <td>	</td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--             <td>6</td> -->
+<!--             <td id="subject"><a href="#">	</a></td> -->
+<!--             <td>	</td> -->
+<!--             <td>	</td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--             <td>5</td> -->
+<!--             <td id="subject"><a href="#">	</a></td> -->
+<!--             <td>	</td> -->
+<!--             <td>	</td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--             <td>4</td> -->
+<!--             <td id="subject"><a href="#">	</a></td> -->
+<!--             <td>	</td> -->
+<!--             <td>	</td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--             <td>3</td> -->
+<!--             <td id="subject"><a href="#">	</a></td> -->
+<!--             <td>	</td> -->
+<!--             <td>	</td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--             <td>2</td> -->
+<!--             <td id="subject"><a href="#">두 번째 게시물</a></td> -->
+<!--             <td>2023-08-09</td> -->
+<!--             <td>50</td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--             <td>1</td> -->
+<!--             <td id="subject"><a href="#">첫 번째 게시물</a></td> -->
+<!--             <td>2023-08-09</td> -->
+<!--             <td>100</td> -->
+<!--         </tr> -->
        
     </table>
 </div> 

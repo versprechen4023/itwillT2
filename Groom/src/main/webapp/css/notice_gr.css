@@ -1,0 +1,106 @@
+@charset "UTF-8";
+	h2{
+		margin-left: 60px;
+		margin-top: 30px;
+		font-weight: bold;
+	}
+#qtable1 {
+border-collapse: collapse;
+width: 85%;
+/* border: 1px solid #ddd; */
+margin-top: 20px;
+margin-left: 90px;
+background-color: white;
+}
+		
+/* 		검색창,버튼 테이블 */
+		#qtable2{
+			border-collapse: collapse;
+width: 85%;
+margin-top: 10px;
+margin-left: 90px;
+/* background-color: white; */
+		}
+th, td {
+padding: 8px;
+text-align: left;
+text-align: center;
+border: none;
+}
+#qtr, #qtr td{
+	padding: 8px;
+text-align: left;
+text-align: center;
+border-bottom: 1px solid #ddd;
+}
+th {
+background-color: #ddd;
+}
+#qtr:hover {
+background-color: rgb(241, 241, 241);
+}
+/* 검색창 */
+#searchkey{
+/* 			margin-left: 300px; */
+/* 			margin-top: 20px; */
+			margin: 0px;
+			padding:6px;
+			border: 2px solid #ddd;						
+}
+tr #searchkey, #searchbtn {
+	float: left;
+}
+/* 버튼 */
+#searchbtn{
+	border: none;
+	background-color: #228896;
+	color:white;
+	border-radius: 5px;
+	padding: 6px 15px;
+	margin-left: 10px;
+}
+#writebtn{
+	border: none;
+	background-color: #228896;
+	color:white;
+	border-radius: 5px;
+	padding: 6px 15px;
+	margin-left: 280px;
+}
+/* 		th간 간격 */
+#lnum{
+	width: 7%;
+}
+#lsub{
+	width: 65%;
+}
+#ldate{
+	width: 20%;
+}
+#lcount{
+	width: 8%;
+}
+#subject{
+	text-align: left;
+}
+/* 페이지 */
+.pagination {
+		 display: flex; /* 주축(main axis)과 교차축(cross axis)을 기반으로 유연하게 배치하고 정렬 */
+		 justify-content: center; /* 주축을 기준으로 중앙 정렬 */
+			align-items: center; /* 교차축을 기준으로 중앙 정렬 */
+		 margin-top: 20px;
+		}
+	
+		.pagination a {
+		 color: #228896;
+		 padding: 6px 12px;
+		 margin: 0 5px;
+		 border: 1px solid #228896;
+		 text-decoration: none;
+		 border-radius: 5px;
+		}
+	
+		.pagination a:hover {
+		 background-color: #228896;
+		 color: white;
+		}

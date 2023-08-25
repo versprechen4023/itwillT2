@@ -30,6 +30,11 @@ public class BoardController extends HttpServlet {
 
 	     }
 		 
+		 if (sPath.equals("/faq.bo")) {
+	            webForward(request, response, "board", "faq");
+
+	     }
+		 
 	}
 
 	@Override

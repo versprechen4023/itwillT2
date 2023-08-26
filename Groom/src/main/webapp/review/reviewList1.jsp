@@ -13,13 +13,15 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 <!-- 	리뷰 css 추가 -->
 	<link href="./css/review_gr.css" rel="stylesheet" type="text/css">
-	
+<style>
+.review-active 
+</style>	
 	<body>
 <%
 List<ReviewDTO> reviewList
 =(List<ReviewDTO>)request.getAttribute("reviewList");
 
-//아래 코드는 페이징코드
+// =============== 페이징코드 ㄱ
 int itemsPerPage = 10; // 페이지당 아이템 수
 int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
 int startIndex = (currentPage - 1) * itemsPerPage;
@@ -36,33 +38,46 @@ List<ReviewDTO> visibleItems = reviewList.subList(startIndex, endIndex);
 	<div class="fh5co-narrow-content">
 		<h2 class="fh5co-review-title animate-box" data-animate-effect="fadeInLeft">
 		전체리뷰</h2> <!-- fh5co-review-title 클래스 사용중 아님 -->
-
+		
 	<div class="row row-bottom-padded-md">
 <!-- 리뷰 분류 -->
 		<h3 class="review-select animate-box" data-animate-effect="fadeInLeft">
-		<a href="#" class="review-active">전체</a>
-		<a href="#">미용</a>
-		<a href="#">목욕</a>
-		<a href="#">산책</a></h3>
+		<a href="reviewList.re?pro_name= " >전체</a>
+		<a href="reviewList1.re?pro_name=미용" class="review-active">미용</a>
+		<a href="reviewList2.re?pro_name=목욕">목욕</a>
+		<a href="reviewList3.re?pro_name=스파">스파</a></h3>
+		
 <!-- 목록 시작 -->	
 <%
 for (ReviewDTO reviewDTO : visibleItems){
+
+// ========= 별점 받아서 별출력하는 코드 ㄱ
+//int rating = reviewDTO.getRev_rating(); // rev_rating 값 int로 바꾸면 수정하도록
+int rating = Integer.parseInt(reviewDTO.getRev_rating());
+String stars = "";
+for (int i = 1; i <= 5; i++) {
+if (i <= rating) {
+	stars += "★";
+	} else {
+		stars += "☆";
+		}
+}
 %>		
-<!-- div  -->	
+<!-- 리뷰 목록  -->	
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 		<div class="blog-entry">                             <!-- ↗ 블로그 페이지 이동시 보여지는 칸 이미지 -->
-			<a href="reviewDetails.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img"><img src="<%=reviewDTO.getRev_img_url() %>" class="img-responsive" alt="이미지없음"></a>
+			<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img"><img src="<%=reviewDTO.getRev_img_url() %>" class="img-responsive" alt="이미지없음"></a>
 		<div class="review-desc">
-			<h3><a><%=reviewDTO.getPro_name() %></a>
+			<h3><a><%=reviewDTO.getPro_name() %></a><br>
 			<small><%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %></small><small> / <%=reviewDTO.getS_location() %></small></h3>
-			<h3>★★★★☆ <%=reviewDTO.getRev_rating() %>.0</h3>
+			<h3><%=stars %></h3>
 			<span class="review_text1"><a><%=reviewDTO.getU_name() %></a> / <a><%=reviewDTO.getRev_date() %></a> / <a><%=reviewDTO.getU_count() %>번째 예약</a></span>
 			<p class="review_text2"><%=reviewDTO.getRev_content() %></p>
-			<a href="reviewDetails.re?rev_num=<%=reviewDTO.getRev_num() %>" class="lead">더보기 <i class="icon-arrow-right3"></i></a>
+			<a href="reviewContet.re?rev_num=<%=reviewDTO.getRev_num() %>" class="lead">더보기 <i class="icon-arrow-right3"></i></a>
 		</div>
 		</div>
 		</div>
-<!-- div  -->
+<!-- 리뷰 목록 끝  -->
 <%
 	}
 %>
@@ -71,21 +86,38 @@ for (ReviewDTO reviewDTO : visibleItems){
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <div class="prev-next" data-animate-effect="fadeInLeft">
     <% if (currentPage > 1) { %>
-        <a href="?page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
+        <a href="reviewList1.re?pro_name=<%= request.getParameter("pro_name") %>&page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
     <% } %>
     <% 
     int startPage = ((currentPage - 1) / 5) * 5 + 1; // 현재 페이지 그룹의 시작 페이지 계산
     int endPage = Math.min(startPage + 4, totalPages); // 현재 페이지 그룹의 마지막 페이지 계산
     for (int i = startPage; i <= endPage; i++) { %>
-        <a href="?page=<%= i %>" <%= (i == currentPage) ? "class='review-active'" : "" %>><%= i %></a>
+        <a href="reviewList1.re?pro_name=<%= request.getParameter("pro_name") %>&page=<%= i %>" <%= (i == currentPage) ? "class='review-active'" : "" %>><%= i %></a>
     <% } %>
     <% if (currentPage < totalPages) { %>
-        <a href="?page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
+        <a href="reviewList1.re?pro_name=<%= request.getParameter("pro_name") %>&page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
     <% } %>
 </div>
 
 </div>
 </div>
+	
+	
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var links = document.querySelectorAll(".review-select a");
+
+    links.forEach(function(link) {
+        link.addEventListener("click", function(event) {
+            links.forEach(function(innerLink) {
+                innerLink.classList.remove("review-active");
+            });
+            link.classList.add("review-active");
+        });
+    });
+});
+</script>
+
 	
 	<!-- jQuery -->
 	<script src="./js/jquery.min.js"></script>

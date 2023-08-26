@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+p {
+	margin-bottom: 0;
+}
+reviewContent-main{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.review-content {
+	width: 80%;
+}
+/* ========================================= 리뷰상세 전체*/
+.review-content {
+	border-radius: 20px;
+	background: white;
+}
+/* ========================================= 리뷰상세 상단 */
+.content-top {
+background: #F8E8EE;
+border-radius: 20px;
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center; 
+	padding: 20px 35px;
+}
+.user-info {
+	color: #228896;
+	font-size: 16px;
+}
+.user-info a{
+color: #ff69b4;
+}
+.product-info {
+	color: black;
+}
+div input {
+float: right;
+  	margin-right: 10px;
+  	background-color: pink;
+  	color: white;
+  	border-radius: 7px;
+}
+
+/* ========================================= 리뷰상세 본문 */
+.content-middle {
+	padding: 20px 35px 50px 35px;
+}
+.content-middle p {
+	width: 80%;
+	color: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 0 10px 0;
+}
+.content-middle img {
+    margin: 0 auto;
+    display: block;
+    width: 85%;
+  }
+/* =========================================== 답글 */
+.re-review-content {
+	border-radius: 20px;
+	background: #ff69b4;;
+}
+.recontent-top {
+background: #F8E8EE;
+border-radius: 20px;
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center; 
+	padding: 20px 35px;
+}
+h4 {
+margin: 0px 0px 8px 0px;
+}
+.recoment {
+color: black;
+font-size: 16px;
+}
+.recoment {
+color: black;
+}

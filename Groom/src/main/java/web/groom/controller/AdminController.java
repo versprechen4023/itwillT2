@@ -40,16 +40,6 @@ public class AdminController extends HttpServlet {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}// doProcess
 	
 	@Override

@@ -4,18 +4,21 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import web.groom.dao.ReviewDAO;
 import web.groom.dto.ReviewDTO;
 
 public class ReviewService {
 ReviewDAO reviewDAO = null;
 	
-	public List<ReviewDTO> getReviewList() {
-		System.out.println("리뷰서비스");
+public List<ReviewDTO> getReviewList(String proName) {
+		System.out.println("ReviewService getReviewList()");
 		List<ReviewDTO> reviewList = null;
 		try {
 			reviewDAO = new ReviewDAO();
-			reviewList = reviewDAO.getReviewList();
+			reviewList = reviewDAO.getReviewList(proName); // 프로덕트 이름 전달
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -23,7 +26,7 @@ ReviewDAO reviewDAO = null;
 	}// getReviewList() [리뷰목록]
 
 	public ReviewDTO getReview(HttpServletRequest request) {
-		System.out.println("ReviewService getReview");
+		System.out.println("ReviewService getReview()");
 		ReviewDTO reviewDTO = null;
 		try {
 			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
@@ -45,28 +48,48 @@ ReviewDAO reviewDAO = null;
 		}
 	}// updateReadcount [리뷰조회수] 증가
 	
-// ========================================================================================================
 	public void insertReview(HttpServletRequest request) {
-		int rev_num = 1;
-		int u_num;
-		int res_num;
-		int pro_id;
-		
-		String pro_name;
-		String rev_img_url;
-		String emp_grade;
-		String emp_name;
-		String s_location;
-		String rev_rating;
-		String u_name;
-		String rev_date;
-		String u_count;
-		String rev_content;
-		int rev_count = 0;
-		
-//		rev_num = reviewDAO.getMaxNum() + 1;
-		
-	}// insertReview() Details 먼저하고 마지막에 하자..
+		System.out.println("ReviewService insertReview");
+		try {
+			String uploadPath=request.getRealPath("/upload");
+			System.out.println(uploadPath);
+			int maxSize=10*1024*1024;
+			MultipartRequest multi 
+			= new MultipartRequest(request, uploadPath, maxSize,"utf-8", new DefaultFileRenamePolicy()); 
+			
+//			int rev_num = 1; // (auto_increment)
+			int u_num = 0; // 세션
+			int res_num = 0; // from예약내역
+			int pro_id = 0; // from예약내역
+			int s_num = 0; // from예약내역
+			String rev_content = multi.getParameter("rev_content");
+			String rev_img_url = multi.getParameter("rev_img_url");
+			String rev_rating = multi.getParameter("rev_rating");
+			String rev_date = "now()"; // 일단 임의지정
+			int rev_count = 0; // 조회수 초기값=0
+			int re_ref = 0; // 답글번호 초기값=0
+			int re_lev = 0; // 답글깊이 초기값=0
+			int re_seq = 0; // 답글개수 초기값=0
+			
+			reviewDAO = new ReviewDAO();
+			ReviewDTO reviewDTO = new ReviewDTO();
+			reviewDTO.setU_num(u_num);
+			reviewDTO.setRes_num(res_num);
+			reviewDTO.setPro_id(pro_id);
+			reviewDTO.setPro_id(s_num);
+			reviewDTO.setRev_content(rev_content);
+			reviewDTO.setRev_img_url(rev_img_url); //
+			reviewDTO.setRev_rating(rev_rating);
+			reviewDTO.setRev_date(rev_date);
+			reviewDTO.setRev_count(rev_count);
+			reviewDTO.setRe_ref(re_ref);
+			reviewDTO.setRe_lev(re_lev);
+			reviewDTO.setRe_seq(re_seq);
+			reviewDAO.insertReview(reviewDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}// insertReview() [리뷰작성]
 	
 	
-}
+}// class

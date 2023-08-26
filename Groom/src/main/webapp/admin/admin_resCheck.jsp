@@ -19,7 +19,7 @@
 	
 <body>
 <!-- =============================  네비게이션바 ============================= -->	
-<jsp:include page="../inc/aside_admin.jsp"></jsp:include>
+<jsp:include page="../inc/aside.jsp"></jsp:include>
 <!-- =============================  네비게이션바 ============================= -->
 <div id="fh5co-main"> <!-- 블로그 페이지 이미지 테두리? 변경시  stycle.css 481 .blog-entry .blog-img 에서 css 코드 추가 -->
 	<div class="fh5co-narrow-content">

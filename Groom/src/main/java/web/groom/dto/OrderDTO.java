@@ -8,7 +8,14 @@ public class OrderDTO {
 	private int id;
 	private Date date;
 	private Time time;
+	private Time addTime;
 	
+	public Time getAddTime() {
+		return addTime;
+	}
+	public void setAddTime(Time addTime) {
+		this.addTime = addTime;
+	}
 	public int getId() {
 		return id;
 	}

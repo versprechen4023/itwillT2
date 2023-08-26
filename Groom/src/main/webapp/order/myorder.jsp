@@ -65,11 +65,11 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 									</div>
 										<p>날짜선택</p>
 									<div class="form-group">
-										<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="날짜" readonly>
+										<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="예약일을 선택해주십시오" readonly>
 									</div>
 										<p>예약선택</p>
 									<div class="form-group">
-										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="타임피커입력">
+										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="예약시간을 선택해주십시오" readonly>
 									</div>
 										<p>예상예약요금</p>
 									<div class="form-group">
@@ -173,17 +173,22 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 //기존 템플릿 J쿼리충돌 해결 함수
 var $j = jQuery.noConflict();
 
-//비활성화할 날짜
+// 데이트피커에서 비활성화할 날짜
 var disabledDates = []; //여기에 비활성화활 데이터들 JSON으로 가져와서 넣기
 
+// 타임피커에서 비활성화할 시간
+var disabledTimes = []; //여기에 비활성화할 데이터를 JSON으로 가져온다 형식의 예제는 "20:00", "20:01"
+
+//제이쿼리 함수 시작 지점
 $j(document).ready(function() {
 	
-	//날짜구하는함수
+	// 날짜구하는함수
 	var currentDate = new Date();
 	var currentYear = currentDate.getFullYear();
 	var currentMonth = currentDate.getMonth();
 	var currentDate = currentDate.getDate();
-	    
+	
+	// 데이트피커 초기화
 	$j("#datepicker").datepicker({
     dateFormat: 'yy-mm-dd',
     prevText: '이전 달',
@@ -196,53 +201,75 @@ $j(document).ready(function() {
     showMonthAfterYear: true,
     yearSuffix: '년',
     
-    //날짜 비활성화 관련 함수들
+    // 날짜 비활성화 관련 함수들
     beforeShowDay: function(date) {
        var day = date.getDay();
-       var dateString = $j.datepicker.formatDate('yy-mm-dd', date); // 선택한 날짜를 형식에 맞게 문자열로 변환
+       var dateString = $j.datepicker.formatDate('yy-mm-dd', date); // 날짜를 형식에 맞게 문자열로 변환
 
        var isDisabled = ($j.inArray(dateString, disabledDates) !== -1);//비활성화될 데이터들 데이터 변환해서 최종적으로 일자 보여주기전에 비활성화해서 반환
        return [(day !== 0 && day !== 6 && !isDisabled)]; // 일요일(0)과 토요일(6)을 제외한 날짜만 선택 가능
-   },
+   	},
    
-   //날짜 제한 관련
-   //년도범위 년도 : 년도 형식 2021 : 2023이라면 2021~2023까지 활성
-   yearRange: currentYear + ':' + (currentYear + 1),
-   // 최소 날짜 범위 년도, 달, 일로되어있음 지금은 23년8월17일로 되어있어서 8월18일부터 선택가능
-   minDate: new Date(currentYear, currentMonth, currentDate+1),
-   // 최대 날짜 범위 +숫자m은 달제한 +숫자w는 주제한
-   maxDate: "+3w"
+   	// 날짜 제한 관련
+   	// 년도범위 년도 : 년도 형식 2021 : 2023이라면 2021~2023까지 활성
+  	 yearRange: currentYear + ':' + (currentYear + 1),
+   	// 최소 날짜 범위 년도, 달, 일로되어있음 지금은 23년8월17일로 되어있어서 8월18일부터 선택가능
+   	minDate: new Date(currentYear, currentMonth, currentDate+1),
+   	// 최대 날짜 범위 +숫자m은 달제한 +숫자w는 주제한
+   	maxDate: "+3w",
+   	
+   	//날짜를 넘겨주고 비활성화할 시간을 넣을 AJAX호출
+   	onSelect: function(selectedDate) {
+
+        // 여기서부터 데이트피커 AJAX처리
+        $j.ajax({
+            type: "GET",
+            url: "getTime.aj",
+            data: {"selectedDate": selectedDate},
+            dataType: 'json',
+            success: function(result) {
+            	
+            	// 변수 초기화 작업
+                disabledTimes = [];
+            	
+            	// json 배열만큼 변수에 값추가 반복 첫번째값은 time1(17:00:00등) 두번째인자값은 time2(17:01:00)
+            	for (var i = 0; i < result.length; i++) {
+                    disabledTimes.push([result[i].time1, result[i].time2]);
+                }
+            	// 타임피커 선택을 가능하게하기 위해 readonly 해제
+            	$("#timepicker").removeAttr("readonly");
+            	
+                // 날짜가 제대로 입력되고 비활성화 할 시간이 적용되었다면 타임피커 호출
+                $j('#timepicker').timepicker({
+                  timeFormat: 'H:i',
+                  step: 60,
+                  minTime: '09:00', // 최소 시간
+                  maxTime: '18:00', // 최대 시간
+                  disableTextInput : true, //텍스트입력불가
+                  listWidth : 1, //크기조정
+                  disableTimeRanges: disabledTimes //비활성화할시간 변수에서 호출
+                });
+                
+            },
+            error: function(xhr, status, error) {
+            	alert("서버와의 통신에 문제가 발생했습니다");
+            	$("#timepicker").attr("readonly", "readonly");
+            }
+        });
+    },
    
 	});
-	
-	// DB에서 가져온 비활성화할 시간 데이터를 JSON등의 배열로가져온다
-	// 문제는 20:00일경우 거기서 +1분을 더한형태로 disableTimeRanges에 집어넣어야함
-	// 백단에서 계산이 이루어지고 값을 넘겨줘야 할듯..
-	
-    var disabledTimes = ["20:00", "20:01"];
-
-    // 타임피커 초기화
-    $j('#timepicker').timepicker({
-      timeFormat: 'H:i',
-      step: 60,
-      minTime: '09:00', // 최소 시간
-      maxTime: '18:00', // 최대 시간
-      disableTextInput : true,
-      listWidth : 1,
-      disableTimeRanges : [['17:00', '17:01']]
-    });
-    
-    //여기서부터 AJAX처리
     
     //지점선택에 대한 AJAX처리
-    $('#list').change(function() {
-        // 밸류값 가져오기
-        var Value = $(this).val();
+    $j('#list').change(function() {
+        // 지점선택 밸류값 가져오기
+        var selectedStore = $(this).val();
 
-        // AJAX 요청.
-        $.ajax({
-            url: 'test.aj',
-            data: { "Value": Value }, // 선택된 값을 서버로 전송
+        // 날짜 비활성화를 위한 AJAX 요청.
+        $j.ajax({
+        	type: "GET",
+            url: 'getDate.aj',
+            data: {"selectedStore": selectedStore}, // 선택된 값을 서버로 전송
             dataType: 'json',
             success: function(result) {
             	disabledDates = result.map(function(item) {
@@ -251,7 +278,7 @@ $j(document).ready(function() {
             	alert(disabledDates);
             },
             error: function(xhr, status, error) {
-            	alert("no");
+            	alert("서버와의 통신에 문제가 발생했습니다");
             }
         });
     });

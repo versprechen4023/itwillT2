@@ -113,8 +113,8 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		}
 		
-		// 예약관련 AJAX테스트
-		if (sPath.equals("/test.aj")) {
+		// AJAX관련 예약에 대한 날짜 비활성화 로직
+		if (sPath.equals("/getDate.aj")) {
 		    
 		    OrderService orderService = new OrderService();
 		 	List<OrderDTO> serviceDate = orderService.getServiceDate(request);
@@ -133,9 +133,35 @@ public class AjaxController extends HttpServlet {
 
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
-		    PrintWriter printWriter = response.getWriter();
-		    printWriter.println(arr);
-		    printWriter.close();
+		    PrintWriter out = response.getWriter();
+		    out.print(arr);
+		    out.close();
+		}
+		
+		// AJAX관련 예약에 대한 시간 비활성화 로직
+		if (sPath.equals("/getTime.aj")) {
+
+			OrderService orderService = new OrderService();
+		 	List<OrderDTO> serviceTime = orderService.getServiceTime(request);
+		 	
+		 	JSONArray arr = new JSONArray();
+		 	
+		 	SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+		 	
+		 	for(OrderDTO orderDTO : serviceTime) {
+				
+				JSONObject object = new JSONObject();
+				object.put("time1", format.format(orderDTO.getTime()));
+				object.put("time2", format.format(orderDTO.getAddTime()));
+				// 배열 한칸에 저장
+				arr.add(object);
+			}
+		
+		 	response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    PrintWriter out = response.getWriter();
+		    out.print(arr);
+		    out.close();
 		}
 	}
 

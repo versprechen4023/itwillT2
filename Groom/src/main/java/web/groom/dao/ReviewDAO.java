@@ -7,10 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
-
 import web.groom.dto.ReviewDTO;
 
 public class ReviewDAO {
@@ -25,13 +21,14 @@ public class ReviewDAO {
 		if(con != null) {try {con.close();} catch (SQLException e) {	}}
 	}
 	
-	public List<ReviewDTO> getReviewList() {
+	public List<ReviewDTO> getReviewList(String proName) {
 		System.out.println("ReviewDAO getReviewList");
 		List<ReviewDTO> reviewList = null;
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "select * from test01";
+			String sql = "select * from test01 where pro_name like ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + proName + "%"); // 프로덕트 이름 설정
 			rs = pstmt.executeQuery();
 			reviewList = new ArrayList<>();
 			while(rs.next()) {
@@ -79,6 +76,7 @@ public class ReviewDAO {
 				reviewDTO.setRev_count(rs.getInt("rev_count"));
 				reviewDTO.setU_count(rs.getString("u_count"));
 				reviewDTO.setRev_content(rs.getString("rev_content"));
+				reviewDTO.setRev_img_url(rs.getString("rev_img_url"));//
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -103,4 +101,35 @@ public class ReviewDAO {
 		}
 	}// updateReadcount() [리뷰조회수] 증가
 	
-}
+	public void insertReview(ReviewDTO reviewDTO) {
+		System.out.println("ReviewDAO insertReview()");
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "insert into testwrite(u_num, res_num, pro_id, s_num, rev_content,"
+					+ "rev_img_url, rev_rating, rev_date, rev_count, re_ref, re_lev, re_seq)"
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, reviewDTO.getU_num());
+			pstmt.setInt(2, reviewDTO.getRes_num());
+			pstmt.setInt(3, reviewDTO.getPro_id());
+			pstmt.setInt(4, reviewDTO.getS_num());
+			pstmt.setString(5, reviewDTO.getRev_content()); 
+			pstmt.setString(6, reviewDTO.getRev_img_url()); //
+			pstmt.setString(7, reviewDTO.getRev_rating()); 
+			pstmt.setString(8, reviewDTO.getRev_date());
+			pstmt.setInt(9, reviewDTO.getRev_count());
+			pstmt.setInt(10, reviewDTO.getRe_ref());
+			pstmt.setInt(11, reviewDTO.getRe_lev());
+			pstmt.setInt(12, reviewDTO.getRe_seq());
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}// insertReview() [리뷰작성]
+	
+	
+	
+	
+	
+}// class

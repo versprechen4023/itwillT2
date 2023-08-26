@@ -37,11 +37,17 @@
     margin: 0;
 }
 .review_text2 {
+margin-top: 5px;
+margin-bottom: 5px;
 	width: 100%;
 	overflow: hidden; /* 칸 넘치는 텍스트 숨기기 */ 
 	white-space: nowrap; /* 글자가 칸을 벗어날 때 줄바꿈 금지 */
     text-overflow: ellipsis;
     /* 글내용 숨겨짐과 동시에 ... 표시 (한줄만 가능 두줄이상은 복잡하니 패스)*/
+}
+.blog-entry .review-desc span {
+	margin: 0;
+	margin-bottom: 0;
 }
 /* 추가내용 (페이지 버튼) ============================================ */
 .prev-next {
@@ -97,10 +103,16 @@
     transition: background-color 0.3s;
 }
 .review-select a:hover {
-    background-color: rgba(0, 0, 0, 0.4) ;
+/*     background-color: rgba(0, 0, 0, 0.4) ; */
+    background: pink;
 }
 .review-active {
-	background-color: rgba(0, 0, 0, 0.4) !important; /* 적용이 안돼서 important*/
+/* 	background-color: rgba(0, 0, 0, 0.4) !important; 적용이 안돼서 important */
+	background-color: pink !important;
+}
+.review-active:active {
+/* 	background-color: rgba(0, 0, 0, 0.4) !important; 적용이 안돼서 important */
+	background-color: pink !important;
 }
 
 .fh5co-heading-colored{ /* 맨아래 내용 타이틀 */

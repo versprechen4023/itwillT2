@@ -24,48 +24,76 @@ public class ReviewController extends HttpServlet {
 		
 		String sPath = request.getServletPath();
 		
-		
 		//페이지이동
-		 if (sPath.equals("/review.re")) {
+		 if (sPath.equals("/reviewList.re")) {
 			 reviewService = new ReviewService();
-			 List<ReviewDTO> reviewList = reviewService.getReviewList();
+			 String proName = request.getParameter("pro_name");
+			 List<ReviewDTO> reviewList = reviewService.getReviewList(proName);
 			 request.setAttribute("reviewList", reviewList);
-			 System.out.println("review.re");
-			 
-			 webForward(request, response, "review", "review");
-	     }// review.re [리뷰목록]
+			 System.out.println("reviewList.re");
+			 webForward(request, response, "review", "reviewList");
+	     }// reviewList.re [리뷰목록]
 		 
-		 if (sPath.equals("/reviewDetails.re")) {
+		 
+		 if (sPath.equals("/reviewList1.re")) {
+			 reviewService = new ReviewService();
+			 String proName = request.getParameter("pro_name");
+			 List<ReviewDTO> reviewList = reviewService.getReviewList(proName);
+			 request.setAttribute("reviewList", reviewList);
+			 webForward(request, response, "review", "reviewList1");
+	     }// reviewList1.re [리뷰목록1]
+		 if (sPath.equals("/reviewList2.re")) {
+			 reviewService = new ReviewService();
+			 String proName = request.getParameter("pro_name");
+			 List<ReviewDTO> reviewList = reviewService.getReviewList(proName);
+			 request.setAttribute("reviewList", reviewList);
+			 webForward(request, response, "review", "reviewList2");
+	     }// reviewList2.re [리뷰목록2]
+		 if (sPath.equals("/reviewList3.re")) {
+			 reviewService = new ReviewService();
+			 String proName = request.getParameter("pro_name");
+			 List<ReviewDTO> reviewList = reviewService.getReviewList(proName);
+			 request.setAttribute("reviewList", reviewList);
+			 webForward(request, response, "review", "reviewList3");
+	     }// reviewList3.re [리뷰목록3] //////////// 상단 메뉴 선택시 버튼색이 안변해서 페이지 여러개 만듦
+		 
+		 
+		 if (sPath.equals("/reviewContent.re")) {
 			 System.out.println("reviewDetails.re");
 			 reviewService = new ReviewService();
 			 reviewService.updateReadcount(request); // 조회수
 			 
 			 ReviewDTO reviewDTO = reviewService.getReview(request);
 			 request.setAttribute("reviewDTO", reviewDTO);
-			 webForward(request, response, "review", "reviewDetails");
-	     }// reviewDetails.re [리뷰상세]
+			 webForward(request, response, "review", "reviewContent");
+	     }// reviewContent.re [리뷰상세]
 		 
-//========================================================================
-		 if (sPath.equals("/reviewDetails_my.re")) {
-			 System.out.println("reviewDetails_my.re");
-			 webForward(request, response, "review", "reviewDetails_my");
-	     }// reviewDetails_my.re [리뷰상세]
-//========================================================================
-		 if (sPath.equals("/writereview.re")) {
+
+		 if (sPath.equals("/reviewWrite.re")) {
 			 System.out.println("writereview.re");
-			 webForward(request, response, "review", "writereview");
-	     }// writereview.re
+			 webForward(request, response, "review", "reviewWrite");
+	     }// reviewWrite.re [리뷰작성]
 		 
-		 if (sPath.equals("/writereviewPro.re")) {
-			 System.out.println("writereviewPro.re");
+		 
+		 if (sPath.equals("/reviewWritePro.re")) {
+			 System.out.println("reviewWritePro.re");
 			 request.setCharacterEncoding("utf-8");
 			 reviewService = new ReviewService();
 			 reviewService.insertReview(request);
-			 response.sendRedirect("리뷰작성하면 어디로갈까");
-		 }
+			 response.sendRedirect("reviewList.re"); //일단 목록페이지로
+		 }// writereviewPro.re [리뷰작성 후 등록]
+	
 		 
 		 
-	}
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+	}// doProcess
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

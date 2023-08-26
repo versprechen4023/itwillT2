@@ -18,15 +18,21 @@ if(id == null){
 	<p id="fh5co-main-login_signup" role="navigation"><a href="login.me">로그인</a>  |  <a href="signup.me">회원가입</a></p>
 <%} else {
     %><p id="fh5co-main-login_signup" role="navigation"><a href="logout.me">로그아웃</a>  |  <a href="mypage.my">마이페이지</a></p>
-<%  } 
+<%  }  %>
 
+<%
+if(id != null){
+	if(role.equals("admin")){
 %>
+	<p id="fh5co-main-to_adminpage"><a href="admin_main.ad">관리자페이지</a></p>
+<%}}%>
+	  
 	<nav id="fh5co-main-menu" role="navigation">
 		<ul>
 			<li><a href="blog.gr">ABOUT</a></li>
 			<li><a href="portfolio.gr">이용안내</a></li>
 			<li><a href="myorder.or">예약하기</a></li>
-			<li><a href="review.re">리뷰</a></li>
+			<li><a href="reviewList.re?pro_name= ">리뷰</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">카테고리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">

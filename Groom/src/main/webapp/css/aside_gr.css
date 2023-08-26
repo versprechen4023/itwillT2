@@ -24,7 +24,8 @@ overflow: hidden; /* >>>>>>>>>>>>>>>>>>>>>> 네비게이션바 스크롤 제거 
 body {
 font-family: 'Noto', sans-serif; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 /* background: whitesmoke; */
-background: #F4F9F9;
+/* background: #F4F9F9; */
+background: #FAF5FA; /* >>>>>>>>>>>> 새롭게 바뀐 배경색 */
 /* background: #ECF9FF; */
 /* background: #F7ECDE; */
 /* background: #EEE0C9; */
@@ -43,7 +44,8 @@ font-family: 'Noto', sans-serif; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 /*   background: #96B6C5; */
 /* background: #DAF5FF; */
 /* background: #ECF9FF; */
-background: #E3F6FF;
+/* background: #E3F6FF; */
+background: #F2EEFA; /* >>>>>>>>>>>> 새롭게 바뀐 네비색 */
   /* >>>>>>>>>>>>>>>> 네비게이션바 색 추가*/
 }
 @media screen and (max-width: 1200px) {
@@ -57,6 +59,7 @@ body.offcanvas #fh5co-aside {
 #fh5co-aside #fh5co-logo {
 font-family: "Comic Sans MS", cursive, sans-serif; /* (로고만 다름) 폰트 수정 */
 margin-bottom: 8px; /* >>>>>>>>>>>>>>>>>>> 로고 아래 로그인/회원가입과의 간격 조절 */
+margin-top: 25px; /* >>> 위에 붙어있어서 간격줌 */
 text-transform: none; /* >>>>>>>>>>>>>>>>> 자동 대문자 변환 취소 */
 }
 #fh5co-aside #fh5co-main-menu ul li a {
@@ -103,17 +106,16 @@ font-family: 'Noto', sans-serif; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 /* ============================================================== */
 /* 아래 코드들은 모두 새 클래스명으로 작성해 따로 추가한 코드들입니다 */
 /* 추가내용 (로고아래 로그인/회원가입) ==================================== */
-#fh5co-main-login_signup { /* >>> 로그인, 회원가입 부분 */
+#fh5co-main-login_signup {
 	text-align: center;
-	margin-bottom: 5em;
+	margin-bottom: 0;
 	margin-top: 0;
     text-decoration: none;
     letter-spacing: .1em;
     text-transform: uppercase;
     font-size: 13px;
-    font-weight: 400; /* 600 > 400 */
+    font-weight: 400;
     position: relative;
-/*     padding: 10px 20px; */
     letter-spacing: .2em;
     color: black;
 }
@@ -161,4 +163,32 @@ font-family: 'Noto', sans-serif; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 {
     text-align: left; /* 글자를 왼쪽으로 정렬 없애버리면 중앙으로 자동정렬*/
     display: block; /* 각 요소를 블록 레벨로 표시하여 줄 바꿈 적용 */
+}
+
+/* ============================================== 추가 관리자페이지 버튼*/
+/* 기존 로그인|회원가입 링크 부분 */
+
+/* 새롭게 추가된 부분 (관리자페이지 링크 버튼) */
+#fh5co-main-to_adminpage {
+	text-align: center;
+	margin-top: 3px;
+    text-decoration: none;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 400;
+    position: relative;
+    letter-spacing: .2em;
+    color: black;
+}
+#fh5co-main-to_adminpage a {
+    color: black;
+    font-weight: 500;
+    text-decoration: none;
+}
+#fh5co-aside #fh5co-main-to_adminpage a:hover {
+  color: #228896;
+}
+#fh5co-main-menu {
+	margin-top: 6em;
 }

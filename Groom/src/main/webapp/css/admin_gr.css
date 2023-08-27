@@ -54,6 +54,7 @@
 }
 /* (관리자 메인) ============================================ */
 .admin-main1 {
+	color: black;
     width: 600px;
     font-size: 16px;
     border-collapse: collapse;
@@ -96,12 +97,13 @@
 	background-color: rgba(0, 0, 0, 0.4) !important; /* 적용이 안돼서 important*/
 }
 .admin-main1 td {
-        background-color: white;
+    background-color: white;
 }
 /* (회원정보) ============================================ */   
 .admin-userCheck { /* 표 전체 */
+	color: black;
     width: 800px;
-    font-size: 12px;
+    font-size: 13px;
     border-collapse: collapse;
 }
 .admin-userCheck th {
@@ -113,7 +115,7 @@
     border: 1px solid #ddd;
 }
 .admin-userCheck td {
-        background-color: white;
+    background-color: white;
 }
 .userCheck-next {
 	margin-top: 10px;
@@ -150,8 +152,9 @@
 }
 /* (예약정보) ============================================ */   
 .admin-resCheck {
+	color: black;
     width: 800px;
-    font-size: 12px;
+    font-size: 13px;
     border-collapse: collapse;
 }
 .admin-resCheck th {
@@ -200,7 +203,7 @@
 }
 /* (지점정보) ============================================ */   
 .admin-storeCheck1 {
-    width: 800px;
+	color: black;
     font-size: 16px;
     border-collapse: collapse;
     margin-bottom: 20px;
@@ -210,11 +213,13 @@
     padding: 15px;
 }
 .admin-storeCheck1 td {
+	font-size: 13px;
     padding: 5px;
     border: 1px solid #ddd;
 }
 .admin-storeCheck2 {
-    width: 800px;
+	color: black;
+    text-align: center;
     font-size: 16px;
     border-collapse: collapse;
 }
@@ -223,6 +228,7 @@
     padding: 15px;
 }
 .admin-storeCheck2 td {
+	font-size: 13px;
     padding: 5px;
     border: 1px solid #ddd;
 }

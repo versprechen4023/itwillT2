@@ -73,23 +73,44 @@ public class ReviewController extends HttpServlet {
 			 System.out.println("writereview.re");
 			 webForward(request, response, "review", "reviewWrite");
 	     }// reviewWrite.re [리뷰작성]
-		 
-		 
+		 		 
 		 if (sPath.equals("/reviewWritePro.re")) {
 			 System.out.println("reviewWritePro.re");
 			 request.setCharacterEncoding("utf-8");
 			 reviewService = new ReviewService();
 			 reviewService.insertReview(request);
-			 response.sendRedirect("reviewList.re"); //일단 목록페이지로
+			 response.sendRedirect("reviewList.re?pro_name= "); //일단 목록페이지로
 		 }// writereviewPro.re [리뷰작성 후 등록]
+		 
 	
+		 if(sPath.equals("/reviewDelete.re")) {
+			 reviewService = new ReviewService();
+			 reviewService.deleteReview(request);
+			 response.sendRedirect("reviewList.re?pro_name=");
+		 }// reviewDelete.re [리뷰삭제]
 		 
+// 답글작성용 페이지 제작 필요, 리뷰수정용 페이지도 동시에 제작하는걸로 /////////////////////////
 		 
+		 if(sPath.equals("/reWrite.re")) {
+			 System.out.println("reWrite.re");
+			 reviewService = new ReviewService();
+			 ReviewDTO reviewDTO = reviewService.getReview(request);
+			 request.setAttribute("reviewDTO", reviewDTO);
+		 }//reWrite.re [답글작성]
 		 
+		 if(sPath.equals("reWritePro.re")) {
+			 System.out.println("reWritePro.re");
+			 reviewService = new ReviewService();
+			 reviewService.writeRe(request);
+			 response.sendRedirect("main.gr"); // 일단메인으로
+		 }//reWritePro.re [답글작성 후 등록]
 		 
-		 
-		 
-		 
+		 if(sPath.equals("/reDelete.re")) {
+			 System.out.println("reDelete.re");
+			 reviewService = new ReviewService();
+			 reviewService.deleteRe(request);
+			 response.sendRedirect("main.gr"); // 일단메인으로
+		 }// reDelete.re [답글삭제]
 		 
 		 
 		 

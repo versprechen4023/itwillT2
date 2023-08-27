@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="./css/reviewWrite_gr.css">
 
 <body>
-<form action="reviewWritePro.re" method="post" enctype="multipart/form/data">
+<form action="reviewWritePro.re" method="post" enctype="multipart/form-data">
 	<div class="review-write-main">
 	<div style="text-align: center;">
 		<h1 class="logo"> Groom(로고) </h1>
@@ -53,7 +53,7 @@
 	<div><p>* 리뷰 작성 시 n포인트 적립</p></div><br>
 	<div class="buttons">
 <!-- ///////////// 취소 일단 reviewList로 이동 나중에 변경하기 ///////////////////////////////////// -->
-		<input type="button" class="cancle" value="취소" onClick="location.href='reviewList.re'"> 
+		<input type="button" class="cancle" value="취소" onClick="location.href='reviewList.re?pro_name= '"> 
 		<input type="submit" class="submit" value="등록">
 	</div>
 	</div>

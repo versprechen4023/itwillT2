@@ -16,6 +16,8 @@ import web.groom.service.BoardService;
 @WebServlet("*.bo") //.bo 게시판관련페이지 어노테이션 매핑 선언
 public class BoardController extends HttpServlet {
 	
+
+	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String sPath = request.getServletPath();
@@ -26,35 +28,28 @@ public class BoardController extends HttpServlet {
 	     }
 		 
 		 if (sPath.equals("/notice.bo")) {
-			 	// 한페이지에서 보여지는 글개수 설정
-				int pageSize=10;
-				// 페이지번호 
-				String pageNum=request.getParameter("pageNum");
-				// 페이지번호가 없으면 1페이지 설정
-				if(pageNum == null) {
-					pageNum = "1";
-				}
-				// 페이지 번호를 => 정수형 변경
-				int currentPage = Integer.parseInt(pageNum);
-				
-				PageDTO pageDTO = new PageDTO();
-				pageDTO.setPageSize(pageSize);
-				pageDTO.setPageNum(pageNum);
-				pageDTO.setCurrentPage(currentPage);
-				
-				// BoardService 객체생성
-				BoardService boardService = new BoardService();
-	// List<BoardDTO> boardList = getBoardList(); 메서드 호출
+				PageDTO pageDTO = new PageDTO();	
+	 			BoardService boardService = new BoardService();
 				List<BoardDTO> boardList=boardService.getBoardList(pageDTO);
-			 request.setAttribute("boardList", boardList);
-				
+			    request.setAttribute("boardList", boardList);
 	            webForward(request, response, "board", "notice");
-
 	     }
 		 
 		 if (sPath.equals("/qna.bo")) {
 	            webForward(request, response, "board", "qna");
 
+	     } // qna리스트로 이동 
+		 
+		 if (sPath.equals("/qnawrite.bo")) {
+	            webForward(request, response, "board", "qnawrite");
+
+	     } // qna 쓰는 페이지로 이동 
+		 
+		 if (sPath.equals("/qnawritePro.bo")) {
+//	            boardService = new BoardService();
+//	            boardService.insertqnaBoard(request); // qnainsertboard() 요청
+//				// list.bo 주소 변경 되면서 이동
+//				response.sendRedirect("qna.bo"); // 글을 다 쓰고 나면 다시 리스트로 이동 	
 	     }
 		 
 		 if (sPath.equals("/faq.bo")) {

@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,9 +31,7 @@ pageEncoding="UTF-8"%>
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
 	
-	
-	
-	
+
 	
 <!-- 여기부터 -->
 	<div id="fh5co-main">	
@@ -47,92 +46,13 @@ pageEncoding="UTF-8"%>
 <th id="lsub">제목</th>
 <th id="lname">작성자</th>
 <th id="ldate">작성일</th>
-<th id="lcount">조회수</th>
 <th id="lre">답글</th>
 </tr>
-<tr id="qtr">
-<td>10</td>
-<td id="subject"><a href="#">	</a></td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-</tr>
-<tr id="qtr">
-<td>9</td>
-<td id="subject"><a href="#">	</a></td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-</tr>
-<tr id="qtr">
-<td>8</td>
-<td id="subject"><a href="#">	</a></td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-</tr>
-<tr id="qtr">
-<td>7</td>
-<td id="subject"><a href="#">	</a></td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-</tr>
-<tr id="qtr">
-<td>6</td>
-<td id="subject"><a href="#">	</a></td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-</tr>
-<tr id="qtr">
-<td>5</td>
-<td id="subject"><a href="#">	</a></td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-</tr>
-<tr id="qtr">
-<td>4</td>
-<td id="subject"><a href="#">	</a></td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-</tr>
-<tr id="qtr">
-<td>3</td>
-<td id="subject"><a href="#">	</a></td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-<td>	</td>
-</tr>
-<tr id="qtr">
-<td>2</td>
-<td id="subject"><a href="#">두 번째 게시물</a></td>
-<td>이름2</td>
-<td>2023-08-09</td>
-<td>50</td>
-<td>X</td>
-</tr>
-<tr id="qtr">
-<td>1</td>
-<td id="subject"><a href="#">첫 번째 게시물111111111111111111111111111111111111111111</a></td>
-<td>이름1111111</td>
-<td>2023-08-09</td>
-<td>100</td>
-<td>X</td>
-</tr>
+
 </table>
 <table id="qtable2">
 <tr><td>
+
 <div class="pagination">
 	 <a href="#">1</a>
 	 <a href="#">2</a>
@@ -153,7 +73,7 @@ pageEncoding="UTF-8"%>
 					<option value="option4">기타</option>
 				</select>					
 			</div>		 	
-		 <input type="text" name="keyWord" size=80 placeholder="검색어를 입력하세요" id="searchkey">
+		 <input type="text" name="keyWord" size=30 placeholder="검색어를 입력하세요" id="searchkey">
 		 <input type="submit" value="검색" id="searchbtn">
 		 <input type="button" value="글쓰기" onclick="글쓰는페이지로" id="writebtn">
 		 <input type="button" value="답글X" onclick="답글작성안한 글만 출력" id="rebtn">

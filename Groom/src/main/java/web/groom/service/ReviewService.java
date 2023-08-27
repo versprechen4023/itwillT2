@@ -1,5 +1,6 @@
 package web.groom.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ public List<ReviewDTO> getReviewList(String proName) {
 		return reviewList;
 	}// getReviewList() [리뷰목록]
 
+
 	public ReviewDTO getReview(HttpServletRequest request) {
 		System.out.println("ReviewService getReview()");
 		ReviewDTO reviewDTO = null;
@@ -38,6 +40,7 @@ public List<ReviewDTO> getReviewList(String proName) {
 		return reviewDTO;
 	}// getReview() [리뷰상세]
 	
+	
 	public void updateReadcount(HttpServletRequest request) {
 		try {
 			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
@@ -47,6 +50,7 @@ public List<ReviewDTO> getReviewList(String proName) {
 			e.printStackTrace();
 		}
 	}// updateReadcount [리뷰조회수] 증가
+	
 	
 	public void insertReview(HttpServletRequest request) {
 		System.out.println("ReviewService insertReview");
@@ -63,13 +67,16 @@ public List<ReviewDTO> getReviewList(String proName) {
 			int pro_id = 0; // from예약내역
 			int s_num = 0; // from예약내역
 			String rev_content = multi.getParameter("rev_content");
-			String rev_img_url = multi.getParameter("rev_img_url");
+			String rev_img_url = multi.getFilesystemName("rev_img_url");
 			String rev_rating = multi.getParameter("rev_rating");
-			String rev_date = "now()"; // 일단 임의지정
+//			String rev_date = "now()"; // 일단 임의지정
+			Timestamp rev_date = new Timestamp(System.currentTimeMillis());
 			int rev_count = 0; // 조회수 초기값=0
 			int re_ref = 0; // 답글번호 초기값=0
 			int re_lev = 0; // 답글깊이 초기값=0
 			int re_seq = 0; // 답글개수 초기값=0
+			String re_content = null; //
+			Timestamp re_date = null; //
 			
 			reviewDAO = new ReviewDAO();
 			ReviewDTO reviewDTO = new ReviewDTO();
@@ -78,18 +85,80 @@ public List<ReviewDTO> getReviewList(String proName) {
 			reviewDTO.setPro_id(pro_id);
 			reviewDTO.setPro_id(s_num);
 			reviewDTO.setRev_content(rev_content);
-			reviewDTO.setRev_img_url(rev_img_url); //
+			reviewDTO.setRev_img_url(rev_img_url);
 			reviewDTO.setRev_rating(rev_rating);
 			reviewDTO.setRev_date(rev_date);
 			reviewDTO.setRev_count(rev_count);
 			reviewDTO.setRe_ref(re_ref);
 			reviewDTO.setRe_lev(re_lev);
 			reviewDTO.setRe_seq(re_seq);
+			reviewDTO.setRe_content(re_content); //
+			reviewDTO.setRe_date(re_date); //
 			reviewDAO.insertReview(reviewDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}// insertReview() [리뷰작성]
+	
+	
+	public void deleteReview(HttpServletRequest request) {
+		System.out.println("ReviewService deleteReview()");
+		try {
+			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
+			reviewDAO = new ReviewDAO();
+			reviewDAO.deleteReview(rev_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}// deleteReview() [리뷰삭제]
+
+
+	public void writeRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
+		System.out.println("ReviewService writeRe()");
+		try {
+			request.setCharacterEncoding("uft-8");
+			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
+			int re_ref = Integer.parseInt(request.getParameter("re_ref"));
+			int re_lev = Integer.parseInt(request.getParameter("re_lev"));
+			int re_seq = Integer.parseInt(request.getParameter("re_seq"));
+			String re_content = request.getParameter("re_content");
+			Timestamp re_date = new Timestamp(System.currentTimeMillis());
+			
+			ReviewDTO reviewDTO = new ReviewDTO();
+			reviewDTO.setRev_num(rev_num);
+			reviewDTO.setRe_ref(re_ref);
+			reviewDTO.setRe_lev(re_lev);
+			reviewDTO.setRe_seq(re_seq);
+			reviewDTO.setRe_content(re_content);
+			reviewDTO.setRe_date(re_date);
+			
+			reviewDAO = new ReviewDAO();
+			reviewDAO.writeRe(reviewDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}// writeRe [답글작성]
+
+
+	public void deleteRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
+		System.out.println("ReviewService writeRe()");
+		try {
+			request.setCharacterEncoding("uft-8");
+			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
+			ReviewDTO reviewDTO = new ReviewDTO();
+			reviewDTO.setRev_num(rev_num);
+			reviewDAO = new ReviewDAO();
+			reviewDAO.deleteRe(reviewDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}// deleteRe [답글삭제]
+
+	
+	
+	
+	
+	
 	
 	
 }// class

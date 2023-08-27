@@ -1,5 +1,7 @@
 package web.groom.dto;
 
+import java.sql.Timestamp;
+
 public class ReviewDTO {
 	
 	private int rev_num;
@@ -10,11 +12,13 @@ public class ReviewDTO {
 	private String rev_content;
 	private String rev_img_url;
 	private String rev_rating;
-	private String rev_date;
+	private Timestamp rev_date;
 	private int rev_count;
 	private int re_ref; //
 	private int re_lev; //
 	private int re_seq; // 
+	private String re_content; //
+	private Timestamp re_date; //
 	
 	private int u_point; //
 	
@@ -24,7 +28,6 @@ public class ReviewDTO {
 	private String s_location;
 	private String u_name;
 	private String u_count; // 리뷰목록
-	
 	
 	
 	public int getRev_num() {
@@ -75,10 +78,10 @@ public class ReviewDTO {
 	public void setRev_rating(String rev_rating) {
 		this.rev_rating = rev_rating;
 	}
-	public String getRev_date() {
+	public Timestamp getRev_date() {
 		return rev_date;
 	}
-	public void setRev_date(String rev_date) {
+	public void setRev_date(Timestamp rev_date) {
 		this.rev_date = rev_date;
 	}
 	public int getRev_count() {
@@ -104,6 +107,12 @@ public class ReviewDTO {
 	}
 	public void setRe_seq(int re_seq) {
 		this.re_seq = re_seq;
+	}
+	public String getRe_content() {
+		return re_content;
+	}
+	public void setRe_content(String re_content) {
+		this.re_content = re_content;
 	}
 	public int getU_point() {
 		return u_point;
@@ -147,7 +156,12 @@ public class ReviewDTO {
 	public void setU_count(String u_count) {
 		this.u_count = u_count;
 	}
-	
+	public Timestamp getRe_date() {
+		return re_date;
+	}
+	public void setRe_date(Timestamp re_date) {
+		this.re_date = re_date;
+	}
 
 	
 }// class

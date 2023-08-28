@@ -64,7 +64,7 @@ public class OrderDAO {
 			
 			con = new SQLConnection().getConnection();
 			
-			String sql = "SELECT time FROM myDate WHERE date = ? ORDER BY time";
+			String sql = "SELECT time FROM myTime WHERE date = ? ORDER BY time";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, date);
 			rs = pstmt.executeQuery();

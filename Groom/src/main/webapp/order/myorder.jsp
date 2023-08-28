@@ -68,7 +68,7 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 									</div>
 									<div class="form-group">
 										<p>서비스 선택</p>
-										<select class="form-control" id="servicelist" name="servicelist" disabled>
+										<select class="form-control custom-select" id="servicelist" name="servicelist" disabled>
 											<option value="" disabled selected>서비스를 선택하세요</option>
 										</select>
 									</div>

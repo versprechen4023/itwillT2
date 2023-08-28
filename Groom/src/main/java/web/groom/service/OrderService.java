@@ -75,23 +75,64 @@ public class OrderService {
 		
 		return serviceList;
 	}
+	
+	public List<OrderServiceDTO> getWeightList(HttpServletRequest request) {
+
+		List<OrderServiceDTO> weightList = null;
+
+		int store = Integer.parseInt(request.getParameter("selectedStore"));
+
+		try {
+			orderDAO = new OrderDAO();
+			weightList = orderDAO.getWeightList(store);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return weightList;
+	}
+
+	public List<OrderServiceDTO> getManagerList(HttpServletRequest request) {
+
+		List<OrderServiceDTO> managerList = null;
+
+		int store = Integer.parseInt(request.getParameter("selectedStore"));
+
+		try {
+			orderDAO = new OrderDAO();
+			managerList = orderDAO.getManagerList(store);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return managerList;
+	}
 
 	public int getServicePrice(HttpServletRequest request) {
 		
 		int servicePrice = 0;
 		int addPrice = 0;
+		int addFee = 0;
 		
-		int servicenum = Integer.parseInt(request.getParameter("selectedService"));
+		int servicenum = Integer.parseInt(request.getParameter("selectedPrice"));
 		int servicepet = Integer.parseInt(request.getParameter("selectedPet"));
+		int servicemanager = Integer.parseInt(request.getParameter("selectedManager"));
+		
+		System.out.println(servicenum);
+		System.out.println(servicepet);
+		System.out.println(servicemanager);
 		
 		try {
 			orderDAO = new OrderDAO();
 			
 			servicePrice = orderDAO.getServicePrice(servicenum);
 			addPrice = orderDAO.getAddPrice(servicepet);
+			addFee = orderDAO.getAddFee(servicemanager);
 			
 			//추가금액 포함 가격계산
-			servicePrice = servicePrice+addPrice;
+			servicePrice = servicePrice+addPrice+addFee;
 			
 		} catch (Exception e) {
 			e.printStackTrace();

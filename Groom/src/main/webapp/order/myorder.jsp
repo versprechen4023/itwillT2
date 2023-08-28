@@ -72,6 +72,18 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 											<option value="" disabled selected>서비스를 선택하세요</option>
 										</select>
 									</div>
+									<div class="form-group">
+										<p>무게 선택</p>
+										<select class="form-control custom-select" id="weightlist" name="weightlist" disabled>
+											<option value="" disabled selected>무게를 선택하세요</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<p>직원 선택</p>
+										<select class="form-control custom-select" id="managerlist" name="managerlist" disabled>
+											<option value="" disabled selected>담당직원을 선택하세요</option>
+										</select>
+									</div>
 										<p>예약날짜 선택</p>
 									<div class="form-group">
 										<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="예약일을 선택하세요" disabled readonly>
@@ -191,31 +203,34 @@ var disabledTimes = []; //여기에 비활성화할 데이터를 JSON으로 가�
 //제이쿼리 함수 시작 지점
 $j(document).ready(function() {
 	
+	var storelist = document.getElementById("storelist");
+	var petlist = document.getElementById("petlist");
+	var servicelist = document.getElementById("servicelist");
+	var weightlist = document.getElementById("weightlist");
+	var managerlist = document.getElementById("managerlist");
+	var datepicker = document.getElementById("datepicker");
+	var timepicker = document.getElementById("timepicker");
+	var price = document.getElementById("price");
+	
 	$j('#storelist').change(function() {
-		$("#petlist").removeAttr("disabled");
-		$("#servicelist").removeAttr("disabled");
+		$j("#petlist").removeAttr("disabled");
 		
 		//지점이 바뀔경우 다른 입력값 모두 초기화 및 시간 날짜 입력 비활성화
-		var petlist = document.getElementById("petlist");
 		petlist.value = "";
 		
-		var servicelist = document.getElementById("servicelist");
 		servicelist.value ="";
 		
-		var datepicker = document.getElementById("datepicker");
 		datepicker.value = "";
 		
-		var timepicker = document.getElementById("timepicker");
 		timepicker.value ="";
 		
-		var price = document.getElementById("price");
 		price.value ="";
 		
-		$("#datepicker").attr('disabled','disabled');
-    	$("#timepicker").attr('disabled','disabled');
+		$j("#datepicker").attr('disabled','disabled');
+    	$j("#timepicker").attr('disabled','disabled');
     	
 		// 지점선택 서비스 밸류값 가져오기
-        var selectedStore = $(this).val();
+        var selectedStore = $j(this).val();
         
         // 서비스 종류를 얻기 위한 AJAX 요청.
         $j.ajax({
@@ -223,12 +238,12 @@ $j(document).ready(function() {
             url: 'getService.aj',
             data: {"selectedStore":selectedStore}, // 선택된 값을 서버로 전송
             success: function(result) {
-            	var select = document.getElementById("servicelist");
             	result.forEach(function(service) {
             	    var option = document.createElement("option");
             	    option.value = service.s_num;
             	    option.text = service.s_name;
-            	    select.appendChild(option);
+            	    servicelist.appendChild(option);
+            	    $j("#servicelist").removeAttr("disabled");
             	});
             },
             error: function(xhr, status, error) {
@@ -236,6 +251,45 @@ $j(document).ready(function() {
             }
         });
         
+     	// 무게 쪽을 얻기 위한 AJAX 요청.
+        $j.ajax({
+        	type: "GET",
+            url: 'getWeight.aj',
+            data: {"selectedStore":selectedStore}, // 선택된 값을 서버로 전송
+            success: function(result) {
+            	result.forEach(function(weight) {
+            	    var option = document.createElement("option");
+            	    option.value = weight.s_num;
+            	    option.text = weight.s_weight;
+            	    weightlist.appendChild(option);
+            	    $j("#weightlist").removeAttr("disabled");
+            	});
+            },
+            error: function(xhr, status, error) {
+            	alert("서버와의 통신에 문제가 발생했습니다");
+            }
+        });
+     	
+        // 직원 쪽을 얻기 위한 AJAX 요청.
+        $j.ajax({
+        	type: "GET",
+            url: 'getManager.aj',
+            data: {"selectedStore":selectedStore}, // 선택된 값을 서버로 전송
+            success: function(result) {
+            	result.forEach(function(manager) {
+            	    var option = document.createElement("option");
+            	    var fullName = manager.emp_grade + ' ' + manager.emp_name;
+            	    option.value = manager.emp_num;
+            	    option.text = fullName;
+            	    managerlist.appendChild(option);
+            	    $j("#managerlist").removeAttr("disabled");
+            	});
+            },
+            error: function(xhr, status, error) {
+            	alert("서버와의 통신에 문제가 발생했습니다");
+            }
+        });
+     
 	});
 	
 	// 날짜구하는함수
@@ -293,7 +347,7 @@ $j(document).ready(function() {
                     disabledTimes.push([result[i].time1, result[i].time2]);
                 }
             	// 타임피커 선택을 가능하게하기 위해 readonly 해제
-            	$("#timepicker").removeAttr("readonly");
+            	$j("#timepicker").removeAttr("readonly");
             	
                 // 날짜가 제대로 입력되고 비활성화 할 시간이 적용되었다면 타임피커 호출
                 $j('#timepicker').timepicker({
@@ -309,27 +363,39 @@ $j(document).ready(function() {
             },
             error: function(xhr, status, error) {
             	alert("서버와의 통신에 문제가 발생했습니다");
-            	$("#timepicker").attr("readonly", "readonly");
+            	$j("#timepicker").attr("readonly", "readonly");
             }
         });
     },
    
 	});
-    
+	 
     //가격계산에 대한 AJAX처리
-    $j('#servicelist, #petlist').change(function() {
+    $j('#servicelist, #petlist, #weightlist, #managerlist').change(function() {
     	
-        // 견종선택 및 서비스선택 밸류값 가져오기
-        var selectedService = $("#servicelist").val();
-        var selectedPet = $("#petlist").val();
+        // 서비스 가격 계산을 위한 밸류값 가져오기
+        var selectedService = $j("#servicelist").val();
+        var selectedWeight = $j("#weightlist").val();
+        
+        //서비스와 무게따른 가격계산을 위한 값
+        var selectedPrice = parseInt(selectedService) + parseInt(selectedWeight)-1;
+        
+        //견종에 따른 추가 계산을 위한 값
+        var selectedPet = $j("#petlist").val();
+        
+        //직원에 따른 추가 계산을 위한 값
+        var selectedManager = $j("#managerlist").val();
         
         //가격을 얻기 위한 AJAX 요청.
-        if(!selectedService == "" && !selectedPet == ""){
-
+        if(!selectedService == "" && !selectedWeight == "" && !selectedPet == "" && !selectedManager == ""){
+		
+          	alert(selectedPrice);
+          	alert(selectedManager);
+          	
         $j.ajax({
         	type: "GET",
             url: 'getPrice.aj',
-            data: {"selectedPet": selectedPet, "selectedService":selectedService}, // 선택된 값을 서버로 전송
+            data: {"selectedPet": selectedPet, "selectedPrice":selectedPrice, "selectedManager":selectedManager}, // 선택된 값을 서버로 전송
             success: function(result) {
             	//결과값을 price text태그에 할당
             	document.getElementById("price").value = result;
@@ -343,13 +409,15 @@ $j(document).ready(function() {
     });
     
   	//지점선택에 대한 AJAX처리
-    $j('#servicelist, #petlist, #storelist').change(function() {
+    $j('#storelist, #servicelist, #petlist, #weightlist, #managerlist').change(function() {
         // 지점선택 밸류값 가져오기
-        var selectedStore = $('#storelist').val();
+        var selectedStore = $j('#storelist').val();
         // if문용
-        var selectedService = $("#servicelist").val();
-        var selectedPet = $("#petlist").val();
-
+        var selectedService = $j("#servicelist").val();
+        var selectedPet = $j("#petlist").val();
+        var selectedWeight = $j("#weightlist").val();
+        var selectedManager = $j("#managerlist").val();
+        
         // 날짜 비활성화를 위한 AJAX 요청.
         if(!selectedStore == "" && !selectedService == "" && !selectedPet == "")
         $j.ajax({
@@ -358,8 +426,8 @@ $j(document).ready(function() {
             data: {"selectedStore": selectedStore}, // 선택된 값을 서버로 전송
             dataType: 'json',
             success: function(result) {
-            	$("#datepicker").removeAttr("disabled");
-            	$("#timepicker").removeAttr("disabled");
+            	$j("#datepicker").removeAttr("disabled");
+            	$j("#timepicker").removeAttr("disabled");
             	disabledDates = result.map(function(item) {
                     return item.date;
                 });

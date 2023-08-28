@@ -95,19 +95,24 @@ public class OrderDAO {
 			
 			con = new SQLConnection().getConnection();
 			
-			String sql = "SELECT * FROM myService WHERE l_num = ?";
+			String sql = "SELECT DISTINCT(s_name) FROM myService WHERE l_num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, store);
 			rs = pstmt.executeQuery();
 
 			serviceList = new ArrayList<>();
-
+			
+			int startingNumber = 1;
+			int increment = 4;
+			
 			while(rs.next()) {
 				OrderServiceDTO orderServiceDTO = new OrderServiceDTO();
-			    orderServiceDTO.setS_num(rs.getInt("s_num"));
+			    orderServiceDTO.setS_num(startingNumber);
 				orderServiceDTO.setS_name(rs.getString("s_name"));
-
+				
 				serviceList.add(orderServiceDTO);
+				
+				startingNumber += increment;
 			}
 			
 		} catch (Exception e) {
@@ -119,6 +124,78 @@ public class OrderDAO {
 		return serviceList;
 	}
 	
+	public List<OrderServiceDTO> getWeightList(int store) {
+
+		List<OrderServiceDTO> weightList = null;
+
+		try {
+
+			con = new SQLConnection().getConnection();
+
+			String sql = "SELECT DISTINCT(s_weight) FROM myService WHERE l_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, store);
+			rs = pstmt.executeQuery();
+
+			weightList = new ArrayList<>();
+
+			int startingNumber = 1;
+			int increment = 1;
+
+			while (rs.next()) {
+				OrderServiceDTO orderServiceDTO = new OrderServiceDTO();
+				orderServiceDTO.setS_num(startingNumber);
+				orderServiceDTO.setS_weight(rs.getString("s_weight"));
+
+				weightList.add(orderServiceDTO);
+
+				startingNumber += increment;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+
+		return weightList;
+	}
+
+	public List<OrderServiceDTO> getManagerList(int store) {
+
+		List<OrderServiceDTO> serviceList = null;
+
+		try {
+
+			con = new SQLConnection().getConnection();
+
+			String sql = "SELECT emp_num, emp_name, emp_grade FROM myEmployees WHERE s_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, store);
+			rs = pstmt.executeQuery();
+
+			serviceList = new ArrayList<>();
+
+			while (rs.next()) {
+				OrderServiceDTO orderServiceDTO = new OrderServiceDTO();
+				
+				orderServiceDTO.setEmp_num(rs.getInt("emp_num"));
+				orderServiceDTO.setEmp_name(rs.getString("emp_name"));
+				orderServiceDTO.setEmp_grade(rs.getString("emp_grade"));
+				
+				serviceList.add(orderServiceDTO);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+
+		return serviceList;
+	}
+
 	public int getServicePrice(int p_num) {
 		
 		int ServicePrice = 0;
@@ -169,6 +246,32 @@ public class OrderDAO {
 		}
 
 		return addPrice;
+	}
+	
+	public int getAddFee(int manager) {
+
+		int addFee = 0;
+
+		try {
+
+			con = new SQLConnection().getConnection();
+
+			String sql = "SELECT emp_extrafee FROM myEmployees WHERE emp_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, manager);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				addFee = rs.getInt("emp_extrafee");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+
+		return addFee;
 	}
 
 }

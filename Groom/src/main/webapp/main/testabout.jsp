@@ -99,7 +99,7 @@
 						<p class="btn btn-primary" id="call_api_kakao" onclick="callAPIKakao()">카카오 결제API 호출</p>
 					</div>
 
-					<!-- 아임포트 api 사용하기위한 api자바스크립트, J쿼리 호출 -->
+<!-- 아임포트 api 사용하기위한 api자바스크립트, J쿼리 호출 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>				
 					

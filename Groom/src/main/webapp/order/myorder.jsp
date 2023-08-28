@@ -33,24 +33,24 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 						<h2>예약주문</h2>
 					</div>
 				</div>
-				<form action="">
+				<form action="myorderCheckout.or" id="checkout" method="post">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-3">
 									<div class="form-group">
 										<p>예약자명</p>
-										<input type="text" class="form-control" value="<%=memberInfo.getName() %>" readonly>
+										<input type="text" class="form-control" id="name" name="name" value="<%=memberInfo.getName() %>" readonly>
 									</div>
 									<div class="form-group">
 									    <p>연락처</p>
-										<input type="text" class="form-control" value="<%=memberInfo.getPhone() %>" readonly>
+										<input type="text" class="form-control" id="phone" name="phone" value="<%=memberInfo.getPhone() %>" readonly>
 									</div>
 								</div>
 								<div class="col-md-3">
 								    <div class="form-group">
 								    	<p>매장선택</p>
-										<select class="form-control" id="list" name="list">
+										<select class="form-control" id="storelist" name="storelist">
 											<option value="" disabled selected>매장을 선택하세요</option>
 											<option value="A">서면점</option>
 											<option value="B">김해점</option>
@@ -58,7 +58,7 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 									</div>
 									<div class="form-group">
 										<p>서비스선택</p>
-										<select class="form-control" id="list" name="list">
+										<select class="form-control" id="servicelist" name="servicelist">
 											<option value="" disabled selected>서비스를 선택하세요</option>
 											<option value="A">[미용]대형견 15KG</option>
 										</select>
@@ -73,14 +73,14 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 									</div>
 										<p>예상예약요금</p>
 									<div class="form-group">
-										<input type="text" class="form-control" value="여기에 JSP태그" readonly>
+										<input type="text" id="price" name="price" class="form-control" value="50000" readonly>
 									</div>
 								</div>
 								
 								<div class="col-md-3">
 									<p>요구사항기입</p>
 									<div class="form-group">
-										<textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="전달할말"></textarea>
+										<textarea id="message" name="message" cols="30" rows="7" class="form-control" placeholder="전달할말"></textarea>
 									</div>
 									
 									<div class="form-group">
@@ -261,7 +261,7 @@ $j(document).ready(function() {
 	});
     
     //지점선택에 대한 AJAX처리
-    $j('#list').change(function() {
+    $j('#storelist').change(function() {
         // 지점선택 밸류값 가져오기
         var selectedStore = $(this).val();
 

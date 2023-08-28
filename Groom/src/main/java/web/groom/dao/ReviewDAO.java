@@ -90,6 +90,7 @@ public class ReviewDAO {
 				reviewDTO.setRe_lev(rs.getInt("re_lev"));
 				reviewDTO.setRe_seq(rs.getInt("re_seq"));
 				reviewDTO.setRe_content(rs.getString("re_content"));
+				reviewDTO.setRe_date(rs.getTimestamp("re_date"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

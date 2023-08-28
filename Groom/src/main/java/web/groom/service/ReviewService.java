@@ -118,17 +118,11 @@ public List<ReviewDTO> getReviewList(String proName) {
 		try {
 			request.setCharacterEncoding("uft-8");
 			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
-			int re_ref = Integer.parseInt(request.getParameter("re_ref"));
-			int re_lev = Integer.parseInt(request.getParameter("re_lev"));
-			int re_seq = Integer.parseInt(request.getParameter("re_seq"));
 			String re_content = request.getParameter("re_content");
 			Timestamp re_date = new Timestamp(System.currentTimeMillis());
 			
 			ReviewDTO reviewDTO = new ReviewDTO();
 			reviewDTO.setRev_num(rev_num);
-			reviewDTO.setRe_ref(re_ref);
-			reviewDTO.setRe_lev(re_lev);
-			reviewDTO.setRe_seq(re_seq);
 			reviewDTO.setRe_content(re_content);
 			reviewDTO.setRe_date(re_date);
 			

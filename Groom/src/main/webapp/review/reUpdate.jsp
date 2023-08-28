@@ -15,6 +15,7 @@
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
 <!-- =============================  네비게이션바 ============================= -->
+<form action="reWritePro.re" method="post">
 <%
 String id = (String)session.getAttribute("id");
 String role = (String)session.getAttribute("role"); 
@@ -23,7 +24,6 @@ String num = (String)session.getAttribute("num");
 // 줄바꿈 자동으로해서 출력해주는 코드 ㄱ
 int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 ReviewDTO reviewDTO=(ReviewDTO)request.getAttribute("reviewDTO");
-
 
 // 별점 받아서 별출력하는 코드 ㄱ
 //     int rating = reviewDTO.getRev_rating(); // rev_rating 값 int로 바꾸면 수정하도록
@@ -47,7 +47,7 @@ for (int i = 1; i <= 5; i++) {
 		<div class="review-content animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 
 		<div class="content-top">
-		<div><a style="display: none;"><%=reviewDTO.getRev_num() %></a><p class="user-info"><%=reviewDTO.getU_name() %> / <a><%= stars %></a> / <%=reviewDTO.getRev_date() %> / <%=reviewDTO.getU_count() %>번째 방문</p>
+		<div><p class="user-info"><%=reviewDTO.getU_name() %> / <a><%= stars %></a> / <%=reviewDTO.getRev_date() %> / <%=reviewDTO.getU_count() %>번째 방문</p>
 			 <p class="product-info"><%=reviewDTO.getPro_name() %> / <%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %> / <%=reviewDTO.getS_location() %></p></div>
 			 
 		<div>
@@ -77,33 +77,33 @@ if (reviewDTO != null) {
 		</div>
 		<!-- 답글  -->	
 		<div class="re-review-content animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
-		<div class="recontent-top">
-		<div>
+
+		<div class="recontent-top-re">
 <%
 String re_content = reviewDTO.getRe_content();
-if(re_content != null){ // 내용 null이 아니어야 답글 보여요
-%>		
-		<h4 class="recoment1">Groom <%=reviewDTO.getS_location() %> <a><%=reviewDTO.getRe_date() %></a></h4>
-		<p class="recoment2"><%=reviewDTO.getRe_content() %></p>
-<%
-}
-%>		
+%>
+		<div class="left">
+		<h4 class="recoment1">Groom <%=reviewDTO.getS_location() %></h4>
 		</div>
-		<div>
+		<div class="right">
 <%
 if(id != null){
 	if(role.equals("admin")){
 %>
+			  <input type="submit" value="답글등록">
 <%
 if(re_content != null){ // 내용 null이 아니어야 답글 보여요
 %>	
 			  <input type="button" value="삭제">	
 			  <input type="button" value="수정">
-<%} else if(re_content == null) {%>
-	<input type="button" value="답글작성" onclick="location.href='reWrite.re?rev_num=<%=reviewDTO.getRev_num() %>'">
 <%}}}%>
-		</div>	
 		</div>
+		</div>
+		
+		<div>
+		<textarea rows="30" cols="10" class="recoment3" name="re_content"><%=reviewDTO.getRe_content() %></textarea>
+		</div>
+		<input type="hidden" name="rev_num" value="<%=reviewDTO.getRev_num()%>">
 		</div>
 		<!-- 답글  -->
 		</div>
@@ -112,7 +112,7 @@ if(re_content != null){ // 내용 null이 아니어야 답글 보여요
 </div>
 </div>
 </div>
-
+<input >
 
 <script>
 function really(rev_num) {
@@ -136,5 +136,6 @@ function really(rev_num) {
 	
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
+	</form>
 	</body>
 </html>

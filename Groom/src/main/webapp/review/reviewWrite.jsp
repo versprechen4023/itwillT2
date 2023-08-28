@@ -50,7 +50,10 @@
 		<div id="fileInfoDisplay">　선택된 파일 없음</div>
 	</div><br>
 <!-- 포인트 안내 -->
-	<div><p>* 리뷰 작성 시 n포인트 적립</p></div><br>
+	<div>
+		<p>* 리뷰 작성 시 n포인트 적립</p><br>
+		<p>부적절한 내용이 포함된 리뷰는 통보 없이 삭제될 수 있습니다.</p>
+	</div><br>
 	<div class="buttons">
 <!-- ///////////// 취소 일단 reviewList로 이동 나중에 변경하기 ///////////////////////////////////// -->
 		<input type="button" class="cancle" value="취소" onClick="location.href='reviewList.re?pro_name= '"> 

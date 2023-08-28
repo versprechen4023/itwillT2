@@ -99,20 +99,52 @@ public class ReviewController extends HttpServlet {
 			 webForward(request, response, "review", "reWrite");
 		 }//reWrite.re [답글작성]
 		 
-		 if(sPath.equals("reWritePro.re")) {
+		 if(sPath.equals("/reWritePro.re")) {
 			 System.out.println("reWritePro.re");
 			 reviewService = new ReviewService();
 			 reviewService.writeRe(request);
 			 response.sendRedirect("reviewList.re?pro_name="); // 목록으로
 		 }//reWritePro.re [답글작성 후 등록]
 		 
+		 
+		 if(sPath.equals("/reUpdate.re")) {
+			 System.out.println("reUpdate.re");
+			 reviewService = new ReviewService();
+			 ReviewDTO reviewDTO = reviewService.getReview(request);
+			 request.setAttribute("reviewDTO", reviewDTO);
+			 webForward(request, response, "review", "reUpdate");
+		 }//reUpdate.re [답글수정]
+		 
+		 if(sPath.equals("/reUpdatePro.re")) {
+			 System.out.println("reUpdatePro.re");
+			 reviewService = new ReviewService();
+			 reviewService.updateRe(request);
+			 response.sendRedirect("reviewList.re?pro_name="); // 목록으로
+		 }//reUpdatePro.re [답글수정 후 등록]
+		 
+		 
 		 if(sPath.equals("/reDelete.re")) {
 			 System.out.println("reDelete.re");
 			 reviewService = new ReviewService();
 			 reviewService.deleteRe(request);
-			 response.sendRedirect("main.gr"); // 일단메인으로
+			 response.sendRedirect("reviewList.re?pro_name="); // 목록으로
 		 }// reDelete.re [답글삭제]
 		 
+		 
+		 if(sPath.equals("/reviewUpdate.re")) {
+			 System.out.println("reviewUpdate.re");
+			 reviewService = new ReviewService();
+			 ReviewDTO reviewDTO = reviewService.getReview(request);
+			 request.setAttribute("reviewDTO", reviewDTO);
+			 webForward(request, response, "review", "reviewUpdate");
+		 }//reUpdate.re [리뷰수정]
+		 
+		 if(sPath.equals("/reviewUpdatePro.re")) {
+			 System.out.println("reviewUpdatePro.re");
+			 reviewService = new ReviewService();
+			 reviewService.updateReview(request);
+			 response.sendRedirect("reviewList.re?pro_name="); // 목록으로
+		 }//reviewUpdatePro.re [리뷰수정 후 등록]
 		 
 		 
 	}// doProcess

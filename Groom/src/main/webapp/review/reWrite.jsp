@@ -56,8 +56,8 @@ if(id != null){
 	int u_num = reviewDTO.getU_num() ; // 리뷰의 작성자 번호
 	if (num.equals(String.valueOf(u_num))) {
 %>		
-		<input type="button" value="삭제" onclick="really('<%=reviewDTO.getRev_num()%>')">
-		<input type="button" value="수정" onclick="location.href='reviewUpdate.re?rev_num=<%=reviewDTO.getRev_num()%>'">	
+<%-- 		<input type="button" value="삭제" onclick="really('<%=reviewDTO.getRev_num()%>')"> --%>
+<%-- 		<input type="button" value="수정" onclick="location.href='reviewUpdate.re?rev_num=<%=reviewDTO.getRev_num()%>'">	 --%>
 <%}}%>
 		</div>
 		</div>

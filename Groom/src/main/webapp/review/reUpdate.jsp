@@ -15,7 +15,7 @@
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
 <!-- =============================  네비게이션바 ============================= -->
-<form action="reWritePro.re" method="post">
+<form action="reUpdatePro.re" method="post">
 <%
 String id = (String)session.getAttribute("id");
 String role = (String)session.getAttribute("role"); 
@@ -56,8 +56,8 @@ if(id != null){
 	int u_num = reviewDTO.getU_num() ; // 리뷰의 작성자 번호
 	if (num.equals(String.valueOf(u_num))) {
 %>		
-		<input type="button" value="삭제" onclick="really('<%=reviewDTO.getRev_num()%>')">
-		<input type="button" value="수정" onclick="location.href='reviewUpdate.re?rev_num=<%=reviewDTO.getRev_num()%>'">	
+<%-- 		<input type="button" value="삭제" onclick="really('<%=reviewDTO.getRev_num()%>')"> --%>
+<%-- 		<input type="button" value="수정" onclick="location.href='reviewUpdate.re?rev_num=<%=reviewDTO.getRev_num()%>'">	 --%>
 <%}}%>
 		</div>
 		</div>
@@ -90,12 +90,12 @@ String re_content = reviewDTO.getRe_content();
 if(id != null){
 	if(role.equals("admin")){
 %>
-			  <input type="submit" value="답글등록">
+			  <input type="submit" value="수정완료">
 <%
 if(re_content != null){ // 내용 null이 아니어야 답글 보여요
 %>	
-			  <input type="button" value="삭제">	
-			  <input type="button" value="수정">
+<!-- 			  <input type="button" value="삭제">	 -->
+<!-- 			  <input type="button" value="수정" > -->
 <%}}}%>
 		</div>
 		</div>

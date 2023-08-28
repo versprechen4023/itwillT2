@@ -2,14 +2,23 @@ package web.groom.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
+import web.groom.dto.MypageDTO;
+import web.groom.service.MypageService;
 
 @WebServlet("*.my") //.my 마이페이지 어노테이션 매핑 선언
 public class MypageController extends HttpServlet {
+	
+	RequestDispatcher dispatcher =null;
+	MypageService ser = null;
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -19,17 +28,85 @@ public class MypageController extends HttpServlet {
 		 if (sPath.equals("/something.my")) {
 	            
 	     }
-		 
+		
+		 // 마이페이지 이동
 		 if (sPath.equals("/mypage.my")) {
 			 
-			 webForward(request, response, "mypage", "mypage");
-	     }
-
-		 if (sPath.equals("/mypet.my")) {
+			 // 유저의 정보를 가져오기위한 멤버서비스 객체생성
+			 ser = new MypageService();
 			 
-			 webForward(request, response, "mypage", "mypet");
+			 // 유저 정보 가져오기
+			 MypageDTO mypageInfo = ser.MemberInfo(request);
+			 
+			// 유저 펫정보 가져오기
+			 MypageDTO mypagepetinfo = ser.MypetInfo(request);
+			 
+			 // request에 유저 정보 있는 memberInfo 저장
+			 request.setAttribute("mypageInfo", mypageInfo);
+			 
+			// request에 유저 정보 있는 memberInfo 저장
+			 request.setAttribute("mypagepetInfo", mypagepetinfo);
+			 
+			 //임시출력
+			 System.out.println(mypageInfo);
+			 System.out.println(mypagepetinfo);
+			 
+			 if(mypageInfo != null) {
+			 webForward(request, response, "mypage", "mypage");
+			 }  else {
+				 System.out.println("세션만료됨 에러발생");
+			 }
+		 	}
+		 
+		 if (sPath.equals("/insertmypet.my")) {
+			 System.out.println("뽑은 가상주소 비교 : /insertmypet.my");
+			 webForward(request, response, "mypage", "insertmypet");
 		 }
-	}
+		 // 회원가입 로직 수행
+		 if (sPath.equals("/insertmypetPro.my")) {
+			 System.out.println("뽑은 가상주소 비교 : /insertmypetPro.my");
+			//멤버서비스 객체생성
+			 ser = new MypageService();
+			//메서드호출(리퀘스트 값 넘겨주기)
+			MypageDTO mpyagedto = ser.insertMypet(request);
+			
+			if(mpyagedto != null) {
+				System.out.println("펫 등록 성공");
+			//세션초기화
+				//HttpSession session = request.getSession();
+				//session.invalidate();
+			} else {
+				System.out.println("펫 등록 실패");
+				//세션초기화
+				//HttpSession session = request.getSession();
+				//session.invalidate();
+			}
+			//마이페이지 화면이동
+				response.sendRedirect("mypage.my");
+				
+		 }//
+		 
+
+	if(sPath.equals("/updatemypet.my")) {
+		System.out.println("뽑은 가상주소 비교 : /updatemypet.my");
+		//수정하기 전에 디비 나의 정보 조회(세션값 id) => jsp 화면 출력
+		// 세션 객체생성
+		HttpSession session = request.getSession();
+		// "id" 세션값 가져오기=> String  변수 저장
+		int num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+		// MemberService 객체생성
+		ser = new MypageService();
+		// MemberDTO memberDTO = getMember(id) 메서드 호출
+		MypageDTO mypageDTO = ser.getMypetinfo(num);
+		// request에 memberDTO 저장 ("이름",값)
+		request.setAttribute("mypageDTO", mypageDTO);
+		// member/update.jsp 주소변경없이 이동
+		webForward(request, response, "mypage", "updatemypet");
+	}//
+		 }
+		 
+	
+	
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

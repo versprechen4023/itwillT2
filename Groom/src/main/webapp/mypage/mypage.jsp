@@ -1,5 +1,13 @@
+<%@page import="web.groom.dto.MypageDTO"%>
+<%@page import="web.groom.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+MypageDTO mypageInfo = (MypageDTO)request.getAttribute("mypageInfo");
+MypageDTO mypagepetInfo = (MypageDTO)request.getAttribute("mypagepetInfo");
+%>
+
     
 <!DOCTYPE html>
 <html>
@@ -29,19 +37,19 @@
 <p class="h">회원정보</p>
 	<tr>
 	    <td>아이디</td>
-	    <td>itwill02</td>
+	    <td><%=mypageInfo.getId()%></td>
 	</tr>
 	<tr>
 	    <td>이름</td>
-	    <td>조현민</td>
+	    <td><%=mypageInfo.getName() %></td>
 	</tr>
 	<tr>
 	    <td>이메일</td>
-	    <td>itwll@naver.com</td>
+	    <td><%=mypageInfo.getEmail() %></td>
 	</tr>
 	<tr>
 	    <td>전화번호</td>
-	    <td>010-1111-1111</td>
+	    <td><%=mypageInfo.getPhone() %></td>
 	</tr>
 	<tr>
 	    <td>나의 리뷰</td>
@@ -49,7 +57,7 @@
 	</tr>
 	<tr>
 	    <td>포인트</td>
-	    <td>120p</td>
+	    <td><%=mypageInfo.getPoint() %></td>
 	</tr>
 </table>
 <input type="button" value="정보수정" class="mbtn">
@@ -58,31 +66,53 @@
 <div class="table-container2">
 <table class="pet">
 <p class="h">반려동물 정보
-	<input type="button" value=" + " class="mbtn"></p>
+	<input type="button" value=" + " class="mbtn" onclick="location.href='insertmypet.my'"></p>
 
-	  <tr>
-	<!--   	펫사진 -->
+	<!--   <tr>
+	  	펫사진
 	   <td rowspan="2" id="mpImg"><img src="./images/loc.png" alt="펫사진" ></td>
-	<!--     펫정보 -->
+	    펫정보
 	    <td> 콜라 (남 · 비글 · 소/중형) </td>
 	  </tr>
 	  <tr>
-	<!--   펫 주의사항 -->
+	  펫 주의사항
 	    <td>꼬리 쪽을 만지면 예민해져요</td>
 	  </tr>
 	  
 	  <tr>
-	<!--   	펫사진 -->
+	  	펫사진
 	    <td rowspan="2" id="mpImg"><img src="./images/loc.png" alt="펫사진" ></td>
-	<!--     펫정보 -->
+	    펫정보
 	    <td class="petInfo"> 만두 (여 · 말티즈 · 소/중형)</td>
 	  </tr>
 	  <tr>
-	<!--   펫 주의사항 -->
+	  펫 주의사항
 	    <td>뒷다리가 약해요 조심해주세요</td>
-	  </tr>
+	  </tr> 
+	  원래 만들어주셨던 반려동물 정보 테이블. 반려동물 정보 등록 페이지에 맞춰 아래와 같이 변경-->
+<tr>
+	    <td>이름</td>
+	    <td><%=mypagepetInfo.getPetName()%></td>
+	</tr>
+	<tr>
+	    <td>품종</td>
+	    <td><%=mypagepetInfo.getPetBreed()%></td>
+	</tr>
+	<tr>
+	    <td>성별</td>
+	    <td><%=mypagepetInfo.getPetGender()%></td>
+	</tr>
+	<tr>
+	    <td>중성화 여부</td>
+	    <td><%=mypagepetInfo.getPetNeuter() %></td>
+	</tr>
+	<tr>
+	    <td>특이사항</td>
+	    <td><%=mypagepetInfo.getPetComment()%></td>
+	</tr>
+
 </table>
-<input type="button" value="정보수정" class="mbtn">
+<input type="button" value="정보수정" class="mbtn" onclick="location.href='updatemypet.my'">
 </div>
 
 <div class="table-container3">

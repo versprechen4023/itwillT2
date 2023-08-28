@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import web.groom.dto.OrderDTO;
+import web.groom.dto.OrderServiceDTO;
 
 public class OrderDAO {
 	
@@ -59,7 +60,7 @@ public class OrderDAO {
 		
 		List<OrderDTO> serviceTime = null;
 		
-try {
+		try {
 			
 			con = new SQLConnection().getConnection();
 			
@@ -84,6 +85,90 @@ try {
 		}
 
 		return serviceTime;
+	}
+
+	public List<OrderServiceDTO> getServiceList(int store) {
+		
+		List<OrderServiceDTO> serviceList = null;
+		
+		try {
+			
+			con = new SQLConnection().getConnection();
+			
+			String sql = "SELECT * FROM myService WHERE l_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, store);
+			rs = pstmt.executeQuery();
+
+			serviceList = new ArrayList<>();
+
+			while(rs.next()) {
+				OrderServiceDTO orderServiceDTO = new OrderServiceDTO();
+			    orderServiceDTO.setS_num(rs.getInt("s_num"));
+				orderServiceDTO.setS_name(rs.getString("s_name"));
+
+				serviceList.add(orderServiceDTO);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+
+		return serviceList;
+	}
+	
+	public int getServicePrice(int p_num) {
+		
+		int ServicePrice = 0;
+		
+		try {
+			
+			con = new SQLConnection().getConnection();
+			
+			String sql = "SELECT s_price FROM myService WHERE s_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, p_num);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				ServicePrice = rs.getInt("s_price");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+
+		return ServicePrice;
+	}
+
+	public int getAddPrice(int pet) {
+		
+		int addPrice = 0;
+		
+		try {
+			
+			con = new SQLConnection().getConnection();
+			
+			String sql = "SELECT p_addprice FROM myPrice WHERE p_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pet);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				addPrice = rs.getInt("p_addprice");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+
+		return addPrice;
 	}
 
 }

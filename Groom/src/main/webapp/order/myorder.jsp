@@ -49,38 +49,47 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 								</div>
 								<div class="col-md-3">
 								    <div class="form-group">
-								    	<p>매장선택</p>
+								    	<p>예약매장 선택</p>
 										<select class="form-control" id="storelist" name="storelist">
 											<option value="" disabled selected>매장을 선택하세요</option>
-											<option value="A">서면점</option>
-											<option value="B">김해점</option>
+											<option value="1">서면점</option>
+											<option value="2">명지점</option>
+											<option value="3">율하점</option>
 										</select>
 									</div>
 									<div class="form-group">
-										<p>서비스선택</p>
-										<select class="form-control" id="servicelist" name="servicelist">
+										<p>견종 선택</p>
+										<select class="form-control" id="petlist" name="petlist" disabled>
+											<option value="" disabled selected>견종을 선택하세요</option>
+											<option value="1">소형견</option>
+											<option value="2">중형견</option>
+											<option value="3">대형견</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<p>서비스 선택</p>
+										<select class="form-control" id="servicelist" name="servicelist" disabled>
 											<option value="" disabled selected>서비스를 선택하세요</option>
-											<option value="A">[미용]대형견 15KG</option>
 										</select>
 									</div>
-										<p>날짜선택</p>
+										<p>예약날짜 선택</p>
 									<div class="form-group">
-										<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="예약일을 선택해주십시오" readonly>
+										<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="예약일을 선택하세요" disabled readonly>
 									</div>
-										<p>예약선택</p>
+										<p>예약시간 선택</p>
 									<div class="form-group">
-										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="예약시간을 선택해주십시오" readonly>
+										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="예약시간을 선택하세요" disabled>
 									</div>
-										<p>예상예약요금</p>
+										<p>예상예약 요금</p>
 									<div class="form-group">
-										<input type="text" id="price" name="price" class="form-control" value="50000" readonly>
+										<input type="text" id="price" name="price" class="form-control" placeholder="서비스를 선택해주십시오" readonly>
 									</div>
 								</div>
 								
 								<div class="col-md-3">
-									<p>요구사항기입</p>
+									<p>요청사항작성</p>
 									<div class="form-group">
-										<textarea id="message" name="message" cols="30" rows="7" class="form-control" placeholder="전달할말"></textarea>
+										<textarea id="message" name="message" cols="30" rows="7" class="form-control" placeholder="요청사항이 있으면 기입해 주십시오"></textarea>
 									</div>
 									
 									<div class="form-group">
@@ -182,6 +191,53 @@ var disabledTimes = []; //여기에 비활성화할 데이터를 JSON으로 가�
 //제이쿼리 함수 시작 지점
 $j(document).ready(function() {
 	
+	$j('#storelist').change(function() {
+		$("#petlist").removeAttr("disabled");
+		$("#servicelist").removeAttr("disabled");
+		
+		//지점이 바뀔경우 다른 입력값 모두 초기화 및 시간 날짜 입력 비활성화
+		var petlist = document.getElementById("petlist");
+		petlist.value = "";
+		
+		var servicelist = document.getElementById("servicelist");
+		servicelist.value ="";
+		
+		var datepicker = document.getElementById("datepicker");
+		datepicker.value = "";
+		
+		var timepicker = document.getElementById("timepicker");
+		timepicker.value ="";
+		
+		var price = document.getElementById("price");
+		price.value ="";
+		
+		$("#datepicker").attr('disabled','disabled');
+    	$("#timepicker").attr('disabled','disabled');
+    	
+		// 지점선택 서비스 밸류값 가져오기
+        var selectedStore = $(this).val();
+        
+        // 서비스 종류를 얻기 위한 AJAX 요청.
+        $j.ajax({
+        	type: "GET",
+            url: 'getService.aj',
+            data: {"selectedStore":selectedStore}, // 선택된 값을 서버로 전송
+            success: function(result) {
+            	var select = document.getElementById("servicelist");
+            	result.forEach(function(service) {
+            	    var option = document.createElement("option");
+            	    option.value = service.s_num;
+            	    option.text = service.s_name;
+            	    select.appendChild(option);
+            	});
+            },
+            error: function(xhr, status, error) {
+            	alert("서버와의 통신에 문제가 발생했습니다");
+            }
+        });
+        
+	});
+	
 	// 날짜구하는함수
 	var currentDate = new Date();
 	var currentYear = currentDate.getFullYear();
@@ -260,28 +316,61 @@ $j(document).ready(function() {
    
 	});
     
-    //지점선택에 대한 AJAX처리
-    $j('#storelist').change(function() {
+    //가격계산에 대한 AJAX처리
+    $j('#servicelist, #petlist').change(function() {
+    	
+        // 견종선택 및 서비스선택 밸류값 가져오기
+        var selectedService = $("#servicelist").val();
+        var selectedPet = $("#petlist").val();
+        
+        //가격을 얻기 위한 AJAX 요청.
+        if(!selectedService == "" && !selectedPet == ""){
+
+        $j.ajax({
+        	type: "GET",
+            url: 'getPrice.aj',
+            data: {"selectedPet": selectedPet, "selectedService":selectedService}, // 선택된 값을 서버로 전송
+            success: function(result) {
+            	//결과값을 price text태그에 할당
+            	document.getElementById("price").value = result;
+            },
+            error: function(xhr, status, error) {
+            	alert("서버와의 통신에 문제가 발생했습니다");
+            }
+        });
+        
+        }
+    });
+    
+  	//지점선택에 대한 AJAX처리
+    $j('#servicelist, #petlist, #storelist').change(function() {
         // 지점선택 밸류값 가져오기
-        var selectedStore = $(this).val();
+        var selectedStore = $('#storelist').val();
+        // if문용
+        var selectedService = $("#servicelist").val();
+        var selectedPet = $("#petlist").val();
 
         // 날짜 비활성화를 위한 AJAX 요청.
+        if(!selectedStore == "" && !selectedService == "" && !selectedPet == "")
         $j.ajax({
         	type: "GET",
             url: 'getDate.aj',
             data: {"selectedStore": selectedStore}, // 선택된 값을 서버로 전송
             dataType: 'json',
             success: function(result) {
+            	$("#datepicker").removeAttr("disabled");
+            	$("#timepicker").removeAttr("disabled");
             	disabledDates = result.map(function(item) {
                     return item.date;
                 });
-            	alert(disabledDates);
+        
             },
             error: function(xhr, status, error) {
             	alert("서버와의 통신에 문제가 발생했습니다");
             }
         });
     });
+  
 });
 
 </script>

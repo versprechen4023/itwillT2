@@ -16,6 +16,7 @@ import org.json.simple.JSONObject;
 
 import web.groom.dto.MemberDTO;
 import web.groom.dto.OrderDTO;
+import web.groom.dto.OrderServiceDTO;
 import web.groom.email.MemberEmail;
 import web.groom.email.VerifyEmail;
 import web.groom.service.MemberService;
@@ -162,6 +163,46 @@ public class AjaxController extends HttpServlet {
 		    PrintWriter out = response.getWriter();
 		    out.print(arr);
 		    out.close();
+		}
+		
+		// AJAX관련 서비스 가져오기(서비스명)
+		if (sPath.equals("/getService.aj")) {
+			
+			OrderService orderService = new OrderService();
+		 	List<OrderServiceDTO> serviceList = orderService.getServiceList(request);
+			
+		 	JSONArray arr = new JSONArray();
+		 	
+		 	for(OrderServiceDTO orderServiceDTO : serviceList) {
+				
+				JSONObject object = new JSONObject();
+				object.put("s_num", orderServiceDTO.getS_num());
+				object.put("s_name", orderServiceDTO.getS_name());
+				// 배열 한칸에 저장
+				arr.add(object);
+			}
+		
+		 	response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    PrintWriter out = response.getWriter();
+		    out.print(arr);
+		    out.close();
+		}
+		
+		// AJAX관련 서비스 가격 가져오기(상품가격)
+		if (sPath.equals("/getPrice.aj")) {
+					
+			OrderService orderService = new OrderService();
+			
+			// 최종상품 가격을 가져옴
+			int servicePrice = orderService.getServicePrice(request);
+
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Integer.toString(servicePrice));
+			out.close();
+				 	
 		}
 	}
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import web.groom.dao.OrderDAO;
 import web.groom.dto.OrderDTO;
+import web.groom.dto.OrderServiceDTO;
 
 public class OrderService {
 	
@@ -56,6 +57,47 @@ public class OrderService {
 		}
 		
 		return serviceTime;
+	}
+
+	public List<OrderServiceDTO> getServiceList(HttpServletRequest request) {
+		
+		List<OrderServiceDTO> serviceList = null;
+		
+		int store = Integer.parseInt(request.getParameter("selectedStore"));
+		
+		try {
+			orderDAO = new OrderDAO();
+			serviceList = orderDAO.getServiceList(store);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return serviceList;
+	}
+
+	public int getServicePrice(HttpServletRequest request) {
+		
+		int servicePrice = 0;
+		int addPrice = 0;
+		
+		int servicenum = Integer.parseInt(request.getParameter("selectedService"));
+		int servicepet = Integer.parseInt(request.getParameter("selectedPet"));
+		
+		try {
+			orderDAO = new OrderDAO();
+			
+			servicePrice = orderDAO.getServicePrice(servicenum);
+			addPrice = orderDAO.getAddPrice(servicepet);
+			
+			//추가금액 포함 가격계산
+			servicePrice = servicePrice+addPrice;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return servicePrice;
 	}
 
 }

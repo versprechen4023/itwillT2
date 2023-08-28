@@ -63,18 +63,32 @@ float: right;
 /* =========================================== 답글 */
 .re-review-content {
 	border-radius: 20px;
-	background: #ff69b4;;
+	background: #F8E8EE;
 }
 .recontent-top {
-background: #F8E8EE;
-border-radius: 20px;
+/* 	background: #F8E8EE; */
+	border-radius: 20px;
 	display: flex; 
 	justify-content: space-between; 
 	align-items: center; 
 	padding: 20px 35px;
 }
+.recontent-top-re{
+	border-radius: 20px;
+	display: flex; 
+	justify-content: space-between; 
+	padding: 20px 35px 0 35px;
+}
+.left {
+width: 80%;
+text-align: left;
+}
+.right {
+width: 15%;
+text-align: right;
+}
 h4 {
-margin: 0px 0px 8px 0px;
+margin: 0px 0px 16px 0px;
 }
 .recoment {
 color: black;
@@ -82,4 +96,12 @@ font-size: 16px;
 }
 .recoment {
 color: black;
+font-size: 16px;
+}
+.recoment3 {
+margin-left: 5%;
+margin-bottom: 15px;
+width: 90%;
+height: 100px;
+resize:none;
 }

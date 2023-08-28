@@ -96,13 +96,14 @@ public class ReviewController extends HttpServlet {
 			 reviewService = new ReviewService();
 			 ReviewDTO reviewDTO = reviewService.getReview(request);
 			 request.setAttribute("reviewDTO", reviewDTO);
+			 webForward(request, response, "review", "reWrite");
 		 }//reWrite.re [답글작성]
 		 
 		 if(sPath.equals("reWritePro.re")) {
 			 System.out.println("reWritePro.re");
 			 reviewService = new ReviewService();
 			 reviewService.writeRe(request);
-			 response.sendRedirect("main.gr"); // 일단메인으로
+			 response.sendRedirect("reviewList.re?pro_name="); // 목록으로
 		 }//reWritePro.re [답글작성 후 등록]
 		 
 		 if(sPath.equals("/reDelete.re")) {

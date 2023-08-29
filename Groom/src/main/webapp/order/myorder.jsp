@@ -50,6 +50,12 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 										<p>예상예약 요금</p>
 										<input type="text" class="form-control" id="price" name="price" readonly>
 									</div>
+									<div class="form-group">
+										<p>포인트 사용</p>
+										<input type="text" class="form-control" id="point" name="point" value="0">
+										내 포인트 = <%=memberInfo.getPoint() %><br>
+										포인트 사용<input type="checkbox" id="pointcheck" name="pointcheck">
+									</div>
 								</div>
 								<div class="col-md-3">
 								    <div class="form-group">
@@ -202,17 +208,46 @@ var disabledDates = []; //여기에 비활성화활 데이터들 JSON으로 가�
 // 타임피커에서 비활성화할 시간
 var disabledTimes = []; //여기에 비활성화할 데이터를 JSON으로 가져온다 형식의 예제는 "20:00", "20:01"
 
+var storelist = document.getElementById("storelist");
+var petlist = document.getElementById("petlist");
+var servicelist = document.getElementById("servicelist");
+var weightlist = document.getElementById("weightlist");
+var managerlist = document.getElementById("managerlist");
+var datepicker = document.getElementById("datepicker");
+var timepicker = document.getElementById("timepicker");
+var price = document.getElementById("price");
+var point = parseInt(document.getElementById("point").value);
+	
 //제이쿼리 함수 시작 지점
 $j(document).ready(function() {
 	
-	var storelist = document.getElementById("storelist");
-	var petlist = document.getElementById("petlist");
-	var servicelist = document.getElementById("servicelist");
-	var weightlist = document.getElementById("weightlist");
-	var managerlist = document.getElementById("managerlist");
-	var datepicker = document.getElementById("datepicker");
-	var timepicker = document.getElementById("timepicker");
-	var price = document.getElementById("price");
+	//포인트 관련 함수
+	$('#point').keyup(function() {
+		  point = $('#point').val();//포인트 입력값 갱신
+		  $('#pointcheck').prop('checked', false);//입력값 갱신될때마다 포인트사용체크해제
+		  managerlist.value = "";//금액을 재설정하기위해 매니저리스트 초기화
+	});
+	
+	$('#pointcheck').change(function() {
+		managerlist.value = "";//금액을 재설정하기위해 매니저리스트 초기화
+	});
+	
+	$('#point').on('input', function() {
+	    var myPoint = <%=memberInfo.getPoint() %>; // 포인트의 상한값
+	    var inputValue = parseInt($(this).val()); // 입력 필드의 값을 정수로 고정
+
+	    if (isNaN(inputValue)) {
+	        inputValue = 0; // 입력값이 숫자가 아니라면 0으로 설정
+	    }
+
+	    if (inputValue < 0) {
+	        inputValue = 0; // 0 미만의 값은 0으로 설정
+	    } else if (inputValue > myPoint) {
+	        inputValue = myPoint; // 상한값을 넘는 값은 상한값으로 설정
+	    }
+
+	    $(this).val(inputValue); // 입력 필드의 값을 처리한 값으로 업데이트
+	});
 	
 	$j('#storelist').change(function() {
 		$j("#petlist").removeAttr("disabled");
@@ -405,8 +440,12 @@ $j(document).ready(function() {
             url: 'getPrice.aj',
             data: {"selectedPet": selectedPet, "selectedPrice":selectedPrice, "selectedManager":selectedManager}, // 선택된 값을 서버로 전송
             success: function(result) {
-            	//결과값을 price text태그에 할당
+            	//포인트가 0이아니고 포인트 사용에 체크되어있으면 가격 계산
+            	if(!point == "" && $('#pointcheck').prop('checked')){
+            		result = result - point
+            	} 
             	price.value = result;
+
             }
         });
         

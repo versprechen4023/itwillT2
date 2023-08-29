@@ -1,19 +1,11 @@
+<%@page import="web.groom.dto.OrderinfoDTO"%>
 <%@page import="web.groom.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
-String name = request.getParameter("name");
-String phone = request.getParameter("phone");
-String storelist = request.getParameter("storelist");
-String petlist = request.getParameter("petlist");
-String servicelist = request.getParameter("servicelist");
-String weightlist = request.getParameter("weightlist");
-String managerlist = request.getParameter("managerlist");
-String datepicker = request.getParameter("datepicker");
-String timepicker = request.getParameter("timepicker");
-String price = request.getParameter("price");
-String message = request.getParameter("message");
+
+OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -50,55 +42,59 @@ String message = request.getParameter("message");
 								<div class="col-md-3">
 									<div class="form-group">
 										<p>예약자명</p>
-										<input type="text" class="form-control" id="name" name="name" value="<%=name%>" readonly>
+										<input type="text" class="form-control" id="name" name="name" value="<%=orderInfo.getU_name()%>" readonly>
 									</div>
 									<div class="form-group">
 									    <p>연락처</p>
-										<input type="text" class="form-control" id="phone" name="phone" value="<%=phone%>" readonly>
+										<input type="text" class="form-control" id="phone" name="phone" value="<%=orderInfo.getU_phone()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>예상예약 요금</p>
-										<input type="text" class="form-control" id="price" name="price" value="<%=price%>" readonly>
+										<input type="text" class="form-control" id="price" name="price" value="<%=orderInfo.getRes_price()%>" readonly>
+									</div>
+									<div class="form-group">
+										<p>사용할 포인트</p>
+										<input type="text" class="form-control" id="point" name="point" value="<%=orderInfo.getRes_point()%>" readonly>
 									</div>
 								</div>
 								<div class="col-md-3">
 								    <div class="form-group">
 								    	<p>선택하신 매장명</p>
-										<input type="text" class="form-control" id="storelist" name="storelist" value="<%=storelist%>" readonly>
+										<input type="text" class="form-control" id="storelist" name="storelist" value="<%=orderInfo.getS_location()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>선택하신 견종</p>
-										<input type="text" class="form-control" id="petlist" name="petlist" value="<%=petlist%>" readonly>
+										<input type="text" class="form-control" id="petlist" name="petlist" value="<%=orderInfo.getP_dog()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>선택하신 서비스명</p>
-										<input type="text" class="form-control" id="servicelist" name="servicelist" value="<%=servicelist%>" readonly>
+										<input type="text" class="form-control" id="servicelist" name="servicelist" value="<%=orderInfo.getS_name()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>선택하신 무게</p>
-										<input type="text" class="form-control" id="weightlist" name="weightlist" value="<%=weightlist%>" readonly>
+										<input type="text" class="form-control" id="weightlist" name="weightlist" value="<%=orderInfo.getS_weight()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>선택하신 직원</p>
-										<input type="text" class="form-control" id="managerlist" name="managerlist" value="<%=managerlist%>" readonly>
+										<input type="text" class="form-control" id="managerlist" name="managerlist" value="<%=orderInfo.getEmp_name()%>" readonly>
 									</div>
 								</div>
 								
 								<div class="col-md-3">
 									<div class="form-group">
 										<p>선택하신 예약날짜</p>
-										<input type="text" id="datepicker" name="datepicker" class="form-control" value="<%=datepicker%>" readonly>
+										<input type="text" id="datepicker" name="datepicker" class="form-control" value="<%=orderInfo.getRes_day()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>선택하신 예약시간</p>
-										<input type="text" id="timepicker" name="timepicker" class="form-control" value="<%=timepicker%>" readonly>
+										<input type="text" id="timepicker" name="timepicker" class="form-control" value="<%=orderInfo.getRes_time()%>" readonly>
 									</div>
 								</div>
 								
 								<div class="col-md-3">
 									<div class="form-group">
 									<p>기입하신 요구사항</p>
-										<textarea id="message" name="message" cols="30" rows="7" class="form-control" readonly><%=message%></textarea>
+										<textarea id="message" name="message" cols="30" rows="7" class="form-control" readonly><%=orderInfo.getRes_u_req()%></textarea>
 									</div>
 								
 <!-- 									<div class="form-group"> -->
@@ -111,6 +107,11 @@ String message = request.getParameter("message");
 					<button type="button" class="btn btn-primary my-class" id="call_api" onclick="callAPI()">카드 결제</button>
 					<button type="button" class="btn btn-primary" id="call_api_kakao" onclick="callAPIKakao()">카카오페이 결제</button>	
 					</div>
+					<input type="hidden" id="s_num" name="s_num" value="<%=orderInfo.getS_num()%>">
+					<input type="hidden" id="p_num" name="p_num" value="<%=orderInfo.getP_num()%>">
+					<input type="hidden" id="ser_num" name="ser_num" value="<%=orderInfo.getServeiceNum()%>">
+					<input type="hidden" id="emp_num" name="emp_num" value="<%=orderInfo.getEmp_num()%>">
+					
 				</form>
 			
 			</div>
@@ -124,8 +125,8 @@ String message = request.getParameter("message");
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>				
 					
 <script>
-let val = "<%=price%>" //여기서 일단 가격 조정 추후에 DB에서 가져와야함?
-let name = "<%=servicelist%>" // 서비스나 물건이름 여기서일단 설정
+let val = "<%=orderInfo.getRes_price()%>" //여기서 일단 가격 조정 추후에 DB에서 가져와야함?
+let name = "<%=orderInfo.getS_name()%>" // 서비스나 물건이름 여기서일단 설정
 let payment = "" //페이먼트 설정 html5_inicis, kakaopay, naverco
 
 function callAPI(){

@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import web.groom.dto.MemberDTO;
-
+import web.groom.dto.OrderinfoDTO;
 import web.groom.service.MemberService;
+import web.groom.service.OrderService;
 
 @WebServlet("*.or") //.or 예약오더페이지 어노테이션 매핑 선언
 public class OrderController extends HttpServlet {
@@ -62,7 +63,30 @@ public class OrderController extends HttpServlet {
 		 
 		//페이지이동
 		 if (sPath.equals("/myorderCheckout.or")) {
-			 webForward(request, response, "order", "myorderCheckout");
+			 
+			 //유저 세션 검증
+			 String id = (String)request.getSession().getAttribute("id");
+			 
+			 //세션에 id값이 존재하지않을 경우 로그인 페이지로 이동
+			 if (id == null){
+				 response.sendRedirect("login.me");
+			 } 
+			 
+			 else {
+				 
+				 //정보들을 가지고 오기 위한 객체생성
+				 OrderService orderservice = new OrderService();
+				 
+				 OrderinfoDTO orderInfoDTO = orderservice.getOrderInfo(request);
+				 
+				 // request에 오더 정보 있는 orderInfo 저장
+				 request.setAttribute("orderInfo", orderInfoDTO);
+				 
+				 System.out.println(orderInfoDTO);
+				 
+				 webForward(request, response, "order", "myorderCheckout");
+			 }
+			 
 	     }
 		 
 		 

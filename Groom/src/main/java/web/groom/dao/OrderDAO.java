@@ -10,6 +10,7 @@ import java.util.List;
 
 import web.groom.dto.OrderDTO;
 import web.groom.dto.OrderServiceDTO;
+import web.groom.dto.OrderinfoDTO;
 
 public class OrderDAO {
 	
@@ -274,6 +275,106 @@ public class OrderDAO {
 		}
 
 		return addFee;
+	}
+
+	public OrderinfoDTO getStoreName(OrderinfoDTO orderInfoDTO) {
+		
+		try {
+
+			con = new SQLConnection().getConnection();
+
+			String sql = "SELECT s_location FROM myStore WHERE s_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, orderInfoDTO.getS_num());
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				orderInfoDTO.setS_location(rs.getString("s_location"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return orderInfoDTO;
+	}
+
+	public OrderinfoDTO getPetProName(OrderinfoDTO orderInfoDTO) {
+		
+		try {
+
+			con = new SQLConnection().getConnection();
+
+			String sql = "SELECT p_dog FROM myPrice WHERE p_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, orderInfoDTO.getP_num());
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				orderInfoDTO.setP_dog(rs.getString("p_dog"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return orderInfoDTO;
+	}
+
+	public OrderinfoDTO getServiceName(OrderinfoDTO orderInfoDTO) {
+		
+		try {
+
+			con = new SQLConnection().getConnection();
+
+			String sql = "SELECT s_name, s_weight FROM myService WHERE s_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, orderInfoDTO.getServeiceNum());
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				orderInfoDTO.setS_name(rs.getString("s_name"));
+				orderInfoDTO.setS_weight(rs.getString("s_weight"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return orderInfoDTO;
+	}
+
+	public OrderinfoDTO getEmpName(OrderinfoDTO orderInfoDTO) {
+		
+		try {
+
+			con = new SQLConnection().getConnection();
+
+			String sql = "SELECT emp_grade, emp_name FROM myEmployees WHERE emp_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, orderInfoDTO.getEmp_num());
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String grade = rs.getString("emp_grade");
+				String name = rs.getString("emp_name");
+				String fullName = grade + " " + name;
+				orderInfoDTO.setEmp_name(fullName);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return orderInfoDTO;
 	}
 
 }

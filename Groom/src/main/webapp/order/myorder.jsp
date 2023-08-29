@@ -221,20 +221,55 @@ var point = parseInt(document.getElementById("point").value);
 //제이쿼리 함수 시작 지점
 $j(document).ready(function() {
 	
+	//서브밋 기능 제어 함수
+    $j('#checkout').submit(function() {
+		alert("서브밋 제어 실행");
+        
+    	if($j('#storelist').val() == ""){
+    		alert("예약할 지점을 선택하여 주십시오"); 
+    		return false;
+    	}
+    	if($j("#servicelist").val() == ""){
+    		alert("서비스를 선택하여 주십시오"); 
+    		return false;
+    	}
+    	if($j("#petlist").val() == ""){
+    		alert("견종을 선택하여 주십시오"); 
+    		return false;
+    	}
+    	if($j("#weightlist").val() == ""){
+    		alert("무게를 선택하여 주십시오"); 
+    		return false;
+    	}
+    	if($j("#managerlist").val() == ""){
+    		alert("담당 직원을 선택하여 주십시오"); 
+    		return false;
+    	}
+    	if($j('#datepicker').val() == ""){
+    		alert("예약일을 선택해주십시오"); 
+    		return false;
+    	}
+    	if($j('#timepicker').val() == ""){
+    		alert("예약할 시간을 선택하여 주십시오"); 
+    		return false;
+    	}
+
+    });//submit기능 제어 끝
+    
 	//포인트 관련 함수
-	$('#point').keyup(function() {
-		  point = $('#point').val();//포인트 입력값 갱신
-		  $('#pointcheck').prop('checked', false);//입력값 갱신될때마다 포인트사용체크해제
+	$j('#point').keyup(function() {
+		  point = $j('#point').val();//포인트 입력값 갱신
+		  $j('#pointcheck').prop('checked', false);//입력값 갱신될때마다 포인트사용체크해제
 		  managerlist.value = "";//금액을 재설정하기위해 매니저리스트 초기화
 	});
 	
-	$('#pointcheck').change(function() {
+	$j('#pointcheck').change(function() {
 		managerlist.value = "";//금액을 재설정하기위해 매니저리스트 초기화
 	});
 	
-	$('#point').on('input', function() {
+	$j('#point').on('input', function() {
 	    var myPoint = <%=memberInfo.getPoint() %>; // 포인트의 상한값
-	    var inputValue = parseInt($(this).val()); // 입력 필드의 값을 정수로 고정
+	    var inputValue = parseInt($j(this).val()); // 입력 필드의 값을 정수로 고정
 
 	    if (isNaN(inputValue)) {
 	        inputValue = 0; // 입력값이 숫자가 아니라면 0으로 설정
@@ -246,7 +281,7 @@ $j(document).ready(function() {
 	        inputValue = myPoint; // 상한값을 넘는 값은 상한값으로 설정
 	    }
 
-	    $(this).val(inputValue); // 입력 필드의 값을 처리한 값으로 업데이트
+	    $j(this).val(inputValue); // 입력 필드의 값을 처리한 값으로 업데이트
 	});
 	
 	$j('#storelist').change(function() {

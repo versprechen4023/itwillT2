@@ -1,6 +1,7 @@
 package web.groom.service;
 
 import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import web.groom.dao.OrderDAO;
 import web.groom.dto.OrderDTO;
 import web.groom.dto.OrderServiceDTO;
+import web.groom.dto.OrderinfoDTO;
 
 public class OrderService {
 	
@@ -122,10 +124,6 @@ public class OrderService {
 		int servicepet = Integer.parseInt(request.getParameter("selectedPet"));
 		int servicemanager = Integer.parseInt(request.getParameter("selectedManager"));
 		
-		System.out.println(servicenum);
-		System.out.println(servicepet);
-		System.out.println(servicemanager);
-		
 		try {
 			orderDAO = new OrderDAO();
 			
@@ -141,6 +139,55 @@ public class OrderService {
 		}
 		
 		return servicePrice;
+	}
+
+	public OrderinfoDTO getOrderInfo(HttpServletRequest request) {
+		
+		OrderinfoDTO orderInfoDTO = null;
+		
+		try {
+			int s_num = Integer.parseInt(request.getParameter("storelist"));
+			int p_num = Integer.parseInt(request.getParameter("petlist"));
+			int num1 = Integer.parseInt(request.getParameter("servicelist"));
+			int num2 = Integer.parseInt(request.getParameter("weightlist"));
+			int emp_num = Integer.parseInt(request.getParameter("managerlist"));
+			
+			String u_name = request.getParameter("name");
+			String u_phone = request.getParameter("phone");
+			String res_day = request.getParameter("datepicker");
+			String res_time = request.getParameter("timepicker");
+			String res_price = request.getParameter("price");
+			String res_u_req = request.getParameter("message");
+			String res_point = request.getParameter("point");
+		
+			int serviceNum = num1+num2;
+			
+			//오더 DTO에 값삽입
+			orderInfoDTO = new OrderinfoDTO();
+			orderInfoDTO.setS_num(s_num);
+			orderInfoDTO.setP_num(p_num);
+			orderInfoDTO.setServeiceNum(serviceNum);
+			orderInfoDTO.setEmp_num(emp_num);
+			
+			orderInfoDTO.setU_name(u_name);
+			orderInfoDTO.setU_phone(u_phone);
+			orderInfoDTO.setRes_day(res_day);
+			orderInfoDTO.setRes_time(res_time);
+			orderInfoDTO.setRes_price(res_price);
+			orderInfoDTO.setRes_u_req(res_u_req);
+			orderInfoDTO.setRes_point(res_point);
+			
+			//DB에서 값 받아오기
+			orderDAO = new OrderDAO();
+			orderInfoDTO = orderDAO.getStoreName(orderInfoDTO);
+			orderInfoDTO = orderDAO.getPetProName(orderInfoDTO);
+			orderInfoDTO = orderDAO.getServiceName(orderInfoDTO);
+			orderInfoDTO = orderDAO.getEmpName(orderInfoDTO);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return orderInfoDTO;
 	}
 
 }

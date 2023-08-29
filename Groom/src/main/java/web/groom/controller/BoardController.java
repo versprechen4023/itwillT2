@@ -16,7 +16,7 @@ import web.groom.service.BoardService;
 @WebServlet("*.bo") //.bo 게시판관련페이지 어노테이션 매핑 선언
 public class BoardController extends HttpServlet {
 	
-
+	BoardService boardService = new BoardService();
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -25,6 +25,11 @@ public class BoardController extends HttpServlet {
 		 //페이지이동
 		 if (sPath.equals("/something.bo")) {
 	            
+	     }
+		 
+		 if (sPath.equals("/noticeWrite.bo")) {
+	            webForward(request, response, "board", "noticeWrite");
+
 	     }
 		 
 		 if (sPath.equals("/notice.bo")) {
@@ -40,6 +45,11 @@ public class BoardController extends HttpServlet {
 
 	     } // qna리스트로 이동 
 		 
+		 if (sPath.equals("/qnacontent.bo")) {
+	            webForward(request, response, "board", "qnacontent");
+
+	     } // qna리스트로 이동 
+		 
 		 if (sPath.equals("/qnawrite.bo")) {
 	            webForward(request, response, "board", "qnawrite");
 
@@ -52,10 +62,61 @@ public class BoardController extends HttpServlet {
 //				response.sendRedirect("qna.bo"); // 글을 다 쓰고 나면 다시 리스트로 이동 	
 	     }
 		 
+		 if (sPath.equals("/qnaupdate.bo")) {
+				boardService = new BoardService();
+				// BoardDTO boardDTO = getBoard(request) 메서드 호출
+				// BoardDTO boardDTO = boardService.getBoard(request);
+				// request에 "boardDTO",boardDTO 담아서
+				// request.setAttribute("boardDTO", boardDTO);
+				// webForward(request, response, "board", "qnaupdate"); 오류날까봐 일단 주석 처리 해놓음
+	     }
+		 
 		 if (sPath.equals("/faq.bo")) {
 	            webForward(request, response, "board", "faq");
 
 	     }
+		 
+		 if (sPath.equals("/faqcontent.bo")) {
+	            webForward(request, response, "board", "faqcontent");
+
+	     }
+		 
+		 if (sPath.equals("/faqWrite.bo")) {
+	            webForward(request, response, "board", "faqWrite");
+
+	     }
+		 
+		 if (sPath.equals("/faqupdate.bo")) {
+	            webForward(request, response, "board", "faqmodify");
+
+	     }
+		 
+		 if (sPath.equals("/faqupdatePro.bo")) {
+			 boardService = new BoardService();
+	         // boardService.updatefaq(request);  //faqupdate() 요청
+			 response.sendRedirect("notice.bo"); // 글을 다 쓰고 나면 다시 리스트로 이동 	
+
+	     }
+		 
+		 if (sPath.equals("/noticecontent.bo")) {
+	            webForward(request, response, "board", "noticecontent");
+
+	     } // 공지사항 내용 보기 
+		 
+		 if (sPath.equals("/noticeWrite.bo")) {
+			 webForward(request, response, "board", "noticeWrite");
+			 
+		
+	     } // 공지사항 글쓰기 
+		 
+		 if (sPath.equals("/noticeWritePro.bo")) {
+			 boardService = new BoardService();
+	         boardService.insertNotice(request); // qnainsertboard() 요청
+				// list.bo 주소 변경 되면서 이동
+				response.sendRedirect("notice.bo"); // 글을 다 쓰고 나면 다시 리스트로 이동 	
+			 
+		
+	     } // 글 쓰기 처리 후 리스트로 이동 
 		 
 	}
 

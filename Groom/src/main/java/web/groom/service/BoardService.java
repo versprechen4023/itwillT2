@@ -12,6 +12,7 @@ import web.groom.dto.BoardDTO;
 import web.groom.dto.PageDTO;
 import web.groom.dto.QnaDTO;
 import web.groom.dto.ReviewDTO;
+import web.groom.dto.NoticeDTO;
 
 public class BoardService {
 	
@@ -201,5 +202,45 @@ public class BoardService {
 		}
 		return boardDTO;
 	}//getBoard
+	
+	public void insertNotice(HttpServletRequest request) {
+		
+		 try {
+	            request.setCharacterEncoding("utf-8");
+
+	            // qnawrite에서 받는 값
+	            String n_title = request.getParameter("n_title");
+	            String n_content = request.getParameter("n_content");
+	            String n_img_url = request.getParameter("n_img_url");
+	            Timestamp n_date = new Timestamp(System.currentTimeMillis());
+
+	            // QnaDTO 객체생성
+	            NoticeDTO noticeDTO = new NoticeDTO();
+	            // DB에 넘겨줄값들을 set메서드 호출해서 파라미터값 저장
+	            noticeDTO.setN_title(n_title);
+	            noticeDTO.setN_content(n_content);
+	            noticeDTO.setN_date(n_date);
+	            noticeDTO.setN_img_url(n_img_url);
+
+	            // QnaDAO 객체생성
+	            qnaDAO = new QnaDAO();
+
+	            // DAO생성해서 얘로 DTO값을 넘겨줌 
+	            QnaDAO qnaDAO = new QnaDAO();
+	            qnaDAO.insertqnaBoard(qnaDTO);
+
+	            // 값 받아오는지 확인하기 위함 지워도 상관없음 
+	            System.out.println("boardService 값 넘어오는지 체크 ");
+	            System.out.println("n_title=" + n_title);
+	            System.out.println("n_content=" + n_content);
+	            System.out.println("n_date=" + n_date);
+	            System.out.println("n_date=" + n_img_url);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    
+
+	    }//insertnotice
 
 }//클래스

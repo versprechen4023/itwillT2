@@ -75,9 +75,12 @@ pageEncoding="UTF-8"%>
 			</div>		 	
 		 <input type="text" name="keyWord" size=30 placeholder="검색어를 입력하세요" id="searchkey">
 		 <input type="submit" value="검색" id="searchbtn">
-		 <input type="button" value="글쓰기" onclick="글쓰는페이지로" id="writebtn">
+	
 		 <input type="button" value="답글X" onclick="답글작성안한 글만 출력" id="rebtn">
 		 </form>
+		 <button type="button" value="글쓰기" onclick="location.href='qnaWrite.bo'" id="writebtn" value="글쓰기"> 글쓰기 </button>
+		 
+		 
 	</div>
 	</td></tr>
 	

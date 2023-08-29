@@ -104,3 +104,93 @@ tr #searchkey, #searchbtn {
 		 background-color: #228896;
 		 color: white;
 		}
+		
+		#nwf {
+text-align: center;
+width: 80%;
+}
+/* 	각각 요소의 크기 */
+.sub, .cont, .file-upload-container {
+width: 80%;
+padding: 10px;
+margin-top: 20px;
+}
+
+/* 버튼 ================================================================== */
+.buttons {
+width: 83%;
+/* padding: 10px; */
+margin-top: 20px;
+position: relative;
+overflow: hidden;
+display: inline-block;
+/* border-radius: 5px; */
+/* border: 2px solid black; */
+}
+/* ====================================================================== */
+
+
+/* 내용 세부 조절 */
+.cont {
+height: 300px;
+border: 2px solid black;
+border-radius: 10px;
+resize: none;
+}
+/* 제목 세부 조절 */
+.sub {
+border: 2px solid black;
+border-radius: 5px;
+border-right: 10%;
+		margin-top: 50px;
+}
+/* 버튼 세부 조절 */
+.nwbtn {
+background-color: black;
+color: white;
+padding:8px 15px;
+border: none;
+border-radius: 5px;
+/* 파일선택과 버튼을 띄움 */
+/* margin-top: 10px; */
+		float: right;
+/* 		버튼사이 간격 */
+		margin-right: 5px;
+}
+.nwbtnCtrl {
+	width: 80%;
+	border-right: 10%;
+	border: 2px solid black;
+/* 	border: none; */
+}
+
+/* /* 목록버튼 */ 
+/* .nwbtn2 { */
+/* 	 background-color: black; */
+/* color: white; */
+/* padding: 8px 15px; */
+/* border: none; */
+/* border-radius: 5px; */
+/* /* 파일선택과 버튼을 띄움 */ 
+/* margin-top: 10px; */
+/* 	 display: block; */
+/* /* 	 margin-left: 550px; */ 
+/* text-align: center; */
+/* } */
+	
+	
+.file-upload-container {
+position: relative;
+overflow: hidden;
+display: inline-block;
+border-radius: 5px;
+border: 2px solid black;
+}
+.file-upload {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+opacity: 0;
+}

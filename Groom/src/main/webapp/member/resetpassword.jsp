@@ -16,7 +16,7 @@
 	
 	<!-- 로그인 스타일  -->
 	<link rel="stylesheet" href="./css/login_gr.css">
-	
+
 	<body>
 	  <form action="resetpassword.me" id="resetpass" name="resetpass" method="post">
 	  

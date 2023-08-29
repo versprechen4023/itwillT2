@@ -19,32 +19,8 @@
 	
 	<body>
 	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
-
-			<h1 id="fh5co-logo"><a href="index.html">로고 </a></h1>
-			<nav id="fh5co-main-menu" role="navigation">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li class="fh5co-active"><a href="blog.html">Blog</a></li>
-					<li><a href="portfolio.html">Portfolio</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</nav>
-
-			<div class="fh5co-footer">
-				<p><small>&copy; 2016 Blend Free HTML5. All Rights Reserved.</span> <span>Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> </span> <span>Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></span></small></p>
-				<ul>
-					<li><a href="#"><i class="icon-facebook2"></i></a></li>
-					<li><a href="#"><i class="icon-twitter2"></i></a></li>
-					<li><a href="#"><i class="icon-instagram"></i></a></li>
-					<li><a href="#"><i class="icon-linkedin2"></i></a></li>
-				</ul>
-			</div>
-
-		</aside>
-
+		<jsp:include page="../inc/aside.jsp"></jsp:include>
+		
 	</div>
 
 	<!-- jQuery -->
@@ -202,60 +178,7 @@ List<BoardDTO> boardList=(List<BoardDTO>)request.getAttribute("boardList");
         }
         %>
         
-<!--         <tr> -->
-<!--             <td>9</td> -->
-<!--             <td id="subject"><a href="#">	</a></td> -->
-<!--             <td>	</td> -->
-<!--             <td>	</td> -->
-<!--         </tr> -->
-<!--         <tr> -->
-<!--             <td>8</td> -->
-<!--             <td id="subject"><a href="#">	</a></td> -->
-<!--             <td>	</td> -->
-<!--             <td>	</td> -->
-<!--         </tr> -->
-<!--         <tr> -->
-<!--             <td>7</td> -->
-<!--             <td id="subject"><a href="#">	</a></td> -->
-<!--             <td>	</td> -->
-<!--             <td>	</td> -->
-<!--         </tr> -->
-<!--         <tr> -->
-<!--             <td>6</td> -->
-<!--             <td id="subject"><a href="#">	</a></td> -->
-<!--             <td>	</td> -->
-<!--             <td>	</td> -->
-<!--         </tr> -->
-<!--         <tr> -->
-<!--             <td>5</td> -->
-<!--             <td id="subject"><a href="#">	</a></td> -->
-<!--             <td>	</td> -->
-<!--             <td>	</td> -->
-<!--         </tr> -->
-<!--         <tr> -->
-<!--             <td>4</td> -->
-<!--             <td id="subject"><a href="#">	</a></td> -->
-<!--             <td>	</td> -->
-<!--             <td>	</td> -->
-<!--         </tr> -->
-<!--         <tr> -->
-<!--             <td>3</td> -->
-<!--             <td id="subject"><a href="#">	</a></td> -->
-<!--             <td>	</td> -->
-<!--             <td>	</td> -->
-<!--         </tr> -->
-<!--         <tr> -->
-<!--             <td>2</td> -->
-<!--             <td id="subject"><a href="#">두 번째 게시물</a></td> -->
-<!--             <td>2023-08-09</td> -->
-<!--             <td>50</td> -->
-<!--         </tr> -->
-<!--         <tr> -->
-<!--             <td>1</td> -->
-<!--             <td id="subject"><a href="#">첫 번째 게시물</a></td> -->
-<!--             <td>2023-08-09</td> -->
-<!--             <td>100</td> -->
-<!--         </tr> -->
+
        
     </table>
 </div> 
@@ -272,7 +195,7 @@ List<BoardDTO> boardList=(List<BoardDTO>)request.getAttribute("boardList");
 		    <form action="./noticeList.no" method="get">
 		        <input type="text" name="keyWord" size=50 placeholder="검색어를 입력하세요" id="searchkey">
 		        <input type="submit" value="검색" id="searchbtn">
-<!-- 		    <input type="button" value="글쓰기" onclick="글쓰는페이지로" id="writebtn"> -->
+ 		    <input type="button" value="글쓰기" onclick="location.href='noticeWrite.bo'" id="writebtn"> 
 		    </form>
 		</div>
 </div>

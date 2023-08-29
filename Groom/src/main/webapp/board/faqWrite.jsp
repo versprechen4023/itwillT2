@@ -7,11 +7,12 @@
 <!-- 헤드호출 -->
 <jsp:include page="../inc/head.jsp"></jsp:include>
 </head>
+<link rel="stylesheet" href="./css/noticeWrite_gr.css">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/aside_gr.css">
 <body>
 <!-- noticeWrite css 추가 -->
-<link rel="stylesheet" href="../css/noticeWrite_gr.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/aside_gr.css">
+
 <!-- 사이드바호출 -->
 <jsp:include page="../inc/aside.jsp"></jsp:include>
 <div id="fh5co-page">
@@ -43,7 +44,7 @@
 		<button src="FAQ목록페이지" class="nwbtn">목록</button>
 		<button type="submit" class="nwbtn">확인</button>
 		<button class="nwbtn">수정</button>
-		<button class="nwbtn">삭제</button>
+		<button class="nwbt	n">삭제</button>
 	</div>
 <!-- 	/* 버튼 ================================================================== */ -->
 </form>

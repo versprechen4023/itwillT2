@@ -103,10 +103,10 @@ pageEncoding="UTF-8"%>
 		
 		<tr><td>	
 		<div class="search-form">
-			<form action="./noticeList.no" method="get">		 	 	
+			<form action="qnaList.no" method="get">		 	 	
 			 <input type="text" name="keyWord" size=80 placeholder="검색어를 입력하세요" id="searchkey">
 			 <input type="submit" value="검색" id="searchbtn">
-	 		 <input type="button" value="글쓰기" onclick="글쓰는페이지로" id="writebtn">
+	 		 <input type="button" value="글쓰기" onclick="location.href='faqWrite.bo'" id="writebtn">
 			 </form>
 		</div>
 		</td></tr>

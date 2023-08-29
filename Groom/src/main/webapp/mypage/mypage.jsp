@@ -60,7 +60,7 @@ MypageDTO mypagepetInfo = (MypageDTO)request.getAttribute("mypagepetInfo");
 	    <td><%=mypageInfo.getPoint() %></td>
 	</tr>
 </table>
-<input type="button" value="정보수정" class="mbtn">
+<input type="button" value="정보수정" class="mbtn" onclick="location.href='modifyinfo.me'">
 </div>
 
 <div class="table-container2">

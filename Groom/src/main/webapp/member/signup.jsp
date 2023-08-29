@@ -81,7 +81,7 @@
 			  <div>
 				<br><label class="imp">인증번호입력</label>
 				<div>
-				  <input type="text" id="verificationCode" name="verificationCode" readonly>
+				  <input type="text" id="verificationCode" name="verificationCode" readonly class="verificationCode">
 				</div>
 				<span id="emailmsg"></span>
 			  </div>

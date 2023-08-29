@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import web.groom.dto.MemberDTO;
 import web.groom.dto.MypageDTO;
@@ -117,6 +119,7 @@ public class MypageDAO {
 			rs = pstmt.executeQuery();
 			
 			// 유저번호에 따른 개인정보 저장
+		
 			if(rs.next()) {
 				mypagedto = new MypageDTO();
 				mypagedto.setPetName(rs.getString("pet_name"));
@@ -124,6 +127,7 @@ public class MypageDAO {
 				mypagedto.setPetGender(rs.getString("pet_gender"));
 				mypagedto.setPetNeuter(rs.getString("pet_neuter"));
 				mypagedto.setPetComment(rs.getString("pet_comment"));
+				mypagedto.setPetNum(rs.getInt("pet_num"));
 			} else {
 //				mypagedto = null;
 			}
@@ -139,8 +143,8 @@ public class MypageDAO {
 	}
 	
 	
-	public void updateMember(MypageDTO mypagedto) {
-		mypagedto = null;
+	public void updateMypet(MypageDTO mypagedto) {
+//		mypagedto = null;
 		try {
 			
 			//db연결
@@ -148,11 +152,14 @@ public class MypageDAO {
 			
 
 			// SQL 쿼리 입력
-			String SQL = "update pet set pet_name = ? where u_num?";
+			String SQL = "update pet set  pet_breed = ?, pet_name = ?, pet_gender =? , pet_neuter =? , pet_comment =? where pet_num = ?";
 			pstmt = con.prepareStatement(SQL);
-			pstmt.setString(1, mypagedto.getPetName());
-			pstmt.setInt(2, mypagedto.getNum());
-			
+			pstmt.setString(1, mypagedto.getPetBreed());
+			pstmt.setString(2, mypagedto.getPetName());
+			pstmt.setString(3, mypagedto.getPetGender());
+			pstmt.setString(4, mypagedto.getPetNeuter());
+			pstmt.setString(5, mypagedto.getPetComment());
+			pstmt.setInt(6, mypagedto.getPetNum());
 			// SQL실행
 			pstmt.executeUpdate();
 			} catch (Exception e) {
@@ -163,7 +170,10 @@ public class MypageDAO {
 			dbClose();
 			//저장소 할당 해제
 			}
-	}
+	}//updateMypet
+
+
+	
 
 
 

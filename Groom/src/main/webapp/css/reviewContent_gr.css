@@ -52,7 +52,7 @@ float: right;
 	color: black;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: left;
 	padding: 10px 0 10px 0;
 }
 .content-middle img {

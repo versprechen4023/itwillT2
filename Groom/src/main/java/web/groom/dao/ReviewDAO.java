@@ -218,20 +218,31 @@ public class ReviewDAO {
 		System.out.println("ReviewDAO writeRe()");
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "update test01"
+			String sql1 = "update user2"
+					+ "   set u_point = u_point + 1000"
+					+ "   where u_num = (select u_num from test01"
+					+ "                  where rev_num = ?);";
+			
+			String sql2 = "update test01"
 					+ "   set re_content=?,re_date=?,re_ref=re_ref+1,re_lev=re_lev+1,re_seq=re_seq+1"
 					+ "   where rev_num=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, reviewDTO.getRe_content());
-			pstmt.setTimestamp(2, reviewDTO.getRe_date());
-			pstmt.setInt(3, reviewDTO.getRev_num());
-			pstmt.executeUpdate();
+			PreparedStatement pstmt1 = null;
+			pstmt1 = con.prepareStatement(sql1);
+			pstmt1.setInt(1, reviewDTO.getRev_num());
+			pstmt1.executeUpdate();
+			
+			PreparedStatement pstmt2 = null;
+			pstmt2=con.prepareStatement(sql2);
+			pstmt2.setString(1, reviewDTO.getRe_content());
+			pstmt2.setTimestamp(2, reviewDTO.getRe_date());
+			pstmt2.setInt(3, reviewDTO.getRev_num());
+			pstmt2.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
-	}// writeRe() [답글작성]
+	}// writeRe() [답글작성 + 포인트추가]
 	
 	
 	public void updateRe(ReviewDTO reviewDTO) {

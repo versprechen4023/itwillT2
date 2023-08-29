@@ -136,6 +136,7 @@ function really(rev_num) {
 	
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
+	<input type="hidden" name="rev_num" value="<%=reviewDTO.getRev_num()%>">
 	</form>
 	</body>
 </html>

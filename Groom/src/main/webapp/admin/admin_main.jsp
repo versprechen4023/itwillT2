@@ -53,11 +53,11 @@
 <table class="admin-main2">      
     <tr><th colspan="3">　</th></tr>
     <tr><th>고객센터　</th>
-    	<td><button class="admin-button" onclick="window.location.href='notice.bo1'">공지사항</button></td>
+    	<td><button class="admin-button" onclick="window.location.href='notice.bo'">공지사항</button></td>
     	<td>　</td>
-        <td><button class="admin-button" onclick="window.location.href='faq.bo1'">자주 묻는 질문</button></td>
+        <td><button class="admin-button" onclick="window.location.href='faq.bo'">자주 묻는 질문</button></td>
         <td>　</td>
-        <td><button class="admin-button" onclick="window.location.href='qna.bo1'">1:1문의</button></td></tr>
+        <td><button class="admin-button" onclick="window.location.href='qna.bo'">1:1문의</button></td></tr>
 </table>
 </div>
 <!-- [관리자메인] 끝 -->

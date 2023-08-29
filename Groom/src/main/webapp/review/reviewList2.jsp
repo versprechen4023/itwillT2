@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.groom.dto.ReviewDTO"%>
 <%@page import="java.util.List"%>
 
@@ -18,9 +19,13 @@
 </style>	
 	<body>
 <%
+String id = (String)session.getAttribute("id");
+String role = (String)session.getAttribute("role"); 
+String num = (String)session.getAttribute("num");
+
 List<ReviewDTO> reviewList
 =(List<ReviewDTO>)request.getAttribute("reviewList");
-//
+
 // =============== 페이징코드 ㄱ
 int itemsPerPage = 10; // 페이지당 아이템 수
 int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
@@ -49,6 +54,7 @@ List<ReviewDTO> visibleItems = reviewList.subList(startIndex, endIndex);
 		
 <!-- 목록 시작 -->	
 <%
+SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
 for (ReviewDTO reviewDTO : visibleItems){
 
 // ========= 별점 받아서 별출력하는 코드 ㄱ
@@ -71,9 +77,21 @@ if (i <= rating) {
 			<h3><a><%=reviewDTO.getPro_name() %></a><br>
 			<small><%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %></small><small> / <%=reviewDTO.getS_location() %></small></h3>
 			<h3><%=stars %></h3>
-			<span class="review_text1"><a><%=reviewDTO.getU_name() %></a> / <a><%=reviewDTO.getRev_date() %></a> / <a><%=reviewDTO.getU_count() %>번째 예약</a></span>
+			<span class="review_text1"><a><%=reviewDTO.getU_name() %></a> / <a><%=format.format(reviewDTO.getRev_date()) %></a> / <a><%=reviewDTO.getU_count() %>번째 방문</a></span>
 			<p class="review_text2"><%=reviewDTO.getRev_content() %></p>
 			<a href="reviewContet.re?rev_num=<%=reviewDTO.getRev_num() %>" class="lead">더보기 <i class="icon-arrow-right3"></i></a>
+<%
+String re_content = reviewDTO.getRe_content();
+if(id != null){
+if(role.equals("admin")){
+	if(re_content != null){
+%>
+			<a style="font-size: 5px; color: black;">(답글O)</a>
+<% }else{ %>
+			<a style="font-size: 5px; color: red;">(답글X)</a>
+<%
+}}}
+%>
 		</div>
 		</div>
 		</div>

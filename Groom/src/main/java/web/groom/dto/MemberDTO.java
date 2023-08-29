@@ -4,90 +4,90 @@ import java.sql.Timestamp;
 
 public class MemberDTO {
 	
-	private int num;
-	private String id;
-	private String pass;
-	private String salt;
-	private String role;
-	private String name;
-	private String phone;
-	private String email;
-	private Timestamp regDate;
-	private int count;
-	private int point;
+	private int u_num;
+	private String u_id;
+	private String u_pass;
+	private String u_salt;
+	private String u_role;
+	private String u_name;
+	private String u_phone;
+	private String u_email;
+	private Timestamp u_regDate;
+	private int u_count;
+	private int u_point;
 	
-	public int getNum() {
-		return num;
+	public int getU_Num() {
+		return u_num;
 	}
-	public String getId() {
-		return id;
+	public String getU_Id() {
+		return u_id;
 	}
-	public String getPass() {
-		return pass;
+	public String getU_Pass() {
+		return u_pass;
 	}
-	public String getSalt() {
-		return salt;
+	public String getU_Salt() {
+		return u_salt;
 	}
-	public String getRole() {
-		return role;
+	public String getU_Role() {
+		return u_role;
 	}
-	public String getName() {
-		return name;
+	public String getU_Name() {
+		return u_name;
 	}
-	public String getPhone() {
-		return phone;
+	public String getU_Phone() {
+		return u_phone;
 	}
-	public String getEmail() {
-		return email;
+	public String getU_Email() {
+		return u_email;
 	}
-	public Timestamp getRegDate() {
-		return regDate;
+	public Timestamp getU_RegDate() {
+		return u_regDate;
 	}
-	public int getCount() {
-		return count;
+	public int getU_Count() {
+		return u_count;
 	}
-	public int getPoint() {
-		return point;
+	public int getU_Point() {
+		return u_point;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setU_Num(int num) {
+		this.u_num = num;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setU_Id(String id) {
+		this.u_id = id;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setU_Pass(String pass) {
+		this.u_pass = pass;
 	}
-	public void setSalt(String salt) {
-		this.salt = salt;
+	public void setU_Salt(String salt) {
+		this.u_salt = salt;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setU_Role(String role) {
+		this.u_role = role;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setU_Name(String name) {
+		this.u_name = name;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setU_Phone(String phone) {
+		this.u_phone = phone;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setU_Email(String email) {
+		this.u_email = email;
 	}
-	public void setRegDate(Timestamp regDate) {
-		this.regDate = regDate;
+	public void setU_RegDate(Timestamp regDate) {
+		this.u_regDate = regDate;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setU_Count(int count) {
+		this.u_count = count;
 	}
-	public void setPoint(int point) {
-		this.point = point;
+	public void setU_Point(int point) {
+		this.u_point = point;
 	}
 	
 	@Override
 	public String toString() {
-		return "MemberDTO [num=" + num + ", id=" + id + ", pass=" + pass + ", salt=" + salt + ", role=" + role
-				+ ", name=" + name + ", phone=" + phone + ", email=" + email + ", regDate=" + regDate + ", count="
-				+ count + ", point=" + point + "]";
+		return "MemberDTO [num=" + u_num + ", id=" + u_id + ", pass=" + u_pass + ", salt=" + u_salt + ", role=" + u_role
+				+ ", name=" + u_name + ", phone=" + u_phone + ", email=" + u_email + ", regDate=" + u_regDate + ", count="
+				+ u_count + ", point=" + u_point + "]";
 	}
 	
 }

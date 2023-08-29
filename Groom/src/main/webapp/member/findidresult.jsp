@@ -34,7 +34,7 @@
       %>
       
       	<div class = "found-success">
-	      <p>  회원님의 아이디는 </p>   <div class ="idresult"><%= memberDTO.getId() %></div> <p>  입니다 </p>
+	      <p>  회원님의 아이디는 </p>   <div class ="idresult"><%=memberDTO.getU_Id()%></div> <p>  입니다 </p>
 	     
 	 
 	     

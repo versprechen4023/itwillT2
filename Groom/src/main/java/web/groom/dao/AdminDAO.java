@@ -40,15 +40,15 @@ public class AdminDAO {
 			memberList = new ArrayList<>();
 			while(rs.next()){
 				MemberDTO memberDTO = new MemberDTO();
-				memberDTO.setNum(rs.getInt("u_num"));
-				memberDTO.setRole(rs.getString("u_role"));
-				memberDTO.setId(rs.getString("u_id"));
-				memberDTO.setName(rs.getString("u_name"));
-				memberDTO.setPhone(rs.getString("u_phone"));
-				memberDTO.setEmail(rs.getString("u_email"));
-				memberDTO.setRegDate(rs.getTimestamp("u_regdate"));
-				memberDTO.setCount(rs.getInt("u_count"));
-				memberDTO.setPoint(rs.getInt("u_point"));
+				memberDTO.setU_Num(rs.getInt("u_num"));
+				memberDTO.setU_Role(rs.getString("u_role"));
+				memberDTO.setU_Id(rs.getString("u_id"));
+				memberDTO.setU_Name(rs.getString("u_name"));
+				memberDTO.setU_Phone(rs.getString("u_phone"));
+				memberDTO.setU_Email(rs.getString("u_email"));
+				memberDTO.setU_RegDate(rs.getTimestamp("u_regdate"));
+				memberDTO.setU_Count(rs.getInt("u_count"));
+				memberDTO.setU_Point(rs.getInt("u_point"));
 				memberList.add(memberDTO);
 			}
 		} catch (Exception e) {

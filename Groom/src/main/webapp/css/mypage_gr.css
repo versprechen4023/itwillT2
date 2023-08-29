@@ -24,13 +24,14 @@
     height: 40px;
   }
   
-  .table-container3{
+   .table-container3{
   	display: inline-block;
 /* 	float:left; */
 	clear:left;
 	width: 65%;
 	margin-left: 100px;
 	margin-right: 100px;
+	margin-top : 500px;
 	
   }
   

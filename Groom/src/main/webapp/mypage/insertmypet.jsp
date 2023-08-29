@@ -13,7 +13,7 @@
 <body>
  <form action="insertmypetPro.my" id="insertmypet" name="insertmypet" method="post">
 <div class="logo">
-  <img src="./images/logo01.png" alt="logo" width="100%" height="225px">
+  <img src="./images/logo01.png" alt="logo" width="85%" >
 </div>
 
 <div class="content-wrapper">
@@ -23,6 +23,8 @@
     <div>
       <label for="petname" class="labelstyle">이름</label><br>
       <input id="petname" name="petname" type="text" placeholder="이름을 입력해주세요"><br>
+<!--  반려동물 이름 공란시 sumbit 제어 "반려동물 이름 입력해주세요 출력" -->
+ 	  <span id="error-message" style="color: red; font-size: 12px"></span>
     </div>
     
     <div>
@@ -60,9 +62,9 @@
 
     
   <label for="content" class="labelstyle">특이사항</label><br>
-  <div class="editable-area" id="petcomment" name="petcomment" contenteditable="true" data-placeholder="내용을 입력하세요"></div>
-		<br>
-<!--   <textarea name="content" cols="30" rows="8" placeholder="내용을 입력해주세요"></textarea> -->
+<!--   <div class="editable-area" id="petcomment" name="petcomment" contenteditable="true" data-placeholder="내용을 입력하세요"></div> -->
+	
+  <textarea class="comment" name="petcomment" cols="30" rows="8" name = "petcomment" placeholder="내용을 입력해주세요"></textarea>
 
 
     <br>
@@ -75,15 +77,14 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
-$('#insertmypet').submit(function() {
-	
-	if($('#pet_name').val() == ""){
-		$('#petname').css('color','red');
-		$('#petname').text("반려동물 이름를 입력해주세요."); 
-		$('#pet_name').focus();
-		return false;
-	}
-});//submit기능 제어 끝
+$('#insertmypet').submit(function(event) {
+    if ($('#petname').val() == "") {
+        event.preventDefault(); // 폼 제출을 중단합니다.
+        $('#petname').css('border-color', 'red'); // 필드 주변을 빨간색으로 표시합니다.
+        $('#error-message').text("반려동물 이름을 입력해주세요."); // 오류 메시지를 설정합니다.
+        $('#petname').focus();
+    }
+});//반려동물 이름 입력 안했을 때만. submit기능 제어 
 </script>
 </body>
 </html>

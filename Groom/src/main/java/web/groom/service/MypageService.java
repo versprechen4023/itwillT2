@@ -1,9 +1,11 @@
 package web.groom.service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import web.groom.dao.AdminDAO;
 import web.groom.dao.MemberDAO;
 import web.groom.dao.MypageDAO;
 import web.groom.dto.MemberDTO;
@@ -95,36 +97,42 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 		return mypagedto;
 	}
 	
-	public void updateMypetinfo(HttpServletRequest request) {
-		System.out.println("MemberService updateMypetinfo()");
+	public void updateMypet(HttpServletRequest request) {
+		System.out.println("MypageService updateMypetinfo()");
 		try {
 			// request 한글처리
 			request.setCharacterEncoding("utf-8");
-			// request 파라미터 가져오기(id,pass,name)
-			String getPetName = request.getParameter("pet_name");
-			String getPetBreed = request.getParameter("pet_breed");
-			String getPetGender = request.getParameter("pet_gender");
-			String getPetNeuter = request.getParameter("pet_neuter");
-			String getPetComment = request.getParameter("pet_comment");
-			// MemberDTO 객체생성 
-			MypageDTO mypageDTO = new MypageDTO();
-			// set메서드 호출 파라미터값 저장
+			// 리퀘스트 파라미터값 변수에 저장
+			String getPetName = request.getParameter("petname");
+			String getPetBreed = request.getParameter("petbreed");
+			String getPetGender = request.getParameter("petgender");
+			String getPetNeuter = request.getParameter("petneuter");
+			String getPetComment = request.getParameter("petcomment");
+			int getPetNum = Integer.parseInt(request.getParameter("pet_num"));
+			int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+			System.out.println(getPetNum);
+				
+			// 객체생성후 파라미터값 저장
 			mypagedto = new MypageDTO();
+			mypagedto.setNum(u_num);
+			mypagedto.setPetNum(getPetNum);
 			mypagedto.setPetName(getPetName);
 			mypagedto.setPetBreed(getPetBreed);
 			mypagedto.setPetGender(getPetGender);
 			mypagedto.setPetNeuter(getPetNeuter);
 			mypagedto.setPetComment(getPetComment);
+			
 			// MemberDAO 객체생성
 			mypagedao = new MypageDAO();
 			// updateMember(memberDTO) 메서드 호출
-			mypagedao.updateMember(mypageDTO);
+			mypagedao.updateMypet(mypagedto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}//updateMember()
 
 
+	
 
 
 }

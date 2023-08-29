@@ -43,13 +43,12 @@ public class MypageController extends HttpServlet {
 			 
 			 // request에 유저 정보 있는 memberInfo 저장
 			 request.setAttribute("mypageInfo", mypageInfo);
-			 
+	
 			// request에 유저 정보 있는 memberInfo 저장
 			 request.setAttribute("mypagepetInfo", mypagepetinfo);
 			 
-			 //임시출력
-			 System.out.println(mypageInfo);
-			 System.out.println(mypagepetinfo);
+	
+			 
 			 
 			 if(mypageInfo != null) {
 			 webForward(request, response, "mypage", "mypage");
@@ -62,7 +61,7 @@ public class MypageController extends HttpServlet {
 			 System.out.println("뽑은 가상주소 비교 : /insertmypet.my");
 			 webForward(request, response, "mypage", "insertmypet");
 		 }
-		 // 회원가입 로직 수행
+		 
 		 if (sPath.equals("/insertmypetPro.my")) {
 			 System.out.println("뽑은 가상주소 비교 : /insertmypetPro.my");
 			//멤버서비스 객체생성
@@ -92,18 +91,41 @@ public class MypageController extends HttpServlet {
 		//수정하기 전에 디비 나의 정보 조회(세션값 id) => jsp 화면 출력
 		// 세션 객체생성
 		HttpSession session = request.getSession();
-		// "id" 세션값 가져오기=> String  변수 저장
+		
 		int num = Integer.parseInt((String)request.getSession().getAttribute("num"));
-		// MemberService 객체생성
+		// MypageSerive 객체생성
 		ser = new MypageService();
-		// MemberDTO memberDTO = getMember(id) 메서드 호출
+		 // 유저 정보 가져오기
+		 MypageDTO mypageInfo = ser.MemberInfo(request);
+		 
+		// 유저 펫정보 가져오기
+		 MypageDTO mypagepetinfo = ser.MypetInfo(request);
+		 
+		 // request에 유저 정보 있는 memberInfo 저장
+		 request.setAttribute("mypageInfo", mypageInfo);
+		 
+		// request에 유저 정보 있는 memberInfo 저장
+		 request.setAttribute("mypagepetInfo", mypagepetinfo);
+		 
+		// MypageDTO mypageDTO = getMypetinfo(id) 메서드 호출
 		MypageDTO mypageDTO = ser.getMypetinfo(num);
-		// request에 memberDTO 저장 ("이름",값)
+		// request에 memberDTO 저장 ("이름",값)	
 		request.setAttribute("mypageDTO", mypageDTO);
 		// member/update.jsp 주소변경없이 이동
 		webForward(request, response, "mypage", "updatemypet");
 	}//
-		 }
+	
+	if(sPath.equals("/updatemypetPro.my")) {
+		System.out.println("뽑은 가상주소 비교 : /updatemypetPro.me");
+		request.setCharacterEncoding("utf-8");
+		// MypageService 객체생성
+		ser = new MypageService();
+		
+		ser.updateMypet(request);
+		response.sendRedirect("mypage.my");
+	}
+	
+	}
 		 
 	
 	

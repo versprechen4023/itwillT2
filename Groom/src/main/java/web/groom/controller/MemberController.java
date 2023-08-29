@@ -62,10 +62,7 @@ public class MemberController extends HttpServlet {
 				//세션저장완료후 메인으로 이동
 				response.sendRedirect("main.gr");
 			} else {
-				System.out.println("로그인실패");
-//				//자바스크립트 페이지에서 에러를 출력할지 아니면 여기서 프린트라이트를 사용할지?
-//				webForward(request, response, "member", "msg");
-				response.sendRedirect("main.gr");
+				response.sendRedirect("loginError.er");
 			}
 	     }//end_of_loginPro.me
 		 
@@ -123,6 +120,7 @@ public class MemberController extends HttpServlet {
 				  
 				 System.out.println("아이디 찾기 성공 ");
 			 } else  {
+				 response.sendRedirect("searchError.er");
 				 System.out.println("아이디 찾기 실패 ");
 			 }
 			 
@@ -151,6 +149,7 @@ public class MemberController extends HttpServlet {
 
 		     System.out.println("비밀번호 재설정가능");
 			} else  {
+		     response.sendRedirect("searchError.er");
 			 System.out.println("비밀번호 재설정안됨");
 			}
 			 

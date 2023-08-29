@@ -42,7 +42,7 @@
                        
                        
                     <!-- 리뷰보기 버튼 -->
-                        <button type="button" style="background-color: #ccc; color: white; border: none;
+                        <button type="button" onclick="location.href='reviewList.re?pro_name= ';" style="background-color: #ccc; color: white; border: none;
                                 border-radius: 5px; padding: 6px 11px; cursor: pointer; margin-top: 12px; margin-left: 100px;">리뷰보기</button>
                     </div>
                     
@@ -74,7 +74,7 @@
                         
                         
                     <!-- 리뷰보기 버튼 -->
-                        <button type="button" style="background-color: #ccc; color: white; border: none;
+                        <button type="button" onclick="location.href='reviewList.re?pro_name= ';" style="background-color: #ccc; color: white; border: none;
                                border-radius: 5px; padding: 6px 11px; cursor: pointer; margin-top: 12px; margin-left: 100px;">리뷰보기</button>
                     </div>
                     
@@ -106,7 +106,7 @@
                         
                         
                     <!-- 리뷰보기 버튼 -->   
-                        <button type="button" style="background-color: #ccc; color: white; border: none;
+                        <button type="button" onclick="location.href='reviewList.re?pro_name= ';" style="background-color: #ccc; color: white; border: none;
                                border-radius: 5px; padding: 6px 11px; cursor: pointer; margin-top: 12px; margin-left: 100px;">리뷰보기</button>
                     </div>
                     
@@ -131,7 +131,7 @@
 <!--  예약하기 버튼 -->
 
     <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
-    <button type="button" style="background-color: black; color: white; border: none; margin-left: -50px;
+    <button type="button" onclick="location.href='myorder.or';"style="background-color: black; color: white; border: none; margin-left: -50px;
            border-radius: 5px; padding: 14px 9px; cursor: pointer; width: 1000px; font-size: 15px; font-weight: bold;">예약하기</button>
 </div>
 </div>

@@ -208,6 +208,7 @@ var disabledDates = []; //여기에 비활성화활 데이터들 JSON으로 가�
 // 타임피커에서 비활성화할 시간
 var disabledTimes = []; //여기에 비활성화할 데이터를 JSON으로 가져온다 형식의 예제는 "20:00", "20:01"
 
+// 전역변수 용
 var storelist = document.getElementById("storelist");
 var petlist = document.getElementById("petlist");
 var servicelist = document.getElementById("servicelist");
@@ -221,7 +222,7 @@ var point = parseInt(document.getElementById("point").value);
 //제이쿼리 함수 시작 지점
 $j(document).ready(function() {
 	
-	//서브밋 기능 제어 함수
+	//서브밋 기능 제어 함수 //셀렉트태그 부분 null이라고 잘뜨는데 if문안됨
     $j('#checkout').submit(function() {
 		alert("서브밋 제어 실행");
         
@@ -290,7 +291,10 @@ $j(document).ready(function() {
 	    $j(this).val(inputValue); // 입력 필드의 값을 처리한 값으로 업데이트
 	});
 	
+	// 지점선택에대한 함수
 	$j('#storelist').change(function() {
+		
+		// 지점이 선택될시 사용을 위해 disabled 삭제
 		$j("#petlist").removeAttr("disabled");
 		$j("#servicelist").removeAttr("disabled");
 		$j("#weightlist").removeAttr("disabled");
@@ -444,7 +448,7 @@ $j(document).ready(function() {
                 $j('#timepicker').timepicker({
                   timeFormat: 'H:i',
                   step: 60,
-                  minTime: '09:00', // 최소 시간
+                  minTime: '10:00', // 최소 시간
                   maxTime: '18:00', // 최대 시간
                   disableTextInput : true, //텍스트입력불가
                   listWidth : 1, //크기조정
@@ -500,6 +504,9 @@ $j(document).ready(function() {
 		datepicker.value = "";
 		timepicker.value ="";
 		$j("#timepicker").attr('disabled','disabled');
+		
+		// 변수 초기화 작업
+        disabledDates = [];
 		
         // if문 및 지점번호 값 전송
         var selectedStore = $j('#storelist').val();

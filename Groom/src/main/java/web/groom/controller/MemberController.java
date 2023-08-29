@@ -54,18 +54,15 @@ public class MemberController extends HttpServlet {
 				System.out.println(memberdto);
 				
 				//세션에 id, salt, role, userNum 값 저장
-				session.setAttribute("id", memberdto.getId());
-				session.setAttribute("salt", memberdto.getSalt());
-				session.setAttribute("role", memberdto.getRole());
-				session.setAttribute("num", String.valueOf(memberdto.getNum()));
+				session.setAttribute("id", memberdto.getU_Id());
+				session.setAttribute("salt", memberdto.getU_Salt());
+				session.setAttribute("role", memberdto.getU_Role());
+				session.setAttribute("num", String.valueOf(memberdto.getU_Num()));
 				
 				//세션저장완료후 메인으로 이동
 				response.sendRedirect("main.gr");
 			} else {
-				System.out.println("로그인실패");
-//				//자바스크립트 페이지에서 에러를 출력할지 아니면 여기서 프린트라이트를 사용할지?
-//				webForward(request, response, "member", "msg");
-				response.sendRedirect("main.gr");
+				response.sendRedirect("loginError.er");
 			}
 	     }//end_of_loginPro.me
 		 
@@ -123,6 +120,7 @@ public class MemberController extends HttpServlet {
 				  
 				 System.out.println("아이디 찾기 성공 ");
 			 } else  {
+				 response.sendRedirect("searchError.er");
 				 System.out.println("아이디 찾기 실패 ");
 			 }
 			 
@@ -145,12 +143,13 @@ public class MemberController extends HttpServlet {
 			//값이 존재하면 세션에 유저 번호 저장
 			HttpSession session = request.getSession();
 			
-			session.setAttribute("num", String.valueOf(memberDTO.getNum()));
+			session.setAttribute("num", String.valueOf(memberDTO.getU_Num()));
 			
 			webForward(request, response, "member", "resetpassword");
 
 		     System.out.println("비밀번호 재설정가능");
 			} else  {
+		     response.sendRedirect("searchError.er");
 			 System.out.println("비밀번호 재설정안됨");
 			}
 			 

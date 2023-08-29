@@ -29,7 +29,7 @@ if(id != null){
 	  
 	<nav id="fh5co-main-menu" role="navigation">
 		<ul>
-			<li><a href="blog.gr">ABOUT</a></li>
+			<li><a href="storeInfo.gr">매장안내</a></li>
 			<li><a href="portfolio.gr">이용안내</a></li>
 			<li><a href="myorder.or">예약하기</a></li>
 			<li><a href="reviewList.re?pro_name= ">리뷰</a></li>
@@ -49,7 +49,7 @@ if(id != null){
         사업자등록번호:1234--<br>
         주소:부산광역시 부산진구 부전동<br>
         <br>
-        <a href="about.html">이용약관</a><br>
+        <a href="about.gr">about</a><br>
         <a href="about.html">개인정보처리방침</a>
         </small>
     </p>

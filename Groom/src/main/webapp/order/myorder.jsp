@@ -40,15 +40,21 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 								<div class="col-md-3">
 									<div class="form-group">
 										<p>예약자명</p>
-										<input type="text" class="form-control" id="name" name="name" value="<%=memberInfo.getName() %>" readonly>
+										<input type="text" class="form-control" id="name" name="name" value="<%=memberInfo.getU_Name()%>" readonly>
 									</div>
 									<div class="form-group">
 									    <p>연락처</p>
-										<input type="text" class="form-control" id="phone" name="phone" value="<%=memberInfo.getPhone() %>" readonly>
+										<input type="text" class="form-control" id="phone" name="phone" value="<%=memberInfo.getU_Phone()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>예상예약 요금</p>
 										<input type="text" class="form-control" id="price" name="price" readonly>
+									</div>
+									<div class="form-group">
+										<p>포인트 사용</p>
+										<input type="text" class="form-control" id="point" name="point" value="0">
+										내 포인트 = <%=memberInfo.getU_Point()%><br>
+										포인트 사용<input type="checkbox" id="pointcheck" name="pointcheck">
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -202,19 +208,93 @@ var disabledDates = []; //여기에 비활성화활 데이터들 JSON으로 가�
 // 타임피커에서 비활성화할 시간
 var disabledTimes = []; //여기에 비활성화할 데이터를 JSON으로 가져온다 형식의 예제는 "20:00", "20:01"
 
+// 전역변수 용
+var storelist = document.getElementById("storelist");
+var petlist = document.getElementById("petlist");
+var servicelist = document.getElementById("servicelist");
+var weightlist = document.getElementById("weightlist");
+var managerlist = document.getElementById("managerlist");
+var datepicker = document.getElementById("datepicker");
+var timepicker = document.getElementById("timepicker");
+var price = document.getElementById("price");
+var point = parseInt(document.getElementById("point").value);
+	
 //제이쿼리 함수 시작 지점
 $j(document).ready(function() {
 	
-	var storelist = document.getElementById("storelist");
-	var petlist = document.getElementById("petlist");
-	var servicelist = document.getElementById("servicelist");
-	var weightlist = document.getElementById("weightlist");
-	var managerlist = document.getElementById("managerlist");
-	var datepicker = document.getElementById("datepicker");
-	var timepicker = document.getElementById("timepicker");
-	var price = document.getElementById("price");
+	//서브밋 기능 제어 함수 //셀렉트태그 부분 null이라고 잘뜨는데 if문안됨
+    $j('#checkout').submit(function() {
+		alert("서브밋 제어 실행");
+        
+    	if($j('#storelist').val() == ""){
+    		alert("예약할 지점을 선택하여 주십시오"); 
+    		return false;
+    	}
+    	if($j("#servicelist").val() == ""){
+    		alert("서비스를 선택하여 주십시오"); 
+    		return false;
+    	}
+    	if($j("#petlist").val() == ""){
+    		alert("견종을 선택하여 주십시오"); 
+    		return false;
+    	}
+    	if($j("#weightlist").val() == ""){
+    		alert("무게를 선택하여 주십시오"); 
+    		return false;
+    	}
+    	if($j("#managerlist").val() == ""){
+    		alert("담당 직원을 선택하여 주십시오"); 
+    		return false;
+    	}
+    	if($j('#datepicker').val() == ""){
+    		alert("예약일을 선택해주십시오"); 
+    		return false;
+    	}
+    	if($j('#timepicker').val() == ""){
+    		alert("예약할 시간을 선택하여 주십시오"); 
+    		return false;
+    	}
+
+    });//submit기능 제어 끝
+    
+	//포인트 관련 함수
+	$j('#point').keyup(function() {
+		  point = $j('#point').val();//포인트 입력값 갱신
+		  $j('#pointcheck').prop('checked', false);//입력값 갱신될때마다 포인트사용체크해제
+		  managerlist.value = "";//금액을 재설정하기위해 초기화
+		  datepicker.value = "";
+		  timepicker.value ="";
+		  $j("#datepicker").attr('disabled','disabled');
+	});
 	
+	$j('#pointcheck').change(function() {
+		managerlist.value = "";//금액을 재설정하기위해 초기화
+		datepicker.value = "";
+		timepicker.value ="";
+		$j("#datepicker").attr('disabled','disabled');//날짜 입력 초기화
+	});
+	
+	$j('#point').on('input', function() {
+	    var myPoint = <%=memberInfo.getU_Point()%>; // 포인트의 상한값
+	    var inputValue = parseInt($j(this).val()); // 입력 필드의 값을 정수로 고정
+
+	    if (isNaN(inputValue)) {
+	        inputValue = 0; // 입력값이 숫자가 아니라면 0으로 설정
+	    }
+
+	    if (inputValue < 0) {
+	        inputValue = 0; // 0 미만의 값은 0으로 설정
+	    } else if (inputValue > myPoint) {
+	        inputValue = myPoint; // 상한값을 넘는 값은 상한값으로 설정
+	    }
+
+	    $j(this).val(inputValue); // 입력 필드의 값을 처리한 값으로 업데이트
+	});
+	
+	// 지점선택에대한 함수
 	$j('#storelist').change(function() {
+		
+		// 지점이 선택될시 사용을 위해 disabled 삭제
 		$j("#petlist").removeAttr("disabled");
 		$j("#servicelist").removeAttr("disabled");
 		$j("#weightlist").removeAttr("disabled");
@@ -368,7 +448,7 @@ $j(document).ready(function() {
                 $j('#timepicker').timepicker({
                   timeFormat: 'H:i',
                   step: 60,
-                  minTime: '09:00', // 최소 시간
+                  minTime: '10:00', // 최소 시간
                   maxTime: '18:00', // 최대 시간
                   disableTextInput : true, //텍스트입력불가
                   listWidth : 1, //크기조정
@@ -405,8 +485,12 @@ $j(document).ready(function() {
             url: 'getPrice.aj',
             data: {"selectedPet": selectedPet, "selectedPrice":selectedPrice, "selectedManager":selectedManager}, // 선택된 값을 서버로 전송
             success: function(result) {
-            	//결과값을 price text태그에 할당
+            	//포인트가 0이아니고 포인트 사용에 체크되어있으면 가격 계산
+            	if(!point == "" && $('#pointcheck').prop('checked')){
+            		result = result - point
+            	} 
             	price.value = result;
+
             }
         });
         
@@ -420,6 +504,9 @@ $j(document).ready(function() {
 		datepicker.value = "";
 		timepicker.value ="";
 		$j("#timepicker").attr('disabled','disabled');
+		
+		// 변수 초기화 작업
+        disabledDates = [];
 		
         // if문 및 지점번호 값 전송
         var selectedStore = $j('#storelist').val();

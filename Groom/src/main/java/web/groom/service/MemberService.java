@@ -30,21 +30,21 @@ public class MemberService {
 
 			// MemberDTO에 객체생성후 파라미터값 저장
 			memberdto = new MemberDTO();
-			memberdto.setId(getId);
-			memberdto.setPass(getPass);
-			memberdto.setName(getName);
-			memberdto.setPhone(getPhone);
-			memberdto.setEmail(getEmail);
-			memberdto.setRegDate(getDate);
+			memberdto.setU_Id(getId);
+			memberdto.setU_Pass(getPass);
+			memberdto.setU_Name(getName);
+			memberdto.setU_Phone(getPhone);
+			memberdto.setU_Email(getEmail);
+			memberdto.setU_RegDate(getDate);
 			
 
 			// MemberDAO에 값을 전달하고 로직처리 수행
 			memberdao = new MemberDAO();
 			
 			//중복여부 검사 id, phone, email
-			MemberDTO IdCheck = memberdao.searchId(memberdto.getId());
-			MemberDTO emailCheck = memberdao.searchEmail(memberdto.getEmail());
-			MemberDTO phoneCheck = memberdao.searchPhone(memberdto.getPhone());
+			MemberDTO IdCheck = memberdao.searchId(memberdto.getU_Id());
+			MemberDTO emailCheck = memberdao.searchEmail(memberdto.getU_Email());
+			MemberDTO phoneCheck = memberdao.searchPhone(memberdto.getU_Phone());
 			if(IdCheck == null && emailCheck == null && phoneCheck == null) {
 				// 중복검증 확인후 db에 데이터 삽입 준비
 				memberdto = memberdao.insertMember(memberdto);	

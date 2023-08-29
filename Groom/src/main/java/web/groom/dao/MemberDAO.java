@@ -43,13 +43,13 @@ public class MemberDAO {
 				
 				// 솔트 생성 및 해시비밀번호 입력 준비
 				String salt = security.generateSalt();
-				String hashedPassword = security.hashPassword(memberdto.getPass(), salt);
+				String hashedPassword = security.hashPassword(memberdto.getU_Pass(), salt);
 				String role = "admin";
 				
 				// SQL 쿼리 실행(첫번째 유저테이블에 값삽입)
 				String SQL = "INSERT INTO user(u_id, u_pass, u_salt, u_role) VALUE(?,?,?,?)";
 				pstmt = con.prepareStatement(SQL);
-				pstmt.setString(1, memberdto.getId());
+				pstmt.setString(1, memberdto.getU_Id());
 				pstmt.setString(2, hashedPassword);
 				pstmt.setString(3, salt);
 				pstmt.setString(4, role);
@@ -58,17 +58,17 @@ public class MemberDAO {
 				// SQL 쿼리 실행(두번째 유저테이블에 값삽입)
 				String SQL2 = "INSERT INTO user2(u_name, u_phone, u_email, u_regdate) VALUE(?,?,?,?)";
 				pstmt2 = con.prepareStatement(SQL2);
-				pstmt2.setString(1, memberdto.getName());
-				pstmt2.setString(2, memberdto.getPhone());
-				pstmt2.setString(3, memberdto.getEmail());
-				pstmt2.setTimestamp(4, memberdto.getRegDate());
+				pstmt2.setString(1, memberdto.getU_Name());
+				pstmt2.setString(2, memberdto.getU_Phone());
+				pstmt2.setString(3, memberdto.getU_Email());
+				pstmt2.setTimestamp(4, memberdto.getU_RegDate());
 				int resultSet2 =  pstmt2.executeUpdate();
 				
 				if (resultSet != 0 && resultSet2 != 0) {
 					//성공적으로 값 입력시 나머지 부분 memberDTO에 입력
-					memberdto.setPass(hashedPassword);
-					memberdto.setSalt(salt);
-					memberdto.setRole(role);
+					memberdto.setU_Pass(hashedPassword);
+					memberdto.setU_Salt(salt);
+					memberdto.setU_Role(role);
 				}
 			
 			
@@ -87,7 +87,7 @@ public class MemberDAO {
 		return memberdto;
 	}
 
-	public MemberDTO userCheck(String id, String pass) {
+	public MemberDTO userCheck(String u_id, String u_pass) {
 		
 		//memberdto를 넘겨주기위한 초기화
 		memberdto = null;
@@ -102,7 +102,7 @@ public class MemberDAO {
 			// 로그인을위한 SQL 쿼리 실행(ID검색)
 			String SQL = "SELECT * FROM user WHERE u_id = ?";
 			pstmt = con.prepareStatement(SQL);
-			pstmt.setString(1, id);
+			pstmt.setString(1, u_id);
 			rs = pstmt.executeQuery();
 			
 			// 로그인 결과 처리
@@ -110,10 +110,10 @@ public class MemberDAO {
 				
 				//DB로부터 해시 값과 솔트 값을 받아옴
 				String hashedPassword = rs.getString("u_pass");
-				String salt = rs.getString("u_salt");
+				String u_salt = rs.getString("u_salt");
 				
 				// 입력된 비밀번호와 솔트 값으로 해시화하여 비교
-				String inputHashedPassword = security.hashPassword(pass, salt);
+				String inputHashedPassword = security.hashPassword(u_pass, u_salt);
 				
 				//비밀번호 일치시 로그인 성공 로직
 				if (hashedPassword.equals(inputHashedPassword)) {
@@ -123,11 +123,11 @@ public class MemberDAO {
 					memberdto = new MemberDTO();
 					
 					//첫번째 테이블로부터 값받아 입력
-					memberdto.setNum(rs.getInt("u_num"));
-					memberdto.setId(rs.getString("u_id"));
-					memberdto.setPass(hashedPassword);
-					memberdto.setSalt(salt);
-					memberdto.setRole(rs.getString("u_role"));
+					memberdto.setU_Num(rs.getInt("u_num"));
+					memberdto.setU_Id(rs.getString("u_id"));
+					memberdto.setU_Pass(hashedPassword);
+					memberdto.setU_Salt(u_salt);
+					memberdto.setU_Role(rs.getString("u_role"));
 					
 				}
 				
@@ -153,7 +153,7 @@ public class MemberDAO {
 		return memberdto;
 	}
 	
-	public MemberDTO searchId(String id) {
+	public MemberDTO searchId(String u_id) {
 		
 		memberdto = null;
 		
@@ -163,13 +163,13 @@ public class MemberDAO {
 			
 			String SQL = "SELECT * FROM user WHERE u_id = ?";
 			pstmt = con.prepareStatement(SQL);
-			pstmt.setString(1, id);
+			pstmt.setString(1, u_id);
 			rs = pstmt.executeQuery();
 			
 			// id 있으면 memberdto 객체생성후 값저장후 넘김 Id없는 경우 memberdto는 null로 넘김
 			if(rs.next()) {
 				memberdto = new MemberDTO();
-				memberdto.setId(id);
+				memberdto.setU_Id(u_id);
 			} else {
 				memberdto = null;
 			}
@@ -184,7 +184,7 @@ public class MemberDAO {
 		return memberdto;
 	}
 	
-	public MemberDTO searchPhone(String phone) {
+	public MemberDTO searchPhone(String u_phone) {
 		
 		memberdto = null;
 		
@@ -194,13 +194,13 @@ public class MemberDAO {
 			
 			String SQL = "SELECT * FROM user2 WHERE u_phone = ?";
 			pstmt = con.prepareStatement(SQL);
-			pstmt.setString(1, phone);
+			pstmt.setString(1, u_phone);
 			rs = pstmt.executeQuery();
 			
 			// 전화번호 있으면 memberdto 객체생성후 값저장후 넘김 전화번호없는 경우 memberdto는 null로 넘김
 			if(rs.next()) {
 				memberdto = new MemberDTO();
-				memberdto.setPhone(phone);
+				memberdto.setU_Phone(u_phone);
 			} else {
 				memberdto = null;
 			}
@@ -215,7 +215,7 @@ public class MemberDAO {
 		return memberdto;
 	}
 
-	public MemberDTO searchEmail(String email) {
+	public MemberDTO searchEmail(String u_email) {
 		
 		memberdto = null;
 		
@@ -225,13 +225,13 @@ public class MemberDAO {
 			
 			String SQL = "SELECT * FROM user2 WHERE u_email = ?";
 			pstmt = con.prepareStatement(SQL);
-			pstmt.setString(1, email);
+			pstmt.setString(1, u_email);
 			rs = pstmt.executeQuery();
 			
 			// email 있으면 memberdto 객체생성후 값저장후 넘김 email없는 경우 memberdto는 null로 넘김
 			if(rs.next()) {
 				memberdto = new MemberDTO();
-				memberdto.setEmail(email);
+				memberdto.setU_Email(u_email);
 			} else {
 				memberdto = null;
 			}
@@ -246,7 +246,7 @@ public class MemberDAO {
 		return memberdto;
 	}
 	
-	public MemberDTO findid(String name, String email) {
+	public MemberDTO findid(String u_name, String u_email) {
 		
 		memberdto = null;
 
@@ -256,17 +256,17 @@ public class MemberDAO {
 
 			String SQL = "SELECT u.u_id FROM user u JOIN user2 u2 on u.u_num = u2.u_num  WHERE u2.u_name=? AND u2.u_email = ? ";
 			pstmt = con.prepareStatement(SQL);
-			pstmt.setString(1, name);
-			pstmt.setString(2, email);
+			pstmt.setString(1, u_name);
+			pstmt.setString(2, u_email);
 			rs = pstmt.executeQuery();
 			
-			System.out.println("memberdao " + name + email); // 임시로 데이터 값을 받는지 체크하기 위해 넣은 것.
+			System.out.println("memberdao " + u_name + u_email); // 임시로 데이터 값을 받는지 체크하기 위해 넣은 것.
 
 
 			if (rs.next()) {
 				memberdto = new MemberDTO();
 				
-				memberdto.setId(rs.getString("u_id"));
+				memberdto.setU_Id(rs.getString("u_id"));
 				
 			}
 
@@ -278,7 +278,7 @@ public class MemberDAO {
 		return memberdto;
 	} // findid 
 	
-	public MemberDTO findPass(String id, String email) {
+	public MemberDTO findPass(String u_id, String u_email) {
 		
 		memberdto = null;
 
@@ -287,16 +287,16 @@ public class MemberDAO {
 			con = new SQLConnection().getConnection();
 			String SQL = "SELECT u.u_num FROM user u JOIN user2 u2 on u.u_num = u2.u_num WHERE u.u_id=? AND u2.u_email = ?";
 			pstmt = con.prepareStatement(SQL);
-			pstmt.setString(1, id);
-			pstmt.setString(2, email);
+			pstmt.setString(1, u_id);
+			pstmt.setString(2, u_email);
 			rs = pstmt.executeQuery();
 			
-			System.out.println("memberdao " + id + email); // 임시로 데이터 값을 받는지 체크하기 위해 넣은 것.
+			System.out.println("memberdao " + u_id + u_email); // 임시로 데이터 값을 받는지 체크하기 위해 넣은 것.
 
 			// 값 일치하면 memberdto 객체생성후 값저장후 넘김 값일치 없는 경우 memberdto는 null로 넘김
 			if(rs.next()) {
 				memberdto = new MemberDTO();
-				memberdto.setNum(rs.getInt("u_num"));
+				memberdto.setU_Num(rs.getInt("u_num"));
 			} else {
 				memberdto = null;
 			}
@@ -311,7 +311,7 @@ public class MemberDAO {
 		return memberdto;
 	} // findpass
 	
-	public MemberDTO resetPass(String hashedPassword, String salt, int u_num) {
+	public MemberDTO resetPass(String hashedPassword, String u_salt, int u_num) {
 		
 		memberdto = null;
 
@@ -321,7 +321,7 @@ public class MemberDAO {
 			String SQL = "UPDATE user SET u_pass = ?, u_salt = ? WHERE u_num = ?";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setString(1, hashedPassword);
-			pstmt.setString(2, salt);
+			pstmt.setString(2, u_salt);
 			pstmt.setInt(3, u_num);
 			int result = pstmt.executeUpdate();
 			
@@ -343,7 +343,7 @@ public class MemberDAO {
 	} // resetPass
 
 
-	public MemberDTO getMemberInfo(int num) {
+	public MemberDTO getMemberInfo(int u_num) {
 		
 		memberdto = null;
 		
@@ -354,18 +354,18 @@ public class MemberDAO {
 			
 			String SQL = "SELECT * FROM user2 WHERE u_num = ?";
 			pstmt = con.prepareStatement(SQL);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, u_num);
 			rs = pstmt.executeQuery();
 			
 			// 유저번호에 따른 개인정보 저장
 			if(rs.next()) {
 				memberdto = new MemberDTO();
-				memberdto.setName(rs.getString("u_name"));
-				memberdto.setPhone(rs.getString("u_phone"));
-				memberdto.setEmail(rs.getString("u_email"));
-				memberdto.setRegDate(rs.getTimestamp("u_regdate"));
-				memberdto.setCount(rs.getInt("u_count"));
-				memberdto.setPoint(rs.getInt("u_point"));
+				memberdto.setU_Name(rs.getString("u_name"));
+				memberdto.setU_Phone(rs.getString("u_phone"));
+				memberdto.setU_Email(rs.getString("u_email"));
+				memberdto.setU_RegDate(rs.getTimestamp("u_regdate"));
+				memberdto.setU_Count(rs.getInt("u_count"));
+				memberdto.setU_Point(rs.getInt("u_point"));
 			} else {
 				memberdto = null;
 			}

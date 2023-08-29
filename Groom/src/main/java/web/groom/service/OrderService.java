@@ -17,11 +17,11 @@ public class OrderService {
 		
 		List<OrderDTO> serviceDate = null;
 		
-		String store = request.getParameter("selectedStore");
+		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		
 		try {
 			orderDAO = new OrderDAO();
-			serviceDate = orderDAO.getServiceDate(store);
+			serviceDate = orderDAO.getServiceDate(s_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,9 +38,6 @@ public class OrderService {
 		int emp_num = Integer.parseInt(request.getParameter("selectedManager"));
 		String dis_date = (request.getParameter("selectedDate"));
 		
-		System.out.println(s_num);
-		System.out.println(emp_num);
-		System.out.println(dis_date);
 		try {
 			orderDAO = new OrderDAO();
 			serviceTime = orderDAO.getServiceTime(s_num, emp_num, dis_date);
@@ -124,6 +121,10 @@ public class OrderService {
 		int servicenum = Integer.parseInt(request.getParameter("selectedPrice"));
 		int servicepet = Integer.parseInt(request.getParameter("selectedPet"));
 		int servicemanager = Integer.parseInt(request.getParameter("selectedManager"));
+		
+		System.out.println(servicenum);
+		System.out.println(servicepet);
+		System.out.println(servicemanager);
 		
 		try {
 			orderDAO = new OrderDAO();

@@ -48,7 +48,7 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 									</div>
 									<div class="form-group">
 										<p>예상예약 요금</p>
-										<input type="text" id="price" name="price" class="form-control" readonly>
+										<input type="text" class="form-control" id="price" name="price" readonly>
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -102,8 +102,8 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 								</div>
 								
 								<div class="col-md-3">
-									<p>요청사항작성</p>
 									<div class="form-group">
+										<p>요청사항작성</p>
 										<textarea id="message" name="message" cols="30" rows="7" class="form-control" placeholder="요청사항이 있으면 기입해 주십시오"></textarea>
 									</div>
 									

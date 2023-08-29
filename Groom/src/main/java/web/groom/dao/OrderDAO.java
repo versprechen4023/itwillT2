@@ -27,7 +27,7 @@ public class OrderDAO {
 		if (con != null) {try {con.close();} catch (SQLException e) {e.printStackTrace();}}
 	}
 	
-	public List<OrderDTO> getServiceDate(String value) {
+	public List<OrderDTO> getServiceDate(int s_num) {
 		
 		List<OrderDTO> serviceDate = null;
 		
@@ -35,16 +35,16 @@ public class OrderDAO {
 			
 			con = new SQLConnection().getConnection();
 			
-			String sql = "SELECT date FROM myDate";
+			String sql = "SELECT dis_day FROM myDate where s_num = ?";
 			pstmt = con.prepareStatement(sql);
-
+			pstmt.setInt(1, s_num);
 			rs = pstmt.executeQuery();
 
 			serviceDate = new ArrayList<>();
 
 			while(rs.next()) {
 				OrderDTO orderDTO = new OrderDTO();
-				orderDTO.setDate(rs.getDate("date"));
+				orderDTO.setDate(rs.getDate("dis_day"));
 
 				serviceDate.add(orderDTO);
 			}

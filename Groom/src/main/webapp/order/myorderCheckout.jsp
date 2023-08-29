@@ -6,7 +6,10 @@
 String name = request.getParameter("name");
 String phone = request.getParameter("phone");
 String storelist = request.getParameter("storelist");
+String petlist = request.getParameter("petlist");
 String servicelist = request.getParameter("servicelist");
+String weightlist = request.getParameter("weightlist");
+String managerlist = request.getParameter("managerlist");
 String datepicker = request.getParameter("datepicker");
 String timepicker = request.getParameter("timepicker");
 String price = request.getParameter("price");
@@ -53,33 +56,48 @@ String message = request.getParameter("message");
 									    <p>연락처</p>
 										<input type="text" class="form-control" id="phone" name="phone" value="<%=phone%>" readonly>
 									</div>
+									<div class="form-group">
+										<p>예상예약 요금</p>
+										<input type="text" class="form-control" id="price" name="price" value="<%=price%>" readonly>
+									</div>
 								</div>
 								<div class="col-md-3">
 								    <div class="form-group">
-								    	<p>선택 매장명</p>
+								    	<p>선택하신 매장명</p>
 										<input type="text" class="form-control" id="storelist" name="storelist" value="<%=storelist%>" readonly>
 									</div>
 									<div class="form-group">
-										<p>선택 서비스명</p>
+										<p>선택하신 견종</p>
+										<input type="text" class="form-control" id="petlist" name="petlist" value="<%=petlist%>" readonly>
+									</div>
+									<div class="form-group">
+										<p>선택하신 서비스명</p>
 										<input type="text" class="form-control" id="servicelist" name="servicelist" value="<%=servicelist%>" readonly>
 									</div>
-										<p>선택 예약날짜</p>
 									<div class="form-group">
-										<input type="text" id="datepicker" name="datepicker" class="form-control" value="<%=datepicker%>" readonly>
+										<p>선택하신 무게</p>
+										<input type="text" class="form-control" id="weightlist" name="weightlist" value="<%=weightlist%>" readonly>
 									</div>
-										<p>선택 예약시간</p>
 									<div class="form-group">
-										<input type="text" id="timepicker" name="timepicker" class="form-control" value="<%=timepicker%>" readonly>
-									</div>
-										<p>예약요금</p>
-									<div class="form-group">
-										<input type="text" id="price" name="price" class="form-control" value="<%=price%>" readonly>
+										<p>선택하신 직원</p>
+										<input type="text" class="form-control" id="managerlist" name="managerlist" value="<%=managerlist%>" readonly>
 									</div>
 								</div>
 								
 								<div class="col-md-3">
-									<p>기입하신 요구사항</p>
 									<div class="form-group">
+										<p>선택하신 예약날짜</p>
+										<input type="text" id="datepicker" name="datepicker" class="form-control" value="<%=datepicker%>" readonly>
+									</div>
+									<div class="form-group">
+										<p>선택하신 예약시간</p>
+										<input type="text" id="timepicker" name="timepicker" class="form-control" value="<%=timepicker%>" readonly>
+									</div>
+								</div>
+								
+								<div class="col-md-3">
+									<div class="form-group">
+									<p>기입하신 요구사항</p>
 										<textarea id="message" name="message" cols="30" rows="7" class="form-control" readonly><%=message%></textarea>
 									</div>
 								
@@ -87,24 +105,13 @@ String message = request.getParameter("message");
 <!-- 										<input type="submit" class="btn btn-primary btn-md" value="예약하기"> -->
 <!-- 									</div> -->
 								</div>
-						
+								
 							</div>
 						</div>
-						
+					<button type="button" class="btn btn-primary my-class" id="call_api" onclick="callAPI()">카드 결제</button>
+					<button type="button" class="btn btn-primary" id="call_api_kakao" onclick="callAPIKakao()">카카오페이 결제</button>	
 					</div>
 				</form>
-			<div class="fh5co-more-contact">
-			예약내용을 확인하십시오 위의내역으로 틀림 없습니까?
-				<div class="fh5co-narrow-content">
-					<div class="row">
-						<div class="col-md-4">
-							<button type="button" class="btn btn-primary my-class" id="call_api" onclick="callAPI()">카드 결제</button>
-							<button type="button" class="btn btn-primary" id="call_api_kakao" onclick="callAPIKakao()">카카오페이 결제</button>
-						</div>
-						
-					</div>
-				</div>
-			</div>
 			
 			</div>
 				

@@ -34,11 +34,16 @@ public class OrderService {
 
 		List<OrderDTO> serviceTime = null;
 		
-		String date = request.getParameter("selectedDate");
+		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
+		int emp_num = Integer.parseInt(request.getParameter("selectedManager"));
+		String dis_date = (request.getParameter("selectedDate"));
 		
+		System.out.println(s_num);
+		System.out.println(emp_num);
+		System.out.println(dis_date);
 		try {
 			orderDAO = new OrderDAO();
-			serviceTime = orderDAO.getServiceTime(date);
+			serviceTime = orderDAO.getServiceTime(s_num, emp_num, dis_date);
 			
 			//타임피커 비활성화를 위한 1분추가를 위한 시간계산
 			for(OrderDTO orderDTO : serviceTime) {
@@ -119,10 +124,6 @@ public class OrderService {
 		int servicenum = Integer.parseInt(request.getParameter("selectedPrice"));
 		int servicepet = Integer.parseInt(request.getParameter("selectedPet"));
 		int servicemanager = Integer.parseInt(request.getParameter("selectedManager"));
-		
-		System.out.println(servicenum);
-		System.out.println(servicepet);
-		System.out.println(servicemanager);
 		
 		try {
 			orderDAO = new OrderDAO();

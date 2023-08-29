@@ -56,7 +56,7 @@ public class OrderDAO {
 		return serviceDate;
 	}
 
-	public List<OrderDTO> getServiceTime(String date) {
+	public List<OrderDTO> getServiceTime(int s_num, int emp_num, String dis_date) {
 		
 		List<OrderDTO> serviceTime = null;
 		
@@ -64,16 +64,18 @@ public class OrderDAO {
 			
 			con = new SQLConnection().getConnection();
 			
-			String sql = "SELECT time FROM myTime WHERE date = ? ORDER BY time";
+			String sql = "SELECT dis_time FROM myTime WHERE s_num = ? and emp_num = ? and dis_date = ? ORDER BY dis_time";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, date);
+			pstmt.setInt(1, s_num);
+			pstmt.setInt(2, emp_num);
+			pstmt.setString(3, dis_date);
 			rs = pstmt.executeQuery();
 
 			serviceTime = new ArrayList<>();
 
 			while(rs.next()) {
 				OrderDTO orderDTO = new OrderDTO();
-				orderDTO.setTime(rs.getTime("time"));
+				orderDTO.setTime(rs.getTime("dis_time"));
 
 				serviceTime.add(orderDTO);
 			}

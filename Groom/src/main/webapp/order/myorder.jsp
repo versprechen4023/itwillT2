@@ -46,6 +46,10 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 									    <p>연락처</p>
 										<input type="text" class="form-control" id="phone" name="phone" value="<%=memberInfo.getPhone() %>" readonly>
 									</div>
+									<div class="form-group">
+										<p>예상예약 요금</p>
+										<input type="text" id="price" name="price" class="form-control" readonly>
+									</div>
 								</div>
 								<div class="col-md-3">
 								    <div class="form-group">
@@ -84,17 +88,16 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 											<option value="" disabled selected>담당직원을 선택하세요</option>
 										</select>
 									</div>
-										<p>예약날짜 선택</p>
+								</div>
+								
+								<div class="col-md-3">
 									<div class="form-group">
+										<p>예약날짜 선택</p>
 										<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="예약일을 선택하세요" disabled readonly>
 									</div>
+									<div class="form-group">
 										<p>예약시간 선택</p>
-									<div class="form-group">
 										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="예약시간을 선택하세요" disabled>
-									</div>
-										<p>예상예약 요금</p>
-									<div class="form-group">
-										<input type="text" id="price" name="price" class="form-control" placeholder="서비스를 선택해주십시오" readonly>
 									</div>
 								</div>
 								
@@ -104,14 +107,13 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 										<textarea id="message" name="message" cols="30" rows="7" class="form-control" placeholder="요청사항이 있으면 기입해 주십시오"></textarea>
 									</div>
 									
-									<div class="form-group">
-										<input type="submit" class="btn btn-primary btn-md" value="예약하기">
-									</div>
 								</div>
 								
 							</div>
 						</div>
-						
+						<div class="form-group">
+							<input type="submit" class="btn btn-primary btn-md" value="예약하기">
+						</div>
 					</div>
 				</form>
 				
@@ -214,17 +216,40 @@ $j(document).ready(function() {
 	
 	$j('#storelist').change(function() {
 		$j("#petlist").removeAttr("disabled");
+		$j("#servicelist").removeAttr("disabled");
+		$j("#weightlist").removeAttr("disabled");
+		$j("#managerlist").removeAttr("disabled");
 		
 		//지점이 바뀔경우 다른 입력값 모두 초기화 및 시간 날짜 입력 비활성화
 		petlist.value = "";
 		
 		servicelist.value ="";
 		
+		weightlist.value = "";
+		
+		managerlist.value = "";
+		
 		datepicker.value = "";
 		
 		timepicker.value ="";
 		
 		price.value ="";
+		
+		for (var i = servicelist.options.length - 1; i >= 0; i--) {
+    	    if (servicelist.options[i].value !== "") {
+    	    	servicelist.remove(i);
+    	    }
+    	}
+		for (var i = weightlist.options.length - 1; i >= 0; i--) {
+    	    if (weightlist.options[i].value !== "") {
+    	    	weightlist.remove(i);
+    	    }
+    	}
+		for (var i = managerlist.options.length - 1; i >= 0; i--) {
+    	    if (managerlist.options[i].value !== "") {
+    	    	managerlist.remove(i);
+    	    }
+    	}
 		
 		$j("#datepicker").attr('disabled','disabled');
     	$j("#timepicker").attr('disabled','disabled');
@@ -243,11 +268,7 @@ $j(document).ready(function() {
             	    option.value = service.s_num;
             	    option.text = service.s_name;
             	    servicelist.appendChild(option);
-            	    $j("#servicelist").removeAttr("disabled");
             	});
-            },
-            error: function(xhr, status, error) {
-            	alert("서버와의 통신에 문제가 발생했습니다");
             }
         });
         
@@ -262,11 +283,7 @@ $j(document).ready(function() {
             	    option.value = weight.s_num;
             	    option.text = weight.s_weight;
             	    weightlist.appendChild(option);
-            	    $j("#weightlist").removeAttr("disabled");
             	});
-            },
-            error: function(xhr, status, error) {
-            	alert("서버와의 통신에 문제가 발생했습니다");
             }
         });
      	
@@ -282,14 +299,10 @@ $j(document).ready(function() {
             	    option.value = manager.emp_num;
             	    option.text = fullName;
             	    managerlist.appendChild(option);
-            	    $j("#managerlist").removeAttr("disabled");
             	});
-            },
-            error: function(xhr, status, error) {
-            	alert("서버와의 통신에 문제가 발생했습니다");
             }
         });
-     
+     	
 	});
 	
 	// 날짜구하는함수
@@ -328,14 +341,16 @@ $j(document).ready(function() {
    	// 최대 날짜 범위 +숫자m은 달제한 +숫자w는 주제한
    	maxDate: "+3w",
    	
-   	//날짜를 넘겨주고 비활성화할 시간을 넣을 AJAX호출
+   	//지점값, 매니저값, 날짜 넘겨주고 비활성화할 시간을 넣을 AJAX호출
    	onSelect: function(selectedDate) {
-
+		
+   		var selectedStore = $j('#storelist').val();
+   		var selectedManager = $j("#managerlist").val();
         // 여기서부터 데이트피커 AJAX처리
         $j.ajax({
             type: "GET",
             url: "getTime.aj",
-            data: {"selectedDate": selectedDate},
+            data: {"selectedStore":selectedStore, "selectedManager":selectedManager, "selectedDate":selectedDate},
             dataType: 'json',
             success: function(result) {
             	
@@ -346,8 +361,8 @@ $j(document).ready(function() {
             	for (var i = 0; i < result.length; i++) {
                     disabledTimes.push([result[i].time1, result[i].time2]);
                 }
-            	// 타임피커 선택을 가능하게하기 위해 readonly 해제
-            	$j("#timepicker").removeAttr("readonly");
+            	// 타임피커 선택을 가능하게하기 위해 disabled 해제
+            	$j("#timepicker").removeAttr("disabled");
             	
                 // 날짜가 제대로 입력되고 비활성화 할 시간이 적용되었다면 타임피커 호출
                 $j('#timepicker').timepicker({
@@ -360,10 +375,6 @@ $j(document).ready(function() {
                   disableTimeRanges: disabledTimes //비활성화할시간 변수에서 호출
                 });
                 
-            },
-            error: function(xhr, status, error) {
-            	alert("서버와의 통신에 문제가 발생했습니다");
-            	$j("#timepicker").attr("readonly", "readonly");
             }
         });
     },
@@ -388,9 +399,6 @@ $j(document).ready(function() {
         
         //가격을 얻기 위한 AJAX 요청.
         if(!selectedService == "" && !selectedWeight == "" && !selectedPet == "" && !selectedManager == ""){
-		
-          	alert(selectedPrice);
-          	alert(selectedManager);
           	
         $j.ajax({
         	type: "GET",
@@ -398,28 +406,30 @@ $j(document).ready(function() {
             data: {"selectedPet": selectedPet, "selectedPrice":selectedPrice, "selectedManager":selectedManager}, // 선택된 값을 서버로 전송
             success: function(result) {
             	//결과값을 price text태그에 할당
-            	document.getElementById("price").value = result;
-            },
-            error: function(xhr, status, error) {
-            	alert("서버와의 통신에 문제가 발생했습니다");
+            	price.value = result;
             }
         });
         
         }
     });
     
-  	//지점선택에 대한 AJAX처리
-    $j('#storelist, #servicelist, #petlist, #weightlist, #managerlist').change(function() {
-        // 지점선택 밸류값 가져오기
+  	//날짜선택에 대한 AJAX처리
+    $j('#managerlist').change(function() {
+		
+    	//직원 선택시 예약 일자 초기화
+		datepicker.value = "";
+		timepicker.value ="";
+		$j("#timepicker").attr('disabled','disabled');
+		
+        // if문 및 지점번호 값 전송
         var selectedStore = $j('#storelist').val();
-        // if문용
         var selectedService = $j("#servicelist").val();
         var selectedPet = $j("#petlist").val();
         var selectedWeight = $j("#weightlist").val();
         var selectedManager = $j("#managerlist").val();
         
         // 날짜 비활성화를 위한 AJAX 요청.
-        if(!selectedStore == "" && !selectedService == "" && !selectedPet == "")
+        if(!selectedStore == "" && !selectedService == "" && !selectedPet == "" && !selectedWeight == "" && !selectedManager == "")
         $j.ajax({
         	type: "GET",
             url: 'getDate.aj',
@@ -427,14 +437,10 @@ $j(document).ready(function() {
             dataType: 'json',
             success: function(result) {
             	$j("#datepicker").removeAttr("disabled");
-            	$j("#timepicker").removeAttr("disabled");
             	disabledDates = result.map(function(item) {
                     return item.date;
                 });
         
-            },
-            error: function(xhr, status, error) {
-            	alert("서버와의 통신에 문제가 발생했습니다");
             }
         });
     });

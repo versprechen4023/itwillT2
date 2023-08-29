@@ -60,6 +60,11 @@ public class OrderController extends HttpServlet {
 			 }
 	     }
 		 
+		//페이지이동
+		 if (sPath.equals("/myorderCheckout.or")) {
+			 webForward(request, response, "order", "myorderCheckout");
+	     }
+		 
 		 
 	}
 

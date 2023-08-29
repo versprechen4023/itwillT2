@@ -116,19 +116,12 @@ public List<ReviewDTO> getReviewList(String proName) {
 	public void writeRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
 		System.out.println("ReviewService writeRe()");
 		try {
-			request.setCharacterEncoding("uft-8");
 			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
-			int re_ref = Integer.parseInt(request.getParameter("re_ref"));
-			int re_lev = Integer.parseInt(request.getParameter("re_lev"));
-			int re_seq = Integer.parseInt(request.getParameter("re_seq"));
 			String re_content = request.getParameter("re_content");
 			Timestamp re_date = new Timestamp(System.currentTimeMillis());
 			
 			ReviewDTO reviewDTO = new ReviewDTO();
 			reviewDTO.setRev_num(rev_num);
-			reviewDTO.setRe_ref(re_ref);
-			reviewDTO.setRe_lev(re_lev);
-			reviewDTO.setRe_seq(re_seq);
 			reviewDTO.setRe_content(re_content);
 			reviewDTO.setRe_date(re_date);
 			
@@ -138,21 +131,48 @@ public List<ReviewDTO> getReviewList(String proName) {
 			e.printStackTrace();
 		}
 	}// writeRe [답글작성]
+	
+	public void updateRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
+		System.out.println("ReviewService updateRe()");
+		try {
+			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
+			String re_content = request.getParameter("re_content");
+//			Timestamp re_date = new Timestamp(System.currentTimeMillis());
+			
+			ReviewDTO reviewDTO = new ReviewDTO();
+			reviewDTO.setRev_num(rev_num);
+			reviewDTO.setRe_content(re_content);
+//			reviewDTO.setRe_date(re_date); // 수정해도 시간은 그대로
+			
+			reviewDAO = new ReviewDAO();
+			reviewDAO.updateRe(reviewDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}// updateRe [답글수정]
 
 
 	public void deleteRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
-		System.out.println("ReviewService writeRe()");
+		System.out.println("ReviewService deleteRe()");
 		try {
-			request.setCharacterEncoding("uft-8");
 			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
+			String re_content = request.getParameter("re_content");
+			
 			ReviewDTO reviewDTO = new ReviewDTO();
 			reviewDTO.setRev_num(rev_num);
+			reviewDTO.setRe_content(re_content);
+			
 			reviewDAO = new ReviewDAO();
 			reviewDAO.deleteRe(reviewDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}// deleteRe [답글삭제]
+
+
+	public void updateReview(HttpServletRequest request) {
+		System.out.println("ReviewService updateReview() fupdate 참고");
+	}
 
 	
 	

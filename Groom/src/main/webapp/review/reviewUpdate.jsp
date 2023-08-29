@@ -15,6 +15,7 @@
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
 <!-- =============================  네비게이션바 ============================= -->
+<form action="reviewUpdatePro.re" method="post">
 <%
 String id = (String)session.getAttribute("id");
 String role = (String)session.getAttribute("role"); 
@@ -23,7 +24,6 @@ String num = (String)session.getAttribute("num");
 // 줄바꿈 자동으로해서 출력해주는 코드 ㄱ
 int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 ReviewDTO reviewDTO=(ReviewDTO)request.getAttribute("reviewDTO");
-
 
 // 별점 받아서 별출력하는 코드 ㄱ
 //     int rating = reviewDTO.getRev_rating(); // rev_rating 값 int로 바꾸면 수정하도록
@@ -47,7 +47,7 @@ for (int i = 1; i <= 5; i++) {
 		<div class="review-content animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 
 		<div class="content-top">
-		<div><a style="display: none;"><%=reviewDTO.getRev_num() %></a><p class="user-info"><%=reviewDTO.getU_name() %> / <a><%= stars %></a> / <%=reviewDTO.getRev_date() %> / <%=reviewDTO.getU_count() %>번째 방문</p>
+		<div><p class="user-info"><%=reviewDTO.getU_name() %> / <a><%= stars %></a> / <%=reviewDTO.getRev_date() %> / <%=reviewDTO.getU_count() %>번째 방문</p>
 			 <p class="product-info"><%=reviewDTO.getPro_name() %> / <%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %> / <%=reviewDTO.getS_location() %></p></div>
 			 
 		<div>
@@ -56,8 +56,8 @@ if(id != null){
 	int u_num = reviewDTO.getU_num() ; // 리뷰의 작성자 번호
 	if (num.equals(String.valueOf(u_num))) {
 %>		
-		<input type="button" value="삭제" onclick="really1('<%=reviewDTO.getRev_num()%>')">
-		<input type="button" value="수정" onclick="location.href='reviewUpdate.re?rev_num=<%=reviewDTO.getRev_num()%>'">	
+<%-- 		<input type="button" value="삭제" onclick="really('<%=reviewDTO.getRev_num()%>')"> --%>
+		<input type="submit" value="수정완료">	
 <%}}%>
 		</div>
 		</div>
@@ -68,65 +68,67 @@ if (reviewDTO != null) {
 	String rev_content = reviewDTO.getRev_content();
 	rev_content = rev_content.replace("\n", "<br>"); // 줄바꿈 문자를 <br> 태그로 변환
 %>			
-		<p><%=rev_content %></p>
+		<div>
+		<textarea rows="30" cols="10" class="recoment4" name="rev_content"><%=reviewDTO.getRev_content() %></textarea>
+		</div>
+		
 <%
 }
 %>
 		<br>
 		<img src="upload/<%=reviewDTO.getRev_img_url() %>" alt="이미지">
 		</div>
-		<!-- 답글  -->	
-		<div class="re-review-content animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
-		<div class="recontent-top">
-		<div>
-<%
-String re_content = reviewDTO.getRe_content();
-if(re_content != null){ // 내용 null이 아니어야 답글 보여요
-%>		
-		<h4 class="recoment1">Groom <%=reviewDTO.getS_location() %> <a><%=reviewDTO.getRe_date() %></a></h4>
-		<p class="recoment2"><%=reviewDTO.getRe_content() %></p>
-<%
-}
-%>		
-		</div>
-		<div>
-<%
-if(id != null){
-	if(role.equals("admin")){
-%>
-<%
-if(re_content != null){ // 내용 null이 아니어야 답글 보여요
-%>	
-			  <input type="button" value="삭제" onclick="really2('<%=reviewDTO.getRev_num()%>')">	
-			  <input type="button" value="수정" onclick="location.href='reUpdate.re?rev_num=<%=reviewDTO.getRev_num() %>'">
-<%} else if(re_content == null) {%>
-	<input type="button" value="답글작성" onclick="location.href='reWrite.re?rev_num=<%=reviewDTO.getRev_num() %>'">
-<%}}}%>
-		</div>	
-		</div>
-		</div>
-		<!-- 답글  -->
+		
+		<!-- 이미지 파일 첨부 -->
+	<div class="review-input-img">
+		<img src="./images/photo.png" class="review-input-img1" onclick="triggerFileInput()">
+		<input type="file" id="fileInput" name="rev_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
+		<div id="fileInfoDisplay">　<%=reviewDTO.getRev_img_url() %></div>
+	</div><br>
 		</div>
 		<br><br>
 <!-- 내용 끝  -->
 </div>
 </div>
 </div>
-
+<input >
 
 <script>
-function really1(rev_num) { // [리뷰삭제]
-    var result = confirm("정말로 삭제하시겠습니까?");
-    if (result) {
-        location.href = 'reviewDelete.re?rev_num=' + rev_num;
-    }
-}
-function really2(rev_num) { // [답글삭제]
-    var result = confirm("정말로 삭제하시겠습니까?");
-    if (result) {
-        location.href = 'reDelete.re?rev_num=' + rev_num;
-    }
-}
+// function really(rev_num) {
+//     var result = confirm("정말로 삭제하시겠습니까?");
+//     if (result) {
+//         location.href = 'reviewDelete.re?rev_num=' + rev_num;
+//     }
+// }
+//============================ 파일첨부	
+function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘리먼트 클릭
+	const fileInput = document.getElementById('fileInput');
+	fileInput.click(); // 파일 입력 엘리먼트 클릭 이벤트 발생
+	}
+// 파일 입력(input) 엘리먼트의 값이 변경되었을 때 실행되는 함수
+	document.getElementById('fileInput').addEventListener('change', function(event) {
+		const selectedFile = event.target.files[0]; // 선택된 파일 가져오기
+		const fileInfoDisplay = document.getElementById('fileInfoDisplay');
+		if (selectedFile) {
+// 선택된 파일이 허용된 확장자를 가지는지 검증
+			const allowedExtensions = /(\.png|\.jpg|\.jpeg|\.gif)$/i;
+			if (!allowedExtensions.exec(selectedFile.name)) {
+				alert('png, jpg, gif 파일만 첨부할 수 있습니다.');
+				resetFileInput();
+				return;
+				}
+// 파일명을 표시
+			fileInfoDisplay.textContent = selectedFile.name;
+			} else {
+// 파일 선택이 해제되었을 때
+				fileInfoDisplay.textContent = '선택된 파일 없음';
+				}
+		});
+// 파일 입력(input) 엘리먼트 초기화
+		function resetFileInput() {
+			const fileInput = document.getElementById('fileInput');
+			fileInput.value = ''; // 파일 선택 해제
+			}
 </script>
 	
 	<!-- jQuery -->
@@ -142,5 +144,6 @@ function really2(rev_num) { // [답글삭제]
 	
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
+	</form>
 	</body>
 </html>

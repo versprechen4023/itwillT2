@@ -33,64 +33,87 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 						<h2>예약주문</h2>
 					</div>
 				</div>
-				<form action="">
+				<form action="myorderCheckout.or" id="checkout" method="post">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-3">
 									<div class="form-group">
 										<p>예약자명</p>
-										<input type="text" class="form-control" value="<%=memberInfo.getName() %>" readonly>
+										<input type="text" class="form-control" id="name" name="name" value="<%=memberInfo.getName() %>" readonly>
 									</div>
 									<div class="form-group">
 									    <p>연락처</p>
-										<input type="text" class="form-control" value="<%=memberInfo.getPhone() %>" readonly>
+										<input type="text" class="form-control" id="phone" name="phone" value="<%=memberInfo.getPhone() %>" readonly>
+									</div>
+									<div class="form-group">
+										<p>예상예약 요금</p>
+										<input type="text" class="form-control" id="price" name="price" readonly>
 									</div>
 								</div>
 								<div class="col-md-3">
 								    <div class="form-group">
-								    	<p>매장선택</p>
-										<select class="form-control" id="list" name="list">
+								    	<p>예약매장 선택</p>
+										<select class="form-control" id="storelist" name="storelist">
 											<option value="" disabled selected>매장을 선택하세요</option>
-											<option value="A">서면점</option>
-											<option value="B">김해점</option>
+											<option value="1">서면점</option>
+											<option value="2">명지점</option>
+											<option value="3">율하점</option>
 										</select>
 									</div>
 									<div class="form-group">
-										<p>서비스선택</p>
-										<select class="form-control" id="list" name="list">
+										<p>견종 선택</p>
+										<select class="form-control" id="petlist" name="petlist" disabled>
+											<option value="" disabled selected>견종을 선택하세요</option>
+											<option value="1">소형견</option>
+											<option value="2">중형견</option>
+											<option value="3">대형견</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<p>서비스 선택</p>
+										<select class="form-control custom-select" id="servicelist" name="servicelist" disabled>
 											<option value="" disabled selected>서비스를 선택하세요</option>
-											<option value="A">[미용]대형견 15KG</option>
 										</select>
 									</div>
-										<p>날짜선택</p>
 									<div class="form-group">
-										<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="예약일을 선택해주십시오" readonly>
+										<p>무게 선택</p>
+										<select class="form-control custom-select" id="weightlist" name="weightlist" disabled>
+											<option value="" disabled selected>무게를 선택하세요</option>
+										</select>
 									</div>
-										<p>예약선택</p>
 									<div class="form-group">
-										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="예약시간을 선택해주십시오" readonly>
-									</div>
-										<p>예상예약요금</p>
-									<div class="form-group">
-										<input type="text" class="form-control" value="여기에 JSP태그" readonly>
+										<p>직원 선택</p>
+										<select class="form-control custom-select" id="managerlist" name="managerlist" disabled>
+											<option value="" disabled selected>담당직원을 선택하세요</option>
+										</select>
 									</div>
 								</div>
 								
 								<div class="col-md-3">
-									<p>요구사항기입</p>
 									<div class="form-group">
-										<textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="전달할말"></textarea>
+										<p>예약날짜 선택</p>
+										<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="예약일을 선택하세요" disabled readonly>
+									</div>
+									<div class="form-group">
+										<p>예약시간 선택</p>
+										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="예약시간을 선택하세요" disabled>
+									</div>
+								</div>
+								
+								<div class="col-md-3">
+									<div class="form-group">
+										<p>요청사항작성</p>
+										<textarea id="message" name="message" cols="30" rows="7" class="form-control" placeholder="요청사항이 있으면 기입해 주십시오"></textarea>
 									</div>
 									
-									<div class="form-group">
-										<input type="submit" class="btn btn-primary btn-md" value="예약하기">
-									</div>
 								</div>
 								
 							</div>
 						</div>
-						
+						<div class="form-group">
+							<input type="submit" class="btn btn-primary btn-md" value="예약하기">
+						</div>
 					</div>
 				</form>
 				
@@ -182,6 +205,106 @@ var disabledTimes = []; //여기에 비활성화할 데이터를 JSON으로 가�
 //제이쿼리 함수 시작 지점
 $j(document).ready(function() {
 	
+	var storelist = document.getElementById("storelist");
+	var petlist = document.getElementById("petlist");
+	var servicelist = document.getElementById("servicelist");
+	var weightlist = document.getElementById("weightlist");
+	var managerlist = document.getElementById("managerlist");
+	var datepicker = document.getElementById("datepicker");
+	var timepicker = document.getElementById("timepicker");
+	var price = document.getElementById("price");
+	
+	$j('#storelist').change(function() {
+		$j("#petlist").removeAttr("disabled");
+		$j("#servicelist").removeAttr("disabled");
+		$j("#weightlist").removeAttr("disabled");
+		$j("#managerlist").removeAttr("disabled");
+		
+		//지점이 바뀔경우 다른 입력값 모두 초기화 및 시간 날짜 입력 비활성화
+		petlist.value = "";
+		
+		servicelist.value ="";
+		
+		weightlist.value = "";
+		
+		managerlist.value = "";
+		
+		datepicker.value = "";
+		
+		timepicker.value ="";
+		
+		price.value ="";
+		
+		for (var i = servicelist.options.length - 1; i >= 0; i--) {
+    	    if (servicelist.options[i].value !== "") {
+    	    	servicelist.remove(i);
+    	    }
+    	}
+		for (var i = weightlist.options.length - 1; i >= 0; i--) {
+    	    if (weightlist.options[i].value !== "") {
+    	    	weightlist.remove(i);
+    	    }
+    	}
+		for (var i = managerlist.options.length - 1; i >= 0; i--) {
+    	    if (managerlist.options[i].value !== "") {
+    	    	managerlist.remove(i);
+    	    }
+    	}
+		
+		$j("#datepicker").attr('disabled','disabled');
+    	$j("#timepicker").attr('disabled','disabled');
+    	
+		// 지점선택 서비스 밸류값 가져오기
+        var selectedStore = $j(this).val();
+        
+        // 서비스 종류를 얻기 위한 AJAX 요청.
+        $j.ajax({
+        	type: "GET",
+            url: 'getService.aj',
+            data: {"selectedStore":selectedStore}, // 선택된 값을 서버로 전송
+            success: function(result) {
+            	result.forEach(function(service) {
+            	    var option = document.createElement("option");
+            	    option.value = service.s_num;
+            	    option.text = service.s_name;
+            	    servicelist.appendChild(option);
+            	});
+            }
+        });
+        
+     	// 무게 쪽을 얻기 위한 AJAX 요청.
+        $j.ajax({
+        	type: "GET",
+            url: 'getWeight.aj',
+            data: {"selectedStore":selectedStore}, // 선택된 값을 서버로 전송
+            success: function(result) {
+            	result.forEach(function(weight) {
+            	    var option = document.createElement("option");
+            	    option.value = weight.s_num;
+            	    option.text = weight.s_weight;
+            	    weightlist.appendChild(option);
+            	});
+            }
+        });
+     	
+        // 직원 쪽을 얻기 위한 AJAX 요청.
+        $j.ajax({
+        	type: "GET",
+            url: 'getManager.aj',
+            data: {"selectedStore":selectedStore}, // 선택된 값을 서버로 전송
+            success: function(result) {
+            	result.forEach(function(manager) {
+            	    var option = document.createElement("option");
+            	    var fullName = manager.emp_grade + ' ' + manager.emp_name;
+            	    option.value = manager.emp_num;
+            	    option.text = fullName;
+            	    managerlist.appendChild(option);
+            	});
+            }
+        });
+     	
+	});
+	
 	// 날짜구하는함수
 	var currentDate = new Date();
 	var currentYear = currentDate.getFullYear();
@@ -218,14 +341,16 @@ $j(document).ready(function() {
    	// 최대 날짜 범위 +숫자m은 달제한 +숫자w는 주제한
    	maxDate: "+3w",
    	
-   	//날짜를 넘겨주고 비활성화할 시간을 넣을 AJAX호출
+   	//지점값, 매니저값, 날짜 넘겨주고 비활성화할 시간을 넣을 AJAX호출
    	onSelect: function(selectedDate) {
-
+		
+   		var selectedStore = $j('#storelist').val();
+   		var selectedManager = $j("#managerlist").val();
         // 여기서부터 데이트피커 AJAX처리
         $j.ajax({
             type: "GET",
             url: "getTime.aj",
-            data: {"selectedDate": selectedDate},
+            data: {"selectedStore":selectedStore, "selectedManager":selectedManager, "selectedDate":selectedDate},
             dataType: 'json',
             success: function(result) {
             	
@@ -236,8 +361,8 @@ $j(document).ready(function() {
             	for (var i = 0; i < result.length; i++) {
                     disabledTimes.push([result[i].time1, result[i].time2]);
                 }
-            	// 타임피커 선택을 가능하게하기 위해 readonly 해제
-            	$("#timepicker").removeAttr("readonly");
+            	// 타임피커 선택을 가능하게하기 위해 disabled 해제
+            	$j("#timepicker").removeAttr("disabled");
             	
                 // 날짜가 제대로 입력되고 비활성화 할 시간이 적용되었다면 타임피커 호출
                 $j('#timepicker').timepicker({
@@ -250,38 +375,76 @@ $j(document).ready(function() {
                   disableTimeRanges: disabledTimes //비활성화할시간 변수에서 호출
                 });
                 
-            },
-            error: function(xhr, status, error) {
-            	alert("서버와의 통신에 문제가 발생했습니다");
-            	$("#timepicker").attr("readonly", "readonly");
             }
         });
     },
    
 	});
+	 
+    //가격계산에 대한 AJAX처리
+    $j('#servicelist, #petlist, #weightlist, #managerlist').change(function() {
+    	
+        // 서비스 가격 계산을 위한 밸류값 가져오기
+        var selectedService = $j("#servicelist").val();
+        var selectedWeight = $j("#weightlist").val();
+        
+        //서비스와 무게따른 가격계산을 위한 값
+        var selectedPrice = parseInt(selectedService) + parseInt(selectedWeight)-1;
+        
+        //견종에 따른 추가 계산을 위한 값
+        var selectedPet = $j("#petlist").val();
+        
+        //직원에 따른 추가 계산을 위한 값
+        var selectedManager = $j("#managerlist").val();
+        
+        //가격을 얻기 위한 AJAX 요청.
+        if(!selectedService == "" && !selectedWeight == "" && !selectedPet == "" && !selectedManager == ""){
+          	
+        $j.ajax({
+        	type: "GET",
+            url: 'getPrice.aj',
+            data: {"selectedPet": selectedPet, "selectedPrice":selectedPrice, "selectedManager":selectedManager}, // 선택된 값을 서버로 전송
+            success: function(result) {
+            	//결과값을 price text태그에 할당
+            	price.value = result;
+            }
+        });
+        
+        }
+    });
     
-    //지점선택에 대한 AJAX처리
-    $j('#list').change(function() {
-        // 지점선택 밸류값 가져오기
-        var selectedStore = $(this).val();
-
+  	//날짜선택에 대한 AJAX처리
+    $j('#managerlist').change(function() {
+		
+    	//직원 선택시 예약 일자 초기화
+		datepicker.value = "";
+		timepicker.value ="";
+		$j("#timepicker").attr('disabled','disabled');
+		
+        // if문 및 지점번호 값 전송
+        var selectedStore = $j('#storelist').val();
+        var selectedService = $j("#servicelist").val();
+        var selectedPet = $j("#petlist").val();
+        var selectedWeight = $j("#weightlist").val();
+        var selectedManager = $j("#managerlist").val();
+        
         // 날짜 비활성화를 위한 AJAX 요청.
+        if(!selectedStore == "" && !selectedService == "" && !selectedPet == "" && !selectedWeight == "" && !selectedManager == "")
         $j.ajax({
         	type: "GET",
             url: 'getDate.aj',
             data: {"selectedStore": selectedStore}, // 선택된 값을 서버로 전송
             dataType: 'json',
             success: function(result) {
+            	$j("#datepicker").removeAttr("disabled");
             	disabledDates = result.map(function(item) {
                     return item.date;
                 });
-            	alert(disabledDates);
-            },
-            error: function(xhr, status, error) {
-            	alert("서버와의 통신에 문제가 발생했습니다");
+        
             }
         });
     });
+  
 });
 
 </script>

@@ -90,6 +90,7 @@ public class ReviewDAO {
 				reviewDTO.setRe_lev(rs.getInt("re_lev"));
 				reviewDTO.setRe_seq(rs.getInt("re_seq"));
 				reviewDTO.setRe_content(rs.getString("re_content"));
+				reviewDTO.setRe_date(rs.getTimestamp("re_date"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -168,15 +169,12 @@ public class ReviewDAO {
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "update test01"
-					+ "   set re_content=?,re_date=? re_ref=?+1, re_lev=?+1 re_seq=?+1"
-					+ "   where re_num=?";
+					+ "   set re_content=?,re_date=?,re_ref=re_ref+1,re_lev=re_lev+1,re_seq=re_seq+1"
+					+ "   where rev_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, reviewDTO.getRe_content());
 			pstmt.setTimestamp(2, reviewDTO.getRe_date());
-			pstmt.setInt(3, reviewDTO.getRe_ref());
-			pstmt.setInt(4, reviewDTO.getRe_lev());
-			pstmt.setInt(5, reviewDTO.getRe_seq());
-			pstmt.setInt(6, reviewDTO.getRev_num());
+			pstmt.setInt(3, reviewDTO.getRev_num());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -184,6 +182,25 @@ public class ReviewDAO {
 			dbClose();
 		}
 	}// writeRe() [답글작성]
+	
+	
+	public void updateRe(ReviewDTO reviewDTO) {
+		System.out.println("ReviewDAO updateRe()");
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "update test01"
+					+ "   set re_content=?"
+					+ "   where rev_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, reviewDTO.getRe_content());
+			pstmt.setInt(2, reviewDTO.getRev_num());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+	}// updateRe() [답글수정]
 
 	
 	public void deleteRe(ReviewDTO reviewDTO) {
@@ -191,8 +208,8 @@ public class ReviewDAO {
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "update test01"
-					+ "   set re_content=null,re_date=null re_ref=0, re_lev=0 re_seq=0"
-					+ "   where re_num=?";
+					+ "   set re_content=null,re_date=null,re_ref=re_ref-1,re_lev=re_lev-1,re_seq=re_seq-1"
+					+ "   where rev_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, reviewDTO.getRev_num());
 			pstmt.executeUpdate();

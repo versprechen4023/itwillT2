@@ -1,8 +1,5 @@
 package web.groom.dto;
 
-import java.sql.Time;
-import java.util.Date;
-
 public class OrderinfoDTO {
 	
 private String s_location;

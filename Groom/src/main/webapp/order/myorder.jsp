@@ -53,7 +53,7 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 									<div class="form-group">
 										<p>포인트 사용</p>
 										<input type="text" class="form-control" id="point" name="point" value="0">
-										내 포인트 = <%=memberInfo.getPoint() %><br>
+										내 포인트 = <%=memberInfo.getU_Point()%><br>
 										포인트 사용<input type="checkbox" id="pointcheck" name="pointcheck">
 									</div>
 								</div>
@@ -260,15 +260,21 @@ $j(document).ready(function() {
 	$j('#point').keyup(function() {
 		  point = $j('#point').val();//포인트 입력값 갱신
 		  $j('#pointcheck').prop('checked', false);//입력값 갱신될때마다 포인트사용체크해제
-		  managerlist.value = "";//금액을 재설정하기위해 매니저리스트 초기화
+		  managerlist.value = "";//금액을 재설정하기위해 초기화
+		  datepicker.value = "";
+		  timepicker.value ="";
+		  $j("#datepicker").attr('disabled','disabled');
 	});
 	
 	$j('#pointcheck').change(function() {
-		managerlist.value = "";//금액을 재설정하기위해 매니저리스트 초기화
+		managerlist.value = "";//금액을 재설정하기위해 초기화
+		datepicker.value = "";
+		timepicker.value ="";
+		$j("#datepicker").attr('disabled','disabled');//날짜 입력 초기화
 	});
 	
 	$j('#point').on('input', function() {
-	    var myPoint = <%=memberInfo.getPoint() %>; // 포인트의 상한값
+	    var myPoint = <%=memberInfo.getU_Point()%>; // 포인트의 상한값
 	    var inputValue = parseInt($j(this).val()); // 입력 필드의 값을 정수로 고정
 
 	    if (isNaN(inputValue)) {

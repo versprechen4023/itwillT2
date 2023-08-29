@@ -167,6 +167,7 @@ function reviewDeletePoint() {
         window.location.href = url;
     }
 }
+// //
 </script>
 	
 	<!-- jQuery -->

@@ -24,7 +24,7 @@ String num = (String)session.getAttribute("num");
 
 List<ReviewDTO> reviewList
 =(List<ReviewDTO>)request.getAttribute("reviewList");
-
+//
 // =============== 페이징코드 ㄱ
 int itemsPerPage = 10; // 페이지당 아이템 수
 int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;

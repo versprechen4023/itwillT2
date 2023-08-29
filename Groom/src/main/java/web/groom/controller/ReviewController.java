@@ -96,7 +96,7 @@ public class ReviewController extends HttpServlet {
 			 reviewService.deleteReviewPoint(request);
 			 response.sendRedirect("reviewList.re?pro_name=");
 		 }// reviewDelete.re [리뷰삭제 + 포인트회수]
-		 
+		 //
 		 
 		 if(sPath.equals("/reWrite.re")) {
 			 System.out.println("reWrite.re");

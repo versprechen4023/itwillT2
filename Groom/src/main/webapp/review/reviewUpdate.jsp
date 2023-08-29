@@ -20,7 +20,7 @@
 String id = (String)session.getAttribute("id");
 String role = (String)session.getAttribute("role"); 
 String num = (String)session.getAttribute("num"); 
-
+//
 // 줄바꿈 자동으로해서 출력해주는 코드 ㄱ
 int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 ReviewDTO reviewDTO=(ReviewDTO)request.getAttribute("reviewDTO");

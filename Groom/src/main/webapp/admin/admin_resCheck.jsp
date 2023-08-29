@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="css/admin_gr.css">
 <!-- 	<link href="./css/admin_gr.css" rel="stylesheet" type="text/css">
 적용이 안돼서 일단 위에 바로 작성중-->
-	
+<!-- 	ㅇ -->
 <body>
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>

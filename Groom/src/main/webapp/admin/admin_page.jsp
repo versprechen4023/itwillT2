@@ -14,7 +14,7 @@
 <!-- css -->
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/admin_gr.css">
-	
+<!-- 	ㅇ -->
 <body>
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>

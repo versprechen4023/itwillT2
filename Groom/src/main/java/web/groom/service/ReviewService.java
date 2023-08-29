@@ -52,7 +52,7 @@ public List<ReviewDTO> getReviewList(String proName) {
 		}
 	}// updateReadcount [리뷰조회수] 증가
 	
-	
+	//
 	public void insertReview(HttpServletRequest request) {
 		System.out.println("ReviewService insertReview");
 		try {

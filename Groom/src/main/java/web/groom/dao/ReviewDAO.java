@@ -251,7 +251,7 @@ public class ReviewDAO {
 			dbClose();
 		}
 	}// updateRe() [답글수정]
-
+//
 	
 	public void deleteRe(ReviewDTO reviewDTO) {
 		System.out.println("ReviewDAO writeRe()");

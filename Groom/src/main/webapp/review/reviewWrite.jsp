@@ -65,7 +65,7 @@
 </form>
 
 <script>
-// ============================ 별점부분
+// // ============================ 별점부분
 const stars = document.querySelectorAll('.star');
 const revRatingInput = document.querySelector('input[name="rev_rating"]');
 	stars.forEach((star, index) => {

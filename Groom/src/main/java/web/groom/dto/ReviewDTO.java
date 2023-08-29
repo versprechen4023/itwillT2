@@ -3,7 +3,7 @@ package web.groom.dto;
 import java.sql.Timestamp;
 
 public class ReviewDTO {
-	
+	//
 	private int rev_num;
 	private int u_num;
 	private int res_num;

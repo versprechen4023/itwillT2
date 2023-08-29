@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import web.groom.dto.MemberDTO;
 import web.groom.dto.ReviewDTO;
 
 public class ReviewDAO {
@@ -147,6 +148,26 @@ public class ReviewDAO {
 	}// insertReview() [리뷰작성]
 	
 	
+	public void updateReview(ReviewDTO reviewDTO) {
+		System.out.println("ReviewDAO updateReview()");
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "update test01"
+					+ "   set rev_content=?,rev_img_url=?"
+					+ "   where rev_num=?;";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, reviewDTO.getRev_content()); 
+			pstmt.setString(2, reviewDTO.getRev_img_url());
+//			pstmt.setString(3, reviewDTO.getRev_rating()); // 잠시
+			pstmt.setInt(3, reviewDTO.getRev_num());
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}// updateReview() [리뷰수정]
+	
+	
 	public void deleteReview(int rev_num) {
 		System.out.println("ReviewDAO deleteReview()");
 		try {
@@ -162,6 +183,35 @@ public class ReviewDAO {
 			dbClose();
 		}
 	}// deleteReview() [리뷰삭제]
+	
+	
+	public void deleteReviewPoint(int rev_num) {
+		System.out.println("ReviewDAO deleteReviewPoint()");
+		try {
+			con = new SQLConnection().getConnection();
+			String sql1 = "update user2"
+					+ "   set u_point = u_point - 1000"
+					+ "   where u_num = (select u_num from test01"
+					+ "                  where rev_num = ?);";
+			
+			String sql2 = "delete from test01 where rev_num=?";
+			
+			PreparedStatement pstmt1 = null;
+			pstmt1 = con.prepareStatement(sql1);
+			pstmt1.setInt(1, rev_num);
+			pstmt1.executeUpdate();
+			
+			PreparedStatement pstmt2 = null;
+			pstmt2 = con.prepareStatement(sql2);
+			pstmt2.setInt(1, rev_num);
+			pstmt2.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+	}// deleteReviewPoint() [리뷰삭제 + 포인트회수]
 
 	
 	public void writeRe(ReviewDTO reviewDTO) {
@@ -219,6 +269,11 @@ public class ReviewDAO {
 			dbClose();
 		}
 	}// deleteRe() [답글삭제]
+
+	
+
+
+	
 	
 	
 	

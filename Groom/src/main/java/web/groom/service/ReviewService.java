@@ -9,6 +9,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import web.groom.dao.ReviewDAO;
+import web.groom.dto.MemberDTO;
 import web.groom.dto.ReviewDTO;
 
 public class ReviewService {
@@ -101,6 +102,32 @@ public List<ReviewDTO> getReviewList(String proName) {
 	}// insertReview() [리뷰작성]
 	
 	
+	public void updateReview(HttpServletRequest request) {
+		System.out.println("ReviewService updateReview()");
+		try {
+			String uploadPath=request.getRealPath("/upload");
+			int maxSize=10*1024*1024;
+			MultipartRequest multi 
+			= new MultipartRequest(request, uploadPath, maxSize,"utf-8", new DefaultFileRenamePolicy()); 
+			
+			int rev_num = Integer.parseInt(multi.getParameter("rev_num"));
+			String rev_content = multi.getParameter("rev_content");
+			String rev_img_url = multi.getFilesystemName("rev_img_url");
+//			String rev_rating = multi.getParameter("rev_rating"); // 잠시
+			
+			reviewDAO = new ReviewDAO();
+			ReviewDTO reviewDTO = new ReviewDTO();
+			reviewDTO.setRev_num(rev_num);
+			reviewDTO.setRev_content(rev_content);
+			reviewDTO.setRev_img_url(rev_img_url);
+//			reviewDTO.setRev_rating(rev_rating); // 잠시
+			reviewDAO.updateReview(reviewDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}// insertReview() [리뷰수정]
+	
+	
 	public void deleteReview(HttpServletRequest request) {
 		System.out.println("ReviewService deleteReview()");
 		try {
@@ -111,6 +138,17 @@ public List<ReviewDTO> getReviewList(String proName) {
 			e.printStackTrace();
 		}
 	}// deleteReview() [리뷰삭제]
+	
+	public void deleteReviewPoint(HttpServletRequest request) {
+		System.out.println("ReviewService deleteReviewPoint()");
+		try {
+			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
+			reviewDAO = new ReviewDAO();
+			reviewDAO.deleteReviewPoint(rev_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}// deleteReviewPoint() [리뷰삭제 + 포인트회수]
 
 
 	public void writeRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
@@ -132,6 +170,7 @@ public List<ReviewDTO> getReviewList(String proName) {
 		}
 	}// writeRe [답글작성]
 	
+
 	public void updateRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
 		System.out.println("ReviewService updateRe()");
 		try {
@@ -170,13 +209,12 @@ public List<ReviewDTO> getReviewList(String proName) {
 	}// deleteRe [답글삭제]
 
 
-	public void updateReview(HttpServletRequest request) {
-		System.out.println("ReviewService updateReview() fupdate 참고");
-	}
+	
+
+
 
 	
-	
-	
+		
 	
 	
 	

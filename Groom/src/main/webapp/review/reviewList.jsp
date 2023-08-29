@@ -50,10 +50,14 @@ List<ReviewDTO> visibleItems = reviewList.subList(startIndex, endIndex);
 	<div class="row row-bottom-padded-md">
 <!-- 리뷰 분류 -->
 		<h3 class="review-select animate-box" data-animate-effect="fadeInLeft">
-		<a href="reviewList.re?pro_name= " class="review-active">전체</a>
+		<a href="reviewList.re?pro_name= " class="review-active"> 전체 </a>
 		<a href="reviewList1.re?pro_name=미용">미용</a>
 		<a href="reviewList2.re?pro_name=목욕">목욕</a>
-		<a href="reviewList3.re?pro_name=스파">스파</a></h3>
+		<a href="reviewList3.re?pro_name=스파">스파</a>
+		<a href="#">상품명1</a>
+		<a href="#">상품명2</a>
+		<a href="#">상품명3</a>
+		<a href="#">상품명4</a></h3>
 		
 <!-- 목록 시작 -->	
 <%

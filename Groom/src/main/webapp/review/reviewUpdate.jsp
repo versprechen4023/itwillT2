@@ -15,7 +15,7 @@
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
 <!-- =============================  네비게이션바 ============================= -->
-<form action="reviewUpdatePro.re" method="post">
+<form action="reviewUpdatePro.re" method="post" enctype="multipart/form-data">
 <%
 String id = (String)session.getAttribute("id");
 String role = (String)session.getAttribute("role"); 
@@ -83,15 +83,19 @@ if (reviewDTO != null) {
 	<div class="review-input-img">
 		<img src="./images/photo.png" class="review-input-img1" onclick="triggerFileInput()">
 		<input type="file" id="fileInput" name="rev_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
-		<div id="fileInfoDisplay">　<%=reviewDTO.getRev_img_url() %></div>
+		<div id="fileInfoDisplay">　<%=reviewDTO.getRev_img_url() %>
+		</div>
 	</div><br>
 		</div>
 		<br><br>
 <!-- 내용 끝  -->
-</div>
-</div>
-</div>
-<input >
+	</div>
+	</div>
+	</div>
+<input type="hidden" name="rev_num" value="<%=reviewDTO.getRev_num()%>">
+</form>
+
+
 
 <script>
 // function really(rev_num) {
@@ -144,6 +148,7 @@ function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘�
 	
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
-	</form>
+	
+	
 	</body>
 </html>

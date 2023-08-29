@@ -84,12 +84,19 @@ public class ReviewController extends HttpServlet {
 		 
 	
 		 if(sPath.equals("/reviewDelete.re")) {
+			 System.out.println("reviewDelete.re");
 			 reviewService = new ReviewService();
 			 reviewService.deleteReview(request);
 			 response.sendRedirect("reviewList.re?pro_name=");
 		 }// reviewDelete.re [리뷰삭제]
 		 
-// 답글작성용 페이지 제작 필요, 리뷰수정용 페이지도 동시에 제작하는걸로 /////////////////////////
+		 if(sPath.equals("/reviewDeletePoint.re")) {
+			 System.out.println("reviewDeletePoint.re");
+			 reviewService = new ReviewService();
+			 reviewService.deleteReviewPoint(request);
+			 response.sendRedirect("reviewList.re?pro_name=");
+		 }// reviewDelete.re [리뷰삭제 + 포인트회수]
+		 
 		 
 		 if(sPath.equals("/reWrite.re")) {
 			 System.out.println("reWrite.re");
@@ -145,6 +152,17 @@ public class ReviewController extends HttpServlet {
 			 reviewService.updateReview(request);
 			 response.sendRedirect("reviewList.re?pro_name="); // 목록으로
 		 }//reviewUpdatePro.re [리뷰수정 후 등록]
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 		 
 		 
 	}// doProcess

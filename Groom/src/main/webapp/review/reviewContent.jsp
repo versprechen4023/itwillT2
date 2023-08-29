@@ -10,7 +10,7 @@
 	
 <!-- 	리뷰상세 css 추가 -->
 	<link rel="stylesheet" href="./css/reviewContent_gr.css">
-	
+
 <body>
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
@@ -53,12 +53,28 @@ for (int i = 1; i <= 5; i++) {
 		<div>
 <%
 if(id != null){
+	if(role.equals("admin")){
+%>
+<input type="button" value="(관리자)&#10;삭제" onclick="really1('<%=reviewDTO.getRev_num()%>')"
+style="font-size: 5px; padding: 1px;">
+<%}} %>
+
+<%
+String re_content = reviewDTO.getRe_content();
+if(id != null){
 	int u_num = reviewDTO.getU_num() ; // 리뷰의 작성자 번호
 	if (num.equals(String.valueOf(u_num))) {
+		if (re_content == null){
 %>		
 		<input type="button" value="삭제" onclick="really1('<%=reviewDTO.getRev_num()%>')">
-		<input type="button" value="수정" onclick="location.href='reviewUpdate.re?rev_num=<%=reviewDTO.getRev_num()%>'">	
-<%}}%>
+		<input type="button" value="수정" onclick="location.href='reviewUpdate.re?rev_num=<%=reviewDTO.getRev_num()%>'">
+			
+<%}else if(re_content != ""){%>
+<form>
+    <input type="button" value="삭제" onclick="reviewDeletePoint();">
+</form>
+		<input type="button" value="수정" onclick="msg1()" style="background: gray;">
+<%}}}%>
 		</div>
 		</div>
 		
@@ -80,7 +96,6 @@ if (reviewDTO != null) {
 		<div class="recontent-top">
 		<div>
 <%
-String re_content = reviewDTO.getRe_content();
 if(re_content != null){ // 내용 null이 아니어야 답글 보여요
 %>		
 		<h4 class="recoment1">Groom <%=reviewDTO.getS_location() %> <a><%=reviewDTO.getRe_date() %></a></h4>
@@ -108,6 +123,9 @@ if(re_content != null){ // 내용 null이 아니어야 답글 보여요
 		<!-- 답글  -->
 		</div>
 		<br><br>
+<!-- 		테스트 공간 -->
+
+
 <!-- 내용 끝  -->
 </div>
 </div>
@@ -115,16 +133,38 @@ if(re_content != null){ // 내용 null이 아니어야 답글 보여요
 
 
 <script>
-function really1(rev_num) { // [리뷰삭제]
-    var result = confirm("정말로 삭제하시겠습니까?");
+function msg1() { // [리뷰수정](불가)
+    alert("포인트가 지급된 리뷰는 수정이 불가능합니다.");
+  }
+  
+function really1(rev_num) { // [리뷰삭제] (답글X), (관리자)
+    var result = confirm("정말로 삭제할까요?");
     if (result) {
         location.href = 'reviewDelete.re?rev_num=' + rev_num;
     }
 }
+function msg2(rev_num) { // [리뷰삭제] (답글O)
+	var msg = "정말 삭제할까요?\n* 삭제된 리뷰 복구 불가\n* 지급된 포인트는 회수됩니다";
+    var result = confirm(msg);
+    if(result) {
+    	location.href = 'reviewDeletePoint.re?rev_num=' + rev_num;
+    }
+  }
 function really2(rev_num) { // [답글삭제]
-    var result = confirm("정말로 삭제하시겠습니까?");
+    var result = confirm("정말로 삭제할까요?");
     if (result) {
         location.href = 'reDelete.re?rev_num=' + rev_num;
+    }
+}
+
+function reviewDeletePoint() {
+    var msg = "정말 삭제할까요?\n* 삭제된 리뷰 복구 불가\n* 지급된 포인트는 회수됩니다";
+    var confirmed = confirm(msg);
+
+    if (confirmed) {
+        var rev_num = <%=reviewDTO.getRev_num() %>; // reviewDTO.getRev_num() 값으로 변경
+        var url = 'reviewDeletePoint.re?rev_num=' + rev_num;
+        window.location.href = url;
     }
 }
 </script>

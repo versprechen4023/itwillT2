@@ -74,15 +74,15 @@ List<MemberDTO> visibleItems = memberList.subList(startIndex, endIndex);
 <%
 for(MemberDTO memberDTO : visibleItems) { 
 %>
-    <tr><td><%=memberDTO.getNum() %></td>
-    	<td><%=memberDTO.getRole() %></td>
-    	<td><%=memberDTO.getId() %></td>
-    	<td><%=memberDTO.getName() %></td>
-    	<td><%=memberDTO.getPhone() %></td>
-    	<td><%=memberDTO.getEmail() %></td>
-    	<td><%=memberDTO.getRegDate() %></td>
-    	<td><%=memberDTO.getCount() %></td>
-    	<td><%=memberDTO.getPoint() %></td></tr>
+    <tr><td><%=memberDTO.getU_Num()%></td>
+    	<td><%=memberDTO.getU_Role()%></td>
+    	<td><%=memberDTO.getU_Id()%></td>
+    	<td><%=memberDTO.getU_Name()%></td>
+    	<td><%=memberDTO.getU_Phone()%></td>
+    	<td><%=memberDTO.getU_Email()%></td>
+    	<td><%=memberDTO.getU_RegDate()%></td>
+    	<td><%=memberDTO.getU_Count()%></td>
+    	<td><%=memberDTO.getU_Point()%></td></tr>
 <%
 }
 %>

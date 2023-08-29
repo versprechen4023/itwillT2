@@ -40,11 +40,11 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 								<div class="col-md-3">
 									<div class="form-group">
 										<p>예약자명</p>
-										<input type="text" class="form-control" id="name" name="name" value="<%=memberInfo.getName() %>" readonly>
+										<input type="text" class="form-control" id="name" name="name" value="<%=memberInfo.getU_Name()%>" readonly>
 									</div>
 									<div class="form-group">
 									    <p>연락처</p>
-										<input type="text" class="form-control" id="phone" name="phone" value="<%=memberInfo.getPhone() %>" readonly>
+										<input type="text" class="form-control" id="phone" name="phone" value="<%=memberInfo.getU_Phone()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>예상예약 요금</p>

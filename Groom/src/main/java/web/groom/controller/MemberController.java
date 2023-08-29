@@ -54,10 +54,10 @@ public class MemberController extends HttpServlet {
 				System.out.println(memberdto);
 				
 				//세션에 id, salt, role, userNum 값 저장
-				session.setAttribute("id", memberdto.getId());
-				session.setAttribute("salt", memberdto.getSalt());
-				session.setAttribute("role", memberdto.getRole());
-				session.setAttribute("num", String.valueOf(memberdto.getNum()));
+				session.setAttribute("id", memberdto.getU_Id());
+				session.setAttribute("salt", memberdto.getU_Salt());
+				session.setAttribute("role", memberdto.getU_Role());
+				session.setAttribute("num", String.valueOf(memberdto.getU_Num()));
 				
 				//세션저장완료후 메인으로 이동
 				response.sendRedirect("main.gr");
@@ -145,7 +145,7 @@ public class MemberController extends HttpServlet {
 			//값이 존재하면 세션에 유저 번호 저장
 			HttpSession session = request.getSession();
 			
-			session.setAttribute("num", String.valueOf(memberDTO.getNum()));
+			session.setAttribute("num", String.valueOf(memberDTO.getU_Num()));
 			
 			webForward(request, response, "member", "resetpassword");
 

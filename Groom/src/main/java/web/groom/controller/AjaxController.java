@@ -246,7 +246,6 @@ public class AjaxController extends HttpServlet {
 			
 			// 최종상품 가격을 가져옴
 			int servicePrice = orderService.getServicePrice(request);
-			System.out.println(servicePrice);
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

@@ -224,34 +224,13 @@ $j(document).ready(function() {
 	
 	//서브밋 기능 제어 함수 //셀렉트태그 부분 null이라고 잘뜨는데 if문안됨
     $j('#checkout').submit(function() {
-		alert("서브밋 제어 실행");
-        
-    	if($j('#storelist').val() == ""){
-    		alert("예약할 지점을 선택하여 주십시오"); 
-    		return false;
-    	}
-    	if($j("#servicelist").val() == ""){
-    		alert("서비스를 선택하여 주십시오"); 
-    		return false;
-    	}
-    	if($j("#petlist").val() == ""){
-    		alert("견종을 선택하여 주십시오"); 
-    		return false;
-    	}
-    	if($j("#weightlist").val() == ""){
-    		alert("무게를 선택하여 주십시오"); 
-    		return false;
-    	}
-    	if($j("#managerlist").val() == ""){
-    		alert("담당 직원을 선택하여 주십시오"); 
-    		return false;
-    	}
+		
     	if($j('#datepicker').val() == ""){
-    		alert("예약일을 선택해주십시오"); 
+    		alert("모든 값을 선택해 주십시오"); 
     		return false;
     	}
     	if($j('#timepicker').val() == ""){
-    		alert("예약할 시간을 선택하여 주십시오"); 
+    		alert("모든 값을 선택해 주십시오"); 
     		return false;
     	}
 
@@ -464,6 +443,10 @@ $j(document).ready(function() {
     //가격계산에 대한 AJAX처리
     $j('#servicelist, #petlist, #weightlist, #managerlist').change(function() {
     	
+    	// 변경시 시간 값 초기화
+    	datepicker.value = "";
+		timepicker.value ="";
+		
         // 서비스 가격 계산을 위한 밸류값 가져오기
         var selectedService = $j("#servicelist").val();
         var selectedWeight = $j("#weightlist").val();

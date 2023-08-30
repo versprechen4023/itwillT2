@@ -1,3 +1,4 @@
+<%@page import="web.groom.dto.Board1DTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,19 +18,22 @@
 <div id="fh5co-main">
 
 <%
-String id = (String)session.getAttribute("id");
+String role = (String)session.getAttribute("role");
+Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 %>
 <h2>공지사항</h2>
 <hr>
 
-<form id="nwf" method="post" action="noticeWritePro.bo" enctype="multipart/form-data">
+<form id="nwf" method="post" action="noticeUpdatePro.bo" enctype="multipart/form-data">
+<input type="hidden" name="n_num" value="<%=boardDTO.getN_num() %>">
 	<table>
 		<tr><th class="nwth">제목</th></tr>
-		<tr><td><input type="text" class="sub" placeholder="제목을 입력해 주세요" name="n_title"></td></tr>
+		<tr><td><input type="text" class="sub"  name="n_title"
+			value="<%=boardDTO.getN_title()%>"></td></tr>
 	</table>
 	<table>	
 		<tr><th class="nwth">내용</th></tr>
-		<tr><td><textarea class="cont" placeholder="내용을 입력해 주세요" name="n_content"></textarea></td></tr>
+		<tr><td><textarea class="cont" name="n_content"><%=boardDTO.getN_content()%></textarea></td></tr>
 		
 		<tr><td>
 		<!-- 아이콘(이미지) -->
@@ -39,19 +43,21 @@ String id = (String)session.getAttribute("id");
 	      		onclick="triggerFileInput()">   
 <!-- 	    	<p class="img_text" style="margin: 0;">사진/동영상 추가</p> -->
 				<input type="file" id="fileInput" name="n_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
-				<div id="fileInfoDisplay">　선택된 파일 없음</div>
-		</div>		
+				<div id="fileInfoDisplay">　<%=boardDTO.getN_img_url() %></div>
+		</div>			
 		</td></tr>
 	</table>
 	<!-- 	/* 버튼 ================================================================== */	 -->
 	<div class="buttons">
 		<button type="button" onclick="location.href='notice.bo'" id="writebtn" class="nwbtn">목록</button>
-		<button type="submit" class="nwbtn">확인</button>
+		<button type="submit" class="nwbtn">수정</button>
 <!-- 		<button class="nwbtn">수정</button> -->
 <!-- 		<button class="nwbtn">삭제</button> -->
 	</div>
 <!-- 	/* 버튼 ================================================================== */ -->
 </form>
+
+
 
 <script type="text/javascript">
 //============================ 파일첨부	
@@ -85,7 +91,6 @@ function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘�
 			}
 
 </script>
-
 </div>
 </div>
 </body>

@@ -86,11 +86,11 @@ if(pageDTO.getStartPage() > pageDTO.getPageBlock()){
 	<%
 }
 %> 
-
+<!-- 서치 -->
 <%
 for(int i=pageDTO.getStartPage();i<=pageDTO.getEndPage();i++){
 	%>
-	<a href="notice.bo?pageNum=<%=i%>"><%=i %></a> 
+	<a href="noticeSearch.bo?pageNum=<%=i%>&search=<%=pageDTO.getSearch()%>"><%=i %></a> 
 	<%
 }
 %>
@@ -126,7 +126,7 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 			
 			<div class="search-form">
 			    <form action="noticeSearch.bo" method="get">
-			        <input type="text" name="search" size=80 placeholder="검색어를 입력하세요" id="searchkey" >
+			        <input type="text" name="search" size=80 placeholder="검색어를 입력하세요" id="searchkey">
 			        <input type="submit" value="검색" id="searchbtn">
 		 		    
 			    </form>
@@ -144,6 +144,10 @@ if(id != null){
 %>
 	</td></tr>
 </table>
+
+
+
+
 </div>
 </div>
 </body>

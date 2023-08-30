@@ -2,12 +2,17 @@ package web.groom.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import web.groom.dto.ReviewDTO;
+import web.groom.service.MainService;
+import web.groom.service.ReviewService;
 
 
 @WebServlet("*.gr") //.gr 메인 어노테이션 매핑 선언
@@ -19,8 +24,13 @@ public class MainController extends HttpServlet {
 		
 		 //메인화면페이지
 		 if (sPath.equals("/main.gr")) {
-	            webForward(request, response, "main", "main");
-
+			 
+			 MainService mainService = new MainService();
+			 List<ReviewDTO> reviewList = mainService.getReviewList();
+			 
+			 request.setAttribute("reviewList", reviewList);
+			 
+	         webForward(request, response, "main", "main");      
 	     }
 		 
 		 if (sPath.equals("/storeInfo.gr")) {

@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="web.groom.dto.ReviewDTO"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -92,71 +95,48 @@
             
 			<div class="fh5co-narrow-content">
 				<div class="row row-bottom-padded-md">
-					<div class="col-md-4 col-sm-6 col-padding animate-box"
-						data-animate-effect="fadeInLeft">
-						<div class="blog-entry">
-							<!-- HOME 페이지 RECENT BLOG 이미지 칸 -->
-							<a href="#" class="blog-img"><img src="./images/img-1.jpg"
-								class="img-responsive"
-								alt=""></a>
-							<div class="desc">
-								<h3>
-									<a href="#">col-md를 수정해 3개로</a>
-								</h3>
-								<span><small>by Admin </small> / <small> Web
-										Design </small> / <small> <i class="icon-comment"></i> 14
-								</small></span>
-								<p>Design must be functional and functionality must be
-									translated into visual aesthetics</p>
-								<a href="#" class="lead">Read More <i
-									class="icon-arrow-right3"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-padding animate-box"
-						data-animate-effect="fadeInLeft">
-						<div class="blog-entry">
-							<!-- HOME 페이지 RECENT BLOG 이미지 칸 -->
-							<a href="#" class="blog-img"><img src="./images/img-2.jpg"
-								class="img-responsive"
-								alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
-							<div class="desc">
-								<h3>
-									<a href="#">줄여</a>
-								</h3>
-								<span><small>by Admin </small> / <small> Web
-										Design </small> / <small> <i class="icon-comment"></i> 14
-								</small></span>
-								<p>Design must be functional and functionality must be
-									translated into visual aesthetics</p>
-								<a href="#" class="lead">Read More <i
-									class="icon-arrow-right3"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-padding animate-box"
-						data-animate-effect="fadeInLeft">
-						<div class="blog-entry">
-							<a href="#" class="blog-img"><img src="./images/img-3.jpg"
-								class="img-responsive"
-								alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
-							<div class="desc">
-								<h3>
-									<a href="#">봤습니다</a>
-								</h3>
-								<span><small>by Admin </small> / <small> Web
-										Design </small> / <small> <i class="icon-comment"></i> 14
-								</small></span>
-								<p>Design must be functional and functionality must be
-									translated into visual aesthetics</p>
-								<a href="#" class="lead">이동하기 <i class="icon-arrow-right3"></i></a>
-							</div>
-						</div>
-					</div>
+				 <h1>베스트 리뷰</h1>
+				<!-- 목록 시작 -->	
+<%
+List<ReviewDTO> reviewList
+=(List<ReviewDTO>)request.getAttribute("reviewList");
+SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
+for (ReviewDTO reviewDTO : reviewList){
+
+// ========= 별점 받아서 별출력하는 코드 ㄱ
+//int rating = reviewDTO.getRev_rating(); // rev_rating 값 int로 바꾸면 수정하도록
+int rating = Integer.parseInt(reviewDTO.getRev_rating());
+String stars = "";
+for (int i = 1; i <= 5; i++) {
+if (i <= rating) {
+	stars += "★";
+	} else {
+		stars += "☆";
+		}
+}
+%>		
+<!-- 리뷰 목록  -->	
+		<div class="col-md-4 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
+			<div class="blog-entry">
+					<!-- HOME 페이지 RECENT BLOG 이미지 칸 -->
+					<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img"><img src="<%=reviewDTO.getRev_img_url() %>" class="img-responsive" alt="이미지없음"></a>
+					<div class="desc">
+						<h3><a><%=reviewDTO.getPro_name() %></a><br>
+						<small><%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %></small><small> / <%=reviewDTO.getS_location() %></small></h3>
+						<h3><%=stars %></h3>
+						<span class="review_text1"><a><%=reviewDTO.getU_name() %></a> / <a><%=format.format(reviewDTO.getRev_date()) %></a> / <a><%=reviewDTO.getU_count() %>번째 방문</a></span>
+						<p class="review_text2"><%=reviewDTO.getRev_content() %></p>
+						<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="lead">더보기 <i class="icon-arrow-right3"></i></a>
 				</div>
 			</div>
 		</div>
-	</div><!-- 페이지 엔드 -->
+<%
+}
+%>
+				
+				</div>
+			</div>
+		</div><!-- 페이지 엔드 -->
 
 	<!-- jQuery -->
 	<script src="./js/jquery.min.js"></script>

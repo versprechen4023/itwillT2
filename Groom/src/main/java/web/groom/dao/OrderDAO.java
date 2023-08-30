@@ -102,7 +102,7 @@ public class OrderDAO {
 			pstmt.setInt(1, store_num);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				startNum = rs.getInt("s_num");
 			}
 			

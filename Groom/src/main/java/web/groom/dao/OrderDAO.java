@@ -89,8 +89,32 @@ public class OrderDAO {
 
 		return serviceTime;
 	}
+	
+	public int getServiceStartNum(int store_num) {
+		
+		int startNum = 0;
+		try {
+			
+			con = new SQLConnection().getConnection();
+			
+			String sql = "SELECT MIN(s_num) as s_num FROM myService WHERE l_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, store_num);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				startNum = rs.getInt("s_num");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return startNum;
+	}
 
-	public List<OrderServiceDTO> getServiceList(int store) {
+	public List<OrderServiceDTO> getServiceList(int store_num, int startNum) {
 		
 		List<OrderServiceDTO> serviceList = null;
 		
@@ -100,12 +124,12 @@ public class OrderDAO {
 			
 			String sql = "SELECT DISTINCT(s_name) FROM myService WHERE l_num = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, store);
+			pstmt.setInt(1, store_num);
 			rs = pstmt.executeQuery();
 
 			serviceList = new ArrayList<>();
 			
-			int startingNumber = 1;
+			int startingNumber = startNum;
 			int increment = 4;
 			
 			while(rs.next()) {

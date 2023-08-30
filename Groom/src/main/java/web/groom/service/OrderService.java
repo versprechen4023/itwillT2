@@ -67,11 +67,12 @@ public class OrderService {
 		
 		List<OrderServiceDTO> serviceList = null;
 		
-		int store = Integer.parseInt(request.getParameter("selectedStore"));
+		int store_num = Integer.parseInt(request.getParameter("selectedStore"));
 		
 		try {
 			orderDAO = new OrderDAO();
-			serviceList = orderDAO.getServiceList(store);
+			int startNum = orderDAO.getServiceStartNum(store_num);
+			serviceList = orderDAO.getServiceList(store_num, startNum);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

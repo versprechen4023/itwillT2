@@ -1,0 +1,241 @@
+package web.groom.controller;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+import web.groom.dto.Board1DTO;
+import web.groom.dto.PageDTO;
+import web.groom.service.Board1Service;
+
+@WebServlet("*.bo") //.bo 게시판관련페이지 어노테이션 매핑 선언
+public class Board1Controller extends HttpServlet {
+	
+	Board1Service boardService = null;
+	RequestDispatcher dispatcher =null;
+
+	
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		System.out.println("BoardController doProcess()");
+		//가상주소 뽑아오기
+		String sPath=request.getServletPath();
+		System.out.println("뽑아온 가상주소:"+sPath);
+		
+		
+		//=======================================================================
+		if(sPath.equals("/notice.bo")) {
+			System.out.println("뽑은 가상주소 비교 : /notice.bo");
+			
+			
+			//한페이지에서 보여지는 글개수
+			int pageSize=10;
+			//페이지번호
+			String pageNum=request.getParameter("pageNum");
+			//페이지번호가 없으면 1페이지 실행
+			if(pageNum == null) {
+				pageNum = "1";
+			}
+			//페이지 번호를 => 정수형으로 변경
+			int currentPage = Integer.parseInt(pageNum);
+			
+			//pageDTO에 담음			
+			PageDTO pageDTO = new PageDTO();
+			pageDTO.setPageSize(pageSize);
+			pageDTO.setPageNum(pageNum);
+			pageDTO.setCurrentPage(currentPage);
+			
+			// BoardService 객체생성
+			boardService = new Board1Service();
+			
+			// List<BoardDTO> notice = getNotice(); 메서드 호출
+			List<Board1DTO> notice = boardService.getNotice(pageDTO);
+			
+			// 게시판 전체 글 개수 구하기 
+			int count = boardService.getBoardCount();
+			// 한화면에 보여줄 페이지개수 설정
+			int pageBlock = 10;
+			// 시작하는 페이지 번호
+			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+			// 끝나는 페이지 번호
+			int endPage=startPage+pageBlock-1;
+			// 전체페이지 구하기
+			int pageCount = count / pageSize + (count % pageSize==0?0:1);
+			if(endPage > pageCount) {
+				endPage = pageCount;
+			}
+						
+			//pageDTO 저장
+			pageDTO.setCount(count);
+			pageDTO.setPageBlock(pageBlock);
+			pageDTO.setStartPage(startPage);
+			pageDTO.setEndPage(endPage);
+			pageDTO.setPageCount(pageCount);
+			
+			// request에 "board",board 저장
+			request.setAttribute("notice", notice);
+			request.setAttribute("pageDTO", pageDTO);
+			
+			// 주소변경없이 이동
+			webForward(request, response, "board", "notice");
+		}//notice.bo
+		
+		if(sPath.equals("/noticeWrite.bo")) {
+			// 주소변경없이 이동 center/write.jsp
+//			dispatcher 
+//		    = request.getRequestDispatcher("board/noticeWrite.jsp");
+//		dispatcher.forward(request, response);
+			webForward(request, response, "board", "noticeWrite");
+		}
+		
+		if(sPath.equals("/noticeWritePro.bo")) {
+			System.out.println("뽑은 가상주소 비교 : /writePro.bo");
+			// BoardService 객체생성
+			boardService = new Board1Service();
+			// 리턴할형없음 insertNotice(request) 메서드 호출
+			boardService.insertNotice(request);
+			// write.bo 주소 변경 되면서 이동
+			response.sendRedirect("notice.bo");
+		}
+		
+		if(sPath.equals("/noticeContent.bo")){
+			System.out.println("뽑은 가상주소 비교 : /noticeContent.bo");
+			// BoardService 객체생성
+			boardService = new Board1Service();
+			// BoardDTO boardDTO = getBoard(request) 메서드 호출
+			Board1DTO boardDTO = boardService.getNotice(request);
+			// request에 "boardDTO",boardDTO 담아서
+			request.setAttribute("boardDTO", boardDTO);
+			//  주소변경없이 이동
+			webForward(request, response, "board", "noticeContent");
+		}
+		if(sPath.equals("/noticeUpdate.bo")) {
+			System.out.println("뽑은 가상주소 비교 : /noticeUpdate.bo");
+			// BoardService 객체생성
+			boardService = new Board1Service();
+			// BoardDTO boardDTO = getBoard(request) 메서드 호출
+			Board1DTO boardDTO = boardService.getNotice(request);
+			// request에 "boardDTO",boardDTO 담아서
+			request.setAttribute("boardDTO", boardDTO);
+			//  주소변경없이 이동
+			webForward(request, response, "board", "noticeUpdate");
+		}
+		if(sPath.equals("/noticeUpdatePro.bo")) {
+			System.out.println("뽑은 가상주소 비교 : /noticeUpdatePro.bo");
+			//BoardService객체생성
+			boardService = new Board1Service();
+			//updateBoard(request) 메서드 호출
+			boardService.updateNotice(request);
+			//글목록 list.bo 주소변경되면서 이동
+			response.sendRedirect("notice.bo");
+		}
+		
+		if(sPath.equals("/noticeDelete.bo")) {
+			System.out.println("뽑은 가상주소 비교 : /noticeDelete.bo");
+			//BoardService객체생성
+			boardService = new Board1Service();
+			//deleteBoard(request) 메서드 호출
+			boardService.deleteNotice(request);
+			//글목록 list.bo 주소 변경되면서 이동
+			response.sendRedirect("notice.bo");
+		}
+		
+		//검색
+		if(sPath.equals("/noticeSearch.bo")) {
+			System.out.println("뽑은 가상주소 비교 : /noticeSearch.bo");
+			
+			//request 한글처리
+			request.setCharacterEncoding("utf-8");
+			//request 검색어 뽑아오기//
+			String search = request.getParameter("search"); // notice.jsp의 검색창부분 name="search"
+			
+			
+			//한페이지에서 보여지는 글개수
+			int pageSize=10;
+			//페이지번호
+			String pageNum=request.getParameter("pageNum");
+			//페이지번호가 없으면 1페이지 실행
+			if(pageNum == null) {
+				pageNum = "1";
+			}
+			//페이지 번호를 => 정수형으로 변경
+			int currentPage = Integer.parseInt(pageNum);
+			
+			//pageDTO에 담음			
+			PageDTO pageDTO = new PageDTO();
+			pageDTO.setPageSize(pageSize);
+			pageDTO.setPageNum(pageNum);
+			pageDTO.setCurrentPage(currentPage);
+			
+			// BoardService 객체생성
+			boardService = new Board1Service();
+			
+			// List<BoardDTO> notice = getNotice(); 메서드 호출
+			List<Board1DTO> notice = boardService.getNoticeSearch(pageDTO);
+			
+			// 게시판 전체 글 개수 구하기 
+			int count = boardService.getBoardCountSearch(pageDTO);
+			// 한화면에 보여줄 페이지개수 설정
+			int pageBlock = 10;
+			// 시작하는 페이지 번호
+			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+			// 끝나는 페이지 번호
+			int endPage=startPage+pageBlock-1;
+			// 전체페이지 구하기
+			int pageCount = count / pageSize + (count % pageSize==0?0:1);
+			if(endPage > pageCount) {
+				endPage = pageCount;
+			}
+						
+			//pageDTO 저장
+			pageDTO.setCount(count);
+			pageDTO.setPageBlock(pageBlock);
+			pageDTO.setStartPage(startPage);
+			pageDTO.setEndPage(endPage);
+			pageDTO.setPageCount(pageCount);
+			
+			// request에 "board",board 저장
+			request.setAttribute("notice", notice);
+			request.setAttribute("pageDTO", pageDTO);
+			
+			// 주소변경없이 이동
+			webForward(request, response, "board", "noticeSearch");
+		}//notice.bo
+		
+		
+		
+		
+		
+		//========================================================================= 
+		 if (sPath.equals("/faq.bo")) {
+	            webForward(request, response, "board", "faq");
+
+	     }
+		 
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Board1Controller doGet()");
+		doProcess(request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Board1Controller doPost()");
+		doProcess(request, response);
+	}
+	
+	public void webForward(HttpServletRequest request, HttpServletResponse response, String folder, String pageName) throws ServletException, IOException {
+		request.getRequestDispatcher("/"+folder+"/"+pageName+".jsp").forward(request, response);
+	}
+
+}
+

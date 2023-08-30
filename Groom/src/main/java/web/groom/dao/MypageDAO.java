@@ -172,7 +172,33 @@ public class MypageDAO {
 			}
 	}//updateMypet
 
-
+	public List<MypageDTO> getMypetList() {
+		System.out.println("MypageDAO getMypetList()");
+		String sql = "select * from pet ";
+		List<MypageDTO> mypetList = null;
+		try {
+			con = new SQLConnection().getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			mypetList = new ArrayList<>();
+			while(rs.next()){
+				MypageDTO mypageDTO = new MypageDTO();
+				mypageDTO.setPetName(rs.getString("pet_name"));
+				mypageDTO.setPetBreed(rs.getString("pet_breed"));
+				mypageDTO.setPetGender(rs.getString("pet_gender"));
+				mypageDTO.setPetNeuter(rs.getString("pet_Neuter"));
+				mypageDTO.setPetNeuter(rs.getString("pet_Neuter"));
+				mypetList.add(mypageDTO);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return mypetList;
+	}// getMypetList()
+	
 	
 
 

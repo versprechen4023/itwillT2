@@ -131,7 +131,17 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 		}
 	}//updateMember()
 
-
+	public List<MypageDTO> getMypetList() {
+		System.out.println("MypageService getMypetList");
+		List<MypageDTO> mypetList = null;
+		try {
+			mypagedao = new MypageDAO();
+			mypetList = mypagedao.getMypetList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mypetList;
+	}
 	
 
 

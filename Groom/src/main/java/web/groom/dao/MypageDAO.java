@@ -172,22 +172,24 @@ public class MypageDAO {
 			}
 	}//updateMypet
 
-	public List<MypageDTO> getMypetList() {
+	public List<MypageDTO> getMypetList(int u_num) {
 		System.out.println("MypageDAO getMypetList()");
-		String sql = "select * from pet ";
+		String sql = "select * from pet where u_num = ? ";
 		List<MypageDTO> mypetList = null;
 		try {
 			con = new SQLConnection().getConnection();
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, u_num);
 			rs = pstmt.executeQuery();
 			mypetList = new ArrayList<>();
 			while(rs.next()){
 				MypageDTO mypageDTO = new MypageDTO();
+				mypageDTO.setPetNum(rs.getInt("pet_num"));
 				mypageDTO.setPetName(rs.getString("pet_name"));
 				mypageDTO.setPetBreed(rs.getString("pet_breed"));
 				mypageDTO.setPetGender(rs.getString("pet_gender"));
-				mypageDTO.setPetNeuter(rs.getString("pet_Neuter"));
-				mypageDTO.setPetNeuter(rs.getString("pet_Neuter"));
+				mypageDTO.setPetNeuter(rs.getString("pet_neuter"));
+				mypageDTO.setPetComment(rs.getString("pet_comment"));
 				mypetList.add(mypageDTO);
 				
 			}
@@ -198,6 +200,46 @@ public class MypageDAO {
 		}
 		return mypetList;
 	}// getMypetList()
+
+	public MypageDTO MypetTestInfo(int u_num, int pet_num) {
+		
+		mypagedto = new MypageDTO();
+		
+		try {
+			
+			//db연결
+			con = new SQLConnection().getConnection();
+			
+         	String SQL = "select * from pet where u_num = ? and pet_num = ? ";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, u_num);
+			pstmt.setInt(2, pet_num);
+			rs = pstmt.executeQuery();
+			
+			// 유저번호에 따른 개인정보 저장
+		
+			if(rs.next()) {
+				mypagedto = new MypageDTO();
+				mypagedto.setPetNum(rs.getInt("pet_num"));
+				mypagedto.setPetName(rs.getString("pet_name"));
+				mypagedto.setPetBreed(rs.getString("pet_breed"));
+				mypagedto.setPetGender(rs.getString("pet_gender"));
+				mypagedto.setPetNeuter(rs.getString("pet_neuter"));
+				mypagedto.setPetComment(rs.getString("pet_comment"));
+	
+			} else {
+//				mypagedto = null;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			dbClose();
+		}
+		
+		return mypagedto;
+	}
 	
 	
 

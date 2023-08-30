@@ -48,7 +48,7 @@ public class MypageController extends HttpServlet {
 			// request에 유저 정보 있는 memberInfo 저장
 			 request.setAttribute("mypagepetInfo", mypagepetinfo);
 			 
-			List<MypageDTO> mypetList = ser.getMypetList();
+			List<MypageDTO> mypetList = ser.getMypetList(request);
 			request.setAttribute("mypetList", mypetList);
 			 
 			 
@@ -114,6 +114,10 @@ public class MypageController extends HttpServlet {
 		// request에 memberDTO 저장 ("이름",값)	
 		request.setAttribute("mypageDTO", mypageDTO);
 		// member/update.jsp 주소변경없이 이동
+		
+		//수정한 부분입니다 ===================================================
+		MypageDTO mypageDTOTest = ser.MypetTestInfo(request);
+		request.setAttribute("mypageDTOTest", mypageDTOTest);
 		webForward(request, response, "mypage", "updatemypet");
 	}//
 	

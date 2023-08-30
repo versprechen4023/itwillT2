@@ -125,13 +125,19 @@ List<MypageDTO> visibleItems = mypetList.subList(startIndex, endIndex);
 	</tr>
 
 </table>
-	<select class="form-control" id="storelist" name="storelist">
-											<option value="" disabled selected>매장을 선택하세요</option>
-											<option value="1">서면점</option>
-											<option value="2">명지점</option>
-											<option value="3">율하점</option>
-										</select>
-<input type="button" value="정보수정" class="mbtn" onclick="location.href='updatemypet.my'">
+<form action="updatemypet.my" id="updatepet" method="post">
+내 반려동물
+<select id="petlist" name="petlist">
+<%
+for(MypageDTO mypageDTO : visibleItems) { 
+%>
+	<option value=<%=mypageDTO.getPetNum() %>> <%=mypageDTO.getPetName()%></option>
+<%
+}
+%>
+</select>
+<input type="submit" value="정보수정" class="mbtn">
+</form>
 </div>
 
 <div>

@@ -131,16 +131,30 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 		}
 	}//updateMember()
 
-	public List<MypageDTO> getMypetList() {
+	public List<MypageDTO> getMypetList(HttpServletRequest request) {
 		System.out.println("MypageService getMypetList");
 		List<MypageDTO> mypetList = null;
+		int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+		
 		try {
 			mypagedao = new MypageDAO();
-			mypetList = mypagedao.getMypetList();
+			mypetList = mypagedao.getMypetList(u_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return mypetList;
+	}
+	
+	public MypageDTO MypetTestInfo(HttpServletRequest request) {
+		//유저 번호 가져오기
+		int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+		
+		// 펫 번호 가져오기
+		int pet_num = Integer.parseInt(request.getParameter("petlist"));
+		
+		mypagedto = new MypageDAO().MypetTestInfo(u_num, pet_num);
+		
+		return mypagedto;
 	}
 	
 

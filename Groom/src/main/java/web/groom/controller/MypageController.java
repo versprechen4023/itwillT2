@@ -1,6 +1,7 @@
 package web.groom.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,7 +48,8 @@ public class MypageController extends HttpServlet {
 			// request에 유저 정보 있는 memberInfo 저장
 			 request.setAttribute("mypagepetInfo", mypagepetinfo);
 			 
-	
+			List<MypageDTO> mypetList = ser.getMypetList();
+			request.setAttribute("mypetList", mypetList);
 			 
 			 
 			 if(mypageInfo != null) {

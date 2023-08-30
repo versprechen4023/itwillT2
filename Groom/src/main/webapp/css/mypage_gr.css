@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
   .container {
-  height : 1800px;
+  height: 2000px;
+  
   }
   
   .table-container1 {
@@ -55,13 +56,7 @@
 }
 
 
-	#mpImg {
-/* 	  max-height: 100%; */
-/* 	  max-width: 100%; */
-		text-align: center;
-		width: 100px;
-		height: 100px;
-	}
+
 
 
 .mbtn{
@@ -77,4 +72,56 @@
 }
 .mm{
 	text-align: center;
+}
+
+.petlist { /* 표 전체 */
+	color: black;
+    width: 800px;
+    font-size: 13px;
+    border-collapse: collapse;
+    margin-top: 80%
+}
+.petlist th {
+  	font-size: 16px;
+    padding: 15px;
+}
+.petlist td {
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+.petlist td {
+    background-color: white;
+}
+.petlist-next {
+	margin-top: 10px;
+	width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.petlist-next a {
+	width: 28px;
+    height: 28px;
+    font-weight: 400;
+    font-size: 15px;
+	border-radius: 8px;
+	background: white;
+    display: inline-block;
+    margin: 0 2px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 30px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black !important;
+    transition: background-color 0.3s;
+}
+.petlist-next a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+}
+.petlist-next a:hover {
+    background-color: rgba(0, 0, 0, 0.4) ;
 }

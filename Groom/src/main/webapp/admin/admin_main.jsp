@@ -1,3 +1,4 @@
+<%@page import="web.groom.dto.AdminDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,6 +24,9 @@
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
 <!-- =============================  네비게이션바 ============================= -->
+<%
+AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
+%>
 <div id="fh5co-main"> <!-- 블로그 페이지 이미지 테두리? 변경시  stycle.css 481 .blog-entry .blog-img 에서 css 코드 추가 -->
 	<div class="fh5co-narrow-content">
 <!-- 		<h2 class="fh5co-review-title animate-box" data-animate-effect="fadeInLeft"> -->
@@ -42,12 +46,15 @@
 <!-- <table class="admin-main1 animate-box" data-animate-effect="fadeInLeft"> -->
 <table class="admin-main1">
     <tr><th colspan="3">현재 현황</th></tr>
-    <tr><td>총 회원수</td><td>예약건수</td><td>취소건수</td></tr>
-    <tr><td>0명</td><td>0건</td><td>0건</td></tr>
+    <tr><td>총 회원수</td><td>총 예약중</td><td>총 오늘 예약</td></tr>
+    <tr><td><%=adminDTO.getTotal_user() %>명</td><td><%=adminDTO.getToday_res() %>건</td><td><%=adminDTO.getToday_res() %>건</td></tr>
     
-    <tr><th colspan="3">지점별 현황</th></tr>
-    <tr><td>서면점</td><td>명지점</td><td>율하점</td></tr>
-    <tr><td>0건</td><td>0건</td><td>0건</td></tr>
+    <tr><th colspan="6">지점별 현황</th></tr>
+    <tr><td colspan ="2">서면점</td><td colspan ="2">명지점</td><td colspan ="2">율하점</td></tr>
+    <tr><td>예약중</td><td>오늘예약</td><td>예약중</td><td>오늘예약</td><td>예약중</td><td>오늘예약</td></tr>
+    <tr><td><%=adminDTO.getRes_a() %>건</td><td><%=adminDTO.getToday_res_a() %>건</td>
+    	<td><%=adminDTO.getRes_b() %>건</td><td><%=adminDTO.getToday_res_b() %>건</td>
+    	<td><%=adminDTO.getRes_c() %>건</td><td><%=adminDTO.getToday_res_c() %>건</td></tr>
 </table>
 <!-- <table class="admin-main2 animate-box" data-animate-effect="fadeInLeft"> -->
 <table class="admin-main2">      

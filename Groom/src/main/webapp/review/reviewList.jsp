@@ -45,14 +45,14 @@ List<ReviewDTO> visibleItems = reviewList.subList(startIndex, endIndex);
 		전체리뷰</h2> <!-- fh5co-review-title 클래스 사용중 아님 -->
 		
 <div class="review-select"><!-- 임시버튼 -->
-<a href="reviewWrite.re" style="width: 150px">리뷰작성(임시)</a><!-- 임시버튼 -->
+<a onclick="openReviewWrite(); return false;" style="width: 150px">리뷰작성(새창)</a><!-- 임시버튼 -->
 </div><!-- 임시버튼 -->
 
 	<div class="row row-bottom-padded-md">
 <!-- 리뷰 분류 -->
 		<h3 class="review-select animate-box" data-animate-effect="fadeInLeft">
 		<a href="reviewList.re?pro_name= " class="review-active"> 전체 </a>
-		<a href="reviewList1.re?pro_name=미용">미용</a>
+		<a href="reviewList1.re?pro_name=미용">미용</a> <!-- 링크에 숫자지우면 됨 ^^ -->
 		<a href="reviewList2.re?pro_name=목욕">목욕</a>
 		<a href="reviewList3.re?pro_name=스파">스파</a>
 		<a href="#">상품명1</a>
@@ -142,6 +142,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+function openReviewWrite(){
+	window.open('reviewWrite.re', '_blank', 'width=800px, height=1000px');
+}
 </script>
 
 	

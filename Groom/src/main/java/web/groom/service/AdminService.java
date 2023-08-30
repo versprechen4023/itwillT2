@@ -2,6 +2,7 @@ package web.groom.service;
 
 import java.util.List;
 
+
 import web.groom.dao.AdminDAO;
 import web.groom.dto.AdminDTO;
 import web.groom.dto.MemberDTO;
@@ -33,7 +34,17 @@ public class AdminService {
 		return empList;
 	}//getMemberList() [직원목록]
 	
-	
+	public AdminDTO getCount() {
+		System.out.println("AdminService getCount()");
+		AdminDTO adminDTO = null;
+		try {
+			adminDAO = new AdminDAO();
+			adminDTO = adminDAO.getCount();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return adminDTO;
+	}//getCount [관리자메인 count]
 	
 	
 

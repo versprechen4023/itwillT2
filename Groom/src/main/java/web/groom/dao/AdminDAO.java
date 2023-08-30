@@ -26,8 +26,8 @@ public class AdminDAO {
 		System.out.println("AdminDAO getMemberList()");
 		String sql = "SELECT a.u_num, a.u_id, a.u_role, b.u_name, b.u_phone,"
 				+ "          b.u_email, b.u_regdate, b.u_count, b.u_point"
-				+ "   FROM user a JOIN user2 b\r\n"
-				+ "   ON a.u_num = b.u_num\r\n"
+				+ "   FROM user a JOIN user2 b"
+				+ "   ON a.u_num = b.u_num"
 				+ "   ORDER BY a.u_num desc";
 		//일단 전체회원, 필요하면 where 넣기
 //		String sql = "select * from userInfo";
@@ -63,7 +63,7 @@ public class AdminDAO {
 		System.out.println("AdminDAO getEmpList()");
 		String sql = "SELECT"
 				+ "   ROW_NUMBER() OVER (PARTITION BY a.s_location ORDER BY b.s_num, b.emp_grade) AS number,"
-				+ "   a.s_location, b.emp_grade, b.emp_name"
+				+ "   a.s_location, b.emp_grade, b.emp_name, b.emp_extrafee, b.emp_phone, b.emp_email, b.emp_date"
 				+ "   FROM store a JOIN employees b ON a.s_num = b.s_num"
 				+ "   ORDER BY a.s_location, b.s_num, b.emp_grade";
 		List<AdminDTO> empList = null;
@@ -78,6 +78,10 @@ public class AdminDAO {
 				adminDTO.setS_location(rs.getString("s_location"));
 				adminDTO.setEmp_grade(rs.getString("emp_grade"));
 				adminDTO.setEmp_name(rs.getString("emp_name"));
+				adminDTO.setEmp_extrafee(rs.getInt("emp_extrafee"));
+				adminDTO.setEmp_phone(rs.getString("emp_phone"));
+				adminDTO.setEmp_email(rs.getString("emp_email"));
+				adminDTO.setEmp_date(rs.getTimestamp("emp_date"));
 				empList.add(adminDTO);
 			}
 		} catch (Exception e) {
@@ -88,6 +92,53 @@ public class AdminDAO {
 		return empList;
 	}//getEmpList() [직원목록]
 	
+	public AdminDTO getCount() {
+		AdminDTO adminDTO = null;
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "SELECT"
+					+ "    (SELECT COUNT(*) FROM user) AS total_user,"
+					+ "    (SELECT COUNT(*) FROM reservation WHERE res_status = 0) AS total_res,"
+					+ "    (SELECT COUNT(*) FROM reservation WHERE res_status = 0 AND DATE(res_day) = CURDATE()) AS today_res,"
+					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 1 AND res_status = 0) AS res_a,"
+					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 1 AND res_status = 0 AND DATE(res_day) = CURDATE()) AS today_res_a,"
+					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 2 AND res_status = 0) AS res_b,"
+					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 2 AND res_status = 0 AND DATE(res_day) = CURDATE()) AS today_res_b,"
+					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 3 AND res_status = 0) AS res_c,"
+					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 3 AND res_status = 0 AND DATE(res_day) = CURDATE()) AS today_res_c"
+					+ "   FROM reservation;";
+			pstmt=con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				adminDTO = new AdminDTO();
+				adminDTO.setTotal_user(rs.getInt("total_user"));
+				adminDTO.setTotal_res(rs.getInt("total_res"));
+				adminDTO.setToday_res(rs.getInt("today_res"));
+				adminDTO.setRes_a(rs.getInt("res_a"));
+				adminDTO.setToday_res_a(rs.getInt("today_res_a"));
+				adminDTO.setRes_a(rs.getInt("res_b"));
+				adminDTO.setToday_res_a(rs.getInt("today_res_b"));
+				adminDTO.setRes_a(rs.getInt("res_c"));
+				adminDTO.setToday_res_a(rs.getInt("today_res_c"));
+			} else {
+				adminDTO = new AdminDTO();
+				adminDTO.setTotal_user(0);
+				adminDTO.setTotal_res(0);
+				adminDTO.setToday_res(0);
+				adminDTO.setRes_a(0);
+				adminDTO.setToday_res_a(0);
+				adminDTO.setRes_a(0);
+				adminDTO.setToday_res_a(0);
+				adminDTO.setRes_a(0);
+				adminDTO.setToday_res_a(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return adminDTO;
+	}//getCount() [관리자메인 count]
 	
 	
 	

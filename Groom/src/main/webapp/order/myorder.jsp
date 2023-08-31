@@ -321,7 +321,9 @@ $j(document).ready(function() {
         	type: "GET",
             url: 'getService.aj',
             data: {"selectedStore":selectedStore}, // 선택된 값을 서버로 전송
+            dataType: 'json',
             success: function(result) {
+            	//JSON 배열값만큼 셀렉트태그에 입력값 추가
             	result.forEach(function(service) {
             	    var option = document.createElement("option");
             	    option.value = service.s_num;
@@ -329,14 +331,16 @@ $j(document).ready(function() {
             	    servicelist.appendChild(option);
             	});
             }
-        });
+        });////endAJAX(서비스리스트)
         
      	// 무게 쪽을 얻기 위한 AJAX 요청.
         $j.ajax({
         	type: "GET",
             url: 'getWeight.aj',
             data: {"selectedStore":selectedStore}, // 선택된 값을 서버로 전송
+            dataType: 'json',
             success: function(result) {
+            	//JSON 배열값만큼 셀렉트태그에 입력값 추가
             	result.forEach(function(weight) {
             	    var option = document.createElement("option");
             	    option.value = weight.s_num;
@@ -344,25 +348,28 @@ $j(document).ready(function() {
             	    weightlist.appendChild(option);
             	});
             }
-        });
+        });//endAJAX(무게리스트)
      	
         // 직원 쪽을 얻기 위한 AJAX 요청.
         $j.ajax({
         	type: "GET",
             url: 'getManager.aj',
             data: {"selectedStore":selectedStore}, // 선택된 값을 서버로 전송
+            dataType: 'json',
             success: function(result) {
+            	//JSON 배열값만큼 셀렉트태그에 입력값 추가
             	result.forEach(function(manager) {
             	    var option = document.createElement("option");
+            	    //이름을 직급 이름 따로 가져오므로 합치는 작업
             	    var fullName = manager.emp_grade + ' ' + manager.emp_name;
             	    option.value = manager.emp_num;
             	    option.text = fullName;
             	    managerlist.appendChild(option);
             	});
             }
-        });
+        });//endAJAX(매니저리스트)
      	
-	});
+	});//end 지점선택
 	
 	// 날짜구하는함수
 	var currentDate = new Date();
@@ -432,13 +439,13 @@ $j(document).ready(function() {
                   disableTextInput : true, //텍스트입력불가
                   listWidth : 1, //크기조정
                   disableTimeRanges: disabledTimes //비활성화할시간 변수에서 호출
-                });
+                });//end 타임피커
                 
             }
-        });
-    },
+        });//end AJAX(시간값)
+    },//end 날짜입력
    
-	});
+	});//end 데이트피커
 	 
     //가격계산에 대한 AJAX처리
     $j('#servicelist, #petlist, #weightlist, #managerlist').change(function() {
@@ -464,7 +471,7 @@ $j(document).ready(function() {
         var selectedStore = $j('#storelist').val();
         
         //가격을 얻기 위한 AJAX 요청.
-        //모든 기본정도 값이 입력됬을시 가격 계산 실행
+        //모든 기본정보 값이 입력됬을시 가격 계산 실행
         if(!selectedService == "" && !selectedWeight == "" && !selectedPet == "" && !selectedManager == "" && !selectedStore == ""){
           	
         $j.ajax({
@@ -492,14 +499,14 @@ $j(document).ready(function() {
                         });
                 
                     }
-                });
+                });//endAJAX(Date)
 
             }
-        });
+        });//endAJAX(Price)
         
-        }
-    }); 
-});
+        }//endIF(모든값입력검증유무)
+    });//end 가격계산
+});//end Jquery
 
 </script>
 

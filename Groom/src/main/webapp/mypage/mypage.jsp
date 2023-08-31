@@ -68,14 +68,19 @@ List<MypageDTO> visibleItems = mypetList.subList(startIndex, endIndex);
 	</tr>
 	<tr>
 	    <td class="bold-cell">나의 리뷰</td>
-	    <td><input type="button" value="리뷰관리"></td>
+	    <td><input type="button" value="리뷰관리" onclick="location.href='myReviewList.re'"></td>
+	    
 	</tr>
 	<tr>
 	    <td class="bold-cell">포인트</td>
 	    <td><%=mypageInfo.getPoint() %></td>
 	</tr>
 </table>
-<input type="button" value="정보수정" class="mbtn" onclick="location.href='modifyinfo.me'">
+<input type="button" value="회원탈퇴" class="mbtn mbtn-left" onclick="location.href='회원정보DB딜리트 날리기~~~'">
+<input type="button" value="비밀번호 변경" class="mbtn mbtn-center" onclick="location.href='resetpassword.my'">
+<input type="button" value="정보수정" class="mbtn mbtn-right" onclick="location.href='modifyinfo.my'">
+
+
 </div>
 
 <div class="table-container2">
@@ -147,7 +152,7 @@ for(MypageDTO mypageDTO : visibleItems) {
         %>
     </select>
     <!-- 정보수정 버튼 -->
-    <input type="submit" value="정보수정" class="mbtn">
+    <input type="submit" value="정보수정/삭제" class="mbtn">
 </div>
 </form>
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->

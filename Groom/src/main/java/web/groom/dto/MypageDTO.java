@@ -19,6 +19,7 @@ public class MypageDTO {
 	private String petGender;
 	private String petNeuter;
 	private String petComment;
+	private String pass;
 	
 	public int getNum() {
 		return num;
@@ -109,6 +110,14 @@ public class MypageDTO {
 	}
 	public void setPetComment(String petComment) {
 		this.petComment = petComment;
+	}
+	
+	public String getPass() {
+		return pass;
+	}
+	
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	
 	@Override

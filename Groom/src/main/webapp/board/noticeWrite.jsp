@@ -4,15 +4,18 @@
 <head>
 <!-- 헤드호출 -->
 <jsp:include page="../inc/head.jsp"></jsp:include>
-</head>
+
 <!-- noticeWrite css 추가 -->
 <link rel="stylesheet" href="./css/noticeWrite_gr.css">
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/aside_gr.css">
-<body>
 
 <!-- 사이드바호출 -->
 <jsp:include page="../inc/aside.jsp"></jsp:include>
+
+</head>
+
+<body>
 <div id="fh5co-page">
 <div id="fh5co-main">
 

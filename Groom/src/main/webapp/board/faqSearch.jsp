@@ -4,15 +4,15 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html class="no-js">
 	<head>
+	
+	
 	<!-- 헤드호출 -->
 		<jsp:include page="../inc/head.jsp"></jsp:include>
-	
-
-	
-<!-- 사이드바호출 -->
+	<!-- 사이드바호출 -->
 	<jsp:include page="../inc/aside.jsp"></jsp:include>
 	
 	<!-- jQuery -->
@@ -28,10 +28,14 @@ pageEncoding="UTF-8"%>
 	
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
+	
+	<!-- 	 css 추가 -->
+	<link rel="stylesheet" href="./css/notice_gr.css">	
+
+
 </head>
 
-<!-- 	 css 추가 -->
-	<link rel="stylesheet" href="./css/notice_gr.css">
+
 
 <body>	
 <div id="fh5co-page">
@@ -54,8 +58,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 		 <th id="lnum">글번호</th>
 		 <th id="lsub">제목</th>
 		 <th id="ldate">작성일</th>
-	 </tr>
-	 
+	 </tr>	 
 <%
 SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
     for(int i=0;i<faq.size();i++){
@@ -70,8 +73,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
     }
     %>   	 
 	 </table>
-	</div>
-	
+	</div>	
 	<!-- 목록이랑 페이지번호 사이 띄우는? -->
 	<div class="clear"></div>
 	
@@ -87,11 +89,11 @@ if(pageDTO.getStartPage() > pageDTO.getPageBlock()){
 	<%
 }
 %> 	
-	
+<!-- 서치 -->
 <%
 for(int i=pageDTO.getStartPage();i<=pageDTO.getEndPage();i++){
 	%>
-	<a href="faq.bo?pageNum=<%=i%>"><%=i %></a> 
+	<a href="faqSearch.bo?pageNum=<%=i%>&search=<%=pageDTO.getSearch()%>"><%=i %></a> 
 	<%
 }
 %>
@@ -109,7 +111,9 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 <!-- ================================================== -->
 
 
+
 	<table id="qtable2">
+	
 	 <tr><td>
 <!-- 	 <div class="pagination"> -->
 <!-- 		 <a href="#">1</a> -->
@@ -120,12 +124,17 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 <!-- 		</div> -->
 <!-- 	 </td></tr> -->
 		
+		
 		<tr><td>	
+		
 		<div class="search-form">
 			<form action="faqSearch.bo" method="get">		 	 	
 			 <input type="text" name="search" size=80 placeholder="검색어를 입력하세요" id="searchkey">
 			 <input type="submit" value="검색" id="searchbtn">
+			 
 			 </form>
+			 
+			 
 		<%
 if(id != null){
 	if(role.equals("admin")){

@@ -161,7 +161,7 @@ public class OrderService {
 			String res_u_req = request.getParameter("message");
 			String res_point = request.getParameter("point");
 		
-			int serviceNum = num1+num2;
+			int serviceNum = (num1+num2)-1;
 			
 			//오더 DTO에 값삽입
 			orderInfoDTO = new OrderinfoDTO();

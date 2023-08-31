@@ -2,12 +2,14 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.groom.dto.Board1DTO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <!DOCTYPE html>
 <html class="no-js">
 <head>
+
+
 	<!-- 헤드호출 -->
 		<jsp:include page="../inc/head.jsp"></jsp:include>
 	<!-- 사이드바호출 -->
@@ -77,6 +79,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 
 <!-- 페이지================================================== -->
 <div id="qtable2">
+<div class="pagination">
 <%
 // 시작페이지 1페이지 Prev 없음
 // 시작페이지 11,21,31 Prev 보임
@@ -103,7 +106,7 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 	<%
 }
 %>
-
+</div>
 </div>
 <!-- ================================================== -->
 

@@ -79,7 +79,7 @@ if (i <= rating) {
 			<h3><%=stars %></h3>
 			<span class="review_text1"><a><%=reviewDTO.getU_name() %></a> / <a><%=format.format(reviewDTO.getRev_date()) %></a> / <a><%=reviewDTO.getU_count() %>번째 방문</a></span>
 			<p class="review_text2"><%=reviewDTO.getRev_content() %></p>
-			<a href="reviewContet.re?rev_num=<%=reviewDTO.getRev_num() %>" class="lead">더보기 <i class="icon-arrow-right3"></i></a>
+			<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="lead">더보기 <i class="icon-arrow-right3"></i></a>
 <%
 String re_content = reviewDTO.getRe_content();
 if(id != null){

@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.groom.dto.MemberDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -72,6 +73,7 @@ List<MemberDTO> visibleItems = memberList.subList(startIndex, endIndex);
     	<td>예약횟수</td>
     	<td>포인트</td></tr>
 <%
+SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd HH:mm");
 for(MemberDTO memberDTO : visibleItems) { 
 %>
     <tr><td><%=memberDTO.getU_Num()%></td>
@@ -80,7 +82,7 @@ for(MemberDTO memberDTO : visibleItems) {
     	<td><%=memberDTO.getU_Name()%></td>
     	<td><%=memberDTO.getU_Phone()%></td>
     	<td><%=memberDTO.getU_Email()%></td>
-    	<td><%=memberDTO.getU_RegDate()%></td>
+    	<td><%=format.format(memberDTO.getU_RegDate())%></td>
     	<td><%=memberDTO.getU_Count()%></td>
     	<td><%=memberDTO.getU_Point()%></td></tr>
 <%

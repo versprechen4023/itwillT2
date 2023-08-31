@@ -19,6 +19,7 @@ public class AdminDTO {
 	
 	private int total_user;
 	private int total_res;
+	private int total_rev;
 	private int today_res;
 	private int res_a;
 	private int res_b;
@@ -36,6 +37,12 @@ public class AdminDTO {
 	}
 	public int getTotal_res() {
 		return total_res;
+	}
+	public int getTotal_rev() {
+		return total_rev;
+	}
+	public void setTotal_rev(int total_rev) {
+		this.total_rev = total_rev;
 	}
 	public void setTotal_res(int total_res) {
 		this.total_res = total_res;

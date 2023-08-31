@@ -98,6 +98,7 @@ public class AdminDAO {
 			con = new SQLConnection().getConnection();
 			String sql = "SELECT"
 					+ "    (SELECT COUNT(*) FROM user) AS total_user,"
+					+ "    (SELECT COUNT(*) FROM review) AS total_rev,"
 					+ "    (SELECT COUNT(*) FROM reservation WHERE res_status = 0) AS total_res,"
 					+ "    (SELECT COUNT(*) FROM reservation WHERE res_status = 0 AND DATE(res_day) = CURDATE()) AS today_res,"
 					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 1 AND res_status = 0) AS res_a,"
@@ -112,6 +113,7 @@ public class AdminDAO {
 			if(rs.next()) {
 				adminDTO = new AdminDTO();
 				adminDTO.setTotal_user(rs.getInt("total_user"));
+				adminDTO.setTotal_rev(rs.getInt("total_rev"));
 				adminDTO.setTotal_res(rs.getInt("total_res"));
 				adminDTO.setToday_res(rs.getInt("today_res"));
 				adminDTO.setRes_a(rs.getInt("res_a"));
@@ -123,6 +125,7 @@ public class AdminDAO {
 			} else {
 				adminDTO = new AdminDTO();
 				adminDTO.setTotal_user(0);
+				adminDTO.setTotal_rev(0);
 				adminDTO.setTotal_res(0);
 				adminDTO.setToday_res(0);
 				adminDTO.setRes_a(0);

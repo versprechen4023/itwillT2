@@ -46,8 +46,8 @@ AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 <!-- <table class="admin-main1 animate-box" data-animate-effect="fadeInLeft"> -->
 <table class="admin-main1">
     <tr><th colspan="3">현재 현황</th></tr>
-    <tr><td>총 회원수</td><td>총 예약중</td><td>총 오늘 예약</td></tr>
-    <tr><td><%=adminDTO.getTotal_user() %>명</td><td><%=adminDTO.getToday_res() %>건</td><td><%=adminDTO.getToday_res() %>건</td></tr>
+    <tr><td>총 회원수</td><td>총 리뷰수</td><td>총 예약중</td><td>총 오늘 예약</td></tr>
+    <tr><td><%=adminDTO.getTotal_user() %>명</td><td><%=adminDTO.getTotal_rev() %>개</td><td><%=adminDTO.getTotal_res() %>건</td><td><%=adminDTO.getToday_res() %>건</td></tr>
     
     <tr><th colspan="6">지점별 현황</th></tr>
     <tr><td colspan ="2">서면점</td><td colspan ="2">명지점</td><td colspan ="2">율하점</td></tr>

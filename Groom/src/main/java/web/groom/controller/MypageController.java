@@ -174,6 +174,12 @@ public class MypageController extends HttpServlet {
 			webForward(request, response, "mypage", "resetpassword");
 			
 		}
+		
+		if (sPath.equals("/withdraw.my")) {
+			
+			webForward(request, response, "mypage", "withdraw");
+			
+		}
 	}
 
 	@Override

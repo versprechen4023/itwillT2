@@ -176,9 +176,6 @@ public class MemberController extends HttpServlet {
  			
  	     }
 		 
-		 if (sPath.equals("/modifyinfo.me")) {
-			 webForward(request, response, "member", "modifyinfo");   
-	     }
 		 
 		 //로그아웃 로직 수행
 		 if (sPath.equals("/logout.me")) {

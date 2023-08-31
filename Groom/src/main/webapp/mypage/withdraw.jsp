@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="./css/login_gr.css">
 
 	<body>
-	  <form action="resetpasswordPro.my" id="resetpass" name="resetpass" method="post">
+	  <form action="withdrawPro.my" id="withdraw" name="withdraw" method="post">
 	  
 <!-- 로고 자리 -->		
 		<h1 style="margin-top: -55px; margin-bottom: 55px;"> Groom(로고) </h1>
@@ -28,9 +28,9 @@
 			 
 <!-- 비밀번호 -->
 			  <div>
-				<br><label class="imp">새 비밀번호</label>
+				<br><label class="imp">현재 비밀번호</label>
 				<div>
-				  <input type="password" id="u_pass" name="u_pass" placeholder="비밀번호를 입력하세요">
+				  <input type="password" id="u_pass" name="u_pass" placeholder="현재 비밀번호를 입력하세요">
 			    </div>
 			    <span id="passtest"></span>
 			  </div>
@@ -51,25 +51,25 @@
 
 <!-- 비밀번호 재설정 버튼 -->
 		<div id="button">
-			<button type="submit" id="submit" name="submit" style="width: 390px; font-size: 16px; margin-left: 0; ">비밀번호 재설정</button>
+			<button type="submit" id="submit" name="submit" style="width: 390px; font-size: 16px; margin-left: 0; ">회원 탈퇴</button>
 		   </div>
 	    </div>   
 <!-- 테두리선 끝 -->
 
-		   	       
+		   	    
 <!-- <div class="centered-text">
     <p>
         <a href="signup.me" class="custom-text"><b>회원가입</b></a>
         <span class="vertical-line"></span>
         <a href="fineid.me" class="custom-text"><b>아이디 찾기</b></a>
     </p>
-</div> 비밀번호변경페이지 하단에 회원가입 아이디찾기는 필요없을 듯-->
+</div> 회원탈퇴 페이지에는 회원가입,아이디찾기 필요없을 듯 -->
       
     </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
-$('#resetpass').submit(function() {
+$('#withdraw').submit(function() {
 	
 	if($('#u_pass').val() == ""){
 		$('#passtest').css('color','red');

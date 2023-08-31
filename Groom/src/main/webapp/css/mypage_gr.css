@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
   .container {
-  height: 2000px;
+  height: 1500px;
+  width: 1300px;
   }
   
   
@@ -34,7 +35,7 @@
 	width: 65%;
 	margin-left: 100px;
 	margin-right: 100px;
-	
+	margin-top: 25px;
   }
   
   .selectNbtn {

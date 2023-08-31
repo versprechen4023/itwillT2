@@ -117,13 +117,19 @@ public class AjaxController extends HttpServlet {
 		// AJAX관련 예약에 대한 날짜 비활성화 로직
 		if (sPath.equals("/getDate.aj")) {
 		    
+			//오더 관련 처리를 위한 오더 서비스 객체생성
 		    OrderService orderService = new OrderService();
+		    
+		    // 예약 비활성화 날짜를 리스트로 받아오기
 		 	List<OrderDTO> serviceDate = orderService.getServiceDate(request);
-		 			
+		 	
+		 	// JSON 배열 객체 생성
 		    JSONArray arr = new JSONArray();
 		    
+		    // 날짜 포맷을 JSON에 맞게 처리하기 위해 변경
 		    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		    
+		    //orderDTO의 내용을 모두 JSON 오브젝트에 삽입
 			for(OrderDTO orderDTO : serviceDate) {
 				
 				JSONObject object = new JSONObject();
@@ -131,7 +137,8 @@ public class AjaxController extends HttpServlet {
 				// 배열 한칸에 저장
 				arr.add(object);
 			}
-
+			
+			// 콜백함수에 최종결과값 출력
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    PrintWriter out = response.getWriter();
@@ -142,13 +149,19 @@ public class AjaxController extends HttpServlet {
 		// AJAX관련 예약에 대한 시간 비활성화 로직
 		if (sPath.equals("/getTime.aj")) {
 
+			//오더 관련 처리를 위한 오더 서비스 객체생성
 			OrderService orderService = new OrderService();
+			
+			// 예약 비활성화 시간을 리스트로 받아오기
 		 	List<OrderDTO> serviceTime = orderService.getServiceTime(request);
 		 	
+		 	// JSON 배열 객체 생성
 		 	JSONArray arr = new JSONArray();
 		 	
+		 	// 시간 포맷을 JSON에 맞게 처리하기 위해 변경
 		 	SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
 		 	
+		 	//orderDTO의 내용을 모두 JSON 오브젝트에 삽입
 		 	for(OrderDTO orderDTO : serviceTime) {
 				
 				JSONObject object = new JSONObject();
@@ -157,7 +170,8 @@ public class AjaxController extends HttpServlet {
 				// 배열 한칸에 저장
 				arr.add(object);
 			}
-		
+		 	
+		 	// 콜백함수에 최종결과값 출력
 		 	response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    PrintWriter out = response.getWriter();
@@ -181,7 +195,8 @@ public class AjaxController extends HttpServlet {
 				// 배열 한칸에 저장
 				arr.add(object);
 			}
-		
+		 	
+		    // 콜백함수에 최종결과값 출력
 		 	response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    PrintWriter out = response.getWriter();
@@ -205,7 +220,8 @@ public class AjaxController extends HttpServlet {
 				// 배열 한칸에 저장
 				arr.add(object);
 			}
-
+			
+			// 콜백함수에 최종결과값 출력
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
@@ -230,7 +246,8 @@ public class AjaxController extends HttpServlet {
 				// 배열 한칸에 저장
 				arr.add(object);
 			}
-
+			
+			// 콜백함수에 최종결과값 출력
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
@@ -246,6 +263,7 @@ public class AjaxController extends HttpServlet {
 			
 			// 최종상품 가격을 가져옴
 			int servicePrice = orderService.getServicePrice(request);
+			
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

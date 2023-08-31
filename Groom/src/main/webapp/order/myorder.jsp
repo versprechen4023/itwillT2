@@ -462,8 +462,10 @@ $j(document).ready(function() {
         
         //지점 선택 유무값
         var selectedStore = $j('#storelist').val();
+        
         //가격을 얻기 위한 AJAX 요청.
-        if(!selectedService == "" && !selectedWeight == "" && !selectedPet == "" && !selectedManager == ""){
+        //모든 기본정도 값이 입력됬을시 가격 계산 실행
+        if(!selectedService == "" && !selectedWeight == "" && !selectedPet == "" && !selectedManager == "" && !selectedStore == ""){
           	
         $j.ajax({
         	type: "GET",
@@ -476,7 +478,7 @@ $j(document).ready(function() {
             	} 
             	price.value = result;
             	
-            	//날짜선택에 대한 AJAX처리
+            	//날짜선택에 대한 AJAX처리(비활성화 날짜)
             	//가격값 반환시 날짜 입력 선택 활성
             	$j.ajax({
                 	type: "GET",

@@ -19,6 +19,7 @@ public class OrderService {
 		
 		List<OrderDTO> serviceDate = null;
 		
+		// 지점번호 받아오기
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		
 		try {
@@ -160,7 +161,8 @@ public class OrderService {
 			String res_price = request.getParameter("price");
 			String res_u_req = request.getParameter("message");
 			String res_point = request.getParameter("point");
-		
+			
+			// 상품번호 계산(상품종류값+무게값)-1
 			int serviceNum = (num1+num2)-1;
 			
 			//오더 DTO에 값삽입

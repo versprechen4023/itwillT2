@@ -78,6 +78,8 @@ MypageDTO mypageDTOTest = (MypageDTO)request.getAttribute("mypageDTOTest");
     <br>
     <div id="button" style="text-align: center;">
       <button type="submit" >수정</button>
+<input type="button" value="삭제" class="btn"
+       onclick="deletePet(<%=mypageDTOTest.getPetNum()%>)">
     </div>
   </div>
 </div>
@@ -108,6 +110,12 @@ $('#insertmypet').submit(function(event) {
         $('#petname').focus();
     }
 });//반려동물 이름 입력 안했을 때만. submit기능 제어 
+
+function deletePet(petNum) {
+    if (confirm("정말로 정보를 삭제하시겠습니까?")) {
+        location.href = 'deletemypet.my?pet_num=' + petNum;
+    }
+}
 </script>
 </body>
 </html>

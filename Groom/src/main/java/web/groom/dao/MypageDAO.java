@@ -240,14 +240,83 @@ public class MypageDAO {
 		
 		return mypagedto;
 	}
+
+	public void deleteMypet(int pet_num) {
+	    try {
+	        // db 연결
+	        con = new SQLConnection().getConnection();
+	        String sql = "DELETE FROM pet WHERE pet_num = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, pet_num);
+	        // 실행
+	        pstmt.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        dbClose();
+	    }
+	}
+
+	public void modifyinfo(MypageDTO mypageDTO) {
+		  try {
+		        // db 연결
+		        con = new SQLConnection().getConnection();
+		        String sql = "UPDATE user2 set u_phone = ?, u_email = ? WHERE u_num = ?";
+		        pstmt = con.prepareStatement(sql);
+		        pstmt.setString(1, mypageDTO.getPhone());
+		        pstmt.setString(2, mypageDTO.getEmail());
+		        pstmt.setInt(3, mypageDTO.getNum());
+		        
+		        // 실행
+		        pstmt.executeUpdate();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        dbClose();
+		    }
+		
+	} //modifyinfo
+
+	public MypageDTO userCheck(MypageDTO mypageDTO2) {
+		MypageDTO mypageDTO = null;
+		
+		try {
+			//디비연결
+			con = new SQLConnection().getConnection();
+			//3 sql select * from members where id=? and pass=?
+			String sql="select * from user where u_id=? and u_pass=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, mypageDTO2.getId());
+			pstmt.setString(2, mypageDTO2.getPass());
+			//4 실행 결과 => rs 저장
+			rs = pstmt.executeQuery();
+			//5 rs 첫번째 행으로 데이터 있으면 
+			//  mypageDTO 객체생성, set메서드 호출 rs열 데이터 저장
+			if(rs.next()) {
+				// 아이디 비밀번호 일치 => 객체생성 => 기억장소 주소 리턴
+				mypageDTO = new MypageDTO();
+				mypageDTO.setId(rs.getString("id"));
+				mypageDTO.setPass(rs.getString("pass"));
+				mypageDTO.setName(rs.getString("name"));
 	
-	
-
-
-
-
-
-	
-
-	
+			}
+			//아이디 비밀번호 틀리면 => 초기값 null=> 리턴
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return mypageDTO;
+	}// userCheck()
 }
+	
+	
+
+
+
+
+
+	
+
+	
+

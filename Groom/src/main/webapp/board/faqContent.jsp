@@ -7,12 +7,6 @@
 <head>
 <jsp:include page="../inc/head.jsp"></jsp:include>
 
-<style>
-
-
-
-
-</style>
 </head>
 
 <jsp:include page="../inc/aside.jsp"></jsp:include>

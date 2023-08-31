@@ -48,6 +48,7 @@ Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 	      		style="height: 15px; width: auto; margin-right: 5px;"
 	      		onclick="triggerFileInput()">   
 <!-- 	    	<p class="img_text" style="margin: 0;">사진/동영상 추가</p> -->
+				<input type="hidden" name="oldfile" value="<%=boardDTO.getFaq_img_url() %>">
 				<input type="file" id="fileInput" name="faq_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
 				<div id="fileInfoDisplay">　<%=boardDTO.getFaq_img_url() %></div>
 		</div>		

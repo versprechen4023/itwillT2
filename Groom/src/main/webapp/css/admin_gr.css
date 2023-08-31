@@ -2,8 +2,8 @@
 /* 화면비율 ================================= */
 #fh5co-main .fh5co-narrow-content { /* padding으로 */
 	  position: relative;
-	  width: 70%;
-	  margin-left: 30%;
+	  width: 80%;
+	  margin-left: 20%;
 	  margin: 0 auto;
 	  padding: 4em 0;
 	  clear: both;
@@ -203,6 +203,7 @@
 }
 /* (지점정보) ============================================ */   
 .admin-storeCheck1 {
+	text-align: center;
 	color: black;
     font-size: 16px;
     border-collapse: collapse;
@@ -218,6 +219,7 @@
     border: 1px solid #ddd;
 }
 .admin-storeCheck2 {
+/* 	width: 100%; */
 	color: black;
     text-align: center;
     font-size: 16px;

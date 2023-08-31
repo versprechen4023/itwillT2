@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.groom.dto.AdminDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -16,7 +17,28 @@
 <!-- css -->
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/admin_gr.css">
-<!-- 	ㅇ -->
+<style>
+.store-closed {
+padding: 0;
+color: black;
+font-size:14px;
+text-align: center;
+width: 60px;
+height: 30px;
+}
+.emp-closed {
+padding: 0;
+color: black;
+font-size:14px;
+text-align: center;
+width: 60px;
+height: 30px;
+}
+.emp-next{
+width:70%;
+}
+</style>
+
 <body>
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
@@ -61,10 +83,10 @@ List<AdminDTO> visibleItems = empList.subList(startIndex, endIndex);
 <!-- [직원목록] -->
 <table class="admin-storeCheck1">
     <tr><th colspan="3">매장정보</th></tr>
-    <tr><td>지점명</td><td>주소</td><td>전화번호</td></tr>
-    <tr><td>서면점</td><td>부산광역시 부산진구 양정로 42번길 15</td><td>051-1234-5678</td></tr>
-    <tr><td>명지점</td><td>부산광역시 서구 신호로 98번길 7</td><td>051-1234-5678</td></tr>
-    <tr><td>율리점</td><td>부산광역시 동래구 명륜로 13번길 22</td><td>051-1234-5678</td></tr>
+    <tr><td>지점명</td><td>주소</td><td>전화번호</td><td>휴무일</td></tr>
+    <tr><td>서면점</td><td>부산광역시 부산진구 양정로 42번길 15</td><td>051-1234-5678</td><td><input type="text" id="datepicker" name="datepicker" class="form-control store-closed" placeholder="선택" disabled readonly></td></tr>
+    <tr><td>명지점</td><td>부산광역시 서구 신호로 98번길 7</td><td>051-1234-5678</td><td><input type="text" id="datepicker" name="datepicker" class="form-control store-closed" placeholder="선택" disabled readonly></td></tr>
+    <tr><td>율리점</td><td>부산광역시 동래구 명륜로 13번길 22</td><td>051-1234-5678</td><td><input type="text" id="datepicker" name="datepicker" class="form-control store-closed" placeholder="선택" disabled readonly></td></tr>
 </table>
 
 <table class="admin-storeCheck2">
@@ -73,10 +95,13 @@ List<AdminDTO> visibleItems = empList.subList(startIndex, endIndex);
     	<td>지점명</td>
     	<td>직급</td>
     	<td>직원이름</td>
+    	<td>추가요금</td>
     	<td>전화번호</td>
     	<td>이메일</td>
-    	<td>입사일</td></tr>
+    	<td>입사일</td>
+    	<td>휴무일</td></tr>
 <%
+SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
 for(AdminDTO adminDTO : visibleItems) {
 	String s_location = adminDTO.getS_location();
 	String emp_grade = adminDTO.getEmp_grade();
@@ -105,15 +130,17 @@ for(AdminDTO adminDTO : visibleItems) {
     	<td><%=location %></td>
     	<td><%=grade %></td>
     	<td><%=adminDTO.getEmp_name() %></td>
-    	<td>추가고려</td>
-    	<td>emp@추가고려.com</td>
-    	<td>23.08.01 추가고려</td></tr>
+    	<td><%=adminDTO.getEmp_extrafee() %></td>
+    	<td><%=adminDTO.getEmp_phone() %></td>
+    	<td><%=adminDTO.getEmp_email() %></td>
+    	<td><%=format.format(adminDTO.getEmp_date()) %></td>
+    	<td style="text-align: center;"><input type="text" id="datepicker" name="datepicker" class="form-control emp-closed" placeholder="선택" disabled readonly></td></tr>
 <%
 }
 %>
 </table>
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
-<div class="userCheck-next" data-animate-effect="fadeInLeft">
+<div class="userCheck-next emp-next" data-animate-effect="fadeInLeft">
     <% if (currentPage > 1) { %>
         <a href="?page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
     <% } %>

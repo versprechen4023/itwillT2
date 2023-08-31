@@ -29,9 +29,6 @@ public class AdminController extends HttpServlet {
 			 webForward(request, response, "admin", "admin_page");
 	     }// 삭제예정, /admin/admin_page.jsp도 삭제예정
 		
-		if (sPath.equals("/admin_main.ad")) {
-			 webForward(request, response, "admin", "admin_main");
-	     }
 		if (sPath.equals("/admin_userCheck.ad")) {
 			System.out.println("admin_userCheck.ad");
 			adminService = new AdminService();
@@ -53,6 +50,17 @@ public class AdminController extends HttpServlet {
 			
 			webForward(request, response, "admin", "admin_storeCheck");
 	     }// admin_storeCheck.ad [직원목록]
+		
+		if (sPath.equals("/admin_main.ad")) {
+			System.out.println("admin_main.ad");
+			AdminService adminService = new AdminService();
+			AdminDTO adminDTO = adminService.getCount();
+			request.setAttribute("adminDTO", adminDTO);
+			adminDTO.getTotal_res();
+			System.out.println(adminDTO.getTotal_res());
+			
+			 webForward(request, response, "admin", "admin_main");
+	     }// admin_main.ad [관리자메인]
 		
 		
 		

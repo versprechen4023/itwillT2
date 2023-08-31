@@ -34,6 +34,15 @@ public class ReviewController extends HttpServlet {
 			 webForward(request, response, "review", "reviewList");
 	     }// reviewList.re [리뷰목록]
 		 
+		 if (sPath.equals("/myReviewList.re")) {
+			 reviewService = new ReviewService();
+			 int u_num = Integer.parseInt(request.getParameter("u_num"));
+			 List<ReviewDTO> reviewList = reviewService.getMyReviewList(u_num);
+			 request.setAttribute("reviewList", reviewList);
+			 System.out.println("reviewList.re");
+			 webForward(request, response, "review", "reviewList");
+	     }// myReviewList.re [내 리뷰목록] // '내정보'에서 'u_num' 넘기는 버튼과 연결시키기 //
+		 
 		 
 		 if (sPath.equals("/reviewList1.re")) {
 			 reviewService = new ReviewService();

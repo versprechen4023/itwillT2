@@ -9,13 +9,12 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import web.groom.dao.ReviewDAO;
-import web.groom.dto.MemberDTO;
 import web.groom.dto.ReviewDTO;
 
 public class ReviewService {
 ReviewDAO reviewDAO = null;
 	
-public List<ReviewDTO> getReviewList(String proName) {
+	public List<ReviewDTO> getReviewList(String proName) {
 		System.out.println("ReviewService getReviewList()");
 		List<ReviewDTO> reviewList = null;
 		try {
@@ -26,6 +25,18 @@ public List<ReviewDTO> getReviewList(String proName) {
 		}
 		return reviewList;
 	}// getReviewList() [리뷰목록]
+	
+	public List<ReviewDTO> getMyReviewList(int u_num) {
+		System.out.println("ReviewService getReviewList()");
+		List<ReviewDTO> reviewList = null;
+		try {
+			reviewDAO = new ReviewDAO();
+			reviewList = reviewDAO.getMyReviewList(u_num); // 프로덕트 이름 전달
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reviewList;
+	}// getMyReviewList() [내 리뷰목록]
 
 
 	public ReviewDTO getReview(HttpServletRequest request) {

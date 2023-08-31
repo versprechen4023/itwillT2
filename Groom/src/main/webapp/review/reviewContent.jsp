@@ -68,10 +68,8 @@ height: 30px;
 						<div>
 							<a style="display: none;"><%=reviewDTO.getRev_num()%></a>
 							<p class="user-info"><%=reviewDTO.getU_name()%>
-								/ <a><%=stars%></a> /
-								<%=format.format(reviewDTO.getRev_date())%>
-								/
-								<%=reviewDTO.getU_count()%>번째 방문
+								/ <a><%=stars%></a> / <%=format.format(reviewDTO.getRev_date())%>
+								/ <%=reviewDTO.getU_count()%>번째 방문 / 조회수 <%=reviewDTO.getRev_count() %>
 							</p>
 							<p class="product-info"><%=reviewDTO.getPro_name()%>
 								/

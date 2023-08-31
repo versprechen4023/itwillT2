@@ -28,7 +28,7 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 		<jsp:include page="../inc/aside.jsp"></jsp:include>
 
 		<div id="fh5co-main">
-			<div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+			<div class="fh5co-narrow-content">
 				
 				<div class="row">
 					<div class="col-md-4">

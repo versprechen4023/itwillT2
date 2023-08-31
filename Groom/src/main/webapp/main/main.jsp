@@ -136,7 +136,8 @@ if (i <= rating) {
 				
 				</div>
 			</div>
-		</div><!-- 페이지 엔드 -->
+		</div>
+	</div><!-- 페이지 엔드 -->
 
 	<!-- jQuery -->
 	<script src="./js/jquery.min.js"></script>

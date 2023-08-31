@@ -18,40 +18,17 @@
 	
 	<body>
 	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
-
-			<h1 id="fh5co-logo"><a href="index.html">Marble</a></h1>
-			<nav id="fh5co-main-menu" role="navigation">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="portfolio.html">Portfolio</a></li>
-					<li class="fh5co-active"><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</nav>
-
-			<div class="fh5co-footer">
-				<p><small>&copy; 2016 Blend Free HTML5. All Rights Reserved.</span> <span>Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> </span> <span>Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></span></small></p>
-				<ul>
-					<li><a href="#"><i class="icon-facebook2"></i></a></li>
-					<li><a href="#"><i class="icon-twitter2"></i></a></li>
-					<li><a href="#"><i class="icon-instagram"></i></a></li>
-					<li><a href="#"><i class="icon-linkedin2"></i></a></li>
-				</ul>
-			</div>
-
-		</aside>
+		<!-- 사이드바호출 -->
+		<jsp:include page="../inc/aside.jsp"></jsp:include>
 
 		<div id="fh5co-main">
 			<div class="fh5co-narrow-content">
 				<div class="row row-bottom-padded-md">
-					<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
+					<div class="col-md-6">
 										<img src="./images/grooming.jpg" width="380" height="530" style="margin-left: 220px; margin-top: 95px"><!-- 회사 이미지 -->	
 					</div>
 								
-   <div class="groom-info" data-animate-effect="fadeInLeft"><br><br><br><br><!-- 회사 소개글 -->
+   <div class="groom-info"><br><br><br><br><!-- 회사 소개글 -->
       <p class="custom-line-height">애견미용 전문샵 Groom은 사랑하는 반려동물의 아름다움과 편안함을 위해 최상의 서비스를 제공합니다.
          우리는 경험 많은 전문 그루밍 스태프들로 구성되어 있으며, 각 동물의 특성에 맞는 맞춤형 서비스를 제공하고 털 정리, 목욕, 발톱 관리부터 스파까지 고객님의 니즈에 부합하는 다양한 그루밍 옵션을 제공합니다.</p>
       <p class="custom-line-height">우리 샵에서는 반려동물을 최우선으로 생각하여 청결하고 안전한 환경에서 그루밍 서비스가 이루어집니다.
@@ -69,7 +46,7 @@
                 </div>
 		   	
    <div class="fh5co-narrow-content" style="display: flex; justify-content: center; align-items: center;">
-       <h2 class="fh5co-heading animate-box fadeInLeft animated" data-animate-effect="fadeInLeft" style="margin: 0; font-size: 13.5px;">S  e  r  v  i  c  e</h2>
+       <h2 class="fh5co-heading" style="margin: 0; font-size: 13.5px;">S  e  r  v  i  c  e</h2>
            </div>
           
                     <div class="row">

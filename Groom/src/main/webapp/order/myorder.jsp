@@ -460,6 +460,8 @@ $j(document).ready(function() {
         //직원에 따른 추가 계산을 위한 값
         var selectedManager = $j("#managerlist").val();
         
+        //지점 선택 유무값
+        var selectedStore = $j('#storelist').val();
         //가격을 얻기 위한 AJAX 요청.
         if(!selectedService == "" && !selectedWeight == "" && !selectedPet == "" && !selectedManager == ""){
           	
@@ -473,48 +475,28 @@ $j(document).ready(function() {
             		result = result - point
             	} 
             	price.value = result;
+            	
+            	//날짜선택에 대한 AJAX처리
+            	//가격값 반환시 날짜 입력 선택 활성
+            	$j.ajax({
+                	type: "GET",
+                    url: 'getDate.aj',
+                    data: {"selectedStore": selectedStore}, // 선택된 값을 서버로 전송
+                    dataType: 'json',
+                    success: function(result) {
+                    	$j("#datepicker").removeAttr("disabled");
+                    	disabledDates = result.map(function(item) {
+                            return item.date;
+                        });
+                
+                    }
+                });
 
             }
         });
         
         }
-    });
-    
-  	//날짜선택에 대한 AJAX처리
-    $j('#managerlist').change(function() {
-		
-    	//직원 선택시 예약 일자 초기화
-		datepicker.value = "";
-		timepicker.value ="";
-		$j("#timepicker").attr('disabled','disabled');
-		
-		// 변수 초기화 작업
-        disabledDates = [];
-		
-        // if문 및 지점번호 값 전송
-        var selectedStore = $j('#storelist').val();
-        var selectedService = $j("#servicelist").val();
-        var selectedPet = $j("#petlist").val();
-        var selectedWeight = $j("#weightlist").val();
-        var selectedManager = $j("#managerlist").val();
-        
-        // 날짜 비활성화를 위한 AJAX 요청.
-        if(!selectedStore == "" && !selectedService == "" && !selectedPet == "" && !selectedWeight == "" && !selectedManager == "")
-        $j.ajax({
-        	type: "GET",
-            url: 'getDate.aj',
-            data: {"selectedStore": selectedStore}, // 선택된 값을 서버로 전송
-            dataType: 'json',
-            success: function(result) {
-            	$j("#datepicker").removeAttr("disabled");
-            	disabledDates = result.map(function(item) {
-                    return item.date;
-                });
-        
-            }
-        });
-    });
-  
+    }); 
 });
 
 </script>

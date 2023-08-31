@@ -28,10 +28,12 @@ pageEncoding="UTF-8"%>
 	
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
+	
+	<!-- 	 css 추가 -->
+	<link rel="stylesheet" href="./css/notice_gr.css">
 </head>
 
-<!-- 	 css 추가 -->
-	<link rel="stylesheet" href="./css/notice_gr.css">
+
 
 <body>	
 <div id="fh5co-page">
@@ -57,7 +59,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 	 </tr>
 	 
 <%
-SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
+SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm");
     for(int i=0;i<faq.size();i++){
     	Board1DTO boardDTO=faq.get(i);
     	%>
@@ -110,7 +112,6 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 
 
 	<table id="qtable2">
-	 <tr><td>
 <!-- 	 <div class="pagination"> -->
 <!-- 		 <a href="#">1</a> -->
 <!-- 		 <a href="#">2</a> -->

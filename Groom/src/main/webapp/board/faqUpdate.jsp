@@ -29,7 +29,8 @@ Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 <h2>FAQ</h2>
 <hr>
 
-<form id="nwf" method="post" action="faqWritePro.bo" enctype="multipart/form-data">
+<form id="nwf" method="post" action="faqUpdatePro.bo" enctype="multipart/form-data">
+	<input type="hidden" name="faq_num" value="<%=boardDTO.getFaq_num() %>">
 	<table>
 		<tr><th class="nwth">제목</th></tr>
 		<tr><td><input type="text" class="sub" name="faq_title"

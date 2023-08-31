@@ -59,7 +59,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
             <th id="ldate">작성일</th>
         </tr>
 <%
-SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
+SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm");
     for(int i=0;i<notice.size();i++){
     	Board1DTO boardDTO=notice.get(i);
     	%>

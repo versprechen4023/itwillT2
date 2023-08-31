@@ -28,11 +28,13 @@ String id = (String)session.getAttribute("id");
 <form id="nwf" method="post" action="noticeWritePro.bo" enctype="multipart/form-data">
 	<table>
 		<tr><th class="nwth">제목</th></tr>
-		<tr><td><input type="text" class="sub" placeholder="제목을 입력해 주세요" name="n_title"></td></tr>
+		<tr><td><input type="text" class="sub" placeholder="제목을 입력해 주세요" 
+				maxlength="50"name="n_title"></td></tr>
 	</table>
 	<table>	
 		<tr><th class="nwth">내용</th></tr>
-		<tr><td><textarea class="cont" placeholder="내용을 입력해 주세요" name="n_content"></textarea></td></tr>
+		<tr><td><textarea class="cont" placeholder="내용을 입력해 주세요" 
+		 		name="n_content"></textarea></td></tr>
 		
 		<tr><td>
 		<!-- 아이콘(이미지) -->

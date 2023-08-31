@@ -13,7 +13,7 @@
 <!-- 사이드바호출 -->
 <jsp:include page="../inc/aside.jsp"></jsp:include>
 
-<link rel="stylesheet" href="./css/qnacontent_gr.css">
+<link rel="stylesheet" href="./css/noticecontent_gr.css">
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/aside_gr.css">
 

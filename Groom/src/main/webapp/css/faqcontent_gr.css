@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
 
 @font-face {
 	font-family: 'Godo';
@@ -85,7 +84,7 @@ text-align: center;
 }
 
 .vtitle {
-   width: 6px;
+   	width: 850px;
     font-size: 20px;
     padding-left: 10px;
 
@@ -108,7 +107,7 @@ width: 1000px;
 
 .btn {
 
-    margin-right: 4px;
+    margin-right: 27%;  
     margin-bottom: 4px;
     font-family: "Roboto", Arial, sans-serif;
     font-size: 20px;
@@ -124,7 +123,7 @@ width: 1000px;
     transition: 0.5s;
     padding: 8px 20px !important;
     float: right;
-    margin-right:255px;
+/*     margin-right:255px; */
     font-family: 'Godo' !important;
 }
 

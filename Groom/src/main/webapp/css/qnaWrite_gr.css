@@ -1,0 +1,184 @@
+@charset "UTF-8";
+@font-face {
+	font-family: 'Godo';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2')
+		format('woff2'),
+		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff')
+		format('woff');
+}
+
+#fh5co-main {
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column; /* Stack children vertically */
+	align-items: center; /* Center horizontally within the container */
+	width: 80%;
+}
+
+#fh5co-main h2 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 40px;
+	background-color: #FAF5FA;
+	font-family: 'Godo';
+	color: black;
+}
+
+.fh5co-narrow-content {
+	background-color: #FAF5FA;
+	padding: 20px;
+	position: relative; /* Add relative positioning */
+}
+
+.abc {
+	margin-top: 50px;
+	margin-left: 40px;
+	color: black;
+}
+
+.abc qnasubject {
+	width: 800px;
+}
+
+.qnawriter {
+	
+}
+
+.qnacontent {
+	height: 200px;
+}
+
+.qnasubject {
+	height: 50px;
+}
+
+.abc qnaimage {
+	width: 50px;
+}
+
+.qnasubmit {
+	width: fit-content;
+	letter-spacing: 2px;
+	font-size: 20px;
+	font-family: 'Godo';
+	color: white;
+	background-color: black;
+	border: 1px solid black;
+	border-radius: 10px;
+	margin-right: 20px;
+}
+
+.hrsolid {
+	width: 75%;
+	border: 0px;
+	border-top: 3px solid black;
+	margin-top: 60px;
+	margin-left: 45px;
+}
+
+.abc p {
+	font-size: 20px;
+	font-family: 'Godo';
+	margin-bottom: 5px; /* Reduce the space below the paragraph */
+	margin-top: 20px;
+	color: black;
+}
+
+.qna_title {
+	margin-bottom: 10px;
+	width: 900px;
+	font-family: 'Godo';
+	height: 50px;
+	border-radius: 5px;
+	border: 1px solid black;
+	font-size: 18px;
+    padding: 15px;
+}
+
+.abc textarea {
+	margin-bottom: 10px;
+	width: 900px;
+	font-family: 'Godo';
+	resize: none;
+	border-radius: 5px;
+	font-size: 18px;
+	border: 1px solid black;
+	padding: 15px;
+}
+
+.button-container {
+    display: flex;
+    /* margin-left: 10px; */
+    width: 250px;
+    float: right;
+    margin-right: 230px;
+    margin-top: -41px;
+}
+
+.review-input-img {
+	display: flex;
+	text-align: left;
+	align-items: center;
+	justify-content: left;
+	height: 40px;
+	border: 1px solid black;
+	width: 200px;
+	border-radius: 10px;
+	width: fit-content;
+}
+
+.review-input-img1 {
+	height: 30px;
+	width: auto;
+	margin-left: 10px;
+}
+
+#fileInfoDisplay {
+	margin-left: 10px;
+	color: black;
+	font-size: 16px;
+	font-family: 'Godo';
+	margin-right: 10px;
+}
+
+.category {
+	display: inline-block;
+	max-width: 100%;
+	margin-bottom: 5px;
+	font-weight: bold;
+	font-size: 20px;
+	font-family: 'Godo';
+	width: 55px;
+}
+
+#qna_category {
+	height: 35px;
+	width: 85px;
+	text-align: center;
+	font-family: 'Godo';
+	border: 1px solid black;
+	border-radius: 20px;
+	color: black;
+}
+
+.file-info-container {
+	display: flex;
+	align-items: center; /* Center vertically */
+}
+
+.qnalist {
+	width: fit-content;
+	letter-spacing: 2px;
+	font-size: 20px;
+	font-family: 'Godo';
+	color: white;
+	background-color: black;
+	border: 1px solid black;
+	border-radius: 10px;
+}

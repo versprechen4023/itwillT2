@@ -62,7 +62,7 @@ public class Board1Controller extends HttpServlet {
 			List<Board1DTO> notice = boardService.getNotice(pageDTO);
 			
 			// 게시판 전체 글 개수 구하기 
-			int count = boardService.getBoardCount2();
+			int count = boardService.getBoardCount();
 			// 한화면에 보여줄 페이지개수 설정
 			int pageBlock = 10;
 			// 시작하는 페이지 번호
@@ -254,7 +254,7 @@ public class Board1Controller extends HttpServlet {
 			List<Board1DTO> faq = boardService.getFaq(pageDTO);
 			
 			// 게시판 전체 글 개수 구하기 
-			int count = boardService.getBoardCount();
+			int count = boardService.getBoardCount2();
 			// 한화면에 보여줄 페이지개수 설정
 			int pageBlock = 10;
 			// 시작하는 페이지 번호

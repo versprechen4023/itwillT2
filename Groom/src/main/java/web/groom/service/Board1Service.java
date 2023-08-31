@@ -327,6 +327,8 @@ public class Board1Service {
 			request.setCharacterEncoding("utf-8");
 			// request 파라미터 가져오기 => int num 저장
 			int faq_num = Integer.parseInt(request.getParameter("faq_num"));
+			System.out.println(faq_num);
+			
 			// BoardDAO 객체생성
 			boardDAO = new Board1DAO();
 			// boardDTO = getBoard(num) 메서드 호출
@@ -391,7 +393,7 @@ public class Board1Service {
 				//기존파일 이름 가져오기
 				faq_img_url = multi.getParameter("oldfile");
 			}
-			
+			System.out.println("updatefaq");
 			// BoardDTO 객체생성
 			Board1DTO boardDTO = new Board1DTO();
 			// set메서드 호출 파라미터값 저장

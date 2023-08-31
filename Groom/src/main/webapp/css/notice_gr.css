@@ -6,19 +6,19 @@
 	}
 #qtable1 {
 border-collapse: collapse;
-width: 85%;
+width: 70%;
 /* border: 1px solid #ddd; */
 margin-top: 20px;
-margin-left: 90px;
+margin-left: 7%;
 background-color: white;
 }
 		
 /* 		검색창,버튼 테이블 */
 		#qtable2{
 			border-collapse: collapse;
-width: 85%;
+width: 70%;
 margin-top: 10px;
-margin-left: 90px;
+margin-left: 6.3%;
 /* background-color: white; */
 		}
 th, td {
@@ -31,10 +31,11 @@ border: none;
 	padding: 8px;
 text-align: left;
 text-align: center;
-border-bottom: 1px solid #ddd;
+border-bottom: 1px solid black;
 }
 th {
-background-color: #ddd;
+background-color: black;
+color: white;
 }
 #qtr:hover {
 background-color: rgb(241, 241, 241);
@@ -45,7 +46,8 @@ background-color: rgb(241, 241, 241);
 /* 			margin-top: 20px; */
 			margin: 0px;
 			padding:6px;
-			border: 2px solid #ddd;						
+			border: 1px solid black;	
+			border-radius: 5px;					
 }
 tr #searchkey, #searchbtn {
 	float: left;
@@ -53,34 +55,37 @@ tr #searchkey, #searchbtn {
 /* 버튼 */
 #searchbtn{
 	border: none;
-	background-color: #228896;
+	background-color: black;
 	color:white;
 	border-radius: 5px;
-	padding: 6px 15px;
+	padding: 7px 15px;
 	margin-left: 10px;
+	font-weight: bolder;
 }
 #writebtn{
 	border: none;
-	background-color: #228896;
+	background-color: black;
 	color:white;
 	border-radius: 5px;
-	padding: 6px 15px;
+	padding: 7px 15px;
 	margin-left: 280px;
+	float: right;
+	font-weight: bolder;
 }
 /* 		th간 간격 */
 #lnum{
-	width: 7%;
+	width: 10%;
 }
 #lsub{
-	width: 65%;
+	width: 70%;
 }
 #ldate{
 	width: 20%;
 }
-#lcount{
-	width: 8%;
-}
-#subject{
+/* #lcount{ */
+/* 	width: 8%; */
+/* } */
+table #subject{
 	text-align: left;
 }
 /* 페이지 */
@@ -92,17 +97,19 @@ tr #searchkey, #searchbtn {
 		}
 	
 		.pagination a {
-		 color: #228896;
+		 color: black;
 		 padding: 6px 12px;
 		 margin: 0 5px;
-		 border: 1px solid #228896;
+		 border: 1px solid black;
 		 text-decoration: none;
 		 border-radius: 5px;
+		 font-weight: bold;
 		}
 	
 		.pagination a:hover {
-		 background-color: #228896;
+		 background-color: black;
 		 color: white;
+		  font-weight: bold;
 		}
 		
 		#nwf {
@@ -156,6 +163,7 @@ border-radius: 5px;
 		float: right;
 /* 		버튼사이 간격 */
 		margin-right: 5px;
+float: right;
 }
 .nwbtnCtrl {
 	width: 80%;

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+
+
 import web.groom.dao.AdminDAO;
 import web.groom.dao.MemberDAO;
 import web.groom.dao.MypageDAO;
@@ -87,9 +89,9 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 		System.out.println("MypageService getMypetinfo()");		
 		mypagedto = null;
 		try {
-			// MemberDAO 객체생성
+			// MypageDAO 객체생성
 			mypagedao = new MypageDAO();
-			// memberDTO  = getMember(id) 메서드 호출
+			// getMypetinfo(num) 메서드 호출
 			mypagedto = mypagedao.getMypetinfo(num);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,14 +124,14 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 			mypagedto.setPetNeuter(getPetNeuter);
 			mypagedto.setPetComment(getPetComment);
 			
-			// MemberDAO 객체생성
+			// MypageDAO 객체생성
 			mypagedao = new MypageDAO();
-			// updateMember(memberDTO) 메서드 호출
+			// updateMypet(mypagedto) 메서드 호출
 			mypagedao.updateMypet(mypagedto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}//updateMember()
+	}//updat()
 
 	public List<MypageDTO> getMypetList(HttpServletRequest request) {
 		System.out.println("MypageService getMypetList");
@@ -143,7 +145,7 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 			e.printStackTrace();
 		}
 		return mypetList;
-	}
+	}//getMypetList
 	
 	public MypageDTO MypetTestInfo(HttpServletRequest request) {
 		//유저 번호 가져오기
@@ -156,7 +158,83 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 		
 		return mypagedto;
 	}
+
+//	public void deleteMypet(HttpServletRequest request) {
+//	    System.out.println("MypageService deletemypet()");
+//	    try {
+//	        // 펫 번호 가져오기
+//	        int pet_num = Integer.parseInt(request.getParameter("pet_num"));
+//	        
+//	        // MypageDAO 객체생성
+//	        mypagedao = new MypageDAO();
+//	        // deleteMypet(pet_num) 메서드 호출
+//	        mypagedao.deleteMypet(pet_num);
+//	    } catch (Exception e) {
+//	        e.printStackTrace();
+//	    }
+//	}
 	
+	public void deleteMypet(int pet_num) {
+	    MypageDAO mypagedao = new MypageDAO();
+	    mypagedao.deleteMypet(pet_num);
+	}
+
+
+	public MypageDTO modifyinfo(HttpServletRequest request) {
+		
+		try {
+			// request 한글처리
+			request.setCharacterEncoding("utf-8");
+			// request 파라미터 가져오기(phone, email, u_num)
+			String phone = request.getParameter("phone");
+			String email = request.getParameter("email");
+			int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+		
+						// MypageDTO 객체생성 
+			MypageDTO mypageDTO = new MypageDTO();
+			// set메서드 호출 파라미터값 저장
+			mypageDTO.setPhone(phone);
+			mypageDTO.setEmail(email);
+			mypageDTO.setNum(u_num);
+			// MemberDAO 객체생성
+			mypagedao = new MypageDAO();
+		
+			mypagedao.modifyinfo(mypageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} return mypagedto;
+	}
+
+	public MypageDTO userCheck(HttpServletRequest request) {
+		System.out.println("MypageService userCheck()");
+		MypageDTO memberDTO = null;
+		try {
+			//한글처리
+			request.setCharacterEncoding("utf-8");
+			//id,pass 파라미터 값 가져오기
+			String id=request.getParameter("id");
+			String pass=request.getParameter("pass");
+			// MemberDTO 저장
+			MypageDTO mypageDTO2 = new MypageDTO();
+			mypageDTO2.setId(id);
+			mypageDTO2.setPass(pass);
+			// MemberDAO 객체생성
+			mypagedao = new MypageDAO();
+			// memberDTO =  userCheck(memberDTO2) 메서드 호출
+			mypagedto=mypagedao.userCheck(mypageDTO2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mypagedto;
+	}
+
+
+
+
+
+
+
+
 
 
 }

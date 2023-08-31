@@ -1,21 +1,21 @@
+<%@page import="web.groom.dto.QnaDTO"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="web.groom.dto.PageDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+ <html class="no-js"> 
 	<head>
 	<!-- 헤드호출 -->
 	<jsp:include page="../inc/head.jsp"></jsp:include>
-	</head>
 	
 	<!-- 	추가한거!!! -->
 	<link rel="stylesheet" href="./css/qna_gr.css">
 	
 	<!-- 사이드바호출 -->
 	<jsp:include page="../inc/aside.jsp"></jsp:include>
+
 	<!-- jQuery -->
 	<script src="./js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -27,19 +27,31 @@ pageEncoding="UTF-8"%>
 	<!-- Flexslider -->
 	<script src="./js/jquery.flexslider-min.js"></script>
 	
-	
 	<!-- MAIN JS -->
-	<script src="./js/main.js"></script>
+	<script src="./js/main.js"></script>	
 	
-
+	
 	
 <!-- 여기부터 -->
-	<div id="fh5co-main">	
-<head>
+	
+
 <title>질문게시판</title>
 </head>
+
 <body>
+<%
+String role=(String)session.getAttribute("role");
+String id=(String)session.getAttribute("id");
+
+List<QnaDTO> qna=(List<QnaDTO>)request.getAttribute("qna");
+PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
+%>
+<div id="fh5co-page">
+	<div id="fh5co-main">
+	
+	
 <h2>Q&A</h2>
+
 <table id="qtable1">
 <tr id="qtr">
 <th id="lnum">글번호</th>
@@ -49,20 +61,72 @@ pageEncoding="UTF-8"%>
 <th id="lre">답글</th>
 </tr>
 
+ <%
+ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
+        for(int i=0; i<qna.size(); i++){
+        	QnaDTO qnaDTO = qna.get(i);    
+        %>
+       <tr id="qtr" onclick="location.href='qnacontent.bo?qna_num=<%=qnaDTO.getQnanum()%>'">
+            <td><%=qnaDTO.getQnanum() %></td>
+            <td id="subject"><%=qnaDTO.getTitle() %></td>
+            <td><%=qnaDTO.getId() %>	</td>
+            <td><%=qnaDTO.getDate() %>	</td>
+            <% 
+            if(qnaDTO.getQreans()==0){
+            %><td>X</td>
+            <% }else {%>
+            	<td>O</td><%
+            	
+            }%>
+        </tr>
+        <%
+        }
+        %>
 </table>
+<!-- 목록이랑 페이지번호 사이 띄우는? -->
+<div class="clear"></div>
+
+
+<!-- 페이지================================================== -->
 <table id="qtable2">
 <tr><td>
+	<div class="pagination">
+	
+		<%
+// 시작페이지 1페이지 Prev 없음
+// 시작페이지 11,21,31 Prev 보임
+if(pageDTO.getStartPage() > pageDTO.getPageBlock()){
+	%>
+	<a href="qna.bo?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>">Prev</a>
+	<%
+}
+%> 
 
-<div class="pagination">
-	 <a href="#">1</a>
-	 <a href="#">2</a>
-	 <a href="#">3</a>
-	 <a href="#">4</a>
-	 <a href="#">5</a>
+<%
+for(int i=pageDTO.getStartPage();i<=pageDTO.getEndPage();i++){
+	%>
+	<a href="qna.bo?pageNum=<%=i%>"><%=i %></a> 
+	<%
+}
+%>
+
+<%
+//끝페이지번호  전체페이지수 비교 => 전체페이지수 크면 => Next보임
+if(pageDTO.getEndPage() < pageDTO.getPageCount()){
+	%>
+	<a href="qna.bo?pageNum=<%=pageDTO.getStartPage()+pageDTO.getPageBlock()%>">Next</a>
+	<%
+}
+%>
+		
 	</div>
 </td></tr>
 	
-	<tr><td>	
+<!-- ================================================== -->
+	
+	<table id="qtable2">
+	<tr><td>
+		
 	<div class="search-form">
 		<form action="./noticeList.no" method="get">
 		 <div class="combo-box">
@@ -73,19 +137,69 @@ pageEncoding="UTF-8"%>
 					<option value="option4">기타</option>
 				</select>					
 			</div>		 	
-		 <input type="text" name="keyWord" size=30 placeholder="검색어를 입력하세요" id="searchkey">
+			
+			
+		 <input type="text" name="keyWord" size=80 placeholder="검색어를 입력하세요" id="searchkey">
 		 <input type="submit" value="검색" id="searchbtn">
-	
-		 <input type="button" value="답글X" onclick="답글작성안한 글만 출력" id="rebtn">
+		 <input type="button" value="글쓰기" onclick="location.href='qnaWrite.bo'" id="writebtn">
+<!-- 		 <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn"> -->
+
+
 		 </form>
-		 <button type="button" value="글쓰기" onclick="location.href='qnaWrite.bo'" id="writebtn" value="글쓰기"> 글쓰기 </button>
 		 
 		 
-	</div>
+		 <script>
+
+// ============================ 파일첨부	
+function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘리먼트 클릭
+	const fileInput = document.getElementById('fileInput');
+	fileInput.click(); // 파일 입력 엘리먼트 클릭 이벤트 발생
+	}
+// 파일 입력(input) 엘리먼트의 값이 변경되었을 때 실행되는 함수
+	document.getElementById('fileInput').addEventListener('change', function(event) {
+		const selectedFile = event.target.files[0]; // 선택된 파일 가져오기
+		const fileInfoDisplay = document.getElementById('fileInfoDisplay');
+		if (selectedFile) {
+// 선택된 파일이 허용된 확장자를 가지는지 검증
+			const allowedExtensions = /(\.png|\.jpg|\.jpeg|\.gif)$/i;
+			if (!allowedExtensions.exec(selectedFile.name)) {
+				alert('png, jpg, gif 파일만 첨부할 수 있습니다.');
+				resetFileInput();
+				return;
+				}
+// 파일명을 표시
+			fileInfoDisplay.textContent = selectedFile.name;
+			} else {
+// 파일 선택이 해제되었을 때
+				fileInfoDisplay.textContent = '선택된 파일 없음';
+				}
+		});
+// 파일 입력(input) 엘리먼트 초기화
+		function resetFileInput() {
+			const fileInput = document.getElementById('fileInput');
+			fileInput.value = ''; // 파일 선택 해제
+			}
+</script>
+		 
+		 <%
+if(id != null){
+	if(role.equals("admin")){
+		%>
+			    <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn">
+
+<%
+	}
+}
+%>
+		 
+
 	</td></tr>
 	
 	</table>
+</div>
+</div>
 	</body>
 </html>
+
 
 

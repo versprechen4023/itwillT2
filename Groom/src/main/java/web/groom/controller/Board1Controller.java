@@ -15,7 +15,7 @@ import web.groom.dto.Board1DTO;
 import web.groom.dto.PageDTO;
 import web.groom.service.Board1Service;
 
-@WebServlet("*.bo") //.bo 게시판관련페이지 어노테이션 매핑 선언
+@WebServlet("*.bo1") //.bo 게시판관련페이지 어노테이션 매핑 선언
 public class Board1Controller extends HttpServlet {
 	
 	Board1Service boardService = null;

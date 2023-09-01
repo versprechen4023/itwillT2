@@ -416,34 +416,34 @@ public class MemberDAO {
 	public boolean insertCencel(int u_num, Timestamp del_date) {
 		
 		boolean result = false;
-		
+
 		try {
-			
-			//db연결
+
+			// db연결
 			con = new SQLConnection().getConnection();
-			
+
 			// SQL 쿼리 실행(유저탈퇴 테이블에 값 삽입)
 			String SQL = "INSERT INTO myCancel(s_num, del_date) VALUE(?,?)";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, u_num);
 			pstmt.setTimestamp(2, del_date);
-			int rs =  pstmt.executeUpdate();
-			
+			int rs = pstmt.executeUpdate();
+
 			if (rs != 0) {
 				result = true;
 			} else {
 				result = false;
 			}
-		
-	} catch (Exception e) {
-		e.printStackTrace();
-		
-	} finally {
-		dbClose();
-	}
-	
-	return result;
-	
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			dbClose();
+		}
+
+		return result;
+
 	}
 
 	public MemberDTO isUserDisabled(MemberDTO memberdto) {

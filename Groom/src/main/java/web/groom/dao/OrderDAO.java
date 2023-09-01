@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import web.groom.dto.OrderDTO;
+import web.groom.dto.OrderReservationDTO;
 import web.groom.dto.OrderServiceDTO;
 import web.groom.dto.OrderinfoDTO;
 
@@ -399,6 +400,45 @@ public class OrderDAO {
 		}
 		
 		return orderInfoDTO;
+	}
+
+	public OrderReservationDTO insertOrderReserv(OrderReservationDTO orderReserv) {
+		try {
+
+			// db연결
+			con = new SQLConnection().getConnection();
+
+			// SQL 쿼리 실행(예약 내역 값 삽입)
+			String SQL = "INSERT INTO reservation(u_num, pro_id1, pro_id2, s_num, emp_num, res_u_req, res_method, res_status, res_time, res_day) VALUE(?,?,?,?,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, orderReserv.getU_num());
+			pstmt.setInt(2, orderReserv.getPro_id1());
+			pstmt.setInt(3, orderReserv.getPro_id2());
+			pstmt.setInt(4, orderReserv.getS_num());
+			pstmt.setInt(5, orderReserv.getEmp_num());
+			pstmt.setString(6, orderReserv.getRes_u_req());
+			pstmt.setString(7, orderReserv.getRes_method());
+			pstmt.setInt(8, 0);
+			pstmt.setString(9, orderReserv.getRes_time());
+			pstmt.setString(10, orderReserv.getRes_day());
+			int rs = pstmt.executeUpdate();
+
+			if (rs != 0) {
+				System.out.println("예약정보 저장완료");
+			} else {
+				System.out.println("예약정보 저장실패");
+				orderReserv = null;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			dbClose();
+		}
+
+		return orderReserv;
+
 	}
 
 }

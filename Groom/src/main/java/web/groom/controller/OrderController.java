@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import web.groom.dto.MemberDTO;
+import web.groom.dto.OrderReservationDTO;
 import web.groom.dto.OrderinfoDTO;
 import web.groom.service.MemberService;
 import web.groom.service.OrderService;
@@ -61,7 +62,7 @@ public class OrderController extends HttpServlet {
 			 }
 	     }
 		 
-		//페이지이동
+		 //페이지이동
 		 if (sPath.equals("/myorderCheckout.or")) {
 			 
 			 //유저 세션 검증
@@ -86,6 +87,26 @@ public class OrderController extends HttpServlet {
 				 
 				 webForward(request, response, "order", "myorderCheckout");
 			 }
+			 
+	     }
+		 
+		//페이지이동
+		 if (sPath.equals("/orderReservation.or")) {
+				 
+				 //정보들을 가지고 오기 위한 객체생성
+				 OrderService orderservice = new OrderService();
+				 
+				 OrderReservationDTO orderReserv = orderservice.insertOrderReserv(request);
+				 
+				if (orderReserv != null) {
+					System.out.println("예약처리 완료");
+					response.sendRedirect("main.gr");
+				} else {
+					System.out.println("예약처리 에러발생");
+					response.sendRedirect("main.gr");
+				}
+				 
+
 			 
 	     }
 		 

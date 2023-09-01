@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import web.groom.dao.OrderDAO;
 import web.groom.dto.OrderDTO;
+import web.groom.dto.OrderReservationDTO;
 import web.groom.dto.OrderServiceDTO;
 import web.groom.dto.OrderinfoDTO;
 
@@ -191,6 +192,47 @@ public class OrderService {
 			e.printStackTrace();
 		}
 		return orderInfoDTO;
+	}
+
+	public OrderReservationDTO insertOrderReserv(HttpServletRequest request) {
+		
+		OrderReservationDTO orderReserv = null;
+		
+		//유저 오더 정보 변수에 저장
+		try {
+			int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+			int pro_id1 = Integer.parseInt(request.getParameter("pro_id1"));
+			int pro_id2 = Integer.parseInt(request.getParameter("pro_id2"));
+			int s_num = Integer.parseInt(request.getParameter("s_num"));
+			int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+			
+			String res_u_req = request.getParameter("res_u_req");
+			String res_method = request.getParameter("res_method");
+			String res_time = request.getParameter("res_time");
+			String res_day = request.getParameter("res_day");
+			
+			//오더 DTO에 값삽입
+			orderReserv = new OrderReservationDTO();
+			orderReserv.setU_num(u_num);
+			orderReserv.setPro_id1(pro_id1);
+			orderReserv.setPro_id2(pro_id2);
+			orderReserv.setS_num(s_num);
+			orderReserv.setEmp_num(emp_num);
+			
+			orderReserv.setRes_u_req(res_u_req);
+			orderReserv.setRes_method(res_method);
+			orderReserv.setRes_time(res_time);
+			orderReserv.setRes_day(res_day);
+			
+			System.out.println(orderReserv);
+			
+			orderDAO = new OrderDAO();
+			orderReserv = orderDAO.insertOrderReserv(orderReserv);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return orderReserv;
 	}
 
 }

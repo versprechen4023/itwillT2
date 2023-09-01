@@ -35,7 +35,7 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 						<h2>예약내용 최종확인</h2>
 					</div>
 				</div>
-				<form action="myorderCheckout.or" id="checkout" method="post">
+				<form action="orderReservation.or" id="checkout" method="post">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
@@ -83,20 +83,21 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 								<div class="col-md-3">
 									<div class="form-group">
 										<p>선택하신 예약날짜</p>
-										<input type="text" id="datepicker" name="datepicker" class="form-control" value="<%=orderInfo.getRes_day()%>" readonly>
+										<input type="text" id="res_day" name="res_day" class="form-control" value="<%=orderInfo.getRes_day()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>선택하신 예약시간</p>
-										<input type="text" id="timepicker" name="timepicker" class="form-control" value="<%=orderInfo.getRes_time()%>" readonly>
+										<input type="text" id="res_time" name="res_time" class="form-control" value="<%=orderInfo.getRes_time()%>" readonly>
 									</div>
 								</div>
 								
 								<div class="col-md-3">
 									<div class="form-group">
 									<p>기입하신 요구사항</p>
-										<textarea id="message" name="message" cols="30" rows="7" class="form-control" readonly><%=orderInfo.getRes_u_req()%></textarea>
+										<textarea id="res_u_req" name="res_u_req" cols="30" rows="7" class="form-control" readonly><%=orderInfo.getRes_u_req()%></textarea>
 									</div>
 								
+<!-- 								결제가 완료되면 서브밋되게 할거임 -->
 <!-- 									<div class="form-group"> -->
 <!-- 										<input type="submit" class="btn btn-primary btn-md" value="예약하기"> -->
 <!-- 									</div> -->
@@ -108,9 +109,10 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 					<button type="button" class="btn btn-primary" id="call_api_kakao" onclick="callAPIKakao()">카카오페이 결제</button>	
 					</div>
 					<input type="hidden" id="s_num" name="s_num" value="<%=orderInfo.getS_num()%>">
-					<input type="hidden" id="p_num" name="p_num" value="<%=orderInfo.getP_num()%>">
-					<input type="hidden" id="ser_num" name="ser_num" value="<%=orderInfo.getServeiceNum()%>">
+					<input type="hidden" id="pro_id1" name="pro_id1" value="<%=orderInfo.getP_num()%>">
+					<input type="hidden" id="pro_id2" name="pro_id2" value="<%=orderInfo.getServeiceNum()%>">
 					<input type="hidden" id="emp_num" name="emp_num" value="<%=orderInfo.getEmp_num()%>">
+					<input type="hidden" id="res_method" name="res_method" value="">
 					
 				</form>
 			
@@ -128,6 +130,7 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 let val = "<%=orderInfo.getRes_price()%>" //여기서 일단 가격 조정 추후에 DB에서 가져와야함?
 let name = "<%=orderInfo.getS_name()%>" // 서비스나 물건이름 여기서일단 설정
 let payment = "" //페이먼트 설정 html5_inicis, kakaopay, naverco
+let res_method = ""
 
 function callAPI(){
 	payment = "html5_inicis";
@@ -205,6 +208,18 @@ function callImportAPI() {
                 msg += response.error_msg;
             }
             alert(msg); // 최종메세지 출력
+            
+            if(payment == "html5_inicis"){
+            	res_method = "카드결제";
+            } else if(payment == "kakaopay"){
+            	res_method = "카카오페이 결제"
+            }
+            
+            //결제 수단 변수 삽입
+            document.getElementById("res_method").value = res_method;
+            
+            // submit 실행
+            document.getElementById("checkout").submit();
         });
     }
 </script>

@@ -62,7 +62,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 </tr>
 
  <%
- SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
+ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm");
         for(int i=0; i<qna.size(); i++){
         	QnaDTO qnaDTO = qna.get(i);    
         %>
@@ -70,7 +70,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
             <td><%=qnaDTO.getQnanum() %></td>
             <td id="subject"><%=qnaDTO.getTitle() %></td>
             <td><%=qnaDTO.getId() %>	</td>
-            <td><%=qnaDTO.getDate() %>	</td>
+            <td><%=format.format(qnaDTO.getDate()) %>	</td>
             <% 
             if(qnaDTO.getQreans()==0){
             %><td>X</td>
@@ -128,7 +128,7 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 	<tr><td>
 		
 	<div class="search-form">
-		<form action="./noticeList.no" method="get">
+		<form action="qnaSearch.bo" method="get">
 		 <div class="combo-box">
 				<select id="combo-select">
 					<option value="option1">이용문의</option>
@@ -139,7 +139,7 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 			</div>		 	
 			
 			
-		 <input type="text" name="keyWord" size=80 placeholder="검색어를 입력하세요" id="searchkey">
+		 <input type="text" name="search" size=80 placeholder="검색어를 입력하세요" id="searchkey">
 		 <input type="submit" value="검색" id="searchbtn">
 		 <input type="button" value="글쓰기" onclick="location.href='qnaWrite.bo'" id="writebtn">
 <!-- 		 <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn"> -->

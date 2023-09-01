@@ -97,10 +97,12 @@ public class QnaDTO {
 	public void setRedate(Timestamp redate) {
 		this.redate = redate;
 	}
-	@Override 
+	@Override
 	public String toString() {
-		return "QnaDTO [id=" + id + ", subjct=" + title + ", date=" + date + ", date=" + date + " category= " + category + " ]";
+		return "QnaDTO [qnanum=" + qnanum + ", id=" + id + ", title=" + title + ", content=" + content + ", date="
+				+ date + ", category=" + category + ", qnaimgurl=" + qnaimgurl + ", qreref=" + qreref + ", qrelev="
+				+ qrelev + ", qreseq=" + qreseq + ", qreans=" + qreans + ", recontent=" + recontent + ", redate="
+				+ redate + "]";
 	}
-	
 
 }

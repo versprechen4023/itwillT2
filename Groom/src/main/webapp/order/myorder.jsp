@@ -481,7 +481,12 @@ $j(document).ready(function() {
             success: function(result) {
             	//포인트가 0이아니고 포인트 사용에 체크되어있으면 가격 계산
             	if(!point == "" && $('#pointcheck').prop('checked')){
-            		result = result - point
+            		//포인트 금액이 기존 금액에서 추가될경우 금액 강제 상한으로 변경
+            		if(parseInt(result) < parseInt(point)){
+            			point = result;
+            			$j('#point').val(result);
+            		}
+            		result = result - point;
             	} 
             	price.value = result;
             	

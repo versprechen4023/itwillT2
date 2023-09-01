@@ -1,7 +1,7 @@
 package web.groom.controller;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,8 +42,8 @@ public class MemberController extends HttpServlet {
 			//메서드호출 및 값 넘겨주기
 			MemberDTO memberdto = ser.userCheck(request);
 			
-			//memberdto 값 존재여부로 로그인 성공여부 확인
-			if(memberdto != null) {
+			//로그인 검증
+			if(memberdto != null && memberdto.getU_disabled() != 1) {
 				
 				System.out.println("로그인성공");
 				
@@ -68,6 +68,15 @@ public class MemberController extends HttpServlet {
 		 
 		 //회원가입 페이지 이동
 		 if (sPath.equals("/signup.me")) {
+			 
+			//유저 세션 검증
+			 String id = (String)request.getSession().getAttribute("id");
+			 
+			 //세션에 id값이 있을경우 메인페이지로 이동
+			 if (id != null){
+				 response.sendRedirect("main.gr");
+			 }
+			 
 			 webForward(request, response, "member", "signup");   
 	     }//end_of_singup.me
 		 
@@ -97,6 +106,7 @@ public class MemberController extends HttpServlet {
 		 }//end_of_singupPro.me
 		 
 		 if (sPath.equals("/findid.me")) {
+			 
 			 webForward(request, response, "member", "findid");   
 	     }
 		 
@@ -166,7 +176,12 @@ public class MemberController extends HttpServlet {
  			
  			if ( memberDTO != null ) {
  			
- 			response.sendRedirect("login.me");
+ 			//세션 초기화
+ 			HttpSession session = request.getSession();
+ 			session.invalidate();
+ 			
+ 			//로그인창으로 보내기위한 메세지 출력
+ 			response.sendRedirect("changeOK.er");
 
  			System.out.println("비밀번호 재설정됨");
  			} else  {

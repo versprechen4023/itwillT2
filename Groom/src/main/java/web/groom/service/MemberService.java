@@ -74,7 +74,13 @@ public class MemberService {
 			String getpass = request.getParameter("u_pass");
 
 			// MemberDAO에 값을 전달하고 로직처리 수행
-			memberdto = new MemberDAO().userCheck(getid, getpass);
+			MemberDAO memberDAO = new MemberDAO();
+			
+			memberdto = memberDAO.userCheck(getid, getpass);
+			//유저 비활성화(탈퇴) 유무 검증
+			if(memberdto != null) {
+			memberdto = memberDAO.isUserDisabled(memberdto);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -236,5 +242,37 @@ public class MemberService {
 		memberdto = new MemberDAO().getMemberInfo(num);
 		
 		return memberdto;
+	}
+
+	public boolean userDisable(HttpServletRequest request) {
+		
+		boolean isDisabled = false;
+		
+		boolean result = false;
+		try {
+
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			
+			// 유저번호 변수에저장
+			int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+			
+			// MemberDAO에 값을 전달하고 로직처리 수행
+			MemberDAO memberDAO = new MemberDAO();
+			isDisabled = memberDAO.userDisable(u_num);
+			
+			if(isDisabled) {
+				Timestamp del_date = new Timestamp(System.currentTimeMillis());
+				result = memberDAO.insertCencel(u_num, del_date);
+			} else {
+				System.out.println("회원탈퇴정보 입력안됨");
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 }

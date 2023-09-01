@@ -15,7 +15,14 @@ public class MemberDTO {
 	private Timestamp u_regDate;
 	private int u_count;
 	private int u_point;
+	private int u_disabled;
 	
+	public int getU_disabled() {
+		return u_disabled;
+	}
+	public void setU_disabled(int u_disabled) {
+		this.u_disabled = u_disabled;
+	}
 	public int getU_Num() {
 		return u_num;
 	}

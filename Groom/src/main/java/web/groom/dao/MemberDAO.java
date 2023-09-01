@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import web.groom.dto.MemberDTO;
 import web.groom.security.MemberSecurity;
@@ -53,7 +54,7 @@ public class MemberDAO {
 				pstmt.setString(2, hashedPassword);
 				pstmt.setString(3, salt);
 				pstmt.setString(4, role);
-				int resultSet =  pstmt.executeUpdate();
+				int rs =  pstmt.executeUpdate();
 				
 				// SQL 쿼리 실행(두번째 유저테이블에 값삽입)
 				String SQL2 = "INSERT INTO user2(u_name, u_phone, u_email, u_regdate) VALUE(?,?,?,?)";
@@ -62,9 +63,9 @@ public class MemberDAO {
 				pstmt2.setString(2, memberdto.getU_Phone());
 				pstmt2.setString(3, memberdto.getU_Email());
 				pstmt2.setTimestamp(4, memberdto.getU_RegDate());
-				int resultSet2 =  pstmt2.executeUpdate();
+				int rs2 =  pstmt2.executeUpdate();
 				
-				if (resultSet != 0 && resultSet2 != 0) {
+				if (rs != 0 && rs2 != 0) {
 					//성공적으로 값 입력시 나머지 부분 memberDTO에 입력
 					memberdto.setU_Pass(hashedPassword);
 					memberdto.setU_Salt(salt);
@@ -323,11 +324,11 @@ public class MemberDAO {
 			pstmt.setString(1, hashedPassword);
 			pstmt.setString(2, u_salt);
 			pstmt.setInt(3, u_num);
-			int result = pstmt.executeUpdate();
+			int rs = pstmt.executeUpdate();
 			
 
 			// 값 일치하면 memberdto 객체생성후 값저장후 넘김 값일치 없는 경우 memberdto는 null로 넘김
-			if(result != 0) {
+			if(rs != 0) {
 				memberdto = new MemberDTO();
 			} else {
 				memberdto = null;
@@ -379,4 +380,94 @@ public class MemberDAO {
 		
 		return memberdto;
 	}// getMemberInfo
+
+	public boolean userDisable(int u_num) {
+		
+		boolean isDisabled = false;
+		
+		try {
+			
+			//db연결
+			con = new SQLConnection().getConnection();
+			
+			String SQL = "UPDATE user2 SET u_disabled = 1 WHERE u_num = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, u_num);
+			int rs = pstmt.executeUpdate();
+			
+
+			// 업데이트 성공유무 결정
+			if(rs != 0) {
+				isDisabled = true;
+			} else {
+				isDisabled = false;
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+			memberdto = null; // 에러 발생시 멤버 DTO 저장소해제
+		} finally {
+			dbClose();
+		}
+		
+		return isDisabled;
+	}
+
+	public boolean insertCencel(int u_num, Timestamp del_date) {
+		
+		boolean result = false;
+		
+		try {
+			
+			//db연결
+			con = new SQLConnection().getConnection();
+			
+			// SQL 쿼리 실행(유저탈퇴 테이블에 값 삽입)
+			String SQL = "INSERT INTO myCancel(s_num, del_date) VALUE(?,?)";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, u_num);
+			pstmt.setTimestamp(2, del_date);
+			int rs =  pstmt.executeUpdate();
+			
+			if (rs != 0) {
+				result = true;
+			} else {
+				result = false;
+			}
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+		
+	} finally {
+		dbClose();
+	}
+	
+	return result;
+	
+	}
+
+	public MemberDTO isUserDisabled(MemberDTO memberdto) {
+		
+		try {
+			//db연결
+			con = new SQLConnection().getConnection();
+			
+			String SQL = "SELECT u_disabled FROM user2 WHERE u_num = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, memberdto.getU_Num());
+			rs = pstmt.executeQuery();
+			
+			// member 비활성화 값 유무 저장
+			if(rs.next()) {
+				memberdto.setU_disabled(rs.getInt("u_disabled"));
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return memberdto;
+	}
 }

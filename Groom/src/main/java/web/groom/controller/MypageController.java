@@ -216,7 +216,7 @@ public class MypageController extends HttpServlet {
             	
             } else {
             	
-            	response.sendRedirect("passwordError.er");
+            	response.sendRedirect("mapageError.er");
             }
 			
 		}

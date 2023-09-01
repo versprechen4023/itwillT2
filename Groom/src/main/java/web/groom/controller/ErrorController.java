@@ -36,7 +36,11 @@ public class ErrorController extends HttpServlet {
 	            webForward(request, response, "error", "changeOK");
 
 	     }
+		 
+		 if (sPath.equals("/mypageError.er")) {
+	            webForward(request, response, "error", "mypageError");
 
+	     }
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

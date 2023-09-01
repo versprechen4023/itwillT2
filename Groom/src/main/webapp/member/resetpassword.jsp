@@ -84,13 +84,6 @@ $('#resetpass').submit(function() {
 		$('#u_pass2').focus();
 		return false;
 	}
-	
-	if($('#verificationCode').val() == ""){
-		$('#emailmsg').css('color','red');
-		$('#emailmsg').text("인증번호를 기입하십시오.");
-		$('#verificationCode').focus();
-		return false;
-	}
 
 });//submit기능 제어 끝
 

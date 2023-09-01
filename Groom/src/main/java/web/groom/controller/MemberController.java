@@ -30,6 +30,15 @@ public class MemberController extends HttpServlet {
 		
 		 //로그인 페이지 이동
 		 if (sPath.equals("/login.me")) {
+			 
+			 //유저 세션 검증
+			 String id = (String)request.getSession().getAttribute("id");
+			 
+			 //세션에 id값이 있을경우 메인페이지로 이동
+			 if (id != null){
+				 response.sendRedirect("main.gr");
+			 }
+			 
 			 webForward(request, response, "member", "login");
 	     }// end_of_login.me
 		 

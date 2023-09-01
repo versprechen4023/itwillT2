@@ -49,9 +49,9 @@ background-color: rgb(241, 241, 241);
 			border: 1px solid black;	
 			border-radius: 5px;					
 }
-tr #searchkey, #searchbtn {
-	float: left;
-}
+/* tr #searchkey, #searchbtn { */
+/* 	float: left; */
+/* } */
 /* 버튼 */
 #searchbtn{
 	border: none;
@@ -68,7 +68,8 @@ tr #searchkey, #searchbtn {
 	color:white;
 	border-radius: 5px;
 	padding: 7px 15px;
-	margin-left: 280px;
+/* 	margin-left: 280px; */
+ 	margin-top: -100px;    /* 수정 */
 	float: right;
 	font-weight: bolder;
 }
@@ -131,8 +132,6 @@ margin-top: 20px;
 position: relative;
 overflow: hidden;
 display: inline-block;
-/* border-radius: 5px; */
-/* border: 2px solid black; */
 }
 /* ====================================================================== */
 
@@ -169,7 +168,6 @@ float: right;
 	width: 80%;
 	border-right: 10%;
 	border: 2px solid black;
-/* 	border: none; */
 }
 
 /* /* 목록버튼 */ 

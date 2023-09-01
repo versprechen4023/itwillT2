@@ -54,20 +54,22 @@ color:white;
 			border: 1px solid black;
 			display: inline-block; /* 검색창을 인라인 블록 요소로 설정하여 나란히 배치 */
 			margin: 0;
-			vertical-align: middle; /* 콤보상자와 수직 정렬 */
-			float: left;
+/* 			vertical-align: middle; 콤보상자와 수직 정렬 */
+/* 			float: left; */
+			border-radius: 5px;
 			
 }
 /* 콤보상자 */
 .combo-box{
 	display: inline-block; /* 콤보상자를 인라인 블록 요소로 설정하여 나란히 배치 */
 	margin-right: 1px; 
-	float: left;
+
 }
 /* 콤보상자 크기,색상 */
 #combo-select{
 	height: 35.5px;
 	border: 1px solid black;
+	border-radius: 5px;
 }
 /* 버튼 */
 #searchbtn{
@@ -77,7 +79,7 @@ color:white;
 	border-radius: 5px;
 	padding: 6px 15px;
 	margin-left: 10px;
-	float: left;
+/* 	float: left; */
 }
 /* 글쓰기버튼+답글X버튼 */
 #writebtn{
@@ -88,6 +90,7 @@ color:white;
 	padding: 6px 15px;
 /* 	margin-left: 400px; */
 	float: right;
+	margin-top: -75px;
 }
 #rebtn{
 	border: none;
@@ -97,7 +100,8 @@ color:white;
 	padding: 6px 15px;
 /* 	margin-left: 200px; */
 	float: right;
-	margin-right: 5px;
+	margin-right: 80px;
+	margin-top: -111px;
 }
 /* th간 간격 */
 #lnum{

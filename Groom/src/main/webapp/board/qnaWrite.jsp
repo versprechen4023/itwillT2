@@ -231,7 +231,7 @@
 		<div class="fh5co-narrow-content">
 			<h2 class="h2">Q&A</h2>
 
-			<form action="qnaWritePro.bo" method="post" class="qnawrite">
+			<form action="qnaWritePro.bo" method="post" class="qnawrite" enctype="multipart/form-data">
 <!--                 <form id="nwf" method="post" class="qnawrite" action="qnaWritePro.bo" enctype="multipart/form-data"> -->
 				<hr class="hrsolid">
 				<div class="abc">

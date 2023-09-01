@@ -111,6 +111,24 @@ public class QnaService {
 	}//getNoanswer(답변X)
 	
 	
+	
+	//검색
+	public int getCountNoanswer(PageDTO pageDTO) {
+		System.out.println("QnaService getCountNoanswer()");
+		int count=0;
+		try {
+			// BoardDAO 객체생성
+			qnaDAO = new QnaDAO();
+			// count = getBoardCount() 호출
+			count = qnaDAO.getCountNoanswer(pageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}//getCountNoanswer
+	
+	
+	
 	public int getQnaCount() {
 		System.out.println("QnaService getBoardCount()");
 		int count=0;
@@ -146,7 +164,6 @@ public class QnaService {
 	
 	
 	public QnaDTO insertQna(HttpServletRequest request) {
-
         try {
             request.setCharacterEncoding("utf-8");
 
@@ -240,6 +257,8 @@ public class QnaService {
 //		return qnaDTO;
 //		
 //	}//insertQna(qna작성)
+	
+	
 	
 	public void deleteQna(HttpServletRequest request) {
 		System.out.println("QnaService deleteQna()");

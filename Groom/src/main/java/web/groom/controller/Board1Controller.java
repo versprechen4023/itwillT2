@@ -316,7 +316,7 @@ public class Board1Controller extends HttpServlet {
 			// request에 "boardDTO",boardDTO 담아서
 			request.setAttribute("boardDTO", boardDTO);
 			//  주소변경없이 이동
-			webForward(request, response, "board", "faqcontent");
+			webForward(request, response, "board", "faqContent");
 		}//faqContent.bo
 		
 		if(sPath.equals("/faqUpdate.bo")) {

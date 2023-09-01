@@ -50,13 +50,11 @@ if(id != null){
 	}
 }
 %>
-
  <button type="button" value="목록" class="listbtn" onclick="location.href='faq.bo'"> 목록 </button>
- 
  
  	</div>
    </div>
-  
+ 
 
 
 	<!-- jQuery -->

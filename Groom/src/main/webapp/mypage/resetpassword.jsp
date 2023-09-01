@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%
+String id = (String)session.getAttribute("id");
+%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -25,23 +27,15 @@
 		
 <!-- 테두리선 시작 -->
 			<div class="membership" style="border: 1px solid #ccc; border-radius: 10px; padding: 30px;">
-			 
+<!-- 세션값 아이디 넘기기 -->
+			<input type="hidden" id="u_id" name="u_id" value="<%=id%>">
 <!-- 비밀번호 -->
 			  <div>
-				<br><label class="imp">새 비밀번호</label>
+				<br><label class="imp">비밀번호 확인</label>
 				<div>
 				  <input type="password" id="u_pass" name="u_pass" placeholder="비밀번호를 입력하세요">
 			    </div>
 			    <span id="passtest"></span>
-			  </div>
-		
-<!-- 비밀번호 확인 -->
-			  <div>
-				<br><label class="imp">비밀번호 확인</label>
-				<div>
-				<input type="password" id="u_pass2" name="u_pass2" placeholder="비밀번호를 한 번 더 입력하세요">
-				</div>
-				<span id="passmsg"></span>
 			  </div>
 		
 			 
@@ -65,7 +59,7 @@
     </p>
 </div> 비밀번호변경페이지 하단에 회원가입 아이디찾기는 필요없을 듯-->
       
-    </form>
+</form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
@@ -77,68 +71,8 @@ $('#resetpass').submit(function() {
 		$('#u_pass').focus();
 		return false;
 	}
-	
-	if($('#u_pass2').val() == ""){
-		$('#passmsg').css('color','red');
-		$('#passmsg').text("비밀번호를 재입력해주세요.");  
-		$('#u_pass2').focus();
-		return false;
-	}
-	
-	if($('#verificationCode').val() == ""){
-		$('#emailmsg').css('color','red');
-		$('#emailmsg').text("인증번호를 기입하십시오.");
-		$('#verificationCode').focus();
-		return false;
-	}
 
 });//submit기능 제어 끝
-
-//비밀번호 정규성 여부 검사
-$('#u_pass').keyup(function() {
-	  
-	  //기존패스워드 수정시 비밀번호 확인부분 강제호출
-	  $('#u_pass2').trigger('keyup');
-	  var password = $('#u_pass').val();
-	  
-	  if(!validatePassword(password)){
-		$('#passtest').css('color','red');
-		$('#passtest').text("비밀번호는 8자이상의 영문, 숫자, 특수문자가 포함되어야 합니다.");
-		$('#submit').attr('disabled','disabled');
-	    return;
-	    
-	  } else {
-		$('#passtest').text("");
-		$('#submit').removeAttr('disabled');
-		return;
-	  }
-	  
-	  function validatePassword(password) {
-		  var regExp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[#^()_=+@$!%*?&])[A-Za-z\d#^()_=+@$!%*?&]{8,}$/;
-		  return regExp.test(password);
-	  }
-});//비밀번호 정규성 여부 검사 끝
-
-//비밀번호 일치여부 검사
-$('#u_pass2').keyup(function() {
-
-	  var pass1 = $('#u_pass').val();
-	  var pass2 = $('#u_pass2').val();
-	  
-	  if(pass1 == pass2 && pass1 !== "" && pass2 !== ""){
-		$('#passmsg').css('color','green');
-		$('#passmsg').text("비밀번호가 일치합니다.");
-	    $('#submit').removeAttr('disabled');
-	    return;
-	    
-	  } else {
-		$('#passmsg').css('color','red');
-		$('#passmsg').text("비밀번호가 일치하지 않습니다.");
-		$('#submit').attr('disabled','disabled');
-		return;
-	  }
- 	   
-});//비밀번호 일치여부 검사 끝
 </script>
 	</body>
 </html>

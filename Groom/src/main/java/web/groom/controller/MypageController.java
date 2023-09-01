@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import web.groom.dto.MemberDTO;
 import web.groom.dto.MypageDTO;
+import web.groom.service.MemberService;
 import web.groom.service.MypageService;
 
 @WebServlet("*.my") // .my 마이페이지 어노테이션 매핑 선언
@@ -32,7 +34,15 @@ public class MypageController extends HttpServlet {
 
 		// 마이페이지 이동
 		if (sPath.equals("/mypage.my")) {
-
+			
+			 //유저 세션 검증
+			 String id = (String)request.getSession().getAttribute("id");
+			 
+			 //세션에 id값이 존재하지않을 경우 로그인 페이지로 이동
+			 if (id == null){
+				 response.sendRedirect("login.me");
+			 } 
+			 
 			// 유저의 정보를 가져오기위한 멤버서비스 객체생성
 			ser = new MypageService();
 
@@ -149,6 +159,15 @@ public class MypageController extends HttpServlet {
 		}
 
 		if (sPath.equals("/modifyinfo.my")) {
+			
+			 //유저 세션 검증
+			 String id = (String)request.getSession().getAttribute("id");
+			 
+			 //세션에 id값이 존재하지않을 경우 로그인 페이지로 이동
+			 if (id == null){
+				 response.sendRedirect("login.me");
+			 } 
+			 
 			System.out.println("뽑은 가상주소 비교 : /modifyinfo.my");
 
 			// MypageSerive 객체생성
@@ -171,13 +190,80 @@ public class MypageController extends HttpServlet {
 	
 		if (sPath.equals("/resetpassword.my")) {
 			
+			 //유저 세션 검증
+			 String id = (String)request.getSession().getAttribute("id");
+			 
+			 //세션에 id값이 존재하지않을 경우 로그인 페이지로 이동
+			 if (id == null){
+				 response.sendRedirect("login.me");
+			 } 
+			 
 			webForward(request, response, "mypage", "resetpassword");
+			
+		}
+		
+		if (sPath.equals("/resetpasswordPro.my")) {
+			
+			MemberService memberService = new MemberService();
+			
+            MemberDTO memberDTO = memberService.userCheck(request);
+            
+            boolean result = (memberDTO != null) ? true : false;
+            
+            if(result) {
+            	
+            	webForward(request, response, "member", "resetpassword");
+            	
+            } else {
+            	
+            	response.sendRedirect("passwordError.er");
+            }
 			
 		}
 		
 		if (sPath.equals("/withdraw.my")) {
 			
+			//유저 세션 검증
+			String id = (String)request.getSession().getAttribute("id");
+			 
+			//세션에 id값이 존재하지않을 경우 로그인 페이지로 이동
+			if (id == null){
+				 response.sendRedirect("login.me");
+			} 
+			
 			webForward(request, response, "mypage", "withdraw");
+			
+		}
+		
+		if (sPath.equals("/withdrawPro.my")) {
+			
+			MemberService memberService = new MemberService();
+			
+            MemberDTO memberDTO = memberService.userCheck(request);
+            
+            boolean result = (memberDTO != null) ? true : false;
+            
+            if(result) {
+            	
+            	boolean isDisabled = memberService.userDisable(request);
+            	
+            	if(isDisabled) {
+            		//세션초기화
+        			HttpSession session = request.getSession();
+        			session.invalidate();
+            		System.out.println("회원 탈퇴 처리 완료");
+            		response.sendRedirect("main.gr");
+            	} else {
+            		//세션초기화
+        			HttpSession session = request.getSession();
+        			session.invalidate();
+            		System.out.println("회원 탈퇴 처리 실패");
+            		response.sendRedirect("main.gr");
+            	}
+            	
+            } else {           	
+            	response.sendRedirect("passwordError.er");
+            }           
 			
 		}
 	}

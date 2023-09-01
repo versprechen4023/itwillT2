@@ -26,6 +26,16 @@ public class ErrorController extends HttpServlet {
 	            webForward(request, response, "error", "searchError");
 
 	     }
+		 
+		 if (sPath.equals("/passwordError.er")) {
+	            webForward(request, response, "error", "passwordError");
+
+	     }
+		 
+		 if (sPath.equals("/changeOK.er")) {
+	            webForward(request, response, "error", "changeOK");
+
+	     }
 
 	}
 	@Override

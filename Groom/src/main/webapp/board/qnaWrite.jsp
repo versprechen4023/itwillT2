@@ -8,6 +8,7 @@
 <jsp:include page="../inc/head.jsp"></jsp:include>
 <link rel="stylesheet" href="./css/qnaWrite_gr.css">
 
+
 </head>
 <body>
 	<%
@@ -22,8 +23,9 @@
 		<div class="fh5co-narrow-content">
 			<h2 class="h2">Q&A 작성</h2>
 
-			<form action="qnaWritePro.bo" method="post" class="qnawrite"
-				enctype="multipart/form-data">
+			<form action="qnaWritePro.bo" method="post" class="qnawrite" enctype="multipart/form-data">
+<!--                 <form id="nwf" method="post" class="qnawrite" action="qnaWritePro.bo" enctype="multipart/form-data"> -->
+
 				<hr class="hrsolid">
 				<div class="abc">
 					<!--  name으로 값을 넘겨주기 때문에 서비스단에 form 안에 name과 String (name) = request.getparmeter("(name)"); 가 일치해야함 -->
@@ -46,7 +48,8 @@
 					<div>
 						<p class="p">글 제목</p>
 						<input type="text" class="qna_title" placeholder="제목을 입력해주세요."
-							name="qna_title">
+							name="qna_title" maxlength="50">
+
 					</div>
 
 					<div>
@@ -56,20 +59,26 @@
 					</div>
 
 					<div>
-						<p>첨부 파일</p>
+
+					<p>첨부 파일</p>
 						<div class="review-input-img">
 							<img src="./images/photo.png" class="review-input-img1"
 								onclick="triggerFileInput()"> <input type="file"
 								id="fileInput" name="qna_img_url"
 								accept=".png, .jpg, .jpeg, .gif" style="display: none">
 							<div id="fileInfoDisplay">선택된 파일 없음</div>
-						</div>
 
+						</div>
 
 					</div>
 
+				</div>
+
+				<div class="qna-buttons">
+
 					<div class="button-container">
-						<input type="submit" value="확인" class="qnasubmit">
+
+						<input type="submit" value="확인" class="qnasubmit" >
 						<button onclick="location.href='qna.bo'" class="qnalist">목록</button>
 					</div>
 				</div>
@@ -87,44 +96,37 @@
 	<!-- Waypoints -->
 	<script src="./js/jquery.waypoints.min.js"></script>
 	<!-- Flexslider -->
-	<script src="./js/jquery.flexslider-min.js"></script>
-
+	<script src="./js/jquery.flexslider-min.js"></script>	
 	<script>
-		// ============================ 파일첨부	
-		function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘리먼트 클릭
-			const fileInput = document.getElementById('fileInput');
-			fileInput.click(); // 파일 입력 엘리먼트 클릭 이벤트 발생
-		}
-		// 파일 입력(input) 엘리먼트의 값이 변경되었을 때 실행되는 함수
-		document
-				.getElementById('fileInput')
-				.addEventListener(
-						'change',
-						function(event) {
-							const selectedFile = event.target.files[0]; // 선택된 파일 가져오기
-							const fileInfoDisplay = document
-									.getElementById('fileInfoDisplay');
-							if (selectedFile) {
-								// 선택된 파일이 허용된 확장자를 가지는지 검증
-								const allowedExtensions = /(\.png|\.jpg|\.jpeg|\.gif)$/i;
-								if (!allowedExtensions.exec(selectedFile.name)) {
-									alert('png, jpg, gif 파일만 첨부할 수 있습니다.');
-									resetFileInput();
-									return;
-								}
-								// 파일명을 표시
-								fileInfoDisplay.textContent = selectedFile.name;
-							} else {
-								// 파일 선택이 해제되었을 때
-								fileInfoDisplay.textContent = '선택된 파일 없음';
-							}
-						});
-		// 파일 입력(input) 엘리먼트 초기화
+// ============================ 파일첨부	
+function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘리먼트 클릭
+	const fileInput = document.getElementById('fileInput');
+	fileInput.click(); // 파일 입력 엘리먼트 클릭 이벤트 발생
+	}
+// 파일 입력(input) 엘리먼트의 값이 변경되었을 때 실행되는 함수
+	document.getElementById('fileInput').addEventListener('change', function(event) {
+		const selectedFile = event.target.files[0]; // 선택된 파일 가져오기
+		const fileInfoDisplay = document.getElementById('fileInfoDisplay');
+		if (selectedFile) {
+// 선택된 파일이 허용된 확장자를 가지는지 검증
+			const allowedExtensions = /(\.png|\.jpg|\.jpeg|\.gif)$/i;
+			if (!allowedExtensions.exec(selectedFile.name)) {
+				alert('png, jpg, gif 파일만 첨부할 수 있습니다.');
+				resetFileInput();
+				return;
+				}
+// 파일명을 표시
+			fileInfoDisplay.textContent = selectedFile.name;
+			} else {
+// 파일 선택이 해제되었을 때
+				fileInfoDisplay.textContent = '선택된 파일 없음';
+				}
+		});
+// 파일 입력(input) 엘리먼트 초기화
 		function resetFileInput() {
 			const fileInput = document.getElementById('fileInput');
 			fileInput.value = ''; // 파일 선택 해제
-		}
-	</script>
-
+			}
+</script>
 </body>
 </html>

@@ -419,6 +419,71 @@ public class Board1Controller extends HttpServlet {
 		
 		//Board 2 라인
 		//====================================================================
+		
+		
+		//검색
+		if(sPath.equals("/qnaSearch.bo")) {
+			System.out.println("뽑은 가상주소 비교 : /qnaSearch.bo");
+			
+			//request 한글처리
+			request.setCharacterEncoding("UTF-8");
+			//request 검색어 뽑아오기//
+			String search = request.getParameter("search"); // notice.jsp의 검색창부분 name="search"
+			System.out.println("search"+search);
+			
+			//한페이지에서 보여지는 글개수
+			int pageSize=10;
+			//페이지번호
+			String pageNum=request.getParameter("pageNum");
+			//페이지번호가 없으면 1페이지 실행
+			if(pageNum == null) {
+				pageNum = "1";
+			}
+			//페이지 번호를 => 정수형으로 변경
+			int currentPage = Integer.parseInt(pageNum);
+			
+			//pageDTO에 담음			
+			PageDTO pageDTO = new PageDTO();
+			pageDTO.setPageSize(pageSize);
+			pageDTO.setPageNum(pageNum);
+			pageDTO.setCurrentPage(currentPage);
+			pageDTO.setSearch(search);
+			
+			// BoardService 객체생성
+			qnaService = new QnaService();
+			
+			// List<BoardDTO> notice = getNotice(); 메서드 호출
+			List<QnaDTO> qna = qnaService.getQnaSearch(pageDTO);
+			
+			// 게시판 전체 글 개수 구하기 
+			int count = qnaService.getQnaCountSearch(pageDTO);
+			// 한화면에 보여줄 페이지개수 설정
+			int pageBlock = 10;
+			// 시작하는 페이지 번호
+			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+			// 끝나는 페이지 번호
+			int endPage=startPage+pageBlock-1;
+			// 전체페이지 구하기
+			int pageCount = count / pageSize + (count % pageSize==0?0:1);
+			if(endPage > pageCount) {
+				endPage = pageCount;
+			}
+						
+			//pageDTO 저장
+			pageDTO.setCount(count);
+			pageDTO.setPageBlock(pageBlock);
+			pageDTO.setStartPage(startPage);
+			pageDTO.setEndPage(endPage);
+			pageDTO.setPageCount(pageCount);
+			
+			// request에 "board",board 저장
+			request.setAttribute("qna", qna);
+			request.setAttribute("pageDTO", pageDTO);
+			
+			// 주소변경없이 이동
+			webForward(request, response, "board", "qnaSearch");
+		}//notice.bo
+		
 
 		 if (sPath.equals("/qna.bo")) {
 			 
@@ -468,12 +533,12 @@ public class Board1Controller extends HttpServlet {
 	     }//qna목록
 
 		 
-		 if (sPath.equals("/qnacontent.bo")) { 
-			 System.out.println("qnacontent.bo");
+		 if (sPath.equals("/qnaContent.bo")) { 
+			 System.out.println("qnaContent.bo");
 			 qnaService = new QnaService();
 			 QnaDTO qnaDTO = qnaService.getQna(request);
 			 request.setAttribute("qnaDTO", qnaDTO);
-	         webForward(request, response, "board", "qnacontent");
+	         webForward(request, response, "board", "qnaContent");
 	     }//qna상세
 		 
 		 

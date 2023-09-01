@@ -29,6 +29,64 @@ public class QnaDAO {
 	
 	
 	
+	public List<QnaDTO> getQnaSearch(PageDTO pageDTO) {
+		System.out.println("QnaDAO getQnaSearch()");
+		List<QnaDTO> qna = null;
+		try {
+			con = new SQLConnection().getConnection();
+			String sql="select * from qna where qna_title like ? order by qna_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+pageDTO.getSearch()+"%");
+			pstmt.setInt(2, pageDTO.getStartRow()-1);//시작행-1
+			pstmt.setInt(3, pageDTO.getPageSize());//몇개
+			rs = pstmt.executeQuery();
+			qna = new ArrayList<>();
+			while(rs.next()) {
+				QnaDTO qnaDTO =new QnaDTO();
+				qnaDTO.setQnanum(rs.getInt("qna_num"));
+				qnaDTO.setTitle(rs.getString("qna_title"));
+				qnaDTO.setId(rs.getString("u_id"));
+				qnaDTO.setDate(rs.getTimestamp("qna_date"));
+				qnaDTO.setQreans(rs.getInt("qna_isanswered"));
+				// 배열 한칸에 저장
+				qna.add(qnaDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return qna;
+	}//getQnaList(qna목록)
+	
+	
+	//검색
+	public int getQnaCountSearch(PageDTO pageDTO) {
+		int count = 0;
+		try {
+			//1,2 디비연결
+			con = new SQLConnection().getConnection();
+			//3 sql select count(*) from board
+			String sql = "select count(*) from qna where qna_title like ?;";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, "%"+pageDTO.getSearch()+"%");
+			//4 실행 => 결과저장
+			rs = pstmt.executeQuery();
+			//5 결과 행접근 => 열접근 => count변수 저장
+			if(rs.next()) {
+				count = rs.getInt("count(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return count;
+	}//getBoardCountSearch
+	
+	
+	
+	
 	public List<QnaDTO> getQnaList(PageDTO pageDTO) {
 		System.out.println("QnaDAO getQnaList()");
 		List<QnaDTO> qnaList = null;
@@ -44,7 +102,7 @@ public class QnaDAO {
 				QnaDTO qnaDTO =new QnaDTO();
 				qnaDTO.setQnanum(rs.getInt("qna_num"));
 				qnaDTO.setTitle(rs.getString("qna_title"));
-				qnaDTO.setId(rs.getString("qna_date"));
+				qnaDTO.setId(rs.getString("u_id"));
 				qnaDTO.setDate(rs.getTimestamp("qna_date"));
 				qnaDTO.setQreans(rs.getInt("qna_isanswered"));
 				// 배열 한칸에 저장
@@ -76,7 +134,7 @@ public class QnaDAO {
 				QnaDTO qnaDTO =new QnaDTO();
 				qnaDTO.setQnanum(rs.getInt("qna_num"));
 				qnaDTO.setTitle(rs.getString("qna_title"));
-				qnaDTO.setId(rs.getString("qna_date"));
+				qnaDTO.setId(rs.getString("u_id"));
 				qnaDTO.setDate(rs.getTimestamp("qna_date"));
 				qnaDTO.setQreans(rs.getInt("qna_isanswered"));
 				// 배열 한칸에 저장
@@ -120,18 +178,23 @@ public class QnaDAO {
 		System.out.println("QnaDAO getQna");
 		QnaDTO qnaDTO = null;
 		try {
+			
 			con = new SQLConnection().getConnection();
 			String sql = "select * from qna where qna_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, qnanum);
+
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				qnaDTO = new QnaDTO();
+				
 				qnaDTO.setId(rs.getString("u_id"));
 				qnaDTO.setTitle(rs.getString("qna_title"));
 				qnaDTO.setContent(rs.getString("qna_content"));
 				qnaDTO.setQnaimgurl(rs.getString("qna_img_url"));
 				qnaDTO.setRecontent(rs.getString("re_content"));
+
+				qnaDTO.setQnanum(qnanum);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -149,8 +212,9 @@ public class QnaDAO {
 			con = new SQLConnection().getConnection();
 			
 			// QNA 테이블에 있는 값들 
-			String sql = "INSERT INTO qna(u_id , qna_title , qna_content, qna_date, qna_category, qna_img_url,"
-					+ "re_ref, re_lev, re_seq, qna_isanswered, re_content, re_date) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+//			String sql = "INSERT INTO qna(u_id , qna_title , qna_content, qna_date, qna_category, qna_img_url,"
+//					+ "re_ref, re_lev, re_seq, qna_isanswered, re_content, re_date) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO qna(u_id , qna_title , qna_content, qna_date, qna_category, qna_img_url) VALUES(?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);  
 			pstmt.setString(1, qnaDTO.getId()); 
 			pstmt.setString(2, qnaDTO.getTitle());
@@ -158,12 +222,12 @@ public class QnaDAO {
 			pstmt.setTimestamp(4, qnaDTO.getDate());
 			pstmt.setString(5, qnaDTO.getCategory());
 			pstmt.setString(6, qnaDTO.getQnaimgurl());
-			pstmt.setInt(7, qnaDTO.getQreref());
-			pstmt.setInt(8, qnaDTO.getQrelev());
-			pstmt.setInt(9, qnaDTO.getQreseq());
-			pstmt.setInt(10, qnaDTO.getQreans());
-			pstmt.setString(11, qnaDTO.getRecontent());
-			pstmt.setTimestamp(12, qnaDTO.getRedate());
+//			pstmt.setInt(7, qnaDTO.getQreref());
+//			pstmt.setInt(8, qnaDTO.getQrelev());
+//			pstmt.setInt(9, qnaDTO.getQreseq());
+//			pstmt.setInt(10, qnaDTO.getQreans());
+//			pstmt.setString(11, qnaDTO.getRecontent());
+//			pstmt.setTimestamp(12, qnaDTO.getRedate());
 			int result = pstmt.executeUpdate();
 			if (result != 0 ) {
 				System.out.println("저장 완료");
@@ -193,6 +257,30 @@ public class QnaDAO {
 			dbClose();
 		}
 	}//deleteQna(qna삭제)
+	
+	
+	
+	public void updateQna(QnaDTO qnaDTO) {
+		System.out.println("QnaDAO updateQna()");
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "update qna"
+					+ "   set qna_title=?, qna_content=? "
+					+ "   where qna_num=?;";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, qnaDTO.getId()); 
+			pstmt.setString(2, qnaDTO.getTitle());
+			pstmt.setString(3, qnaDTO.getCategory());
+			pstmt.setString(4, qnaDTO.getContent());
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}//updateQna(qna수정)
+	
+	
+	
 	
 	
 	

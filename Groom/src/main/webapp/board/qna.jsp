@@ -66,7 +66,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
         for(int i=0; i<qna.size(); i++){
         	QnaDTO qnaDTO = qna.get(i);    
         %>
-       <tr id="qtr" onclick="location.href='qnacontent.bo?qna_num=<%=qnaDTO.getQnanum()%>'">
+       <tr id="qtr" onclick="location.href='qnaContent.bo?qna_num=<%=qnaDTO.getQnanum()%>'">
             <td><%=qnaDTO.getQnanum() %></td>
             <td id="subject"><%=qnaDTO.getTitle() %></td>
             <td><%=qnaDTO.getId() %>	</td>

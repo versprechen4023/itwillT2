@@ -46,7 +46,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 
 </table>
 
-<div class="btn"> 
+<div class="botbtn"> 
 <%
 if(id != null){
 	if(role.equals("admin")){

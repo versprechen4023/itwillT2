@@ -1,5 +1,16 @@
 @charset "UTF-8";
 
+@font-face {
+	font-family: 'Godo';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2')
+		format('woff2'),
+		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff')
+		format('woff');
+}
+
 body {
 	display: flex;
 	justify-content: center;
@@ -9,11 +20,16 @@ body {
 	text-align: center;
 }
 
+*{
+	font-family: 'Godo';
+	
+}
 /* 회원가입 비밀번호찾기 정렬 */
 .centered-text {
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	font-family: 'Godo';
 }
 
 /* 회원가입 비밀번호찾기 정렬 */
@@ -29,9 +45,10 @@ body {
 	padding: 30px;
 }
 
-.h1 {
+h1 {
 	margin-top: --55px;
 	margin-bottom : 55px;
+	font-family: 'Godo';
 	
 	
 }

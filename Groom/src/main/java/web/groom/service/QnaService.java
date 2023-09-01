@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import web.groom.dao.QnaDAO;
 import web.groom.dto.PageDTO;
 import web.groom.dto.QnaDTO;
@@ -97,11 +100,17 @@ public class QnaService {
 			request.setCharacterEncoding("utf-8");
 			
 			// qnawrite에서 받는 값
-			String u_id = request.getParameter("u_id");
-			String qna_title = request.getParameter("qna_title");
-			String qna_content = request.getParameter("qna_content");
-			String qna_img_url = request.getParameter("qna_img_url");	
-			Timestamp qna_date = new Timestamp(System.currentTimeMillis());
+			// qnawrite에서 받는 값
+            String uploadPath = request.getRealPath("/upload");
+            int maxSize = 1010241024;
+            MultipartRequest multi
+            = new MultipartRequest(request, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
+
+            String u_id = multi.getParameter("u_id");
+            String qna_title = multi.getParameter("qna_title");
+            String qna_content = multi.getParameter("qna_content");
+            String qna_img_url = multi.getFilesystemName("qna_img_url");
+            Timestamp qna_date = new Timestamp(System.currentTimeMillis());
 			 
 			// QnaDTO 객체생성
 			QnaDTO qnaDTO = new QnaDTO();

@@ -41,7 +41,7 @@ List<MypageDTO> visibleItems = mypetList.subList(startIndex, endIndex);
 <!-- 사이드바호출 -->
 	<jsp:include page="../inc/aside.jsp"></jsp:include>
 
-<h2>내 정보</h2>
+<h2 class="myh2">내 정보</h2>
 
 <hr>
 
@@ -141,7 +141,7 @@ for(MypageDTO mypageDTO : visibleItems) {
 <form action="updatemypet.my" id="updatepet" method="post" class="pet-form">
     <!-- 선택 상자와 버튼을 가로로 배치하고, 내용을 수직으로 중앙 정렬 -->
     <div class="selectNbtn">
-    내 반려동물　
+     내 반려동물: 　
     <select id="petlist" name="petlist">
         <%
         for(MypageDTO mypageDTO : visibleItems) { 

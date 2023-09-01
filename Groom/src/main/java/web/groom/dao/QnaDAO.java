@@ -39,7 +39,7 @@ public class QnaDAO {
 			pstmt.setInt(1, pageDTO.getStartRow()-1);//시작행-1
 			pstmt.setInt(2, pageDTO.getPageSize());//몇개
 			rs = pstmt.executeQuery();
-			qnaList = new ArrayList<>();
+			qnaList = new ArrayList<>();	
 			while(rs.next()) {
 				QnaDTO qnaDTO =new QnaDTO();
 				qnaDTO.setQnanum(rs.getInt("qna_num"));
@@ -50,7 +50,7 @@ public class QnaDAO {
 				// 배열 한칸에 저장
 				qnaList.add(qnaDTO);
 			}
-			System.out.println("qnaList"+qnaList);
+			System.out.println("qnaList++++++++++++++++++"+qnaList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -149,8 +149,10 @@ public class QnaDAO {
 			con = new SQLConnection().getConnection();
 			
 			// QNA 테이블에 있는 값들 
-			String sql = "INSERT INTO qna(u_id , qna_title , qna_content, qna_date, qna_category, qna_img_url,"
-					+ "re_ref, re_lev, re_seq, qna_isanswered, re_content, re_date) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+//			String sql = "INSERT INTO qna(u_id , qna_title , qna_content, qna_date, qna_category, qna_img_url,"
+//					+ "re_ref, re_lev, re_seq, qna_isanswered, re_content, re_date) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+			
+			String sql = "INSERT INTO qna(u_id , qna_title , qna_content, qna_date, qna_category, qna_img_url) VALUES(?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);  
 			pstmt.setString(1, qnaDTO.getId()); 
 			pstmt.setString(2, qnaDTO.getTitle());
@@ -158,12 +160,12 @@ public class QnaDAO {
 			pstmt.setTimestamp(4, qnaDTO.getDate());
 			pstmt.setString(5, qnaDTO.getCategory());
 			pstmt.setString(6, qnaDTO.getQnaimgurl());
-			pstmt.setInt(7, qnaDTO.getQreref());
-			pstmt.setInt(8, qnaDTO.getQrelev());
-			pstmt.setInt(9, qnaDTO.getQreseq());
-			pstmt.setInt(10, qnaDTO.getQreans());
-			pstmt.setString(11, qnaDTO.getRecontent());
-			pstmt.setTimestamp(12, qnaDTO.getRedate());
+//			pstmt.setInt(7, qnaDTO.getQreref());
+//			pstmt.setInt(8, qnaDTO.getQrelev());
+//			pstmt.setInt(9, qnaDTO.getQreseq());
+//			pstmt.setInt(10, qnaDTO.getQreans());
+//			pstmt.setString(11, qnaDTO.getRecontent());
+//			pstmt.setTimestamp(12, qnaDTO.getRedate()); 나중에 주석 해제 필
 			int result = pstmt.executeUpdate();
 			if (result != 0 ) {
 				System.out.println("저장 완료");

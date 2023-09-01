@@ -468,12 +468,12 @@ public class Board1Controller extends HttpServlet {
 	     }//qna목록
 
 		 
-		 if (sPath.equals("/qnacontent.bo")) { 
+		 if (sPath.equals("/qnaContent.bo")) { 
 			 System.out.println("qnacontent.bo");
 			 qnaService = new QnaService();
 			 QnaDTO qnaDTO = qnaService.getQna(request);
 			 request.setAttribute("qnaDTO", qnaDTO);
-	         webForward(request, response, "board", "qnacontent");
+	         webForward(request, response, "board", "qnaContent");
 	     }//qna상세
 		 
 		 

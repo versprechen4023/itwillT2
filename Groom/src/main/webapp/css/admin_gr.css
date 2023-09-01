@@ -27,6 +27,10 @@
 	margin-top: 30px;
 	margin-left: 20px;
 }
+.font-bold {
+	font-weight: bold;
+}
+
 /* (관리자 메뉴) ============================================ */
 .admin-content {
 	width: 800px;
@@ -34,14 +38,16 @@
 .admin-select {
 	display: flex; /* 요소들을 가로로 나란히 배치 */
     margin-bottom: 0;
+    margin-left: 30px;
 }
 .admin-select a{
-	width: 200px;
-	font-size: 20px;
+	border: 2px solid;
+	width: 120px;
+	font-size: 18px;
     display: block;
-    margin: 5px;
+    margin: 10px;
     padding: 3px;
-    border-radius: 10px;
+    border-radius: 30px;
     background-color: white;
     color: black;
     text-decoration: none;
@@ -50,48 +56,92 @@
     transition: background-color 0.3s;
 }
 .admin-select a:hover {
+	border: 2px solid black;
+	color: white;
     background-color: rgba(0, 0, 0, 0.4) ;
 }
 /* (관리자 메인) ============================================ */
+.admin-content-main {
+	width: 800px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	text-align: center;
+	margin: 30px 0 0 20px;
+}
+thead {
+	background: none;
+	border: none;
+	padding: 0;	
+}
+.admin-content1 {
+	width: 800px;
+	display: flex;
+	justify-content: left;
+	text-align: center;
+	margin: 0
+}
 .admin-main1 {
 	color: black;
-    width: 600px;
+	width: 760px;
+	margin-right: 20px; 
     font-size: 16px;
     border-collapse: collapse;
-    margin-left: 9%;
 }
 .admin-main1 th {
+	margin-top: 0;
     padding: 15px;
 }
 .admin-main1 td {
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ddd;
 }
 .admin-main2 {
-    width: 550px;
+	width: 240px;
+	margin-right: 20px;
+	text-align: center;
+	color: black;
     font-size: 16px;
     border-collapse: collapse;
-    margin-left: 8.5%;
 }
 .admin-main2 th {
+	margin-top: 0;
     padding: 15px;
 }
 .admin-main2 td {
-    padding: 0px;
+	background: white;
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+.admin-main3 {
+	color: black;
+	width: 760px;
+	margin-right: 20px; 
+    font-size: 16px;
+    border-collapse: collapse;
+}
+.admin-main3 th {
+	margin-top: 0;
+    padding: 15px;
+}
+.admin-main3 td {
+    padding: 5px;
 }
 .admin-button {
-/*     padding: 10px 20px; */
-/*     background-color: #3498db; */
-/*     border: none; */
 	color: white;
-/*     cursor: pointer; */
-/*     margin-top: 0; */
     margin-top: 0;
     padding: 5px 30px;
+    height:40px;
     background-color: black;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 14px;
+    transition: background-color 0.3s;
+}
+.admin-button:hover {
+	border: 2px solid black;
+	color: black;
+    background-color: white ;
 }
 .admin-button-active {
 	background-color: rgba(0, 0, 0, 0.4) !important; /* 적용이 안돼서 important*/
@@ -111,7 +161,7 @@
     padding: 15px;
 }
 .admin-userCheck td {
-    padding: 5px;
+    padding: 7px;
     border: 1px solid #ddd;
 }
 .admin-userCheck td {
@@ -162,11 +212,9 @@
     padding: 15px;
 }
 .admin-resCheck td {
-    padding: 5px;
+    padding: 7px;
     border: 1px solid #ddd;
-}
-.admin-resCheck td {
-        background-color: white;
+    background-color: white;
 }
 .resCheck-next {
 	margin-top: 10px;
@@ -203,6 +251,7 @@
 }
 /* (지점정보) ============================================ */   
 .admin-storeCheck1 {
+	width: 600px;
 	text-align: center;
 	color: black;
     font-size: 16px;
@@ -219,7 +268,7 @@
     border: 1px solid #ddd;
 }
 .admin-storeCheck2 {
-/* 	width: 100%; */
+	width: 750px;
 	color: black;
     text-align: center;
     font-size: 16px;

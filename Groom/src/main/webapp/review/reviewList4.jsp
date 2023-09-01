@@ -48,10 +48,10 @@ List<ReviewDTO> visibleItems = reviewList.subList(startIndex, endIndex);
 <!-- 리뷰 분류 -->
 		<h3 class="review-select animate-box" data-animate-effect="fadeInLeft">
 		<a href="reviewList.re"> 전체 </a>
-		<a href="reviewList1.re?pro_name=목욕" class="review-active">목욕</a>
+		<a href="reviewList1.re?pro_name=목욕">목욕</a>
 		<a href="reviewList2.re?pro_name=부분미용">부분미용</a>
 		<a href="reviewList3.re?pro_name=부분+목욕">부분+목욕</a>
-		<a href="reviewList4.re?pro_name=전체미용">전체미용</a>
+		<a href="reviewList4.re?pro_name=전체미용" class="review-active">전체미용</a>
 		<a href="reviewList5.re?pro_name=스포팅">스포팅</a>
 		<a href="reviewList6.re?pro_name=가위컷">가위컷</a></h3>
 		
@@ -107,16 +107,16 @@ if(role.equals("admin")){
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <div class="prev-next" data-animate-effect="fadeInLeft">
     <% if (currentPage > 1) { %>
-        <a href="reviewList1.re?pro_name=<%= request.getParameter("pro_name") %>&page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
+        <a href="reviewList4.re?pro_name=<%= request.getParameter("pro_name") %>&page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
     <% } %>
     <% 
     int startPage = ((currentPage - 1) / 5) * 5 + 1; // 현재 페이지 그룹의 시작 페이지 계산
     int endPage = Math.min(startPage + 4, totalPages); // 현재 페이지 그룹의 마지막 페이지 계산
     for (int i = startPage; i <= endPage; i++) { %>
-        <a href="reviewList1.re?pro_name=<%= request.getParameter("pro_name") %>&page=<%= i %>" <%= (i == currentPage) ? "class='review-active'" : "" %>><%= i %></a>
+        <a href="reviewList4.re?pro_name=<%= request.getParameter("pro_name") %>&page=<%= i %>" <%= (i == currentPage) ? "class='review-active'" : "" %>><%= i %></a>
     <% } %>
     <% if (currentPage < totalPages) { %>
-        <a href="reviewList1.re?pro_name=<%= request.getParameter("pro_name") %>&page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
+        <a href="reviewList4.re?pro_name=<%= request.getParameter("pro_name") %>&page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
     <% } %>
 </div>
 

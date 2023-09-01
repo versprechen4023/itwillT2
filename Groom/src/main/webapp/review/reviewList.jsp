@@ -15,9 +15,6 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 <!-- 	리뷰 css 추가 -->
 	<link href="./css/review_gr.css" rel="stylesheet" type="text/css">
-<style>
-.review-active 
-</style>	
 	<body>
 <%
 String id = (String)session.getAttribute("id");
@@ -52,14 +49,13 @@ List<ReviewDTO> visibleItems = reviewList.subList(startIndex, endIndex);
 	<div class="row row-bottom-padded-md">
 <!-- 리뷰 분류 -->
 		<h3 class="review-select animate-box" data-animate-effect="fadeInLeft">
-		<a href="reviewList.re?pro_name= " class="review-active"> 전체 </a>
-		<a href="reviewList1.re?pro_name=미용">미용</a> <!-- 링크에 숫자지우면 됨 ^^ -->
-		<a href="reviewList2.re?pro_name=목욕">목욕</a>
-		<a href="reviewList3.re?pro_name=스파">스파</a>
-		<a href="#">상품명1</a>
-		<a href="#">상품명2</a>
-		<a href="#">상품명3</a>
-		<a href="#">상품명4</a></h3>
+		<a href="reviewList.re" class="review-active"> 전체 </a>
+		<a href="reviewList1.re?pro_name=목욕">목욕</a>
+		<a href="reviewList2.re?pro_name=부분미용">부분미용</a>
+		<a href="reviewList3.re?pro_name=부분+목욕">부분+목욕</a>
+		<a href="reviewList4.re?pro_name=전체미용">전체미용</a>
+		<a href="reviewList5.re?pro_name=스포팅">스포팅</a>
+		<a href="reviewList6.re?pro_name=가위컷">가위컷</a></h3>
 		
 <!-- 목록 시작 -->	
 <%
@@ -78,10 +74,14 @@ if (i <= rating) {
 		}
 }
 %>		
-<!-- 리뷰 목록  -->	
+<!-- 리뷰 목록  -->
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
-		<div class="blog-entry">                             <!-- ↗ 블로그 페이지 이동시 보여지는 칸 이미지 -->
-			<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img"><img src="<%=reviewDTO.getRev_img_url() %>" class="img-responsive" alt="이미지없음"></a>
+		<div class="blog-entry">
+		<div class="img-wrapper">                           
+			<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img">
+<%-- 		<img src="<%=reviewDTO.getRev_img_url() %>" class="img-responsive" alt="이미지없음"></a> --%>
+			<img src="images/dog3.jpg" class="img-responsive" alt="이미지없음"></a>
+		</div>
 		<div class="review-desc">
 			<h3><a><%=reviewDTO.getPro_name() %></a><br>
 			<small><%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %></small><small> / <%=reviewDTO.getS_location() %></small></h3>
@@ -147,6 +147,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function openReviewWrite(){
 	window.open('reviewWrite.re', '_blank', 'width=800px, height=1000px');
 }
+
+// dd
 </script>
 
 	

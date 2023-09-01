@@ -32,7 +32,7 @@ if(id != null){
 			<li><a href="storeInfo.gr">매장안내</a></li>
 			<li><a href="portfolio.gr">이용안내</a></li>
 			<li><a href="myorder.or">예약하기</a></li>
-			<li><a href="reviewList.re?pro_name= ">리뷰</a></li>
+			<li><a href="reviewList.re">리뷰</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">카테고리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">

@@ -58,7 +58,7 @@ height: 30px;
 			<br>
 			<!-- fh5co-review-title 클래스 사용중 아님 -->
 			<div class="reviewContent-main">
-
+				<div>
 				<!-- 내용  -->
 				<div class="review-content animate-box"
 					data-animate-effect="fadeInLeft">
@@ -129,9 +129,11 @@ height: 30px;
 						<br> <img src="upload/<%=reviewDTO.getRev_img_url()%>"
 							alt="이미지">
 					</div>
-					<!-- 답글  -->
+	<!-- 답글있던자리 -->
+				</div>
+				<!-- 답글 ////////////////////////  -->
 					<div class="re-review-content animate-box"
-						data-animate-effect="fadeInLeft">
+						data-animate-effect="fadeInLeft" style="margin-top: 30px; width: 100%">
 						<div class="recontent-top">
 							<div>
 								<%
@@ -181,8 +183,8 @@ height: 30px;
 							</div>
 						</div>
 					</div>
-					<!-- 답글  -->
-				</div>
+				</div>	
+		<!-- 답글 ////////////////////////  -->
 				<br>
 				<br>
 				<!-- 		테스트 공간 -->

@@ -21,15 +21,14 @@ public class ReviewDAO {
 		if(pstmt != null) {try {pstmt.close();} catch (SQLException e) {	}}
 		if(con != null) {try {con.close();} catch (SQLException e) {	}}
 	}
-	
-	public List<ReviewDTO> getReviewList(String proName) {
+	public List<ReviewDTO> getReviewListAll() {
 		System.out.println("ReviewDAO getReviewList");
 		List<ReviewDTO> reviewList = null;
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "select * from test01 where pro_name like ?";
+			String sql = "select * from test01";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "%" + proName + "%"); // 프로덕트 이름 설정
+//			pstmt.setString(1, proName); // 프로덕트 이름 설정
 			rs = pstmt.executeQuery();
 			reviewList = new ArrayList<>();
 			while(rs.next()) {
@@ -59,7 +58,46 @@ public class ReviewDAO {
 			dbClose();
 		}
 		return reviewList;
-	}// getReviewList() [리뷰목록]
+	}// getReviewList() [리뷰목록 전체]
+	
+	public List<ReviewDTO> getReviewList(String proName) {
+		System.out.println("ReviewDAO getReviewList");
+		List<ReviewDTO> reviewList = null;
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "select * from test01 where pro_name = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, proName); // 프로덕트 이름 설정
+			rs = pstmt.executeQuery();
+			reviewList = new ArrayList<>();
+			while(rs.next()) {
+				ReviewDTO reviewDTO = new ReviewDTO();
+				reviewDTO.setRev_num(rs.getInt("rev_num"));
+				reviewDTO.setU_num(rs.getInt("u_num"));
+				reviewDTO.setPro_name(rs.getString("pro_name"));
+				reviewDTO.setRev_img_url(rs.getString("rev_img_url"));
+				reviewDTO.setEmp_grade(rs.getString("emp_grade"));
+				reviewDTO.setEmp_name(rs.getString("emp_name"));
+				reviewDTO.setS_location(rs.getString("s_location"));
+				reviewDTO.setRev_rating(rs.getString("rev_rating"));
+				reviewDTO.setU_name(rs.getString("u_name"));
+				reviewDTO.setRev_date(rs.getTimestamp("rev_date"));
+				reviewDTO.setU_count(rs.getString("u_count"));
+				reviewDTO.setRev_content(rs.getString("rev_content"));
+				
+				reviewDTO.setRe_ref(rs.getInt("re_ref"));
+				reviewDTO.setRe_lev(rs.getInt("re_lev"));
+				reviewDTO.setRe_seq(rs.getInt("re_seq"));
+				reviewDTO.setRe_content(rs.getString("re_content"));
+				reviewList.add(reviewDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return reviewList;
+	}// getReviewList() [리뷰목록 선택]
 	
 	public List<ReviewDTO> getMyReviewList(int u_num) {
 		System.out.println("ReviewDAO getReviewList");

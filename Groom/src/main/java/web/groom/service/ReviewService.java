@@ -14,6 +14,19 @@ import web.groom.dto.ReviewDTO;
 public class ReviewService {
 ReviewDAO reviewDAO = null;
 	
+	
+	public List<ReviewDTO> getReviewListAll() {
+		System.out.println("ReviewService getReviewList()");
+		List<ReviewDTO> reviewList = null;
+		try {
+			reviewDAO = new ReviewDAO();
+			reviewList = reviewDAO.getReviewListAll(); // 프로덕트 이름 전달
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reviewList;
+	}// getReviewList() [리뷰목록]
+	
 	public List<ReviewDTO> getReviewList(String proName) {
 		System.out.println("ReviewService getReviewList()");
 		List<ReviewDTO> reviewList = null;
@@ -24,7 +37,7 @@ ReviewDAO reviewDAO = null;
 			e.printStackTrace();
 		}
 		return reviewList;
-	}// getReviewList() [리뷰목록]
+	}// getReviewList() [리뷰목록 선택]
 	
 	public List<ReviewDTO> getMyReviewList(int u_num) {
 		System.out.println("ReviewService getReviewList()");

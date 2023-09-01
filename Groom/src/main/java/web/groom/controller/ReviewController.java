@@ -25,14 +25,23 @@ public class ReviewController extends HttpServlet {
 		String sPath = request.getServletPath();
 		
 		//페이지이동
-		 if (sPath.equals("/reviewList.re")) {
+		if (sPath.equals("/reviewList.re")) {
+			 reviewService = new ReviewService();
+//			 String proName = request.getParameter("pro_name");
+			 List<ReviewDTO> reviewList = reviewService.getReviewListAll();
+			 request.setAttribute("reviewList", reviewList);
+			 System.out.println("reviewList.re");
+			 webForward(request, response, "review", "reviewList");
+	     }// reviewList.re [리뷰목록]
+		
+		 if (sPath.equals("/reviewList.re?")) {
 			 reviewService = new ReviewService();
 			 String proName = request.getParameter("pro_name");
 			 List<ReviewDTO> reviewList = reviewService.getReviewList(proName);
 			 request.setAttribute("reviewList", reviewList);
 			 System.out.println("reviewList.re");
 			 webForward(request, response, "review", "reviewList");
-	     }// reviewList.re [리뷰목록]
+	     }// reviewList.re [리뷰목록 선택]
 		 
 		 if (sPath.equals("/myReviewList.re")) {
 			 reviewService = new ReviewService();
@@ -64,7 +73,29 @@ public class ReviewController extends HttpServlet {
 			 List<ReviewDTO> reviewList = reviewService.getReviewList(proName);
 			 request.setAttribute("reviewList", reviewList);
 			 webForward(request, response, "review", "reviewList3");
-	     }// reviewList3.re [리뷰목록3] //////////// 상단 메뉴 선택시 버튼색이 안변해서 페이지 여러개 만듦
+	     }// reviewList3.re [리뷰목록3]
+		 if (sPath.equals("/reviewList4.re")) {
+			 reviewService = new ReviewService();
+			 String proName = request.getParameter("pro_name");
+			 List<ReviewDTO> reviewList = reviewService.getReviewList(proName);
+			 request.setAttribute("reviewList", reviewList);
+			 webForward(request, response, "review", "reviewList4");
+	     }// reviewList4.re [리뷰목록4]
+		 if (sPath.equals("/reviewList5.re")) {
+			 reviewService = new ReviewService();
+			 String proName = request.getParameter("pro_name");
+			 List<ReviewDTO> reviewList = reviewService.getReviewList(proName);
+			 request.setAttribute("reviewList", reviewList);
+			 webForward(request, response, "review", "reviewList5");
+	     }// reviewList5.re [리뷰목록5]
+		 if (sPath.equals("/reviewList6.re")) {
+			 reviewService = new ReviewService();
+			 String proName = request.getParameter("pro_name");
+			 List<ReviewDTO> reviewList = reviewService.getReviewList(proName);
+			 request.setAttribute("reviewList", reviewList);
+			 webForward(request, response, "review", "reviewList6");
+	     }// reviewList6.re [리뷰목록6]
+		 //////////// 상단 메뉴 선택시 버튼색이 안변해서 페이지 여러개 만듦
 		 
 		 
 		 if (sPath.equals("/reviewContent.re")) {

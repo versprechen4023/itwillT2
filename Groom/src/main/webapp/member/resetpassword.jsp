@@ -54,17 +54,7 @@
 			<button type="submit" id="submit" name="submit" style="width: 390px; font-size: 16px; margin-left: 0; ">비밀번호 재설정</button>
 		   </div>
 	    </div>   
-<!-- 테두리선 끝 -->
-
-		   	       
-<div class="centered-text">
-    <p>
-        <a href="signup.me" class="custom-text"><b>회원가입</b></a>
-        <span class="vertical-line"></span>
-        <a href="fineid.me" class="custom-text"><b>아이디 찾기</b></a>
-    </p>
-</div>
-      
+<!-- 테두리선 끝 -->  
     </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">

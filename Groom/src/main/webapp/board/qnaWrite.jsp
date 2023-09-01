@@ -6,10 +6,11 @@
 <head>
 <!-- 헤드호출 -->
 <jsp:include page="../inc/head.jsp"></jsp:include>
-<link rel="stylesheet" href="./css/qnaWrite_gr.css">
+
 
 
 </head>
+<link rel="stylesheet" href="./css/qnaWrite_gr.css">
 <body>
 	<%
 	// 로그인한 상태에서 글을 써야하기 때문에 세션에서 로그인정보 가져오기
@@ -21,6 +22,7 @@
 	<div id="fh5co-main">
 
 		<div class="fh5co-narrow-content">
+
 			<h2 class="h2">Q&A 작성</h2>
 
 			<form action="qnaWritePro.bo" method="post" class="qnawrite" enctype="multipart/form-data">
@@ -39,7 +41,7 @@
 							<option value="B">결제</option>
 							<option value="C">이용문의</option>
 							<option value="D">기타</option>
-
+	
 						</select>
 
 					</div>
@@ -66,7 +68,9 @@
 								onclick="triggerFileInput()"> <input type="file"
 								id="fileInput" name="qna_img_url"
 								accept=".png, .jpg, .jpeg, .gif" style="display: none">
-							<div id="fileInfoDisplay">선택된 파일 없음</div>
+
+							<div id="fileInfoDisplay" class="file-info">선택된 파일 없음</div>
+
 
 						</div>
 
@@ -74,19 +78,24 @@
 
 				</div>
 
+
 				<div class="qna-buttons">
+
+
+				</div>
 
 					<div class="button-container">
 
 						<input type="submit" value="확인" class="qnasubmit" >
+
 						<button onclick="location.href='qna.bo'" class="qnalist">목록</button>
 					</div>
 				</div>
-
 			</form>
+			
 
 		</div>
-	</div>
+	
 	<!-- jQuery -->
 	<script src="./js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -127,6 +136,7 @@ function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘�
 			const fileInput = document.getElementById('fileInput');
 			fileInput.value = ''; // 파일 선택 해제
 			}
+
 </script>
 </body>
 </html>

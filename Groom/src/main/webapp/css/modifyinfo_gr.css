@@ -1,5 +1,16 @@
 @charset "UTF-8";
 
+@font-face {
+	font-family: 'Godo';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2')
+		format('woff2'),
+		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff')
+		format('woff');
+}
+
 /* 가로선 */
 .separator {
 	width: 660px;
@@ -10,13 +21,15 @@
 
 /* 내정보 수정(텍스트) */
 .text {
-	margin: 80px 620px 30px;
+	margin: 80px 630px 30px;
 	font-size: 25px;
+	font-family : 'Godo';
 }
 
 .h1 {
 margin-top :70px;
 margin-bottom : 30px;
+font-family: 'Godo';
 
 }
 
@@ -25,6 +38,20 @@ font-size : 13px;
 
 }
 .submit { 
-font-size: 13px;
+margin-left : 150px;
+font-size: 18px;
+    letter-spacing: 3px;
+}
 
+form .membership div input {
+    width: 100%;
+    font-size: 15px;
+    font-family: 'Godo';
+}
+
+form div label {
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Godo';
+    letter-spacing: 2px;
 }

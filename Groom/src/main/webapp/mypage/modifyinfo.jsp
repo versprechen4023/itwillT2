@@ -79,7 +79,7 @@ MypageDTO mypageInfo = (MypageDTO)request.getAttribute("mypageInfo");
 			
 		
 <!-- 수정하기 버튼 -->
-			<button type="submit" class="submit">수정하기</button>
+			<button type="submit" class="submit">수정</button>
 		  </form> 
 
 	</body>

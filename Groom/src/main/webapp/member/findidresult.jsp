@@ -34,35 +34,20 @@
       %>
       
       	<div class = "found-success">
-	      <p>  회원님의 아이디는 </p>   <div class ="idresult"><%=memberDTO.getU_Id()%></div> <p>  입니다 </p>
+	      <p>  회원님의 아이디는 </p> <br>  <p style="color:blue;"><%=memberDTO.getU_Id()%></p> <p> 입니다</p>
+	      
+	      </div> 
 	     
 	 
 	     
 	     <% 
-	     } else {
-	     
-	     %>
-	     <div class = "found-login">
- 		    <input type="button" id="btnLogin" value="로그인" onClick = 'login()'/>
-       	</div>
-       
-       
-        <div class = "container">
-      	<div class = "found-fail">
-	      <h4>  등록된 정보가 없습니다 </h4>  
-	     </div>
-	     <div class = "found-login">
- 		    <input type="button" id="btnback" value="다시 찾기" onClick="history.back()"/>
- 		    <input type="button" id="btnjoin" value="회원가입" onClick="joinin()"/>
-       	</div>
-       </div>
-       <%
 	     }
-       %>
+	     %>
+
         <hr style="margin: 20px 0; border: 2 solid #ccc;">
         
        <div id="button">
-			<button type="submit" style="width: 390px; font-size: 16px; margin-left: 0; ">아이디 찾기</button>
+			<button type="button" style="width: 390px; font-size: 16px; margin-left: 0; "onclick="location.href='login.me'"> 로그인 하러 가기</button>
 		   </div>
 	    </div>   
       </div>

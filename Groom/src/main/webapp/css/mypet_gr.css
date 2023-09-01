@@ -1,3 +1,19 @@
+  @font-face {
+	font-family: 'Godo';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2')
+		format('woff2'),
+		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff')
+		format('woff');
+} /*  웹에서 폰트 받아오는 태그 */
+*{
+	font-family: 'Godo';
+	
+	
+}
+
   body {
     background-color: #FAF5FA;
     display: flex;
@@ -11,6 +27,7 @@
   h2 {
     text-align: center;
     font-size: 30px;
+    font-family : 'Godo';
   }
 
   .content-wrapper {
@@ -49,12 +66,15 @@
   input[type="text"], select, textarea {
     margin: 10px 0; /* 입력 필드 위 아래 간격 조정 */
     font-size: 16px;
+    height: 20px;
+    width:270px;
+    
   }
 
   button {
-    width: 50%;
+    width: 40%;
     font-size: 1.3rem;
-    font-weight: bold; /* 굵은 글꼴 추가 */
+   
     text-transform: uppercase;
     padding: 15px;
     margin-left: 10px;
@@ -62,6 +82,8 @@
     color: white;
     background: black;
     transition: 0.3s;
+    letter-spacing: 5px;
+    border:1px solid black;
   }
   
 /*     특이사항(textarea) 스타일 */
@@ -104,14 +126,22 @@
     text-align: center;
     font-weight:bold;
     font-size:13px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 .select input[type=radio]+label{
     background-color: #fff;
     color: #333;
+    border-radius : 8px;
 }
 .select input[type=radio]:checked+label{
     background-color: #333;
     color: #fff;
+}
+
+#error-message{
+	margin-top : -10px;
+	
 }
 
 /* <----- 라디오 버튼 */

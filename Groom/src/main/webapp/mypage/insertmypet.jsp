@@ -24,7 +24,7 @@
       <label for="petname" class="labelstyle">이름</label><br>
       <input id="petname" name="petname" type="text" placeholder="이름을 입력해주세요"><br>
 <!--  반려동물 이름 공란시 sumbit 제어 "반려동물 이름 입력해주세요 출력" -->
- 	  <span id="error-message" style="color: red; font-size: 12px"></span>
+ 	  <span id="error-message" style="color: red; font-size: 12px; margin-top:-10px;"></span>
     </div>
     
     <div>

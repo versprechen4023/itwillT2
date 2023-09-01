@@ -534,7 +534,9 @@ public class Board1Controller extends HttpServlet {
 
 		 
 		 if (sPath.equals("/qnaContent.bo")) { 
-			 System.out.println("qnaContent.bo");
+
+			 System.out.println("qnacontent.bo");
+
 			 qnaService = new QnaService();
 			 QnaDTO qnaDTO = qnaService.getQna(request);
 			 request.setAttribute("qnaDTO", qnaDTO);

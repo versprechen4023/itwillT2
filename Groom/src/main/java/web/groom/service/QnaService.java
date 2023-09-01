@@ -146,6 +146,7 @@ public class QnaService {
 	
 	
 	public QnaDTO insertQna(HttpServletRequest request) {
+
         try {
             request.setCharacterEncoding("utf-8");
 
@@ -239,8 +240,6 @@ public class QnaService {
 //		return qnaDTO;
 //		
 //	}//insertQna(qna작성)
-	
-	
 	
 	public void deleteQna(HttpServletRequest request) {
 		System.out.println("QnaService deleteQna()");

@@ -22,7 +22,7 @@ overflow: hidden; /* >>>>>>>>>>>>>>>>>>>>>> 네비게이션바 스크롤 제거 
   height: 190px;
 }
 body {
-font-family: 'Noto', sans-serif; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
+font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 /* background: whitesmoke; */
 /* background: #F4F9F9; */
 background: #FAF5FA; /* >>>>>>>>>>>> 새롭게 바뀐 배경색 */
@@ -34,10 +34,10 @@ background: #FAF5FA; /* >>>>>>>>>>>> 새롭게 바뀐 배경색 */
 
 }
 h1, h2, h3, h4, h5, h6 {
-font-family: 'Noto', sans-serif; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
+font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 }
 figure figcaption {
-font-family: 'Noto', sans-serif; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
+font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 }
 #fh5co-aside {
 /*   background: rgb(245, 222, 179); */
@@ -57,14 +57,14 @@ body.offcanvas #fh5co-aside {
   background: #E3F6FF; /* 좁은 화면에서 네비바 불러올 때 적용안된 색지정 */
 }
 #fh5co-aside #fh5co-logo {
-font-family: "Comic Sans MS", cursive, sans-serif; /* (로고만 다름) 폰트 수정 */
+font-family: "Comic Sans MS", cursive, sans-serif !important; /* (로고만 다름) 폰트 수정 */
 margin-bottom: 8px; /* >>>>>>>>>>>>>>>>>>> 로고 아래 로그인/회원가입과의 간격 조절 */
 margin-top: 25px; /* >>> 위에 붙어있어서 간격줌 */
 text-transform: none; /* >>>>>>>>>>>>>>>>> 자동 대문자 변환 취소 */
 }
 #fh5co-aside #fh5co-main-menu ul li a {
 font-size: 20px; /* >>>>>>>>>>>>>>>>>>>>>>>>> 네비게이션바 폰트 크기 수정*/
-font-family: 'Noto', sans-serif; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
+font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 }
 /* #fh5co-main { */
 /* 	width: 68%; 이미지가 너무 가로로 퍼져서 오른쪽에 여백 생성 */
@@ -84,10 +84,10 @@ margin-right: 0;
   }
 }
 #fh5co-hero .flexslider .slider-text > .slider-text-inner h1, #fh5co-hero .flexslider .slider-text > .slider-text-inner h2 {
-font-family: 'Noto', sans-serif; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
+font-family: 'Noto', sans-serif !important;/* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 }
 #fh5co-hero .flexslider .slider-text > .slider-text-inner h1 {
-font-family: 'Noto', sans-serif; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
+font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 }
 .blog-entry {
 border-radius: 10px;  /* >>>>>>>>>>>>>>>>>>>>>>>>> 리뷰내용 모서리 둥글게 */ 	
@@ -96,7 +96,7 @@ border-radius: 10px;  /* >>>>>>>>>>>>>>>>>>>>>>>>> 리뷰내용 모서리 둥글
 border-radius: 10px 10px 0 0; /* >>>>>>>>>>> 리뷰 이미지 모서리 둥글게 */ 
 }	
 .btn {
-font-family: 'Noto', sans-serif; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
+font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 }
 
 

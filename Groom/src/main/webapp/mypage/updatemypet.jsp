@@ -78,8 +78,8 @@ MypageDTO mypageDTOTest = (MypageDTO)request.getAttribute("mypageDTOTest");
     <br>
     <div id="button" style="text-align: center;">
       <button type="submit" >수정</button>
-<input type="button" value="삭제" class="btn"
-       onclick="deletePet(<%=mypageDTOTest.getPetNum()%>)">
+     <button type="button" value="삭제" class="btn"
+       onclick="deletePet(<%=mypageDTOTest.getPetNum()%>)"> 삭제 </button>
     </div>
   </div>
 </div>

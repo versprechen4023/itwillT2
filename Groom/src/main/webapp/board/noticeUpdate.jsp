@@ -21,7 +21,7 @@
 String role = (String)session.getAttribute("role");
 Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 %>
-<h2>공지사항</h2>
+<h2>공지사항 수정</h2>
 <hr>
 
 <form id="nwf" method="post" action="noticeUpdatePro.bo" enctype="multipart/form-data">

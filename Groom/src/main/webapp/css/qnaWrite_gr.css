@@ -13,10 +13,6 @@
 #fh5co-main {
 	position: relative;
 	height: 100%;
-	display: flex;
-	flex-direction: column; /* Stack children vertically */
-	align-items: center; /* Center horizontally within the container */
-	width: 80%;
 }
 
 #fh5co-main h2 {
@@ -28,6 +24,8 @@
 	background-color: #FAF5FA;
 	font-family: 'Godo';
 	color: black;
+	margin-left: 5px;
+	font-family: 'Godo' !important;
 }
 
 .fh5co-narrow-content {
@@ -40,6 +38,13 @@
 	margin-top: 50px;
 	margin-left: 40px;
 	color: black;
+}
+
+.abc input, .abc textarea {
+	margin-bottom: 10px;
+	width: 700px;
+	font-family: 'Godo';
+	font-size : 18px;
 }
 
 .abc qnasubject {
@@ -63,23 +68,36 @@
 }
 
 .qnasubmit {
-	width: fit-content;
-	letter-spacing: 2px;
-	font-size: 20px;
-	font-family: 'Godo';
-	color: white;
-	background-color: black;
-	border: 1px solid black;
-	border-radius: 10px;
-	margin-right: 20px;
+	margin: 0 auto;
+	display: block;
+	text-align: center; /* Center-align the text inside the button */
 }
+
+.qna-buttons {
+	text-align: center;
+	position: absolute;
+	bottom: 20px; /* Adjust the bottom position */
+	left: 50%; /* Move to the horizontal center */
+	transform: translateX(-50%); /* Center horizontally */
+}
+
+.qna-buttons {
+	text-align: center;
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+
 
 .hrsolid {
 	width: 75%;
 	border: 0px;
 	border-top: 3px solid black;
-	margin-top: 60px;
+	margin-top: 60px; /* Add margin to position it below the Q&A section */
 	margin-left: 45px;
+	
 }
 
 .abc p {
@@ -90,15 +108,14 @@
 	color: black;
 }
 
-.qna_title {
+.abc input {
 	margin-bottom: 10px;
 	width: 900px;
 	font-family: 'Godo';
 	height: 50px;
 	border-radius: 5px;
 	border: 1px solid black;
-	font-size: 18px;
-    padding: 15px;
+	padding : 5px;
 }
 
 .abc textarea {
@@ -107,45 +124,44 @@
 	font-family: 'Godo';
 	resize: none;
 	border-radius: 5px;
-	font-size: 18px;
-	border: 1px solid black;
-	padding: 15px;
+	font-size: 17px;
 }
 
 .button-container {
     display: flex;
-    /* margin-left: 10px; */
-    width: 250px;
-    float: right;
-    margin-right: 230px;
-    margin-top: -41px;
+    justify-content: space-between;
+    width: auto;
+    margin: 0 auto;
+	
 }
 
 .review-input-img {
-	display: flex;
-	text-align: left;
-	align-items: center;
-	justify-content: left;
-	height: 40px;
-	border: 1px solid black;
-	width: 200px;
-	border-radius: 10px;
-	width: fit-content;
+    display: flex;
+    text-align: left;
+    align-items: center;
+    justify-content: left;
+    height: 40px;
+    border: 1px solid black;
+    width: 200px;
+    border-radius: 10px;
+    width: fit-content;
 }
-
 .review-input-img1 {
-	height: 30px;
-	width: auto;
-	margin-left: 10px;
+    height: 30px;
+    width: auto;
+    margin-left: 10px;
+
 }
 
 #fileInfoDisplay {
 	margin-left: 10px;
-	color: black;
-	font-size: 16px;
-	font-family: 'Godo';
-	margin-right: 10px;
+    color: black;
+    font-size: 16px;
+    font-family: 'Godo';
+    margin-right: 10px;
 }
+
+
 
 .category {
 	display: inline-block;
@@ -164,21 +180,40 @@
 	font-family: 'Godo';
 	border: 1px solid black;
 	border-radius: 20px;
-	color: black;
+    color: black;
 }
 
 .file-info-container {
-	display: flex;
-	align-items: center; /* Center vertically */
+display: flex;
+    flex-direction: column;
 }
 
-.qnalist {
-	width: fit-content;
-	letter-spacing: 2px;
-	font-size: 20px;
-	font-family: 'Godo';
-	color: white;
-	background-color: black;
-	border: 1px solid black;
-	border-radius: 10px;
+
+
+.button-container {
+	display: flex; /* Display the buttons side by side */
+	justify-content: space-between; /* Add space between the buttons */
+	margin-left: 10px;
+	/* Add some space between the buttons and other content */
+	width: 250px; /* Adjust the width as needed */
+	margin-top: -73px;
+	
 }
+
+.qnasubmit, .qnalist {
+    width: fit-content;
+    letter-spacing: 2px;
+    font-size: 18px;
+    font-family: 'Godo';
+    color: white;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+
+}
+
+td, th {
+    padding: 0;
+    color: black;
+}
+

@@ -13,6 +13,7 @@
 	</head>
 	
 	<!-- 메인페이지 css 오버라이드  -->
+	<link href="./css/review_gr.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="./css/main_gr.css">
 	
 	<body> <!--  옆에 사이드바(네비바) 주소는 aside.jsp에서 수정해야함.  -->
@@ -114,15 +115,41 @@ if (i <= rating) {
 		stars += "☆";
 		}
 }
+//enum > 문자
+	String s_location = reviewDTO.getS_location();
+	String emp_grade = reviewDTO.getEmp_grade();
+		String location = "";
+	if (s_location.equals("A")) {
+	    location = "서면점";
+	} else if (s_location.equals("B")) {
+	    location = "명지점";
+	} else if (s_location.equals("C")) {
+	    location = "율하점";
+	} else {
+	    location = "알 수 없음";
+	}
+	String grade = "";
+	if (emp_grade.equals("A")) {
+		grade = "원장";
+	} else if (emp_grade.equals("B")) {
+		grade = "실장";
+	} else if (emp_grade.equals("C")) {
+		grade = "수석";
+	} else {
+		grade = "알 수 없음";
+	}
 %>		
 <!-- 리뷰 목록  -->	
 		<div class="col-md-4 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
 			<div class="blog-entry">
 					<!-- HOME 페이지 RECENT BLOG 이미지 칸 -->
-					<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img"><img src="<%=reviewDTO.getRev_img_url() %>" class="img-responsive" alt="이미지없음"></a>
+					<div class="img-wrapper"> 
+						<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img">
+						<img src="upload/<%=reviewDTO.getRev_img_url()%>" class="img-responsive" alt="이미지없음"></a>
+					</div>	
 					<div class="desc">
 						<h3><a><%=reviewDTO.getPro_name() %></a><br>
-						<small><%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %></small><small> / <%=reviewDTO.getS_location() %></small></h3>
+						<small><%=grade %> <%=reviewDTO.getEmp_name() %></small><small> / <%=location %></small></h3>
 						<h3><%=stars %></h3>
 						<span class="review_text1"><a><%=reviewDTO.getU_name() %></a> / <a><%=format.format(reviewDTO.getRev_date()) %></a> / <a><%=reviewDTO.getU_count() %>번째 방문</a></span>
 						<p class="review_text2"><%=reviewDTO.getRev_content() %></p>

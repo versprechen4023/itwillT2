@@ -70,7 +70,7 @@ List<MemberDTO> visibleItems = memberList.subList(startIndex, endIndex);
     	<td>전화번호</td>
     	<td>이메일</td>
     	<td>가입일자</td>
-    	<td>예약횟수</td>
+    	<td>방문수</td>
     	<td>포인트</td></tr>
 <%
 SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd HH:mm");

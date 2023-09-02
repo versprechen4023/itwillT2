@@ -7,7 +7,7 @@ public class ReviewDTO {
 	private int rev_num;
 	private int u_num;
 	private int res_num;
-	private int pro_id;
+	private int pro_id2;
 	private int s_num; //
 	private String rev_content;
 	private String rev_img_url;
@@ -48,11 +48,11 @@ public class ReviewDTO {
 	public void setRes_num(int res_num) {
 		this.res_num = res_num;
 	}
-	public int getPro_id() {
-		return pro_id;
+	public int getPro_id2() {
+		return pro_id2;
 	}
-	public void setPro_id(int pro_id) {
-		this.pro_id = pro_id;
+	public void setPro_id2(int pro_id) {
+		this.pro_id2 = pro_id;
 	}
 	public int getS_num() {
 		return s_num;

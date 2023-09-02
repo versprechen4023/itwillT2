@@ -152,7 +152,7 @@ thead {
 /* (회원정보) ============================================ */   
 .admin-userCheck { /* 표 전체 */
 	color: black;
-    width: 800px;
+    width: 900px;
     font-size: 13px;
     border-collapse: collapse;
 }

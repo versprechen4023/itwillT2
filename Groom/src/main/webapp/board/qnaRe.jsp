@@ -222,6 +222,8 @@
 	<%
 	// 로그인한 상태에서 글을 써야하기 때문에 세션에서 로그인정보 가져오기
 	String id = (String) session.getAttribute("id");
+	String role = (String)session.getAttribute("role");
+	String num = (String)session.getAttribute("num"); 
 	%>
 
 	<jsp:include page="../inc/aside.jsp"></jsp:include>
@@ -238,18 +240,18 @@
 					<!--  name으로 값을 넘겨주기 때문에 서비스단에 form 안에 name과 String (name) = request.getparmeter("(name)"); 가 일치해야함 -->
 					<input type="hidden" name="u_id" value="<%=id%>" id="u_id">
 
-					<div>
-						<label class="category"> 분류: </label> <select name="qna_category"
-							id="qna_category">
-							<option value="선택" disabled>분류</option>
-							<option value="A">서비스</option>
-							<option value="B">결제</option>
-							<option value="C">이용문의</option>
-							<option value="D">기타</option>
+<!-- 					<div> -->
+<!-- 						<label class="category"> 분류: </label> <select name="qna_category" -->
+<!-- 							id="qna_category"> -->
+<!-- 							<option value="선택" disabled>분류</option> -->
+<!-- 							<option value="A">서비스</option> -->
+<!-- 							<option value="B">결제</option> -->
+<!-- 							<option value="C">이용문의</option> -->
+<!-- 							<option value="D">기타</option> -->
 
-						</select>
+<!-- 						</select> -->
 
-					</div>
+<!-- 					</div> -->
 					<!--  category -->
 
 					<div>

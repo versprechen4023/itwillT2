@@ -87,28 +87,27 @@ ReviewDAO reviewDAO = null;
 			= new MultipartRequest(request, uploadPath, maxSize,"utf-8", new DefaultFileRenamePolicy()); 
 			
 //			int rev_num = 1; // (auto_increment)
-			int u_num = 0; // 세션
+			int u_num = 9; // 세션받기, 9번 = user2469 role=user 
 			int res_num = 0; // from예약내역
 			int pro_id = 0; // from예약내역
-			int s_num = 0; // from예약내역
+			int s_num = 0; // from예약내역 값있어야 오류안남 (fk이기떄문)
 			String rev_content = multi.getParameter("rev_content");
 			String rev_img_url = multi.getFilesystemName("rev_img_url");
 			String rev_rating = multi.getParameter("rev_rating");
-//			String rev_date = "now()"; // 일단 임의지정
 			Timestamp rev_date = new Timestamp(System.currentTimeMillis());
 			int rev_count = 0; // 조회수 초기값=0
 			int re_ref = 0; // 답글번호 초기값=0
 			int re_lev = 0; // 답글깊이 초기값=0
 			int re_seq = 0; // 답글개수 초기값=0
-			String re_content = null; //
-			Timestamp re_date = null; //
+			String re_content = null;
+			Timestamp re_date = null;
 			
 			reviewDAO = new ReviewDAO();
 			ReviewDTO reviewDTO = new ReviewDTO();
 			reviewDTO.setU_num(u_num);
 			reviewDTO.setRes_num(res_num);
-			reviewDTO.setPro_id(pro_id);
-			reviewDTO.setPro_id(s_num);
+			reviewDTO.setPro_id2(pro_id);
+			reviewDTO.setS_num(s_num);
 			reviewDTO.setRev_content(rev_content);
 			reviewDTO.setRev_img_url(rev_img_url);
 			reviewDTO.setRev_rating(rev_rating);
@@ -192,7 +191,7 @@ ReviewDAO reviewDAO = null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}// writeRe [답글작성]
+	}// writeRe [답글작성 + 포인트추가]
 	
 
 	public void updateRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것

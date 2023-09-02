@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+body {
+font-family: 'Noto Sans KR', sans-serif;
+}
 p {
 	margin-bottom: 0;
 }
@@ -48,17 +50,17 @@ float: right;
 	padding: 20px 35px 50px 35px;
 }
 .content-middle p {
-	width: 80%;
+	width: 100%;
 	color: black;
 	display: flex;
 	align-items: center;
 	justify-content: left;
-	padding: 10px 0 10px 0;
+	padding: 10px 20px 10px 20px;
 }
 .content-middle img {
     margin: 0 auto;
     display: block;
-    width: 85%;
+    width: 70%;
   }
 /* =========================================== 답글 */
 .re-review-content {

@@ -137,12 +137,6 @@ public class ReviewController extends HttpServlet {
 			 response.sendRedirect("reviewList.re?pro_name=");
 		 }// reviewDelete.re [리뷰삭제 + 포인트회수]
 		 
-//		 if(sPath.equals("/reviewPointAdd.re")) {
-//			 System.out.println("reviewDeletePoint.re");
-//			 reviewService = new ReviewService();
-//			 reviewService.addReviewPoint(request);
-//			 response.sendRedirect("reWrite.re");
-//		 }// reviewDelete.re [답글작석 > 포인트추가]
 		 
 		 if(sPath.equals("/reWrite.re")) {
 			 System.out.println("reWrite.re");
@@ -157,7 +151,7 @@ public class ReviewController extends HttpServlet {
 			 reviewService = new ReviewService();
 			 reviewService.writeRe(request);
 			 response.sendRedirect("reviewList.re?pro_name="); // 목록으로
-		 }//reWritePro.re [답글작성 후 등록]
+		 }//reWritePro.re [답글작성 후 등록 + 포인트추가]
 		 
 		 
 		 if(sPath.equals("/reUpdate.re")) {

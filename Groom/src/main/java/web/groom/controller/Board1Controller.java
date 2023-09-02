@@ -62,7 +62,7 @@ public class Board1Controller extends HttpServlet {
 			List<Board1DTO> notice = boardService.getNotice(pageDTO);
 			
 			// 게시판 전체 글 개수 구하기 
-			int count = boardService.getBoardCount();
+			int count = boardService.getBoardCount2();
 			// 한화면에 보여줄 페이지개수 설정
 			int pageBlock = 10;
 			// 시작하는 페이지 번호
@@ -254,7 +254,7 @@ public class Board1Controller extends HttpServlet {
 			List<Board1DTO> faq = boardService.getFaq(pageDTO);
 			
 			// 게시판 전체 글 개수 구하기 
-			int count = boardService.getBoardCount2();
+			int count = boardService.getBoardCount();
 			// 한화면에 보여줄 페이지개수 설정
 			int pageBlock = 10;
 			// 시작하는 페이지 번호
@@ -482,7 +482,7 @@ public class Board1Controller extends HttpServlet {
 			
 			// 주소변경없이 이동
 			webForward(request, response, "board", "qnaSearch");
-		}//notice.bo
+		}//qnaSearch
 		
 
 		 if (sPath.equals("/qna.bo")) {
@@ -534,9 +534,7 @@ public class Board1Controller extends HttpServlet {
 
 		 
 		 if (sPath.equals("/qnaContent.bo")) { 
-
-			 System.out.println("qnacontent.bo");
-
+			 System.out.println("qnaContent.bo");
 			 qnaService = new QnaService();
 			 QnaDTO qnaDTO = qnaService.getQna(request);
 			 request.setAttribute("qnaDTO", qnaDTO);
@@ -546,9 +544,49 @@ public class Board1Controller extends HttpServlet {
 		 
 		 if (sPath.equals("/qnaNoanswer.bo")) { 
 			 System.out.println("qnaNoanswer.bo");
-			 qnaService = new QnaService();
-			 QnaDTO qnaDTO = qnaService.getQna(request);
-			 request.setAttribute("qnaDTO", qnaDTO);
+			 
+			//한페이지에서 보여지는 글개수
+				int pageSize=10;
+				//페이지번호
+				String pageNum=request.getParameter("pageNum");
+				//페이지번호가 없으면 1페이지 실행
+				if(pageNum == null) {
+					pageNum = "1";
+				}
+				//페이지 번호를 => 정수형으로 변경
+				int currentPage = Integer.parseInt(pageNum);
+							
+				PageDTO pageDTO = new PageDTO();
+				pageDTO.setPageSize(pageSize);
+				pageDTO.setPageNum(pageNum);
+				pageDTO.setCurrentPage(currentPage);
+				
+				 qnaService = new QnaService();
+				 List<QnaDTO> qna = qnaService.getNoanswer(pageDTO);
+				
+				
+				// 게시판 전체 글 개수 구하기 
+				
+							int count = qnaService.getCountNoanswer(pageDTO);
+							// 한화면에 보여줄 페이지개수 설정
+							int pageBlock = 10;
+							int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+							int endPage=startPage+pageBlock-1;
+							int pageCount = count / pageSize + (count % pageSize==0?0:1);
+							if(endPage > pageCount) {
+								endPage = pageCount;
+							}
+							
+							//pageDTO 저장
+							pageDTO.setCount(count);
+							pageDTO.setPageBlock(pageBlock);
+							pageDTO.setStartPage(startPage);
+							pageDTO.setEndPage(endPage);
+							pageDTO.setPageCount(pageCount);
+							request.setAttribute("pageDTO", pageDTO);
+
+							
+			 request.setAttribute("qna", qna);
 	         webForward(request, response, "board", "qnaNoanswer");
 	     }//qna 답글X
 		 
@@ -588,7 +626,7 @@ public class Board1Controller extends HttpServlet {
 			 System.out.println("qnaUpdatePro.bo");
 			 qnaService = new QnaService();
 			 qnaService.updateQna(request);
-			 response.sendRedirect("qna.bo"); // 글을 다 쓰고 나면 다시 리스트로 이동 	
+//			 response.sendRedirect("qna.bo"); // 글을 다 쓰고 나면 다시 리스트로 이동 	
 		 }//qna수정 후 등록
 		 
 		 

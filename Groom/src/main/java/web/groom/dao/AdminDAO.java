@@ -30,8 +30,6 @@ public class AdminDAO {
 				+ "   ON a.u_num = b.u_num"
 				+ "   ORDER BY a.u_num desc";
 		//일단 전체회원, 필요하면 where 넣기
-//		String sql = "select * from userInfo";
-//		String sql = "select * from userInfo where u_role='user'"; // 일반유저만 출력
 		List<MemberDTO> memberList = null;
 		try {
 			con = new SQLConnection().getConnection();

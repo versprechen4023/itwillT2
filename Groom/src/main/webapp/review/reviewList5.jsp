@@ -50,7 +50,7 @@ List<ReviewDTO> visibleItems = reviewList.subList(startIndex, endIndex);
 		<a href="reviewList.re"> 전체 </a>
 		<a href="reviewList1.re?pro_name=목욕">목욕</a>
 		<a href="reviewList2.re?pro_name=부분미용">부분미용</a>
-		<a href="reviewList3.re?pro_name=부분+목욕">부분+목욕</a>
+		<a href="reviewList3.re?pro_name=부분%2B목욕">부분+목욕</a>
 		<a href="reviewList4.re?pro_name=전체미용">전체미용</a>
 		<a href="reviewList5.re?pro_name=스포팅" class="review-active">스포팅</a>
 		<a href="reviewList6.re?pro_name=가위컷">가위컷</a></h3>
@@ -71,14 +71,40 @@ if (i <= rating) {
 		stars += "☆";
 		}
 }
+//enum > 문자
+	String s_location = reviewDTO.getS_location();
+	String emp_grade = reviewDTO.getEmp_grade();
+		String location = "";
+	if (s_location.equals("A")) {
+	    location = "서면점";
+	} else if (s_location.equals("B")) {
+	    location = "명지점";
+	} else if (s_location.equals("C")) {
+	    location = "율하점";
+	} else {
+	    location = "알 수 없음";
+	}
+	String grade = "";
+	if (emp_grade.equals("A")) {
+		grade = "원장";
+	} else if (emp_grade.equals("B")) {
+		grade = "실장";
+	} else if (emp_grade.equals("C")) {
+		grade = "수석";
+	} else {
+		grade = "알 수 없음";
+	}
 %>		
 <!-- 리뷰 목록  -->	
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
-		<div class="blog-entry">                             <!-- ↗ 블로그 페이지 이동시 보여지는 칸 이미지 -->
-			<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img"><img src="<%=reviewDTO.getRev_img_url() %>" class="img-responsive" alt="이미지없음"></a>
+		<div class="blog-entry">
+		<div class="img-wrapper">
+			<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img">
+			<img src="upload/<%=reviewDTO.getRev_img_url()%>" class="img-responsive" alt="이미지없음"></a>
+		</div>
 		<div class="review-desc">
 			<h3><a><%=reviewDTO.getPro_name() %></a><br>
-			<small><%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %></small><small> / <%=reviewDTO.getS_location() %></small></h3>
+			<small><%=grade %> <%=reviewDTO.getEmp_name() %></small><small> / <%=location %></small></h3>
 			<h3><%=stars %></h3>
 			<span class="review_text1"><a><%=reviewDTO.getU_name() %></a> / <a><%=format.format(reviewDTO.getRev_date()) %></a> / <a><%=reviewDTO.getU_count() %>번째 방문</a></span>
 			<p class="review_text2"><%=reviewDTO.getRev_content() %></p>

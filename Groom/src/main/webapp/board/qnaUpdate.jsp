@@ -232,7 +232,7 @@
 		<div class="fh5co-narrow-content">
 			<h2 class="h2">Q&A</h2>
 
-			<form action="qnaWritePro.bo" method="post" class="qnawrite" enctype="multipart/form-data">
+			<form action="qnaUpdatePro.bo" method="post" class="qnaupdate" enctype="multipart/form-data">
 				<hr class="hrsolid">
 				<div class="abc">
 					<!--  name으로 값을 넘겨주기 때문에 서비스단에 form 안에 name과 String (name) = request.getparmeter("(name)"); 가 일치해야함 -->
@@ -275,11 +275,12 @@
 
 <!-- 						</div> -->
 
-<div class="review-input-img">
-              <img class="review-input-img1" src="./images/photo.png" 
+<div class="input-img">
+              <img class="input-img1" src="./images/photo.png" 
                   style="height: 15px; width: auto; margin-right: 5px;"
                   onclick="triggerFileInput()">
 <!--             <p class="img_text" style="margin: 0;">사진/동영상 추가</p> -->
+				<input type="hidden" name="oldfile" value="<%=qnaDTO.getQnaimgurl() %>">
                 <input type="file" id="fileInput" name="n_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
                 <div id="fileInfoDisplay">　<%=qnaDTO.getQnaimgurl() %></div>
         </div>

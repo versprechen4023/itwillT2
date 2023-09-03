@@ -626,7 +626,7 @@ public class Board1Controller extends HttpServlet {
 			 System.out.println("qnaUpdatePro.bo");
 			 qnaService = new QnaService();
 			 qnaService.updateQna(request);
-//			 response.sendRedirect("qna.bo"); // 글을 다 쓰고 나면 다시 리스트로 이동 	
+			 response.sendRedirect("qna.bo"); // 글을 다 쓰고 나면 다시 리스트로 이동 	
 		 }//qna수정 후 등록
 		 
 		 

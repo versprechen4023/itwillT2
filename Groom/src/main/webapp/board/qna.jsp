@@ -62,15 +62,15 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 </tr>
 
  <%
- SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
+ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm");
         for(int i=0; i<qna.size(); i++){
         	QnaDTO qnaDTO = qna.get(i);    
         %>
-       <tr id="qtr" onclick="location.href='qnacontent.bo?qna_num=<%=qnaDTO.getQnanum()%>'">
+       <tr id="qtr" onclick="location.href='qnaContent.bo?qna_num=<%=qnaDTO.getQnanum()%>'">
             <td><%=qnaDTO.getQnanum() %></td>
             <td id="subject"><%=qnaDTO.getTitle() %></td>
             <td><%=qnaDTO.getId() %>	</td>
-            <td><%=qnaDTO.getDate() %>	</td>
+            <td><%=format.format(qnaDTO.getDate() )%>	</td>
             <% 
             if(qnaDTO.getQreans()==0){
             %><td>X</td>
@@ -124,11 +124,11 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 	
 <!-- ================================================== -->
 	
-<!-- 	<table id="qtable2"> -->
+	<table id="qtable2">
 	<tr><td>
 		
 	<div class="search-form">
-		<form action="./noticeList.no" method="get">
+		<form action="qnaSearch.bo" method="get">
 		 <div class="combo-box">
 				<select id="combo-select">
 					<option value="option1">이용문의</option>
@@ -139,32 +139,27 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 			</div>		 	
 			
 			
-		 <input type="text" name="keyWord" size=60 placeholder="검색어를 입력하세요" id="searchkey">
+		 <input type="text" name="search" size=80 placeholder="검색어를 입력하세요" id="searchkey">
 		 <input type="submit" value="검색" id="searchbtn">
-		 <input type="button" value="글쓰기" onclick="location.href='qnaWrite.bo'" id="writebtn">
-<!-- 		 <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn"> -->
-
-	
-		 </form>
 		 
 		 		 <%
-if(id != null){
-	if(role.equals("admin")){
+if(id != null){{
 		%>
-			    <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn">
+		<input type="button" value="글쓰기" onclick="location.href='qnaWrite.bo'" id="writebtn">
+			  
 
 <%
 	}
 }
-%>	 
-		 </div>
-	</td></tr>
-	
-	</table>
-</div>
-</div>
+%>
+		 
+<!-- 		 <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn"> -->
 
- <script>
+
+		 </form>
+		 
+		 
+		 <script>
 
 // ============================ 파일첨부	
 function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘리먼트 클릭
@@ -196,7 +191,25 @@ function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘�
 			fileInput.value = ''; // 파일 선택 해제
 			}
 </script>
+		 
+		 <%
+if(id != null){
+	if(role.equals("admin")){
+		%>
+			    <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn">
+<%
+	}
+}
+%>
+		 
 
+	</td></tr>
+	
+	</table>
+</div>
+</div>
 	</body>
 </html>
+
+
 

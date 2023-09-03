@@ -277,7 +277,7 @@ public class QnaService {
 		System.out.println("QnaService updateQna()");
 	        try {
 	            String uploadPath = request.getRealPath("/upload");
-	            int maxSize = 1010241024;
+	            int maxSize = 10*1024*1024;
 	            MultipartRequest multi 
 	                = new MultipartRequest(request, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
 

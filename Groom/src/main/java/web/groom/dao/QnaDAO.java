@@ -292,17 +292,19 @@ public class QnaDAO {
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "update qna"
-					+ "   set qna_title=?, qna_content=? "
-					+ "   where qna_num=?;";
+					+ "   set u_id=?, qna_title=?, qna_content=? "
+					+ "   where qna_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, qnaDTO.getId()); 
 			pstmt.setString(2, qnaDTO.getTitle());
-			pstmt.setString(3, qnaDTO.getCategory());
-			pstmt.setString(4, qnaDTO.getContent());
+			pstmt.setString(3, qnaDTO.getContent());
+			pstmt.setInt(4, qnaDTO.getQnanum());
 			
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			dbClose();
 		}
 	}//updateQna(qna수정)
 	

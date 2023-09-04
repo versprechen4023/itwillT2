@@ -149,6 +149,12 @@ thead {
 .admin-main1 td {
     background-color: white;
 }
+.review-active {
+	background-color: silver !important;
+}
+.review-active:active {
+	background-color: silver !important;
+}
 /* (회원정보) ============================================ */   
 .admin-userCheck { /* 표 전체 */
 	color: black;
@@ -172,6 +178,7 @@ thead {
 	width: 100%;
     height: 40px;
     display: flex;
+    align-items: center;
     justify-content: center;
     position: relative;
 }
@@ -180,17 +187,17 @@ thead {
     height: 28px;
     font-weight: 400;
     font-size: 15px;
-	border-radius: 8px;
 	background: white;
     display: inline-block;
     margin: 0 2px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    line-height: 30px;
     text-align: center;
     justify-content: center;
     text-decoration: none;
     color: black !important;
+    border-radius: 30px;
+	border: 2px solid gray;
     transition: background-color 0.3s;
 }
 .userCheck-next a:-webkit-any-link {
@@ -229,17 +236,17 @@ thead {
     height: 28px;
     font-weight: 400;
     font-size: 15px;
-	border-radius: 8px;
 	background: white;
     display: inline-block;
     margin: 0 2px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    line-height: 30px;
     text-align: center;
     justify-content: center;
     text-decoration: none;
     color: black !important;
+    border-radius: 30px;
+	border: 2px solid gray;
     transition: background-color 0.3s;
 }
 .resCheck-next a:-webkit-any-link {

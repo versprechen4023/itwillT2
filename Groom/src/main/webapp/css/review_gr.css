@@ -83,9 +83,8 @@ margin-bottom: 5px;
     height: 28px;
     font-weight: 400;
     font-size: 15px;
-	border-radius: 8px;
 	background: white;
-    display: inline-block;
+    display: flex;
     margin: 0 2px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -95,6 +94,9 @@ margin-bottom: 5px;
     text-decoration: none;
     color: black !important;
     transition: background-color 0.3s; /* 색 변경될 때 서서히 바뀌게 */
+    align-items: center;
+    border-radius: 30px;
+	border: 2px solid silver;
 }
 .prev-next a:-webkit-any-link {
     color: -webkit-link;
@@ -125,15 +127,12 @@ margin-bottom: 5px;
 .review-select a:hover {
 	padding: 3px 10px 3px 10px;
 	color: white;
-/*     background-color: rgba(0, 0, 0, 0.4) ; */
     background: pink;
 }
 .review-active {
-/* 	background-color: rgba(0, 0, 0, 0.4) !important; 적용이 안돼서 important */
 	background-color: pink !important;
 }
 .review-active:active {
-/* 	background-color: rgba(0, 0, 0, 0.4) !important; 적용이 안돼서 important */
 	background-color: pink !important;
 }
 

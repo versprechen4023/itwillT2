@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import web.groom.dto.AdminDTO;
 import web.groom.dto.MemberDTO;
+import web.groom.dto.OrderReservationDTO;
 import web.groom.service.AdminService;
 
 @WebServlet("*.ad") //.ad 관리자페이지 어노테이션 매핑 선언
@@ -39,8 +40,12 @@ public class AdminController extends HttpServlet {
 	     }// admin_userCheck.ad [회원목록]
 		
 		if (sPath.equals("/admin_resCheck.ad")) {
-			 webForward(request, response, "admin", "admin_resCheck");
-	     }
+			System.out.println("admin_resCheck.ad");
+			adminService = new AdminService();
+			List<OrderReservationDTO> reservationList = adminService.getReservationList();
+			request.setAttribute("reservationList", reservationList);
+			webForward(request, response, "admin", "admin_resCheck");
+	     }// admin_resCheck.ad [예약내역]
 		
 		if (sPath.equals("/admin_storeCheck.ad")) {
 			System.out.println("admin_storeCheck.ad");

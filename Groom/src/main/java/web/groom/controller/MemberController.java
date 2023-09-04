@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import web.groom.dto.MemberDTO;
-
+import web.groom.javascript.JSForward;
 import web.groom.service.MemberService;
 
 
@@ -36,7 +36,7 @@ public class MemberController extends HttpServlet {
 			 
 			 //세션에 id값이 있을경우 메인페이지로 이동
 			 if (id != null){
-				 response.sendRedirect("main.gr");
+				 JSForward.locationHref(response, "이미 로그인 되어 있습니다", "main.gr");
 			 }
 			 
 			 webForward(request, response, "member", "login");
@@ -71,7 +71,7 @@ public class MemberController extends HttpServlet {
 				//세션저장완료후 메인으로 이동
 				response.sendRedirect("main.gr");
 			} else {
-				response.sendRedirect("loginError.er");
+				JSForward.locationHref(response, "아이디 혹은 비밀번호가 일치하지 않습니다", "login.me");
 			}
 	     }//end_of_loginPro.me
 		 
@@ -83,7 +83,7 @@ public class MemberController extends HttpServlet {
 			 
 			 //세션에 id값이 있을경우 메인페이지로 이동
 			 if (id != null){
-				 response.sendRedirect("main.gr");
+				 JSForward.locationHref(response, "이미 로그인 되어 있습니다", "main.gr");
 			 }
 			 
 			 webForward(request, response, "member", "signup");   
@@ -139,7 +139,7 @@ public class MemberController extends HttpServlet {
 				  
 				 System.out.println("아이디 찾기 성공 ");
 			 } else  {
-				 response.sendRedirect("searchError.er");
+				 JSForward.locationHref(response, "등록된 회원 정보가 없습니다", "login.me");
 				 System.out.println("아이디 찾기 실패 ");
 			 }
 			 
@@ -168,7 +168,7 @@ public class MemberController extends HttpServlet {
 
 		     System.out.println("비밀번호 재설정가능");
 			} else  {
-		     response.sendRedirect("searchError.er");
+			 JSForward.locationHref(response, "등록된 회원 정보가 없습니다", "login.me");
 			 System.out.println("비밀번호 재설정안됨");
 			}
 			 

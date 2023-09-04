@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import web.groom.dto.MemberDTO;
 import web.groom.dto.OrderReservationDTO;
 import web.groom.dto.OrderinfoDTO;
+import web.groom.javascript.JSForward;
 import web.groom.service.MemberService;
 import web.groom.service.OrderService;
 
@@ -36,7 +37,7 @@ public class OrderController extends HttpServlet {
 			 
 			 //세션에 id값이 존재하지않을 경우 로그인 페이지로 이동
 			 if (id == null){
-				 response.sendRedirect("login.me");
+				 JSForward.locationHref(response, "로그인 후 이용해주세요", "login.me");
 			 } 
 			 
 			 //정상적으로 로그인되어있을 경우 유저정보를 가져오기위한 로직
@@ -57,7 +58,7 @@ public class OrderController extends HttpServlet {
 			 if(memberInfo != null) {
 			 webForward(request, response, "order", "myorder");
 			 } else {
-				 System.out.println("세션만료됨 에러발생");
+				 JSForward.locationHref(response, "다시 로그인 후 이용해주세요", "login.me");
 			 }
 			 }
 	     }
@@ -70,7 +71,7 @@ public class OrderController extends HttpServlet {
 			 
 			 //세션에 id값이 존재하지않을 경우 로그인 페이지로 이동
 			 if (id == null){
-				 response.sendRedirect("login.me");
+				 JSForward.locationHref(response, "로그인 후 이용해주세요", "login.me");
 			 } 
 			 
 			 else {
@@ -100,10 +101,10 @@ public class OrderController extends HttpServlet {
 				 
 				if (orderReserv != null) {
 					System.out.println("예약처리 완료");
-					response.sendRedirect("main.gr");
+					JSForward.locationHref(response, "예약이 완료되었습니다", "main.gr");
 				} else {
 					System.out.println("예약처리 에러발생");
-					response.sendRedirect("main.gr");
+					JSForward.locationHref(response, "예약을 처리하지 못했습니다", "main.gr");
 				}
 				 
 

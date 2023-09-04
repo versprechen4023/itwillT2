@@ -360,8 +360,3 @@ function really2(qnanum) { //답글삭제
 	
 </body>
 </html>
-
-
-
-
-

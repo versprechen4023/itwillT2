@@ -7,7 +7,10 @@ public class OrderReservationDTO {
 	private int pro_id2;
 	private int s_num;
 	private int emp_num;
-	
+	private int res_price;
+	private int res_point;
+	private int used_point;
+
 	private String res_u_req;
 	private String res_method;
 	private String res_time;
@@ -28,6 +31,16 @@ public class OrderReservationDTO {
 	public int getEmp_num() {
 		return emp_num;
 	}
+	public int getRes_price() {
+		return res_price;
+	}
+	public int getRes_point() {
+		return res_point;
+	}
+	public int getUsed_point() {
+		return used_point;
+	}
+	
 	public String getRes_u_req() {
 		return res_u_req;
 	}
@@ -40,6 +53,7 @@ public class OrderReservationDTO {
 	public String getRes_day() {
 		return res_day;
 	}
+	
 	public void setU_num(int u_num) {
 		this.u_num = u_num;
 	}
@@ -54,6 +68,15 @@ public class OrderReservationDTO {
 	}
 	public void setEmp_num(int emp_num) {
 		this.emp_num = emp_num;
+	}
+	public void setRes_price(int res_price) {
+		this.res_price = res_price;
+	}
+	public void setRes_point(int res_point) {
+		this.res_point = res_point;
+	}
+	public void setUsed_point(int used_point) {
+		this.used_point = used_point;
 	}
 	public void setRes_u_req(String res_u_req) {
 		this.res_u_req = res_u_req;

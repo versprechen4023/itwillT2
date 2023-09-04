@@ -121,6 +121,7 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 							<input type="submit" class="btn btn-primary btn-md" value="예약하기">
 						</div>
 					</div>
+					<input type="hidden" id="u_point" name="u_point" value="<%=memberInfo.getU_Point()%>">
 				</form>
 				
 				<div class="fh5co-more-contact">

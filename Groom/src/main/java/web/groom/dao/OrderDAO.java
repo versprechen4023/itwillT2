@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import web.groom.dto.MemberDTO;
 import web.groom.dto.OrderDTO;
 import web.groom.dto.OrderReservationDTO;
 import web.groom.dto.OrderServiceDTO;
@@ -439,6 +440,32 @@ public class OrderDAO {
 
 		return orderReserv;
 
+	}
+
+	public OrderReservationDTO updatePoint(OrderReservationDTO orderReserv) {
+		
+		try {
+			
+			con = new SQLConnection().getConnection();
+			String SQL = "UPDATE user2 SET u_point = (u_point - ?) WHERE u_num = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, orderReserv.getRes_point());
+			pstmt.setInt(2, orderReserv.getU_num());
+			int rs = pstmt.executeUpdate();
+			
+			// 포인트 처리 안되면 널 처리
+			if(rs == 0) {
+				orderReserv = null;
+			}
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			dbClose();
+		}
+		return orderReserv;
 	}
 
 }

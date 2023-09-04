@@ -50,11 +50,11 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 									</div>
 									<div class="form-group">
 										<p>예상예약 요금</p>
-										<input type="text" class="form-control" id="price" name="price" value="<%=orderInfo.getRes_price()%>" readonly>
+										<input type="text" class="form-control" id="res_price" name="res_price" value="<%=orderInfo.getRes_price()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>사용할 포인트</p>
-										<input type="text" class="form-control" id="point" name="point" value="<%=orderInfo.getRes_point()%>" readonly>
+										<input type="text" class="form-control" id="res_point" name="res_point" value="<%=orderInfo.getRes_point()%>" readonly>
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -112,6 +112,7 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 					<input type="hidden" id="pro_id1" name="pro_id1" value="<%=orderInfo.getP_num()%>">
 					<input type="hidden" id="pro_id2" name="pro_id2" value="<%=orderInfo.getServeiceNum()%>">
 					<input type="hidden" id="emp_num" name="emp_num" value="<%=orderInfo.getEmp_num()%>">
+					<input type="hidden" id="u_point" name="u_point" value="${param.u_point}">
 					<input type="hidden" id="res_method" name="res_method" value="">
 					
 				</form>

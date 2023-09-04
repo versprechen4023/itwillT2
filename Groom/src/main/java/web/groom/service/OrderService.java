@@ -205,6 +205,9 @@ public class OrderService {
 			int pro_id2 = Integer.parseInt(request.getParameter("pro_id2"));
 			int s_num = Integer.parseInt(request.getParameter("s_num"));
 			int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+			int res_price = Integer.parseInt(request.getParameter("res_price"));
+			int res_point = Integer.parseInt(request.getParameter("res_point"));
+			int u_point = Integer.parseInt(request.getParameter("u_point"));//나중에 포인트 계산을 여기서 할려면 필요
 			
 			String res_u_req = request.getParameter("res_u_req");
 			String res_method = request.getParameter("res_method");
@@ -218,6 +221,8 @@ public class OrderService {
 			orderReserv.setPro_id2(pro_id2);
 			orderReserv.setS_num(s_num);
 			orderReserv.setEmp_num(emp_num);
+			orderReserv.setRes_price(res_price);
+			orderReserv.setRes_point(res_point);
 			
 			orderReserv.setRes_u_req(res_u_req);
 			orderReserv.setRes_method(res_method);
@@ -227,6 +232,13 @@ public class OrderService {
 			System.out.println(orderReserv);
 			
 			orderDAO = new OrderDAO();
+			
+			// 포인트 사용이 있다면 포인트 계산 처리
+			if(orderReserv.getRes_point() != 0) {
+				orderReserv = orderDAO.updatePoint(orderReserv);
+			}
+			
+			// 예약내역 값 삽입
 			orderReserv = orderDAO.insertOrderReserv(orderReserv);
 			
 		} catch (Exception e) {

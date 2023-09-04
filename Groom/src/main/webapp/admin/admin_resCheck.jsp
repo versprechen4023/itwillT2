@@ -23,6 +23,7 @@
 <%
 List<OrderReservationDTO> reservationList =
 (List<OrderReservationDTO>)request.getAttribute("reservationList");
+
 //아래 코드는 페이징코드
 int itemsPerPage = 20; // 페이지당 아이템 수
 int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
@@ -31,6 +32,7 @@ int endIndex = Math.min(startIndex + itemsPerPage, reservationList.size());
 int totalPages = (int) Math.ceil((double) reservationList.size() / itemsPerPage);
 
 List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, endIndex);
+
 %>
 
 
@@ -75,24 +77,23 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 for(OrderReservationDTO orderReservationDTO : visibleItems) { 
 %>    					  
     <tr><td><%=orderReservationDTO.getRes_num() %></td>
-    	<td>23.08.22<%=orderReservationDTO.getRes_day() %></td>
-    	<td>11:00<%=orderReservationDTO.getRes_time() %></td>
-    	<td>[전체미용]소형견 4.1~6.0kg[<%=orderReservationDTO.getPro_name() %>]<%=orderReservationDTO.getPet_size() %> <%=orderReservationDTO.getPet_weight() %></td>
-    	<td>서면점<%=orderReservationDTO.getS_location() %></td>
-    	<td>원장 딩딩딩<%=orderReservationDTO.getEmp_grade() %> <%=orderReservationDTO.getEmp_name() %></td>
-    	<td>동동동<%=orderReservationDTO.getU_name() %></td>
-    	<td>01012345678<%=orderReservationDTO.getU_phone() %></td>
-    	<td>300,000</td>
-    	<td>20,000<%=orderReservationDTO.getRes_point() %></td>
-    	<td>280,000<%=orderReservationDTO.getRes_price() %></td>
-    	<td>0</td>
-    	<td><input type="button" value="완료"></td>
+    	<td><%=orderReservationDTO.getRes_day() %></td>
+    	<td><%=orderReservationDTO.getRes_time() %></td>
+    	<td>[<%=orderReservationDTO.getPro_name() %>]<%=orderReservationDTO.getPet_size() %> <%=orderReservationDTO.getPet_weight() %></td>
+    	<td><%=orderReservationDTO.getS_location() %></td>
+    	<td><%=orderReservationDTO.getEmp_grade() %> <%=orderReservationDTO.getEmp_name() %></td>
+    	<td><%=orderReservationDTO.getU_name() %></td>
+    	<td><%=orderReservationDTO.getU_phone() %></td>
+    	<td><%=orderReservationDTO.getRes_price()+orderReservationDTO.getRes_point() %></td>
+    	<td><%=orderReservationDTO.getRes_point() %></td>
+    	<td><%=orderReservationDTO.getRes_price() %></td>
+    	<td class="status"><%=orderReservationDTO.getRes_status() %></td>
+    	<td><input type="button" value="완료" onclick="statusChange(<%=orderReservationDTO.getRes_num()%>)"></td>
     	<td><input type="button" value="취소"></td></tr>
 <%
 }
 %>    	
 </table>
-<!-- <div class="resCheck-next animate-box" data-animate-effect="fadeInLeft"> -->
 <div class="resCheck-next">
     <% if (currentPage > 1) { %>
         <a href="?page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
@@ -127,9 +128,31 @@ for(OrderReservationDTO orderReservationDTO : visibleItems) {
 	
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
-	
+
 <script type="text/javascript">
+var selected_r = "";
+
+function statusChange(status) {
+	alert(status);
+	selected_r = status;
 	
+	$.ajax({
+    	type: "GET",
+        url: 'statusChange.aj',
+        data: {"res_status":selected_r}, // 선택된 값을 서버로 전송
+        success: function(result) {
+   			  const data = $.trim(result);
+   			  if(data=="true"){
+   				  alert("저장완료");
+   				  location.reload();
+   			  }else {
+   				  alert("저장실패");
+   			  }		
+        }
+    });////endAJAX(서비스리스트)
+}
+
 </script>
-	</body>
+
+</body>
 </html>

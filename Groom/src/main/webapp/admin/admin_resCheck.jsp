@@ -1,3 +1,5 @@
+<%@page import="web.groom.dto.OrderReservationDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,6 +20,21 @@
 적용이 안돼서 일단 위에 바로 작성중-->
 <!-- 	ㅇ -->
 <body>
+<%
+List<OrderReservationDTO> reservationList =
+(List<OrderReservationDTO>)request.getAttribute("reservationList");
+//아래 코드는 페이징코드
+int itemsPerPage = 20; // 페이지당 아이템 수
+int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
+int startIndex = (currentPage - 1) * itemsPerPage;
+int endIndex = Math.min(startIndex + itemsPerPage, reservationList.size());
+int totalPages = (int) Math.ceil((double) reservationList.size() / itemsPerPage);
+
+List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, endIndex);
+%>
+
+
+
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
 <!-- =============================  네비게이션바 ============================= -->
@@ -40,7 +57,7 @@
 <!-- <table class="admin-resCheck animate-box" data-animate-effect="fadeInLeft"> -->
 <table class="admin-resCheck">
     <tr><th colspan="3">예약 정보</th></tr>
-    <tr class="font-bold"><td>예약번호</td>
+    <tr class="font-bold"><td>번호</td>
     					  <td>날짜</td>
     					  <td>시간</td>
     					  <td>선택메뉴</td>
@@ -48,33 +65,47 @@
     					  <td>담당</td>
     					  <td>예약자</td>
     					  <td>연락처</td>
-    					  <td>결제금액</td>
-    					  <td></td>
+    					  <td>상품가격</td>
+    					  <td>사용한<br>포인트</td>
+    					  <td>최종<br>결제금액</td>
+    					  <td>상태</td>
     					  <td></td>
     					  <td></td></tr>
-    					  
-    <tr><td>1001</td>
-    	<td>23.08.22</td>
-    	<td>11:00</td>
-    	<td>[미용]대형견 15kg</td>
-    	<td>서면점</td>
-    	<td>원장 딩딩딩</td>
-    	<td>동동동</td>
-    	<td>010-1234-5678</td>
+<%
+for(OrderReservationDTO orderReservationDTO : visibleItems) { 
+%>    					  
+    <tr><td><%=orderReservationDTO.getRes_num() %></td>
+    	<td>23.08.22<%=orderReservationDTO.getRes_day() %></td>
+    	<td>11:00<%=orderReservationDTO.getRes_time() %></td>
+    	<td>[전체미용]소형견 4.1~6.0kg[<%=orderReservationDTO.getPro_name() %>]<%=orderReservationDTO.getPet_size() %> <%=orderReservationDTO.getPet_weight() %></td>
+    	<td>서면점<%=orderReservationDTO.getS_location() %></td>
+    	<td>원장 딩딩딩<%=orderReservationDTO.getEmp_grade() %> <%=orderReservationDTO.getEmp_name() %></td>
+    	<td>동동동<%=orderReservationDTO.getU_name() %></td>
+    	<td>01012345678<%=orderReservationDTO.getU_phone() %></td>
     	<td>300,000</td>
+    	<td>20,000<%=orderReservationDTO.getRes_point() %></td>
+    	<td>280,000<%=orderReservationDTO.getRes_price() %></td>
     	<td>0</td>
     	<td><input type="button" value="완료"></td>
     	<td><input type="button" value="취소"></td></tr>
+<%
+}
+%>    	
 </table>
 <!-- <div class="resCheck-next animate-box" data-animate-effect="fadeInLeft"> -->
 <div class="resCheck-next">
-    <a href="#"><span class="m-tcol-c">&lt;</span></a>
-    <a href="#">1</a>
-    <a href="#">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#"><span class="m-tcol-c">&gt;</span></a>
+    <% if (currentPage > 1) { %>
+        <a href="?page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
+    <% } %>
+    <% 
+    int startPage = ((currentPage - 1) / 5) * 5 + 1; // 현재 페이지 그룹의 시작 페이지 계산
+    int endPage = Math.min(startPage + 4, totalPages); // 현재 페이지 그룹의 마지막 페이지 계산
+    for (int i = startPage; i <= endPage; i++) { %>
+        <a href="?page=<%= i %>" <%= (i == currentPage) ? "class='review-active'" : "" %>><%= i %></a>
+    <% } %>
+    <% if (currentPage < totalPages) { %>
+        <a href="?page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
+    <% } %>
 </div>
 </div>
 <!-- [예약정보] 끝 -->
@@ -96,5 +127,9 @@
 	
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
+	
+<script type="text/javascript">
+	
+</script>
 	</body>
 </html>

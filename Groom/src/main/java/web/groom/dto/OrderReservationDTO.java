@@ -2,6 +2,7 @@ package web.groom.dto;
 
 public class OrderReservationDTO {
 	
+	private int res_num; //
 	private int u_num;
 	private int pro_id1;
 	private int pro_id2;
@@ -10,12 +11,83 @@ public class OrderReservationDTO {
 	private int res_price;
 	private int res_point;
 	private int used_point;
+	private int res_status; //
 
 	private String res_u_req;
 	private String res_method;
 	private String res_time;
 	private String res_day;
 	
+	private String pro_name; //
+	private String pet_size; //
+	private String pet_weight; //
+	private String s_location; //
+	private String emp_grade; //
+	private String emp_name; //
+	private String u_name; //
+	private String u_phone; //
+	
+	
+	public String getPro_name() {
+		return pro_name;
+	}
+	public void setPro_name(String pro_name) {
+		this.pro_name = pro_name;
+	}
+	public String getPet_size() {
+		return pet_size;
+	}
+	public void setPet_size(String pet_size) {
+		this.pet_size = pet_size;
+	}
+	public String getPet_weight() {
+		return pet_weight;
+	}
+	public void setPet_weight(String pet_weight) {
+		this.pet_weight = pet_weight;
+	}
+	public String getS_location() {
+		return s_location;
+	}
+	public void setS_location(String s_location) {
+		this.s_location = s_location;
+	}
+	public String getEmp_grade() {
+		return emp_grade;
+	}
+	public void setEmp_grade(String emp_grade) {
+		this.emp_grade = emp_grade;
+	}
+	public String getEmp_name() {
+		return emp_name;
+	}
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+	public String getU_name() {
+		return u_name;
+	}
+	public void setU_name(String u_name) {
+		this.u_name = u_name;
+	}
+	public String getU_phone() {
+		return u_phone;
+	}
+	public void setU_phone(String u_phone) {
+		this.u_phone = u_phone;
+	}
+	public int getRes_num() {
+		return res_num;
+	}
+	public void setRes_num(int res_num) {
+		this.res_num = res_num;
+	}
+	public int getRes_status() {
+		return res_status;
+	}
+	public void setRes_status(int res_status) {
+		this.res_status = res_status;
+	}
 	public int getU_num() {
 		return u_num;
 	}

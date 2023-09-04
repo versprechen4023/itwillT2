@@ -68,7 +68,8 @@ public class AdminDAO {
 				+ "   join product1 c on a.pro_id1 = c.pro_id1"
 				+ "   join store d on a.s_num = d.s_num"
 				+ "   join employees e on a.emp_num = e.emp_num"
-				+ "   join user2 f on a.u_num = f.u_num;";
+				+ "   join user2 f on a.u_num = f.u_num"
+				+ "   order by a.res_num desc;";
 		List<OrderReservationDTO> reservationList = null;
 		try {
 			con = new SQLConnection().getConnection();
@@ -221,6 +222,33 @@ public class AdminDAO {
 			dbClose();
 		}
 
+		return result;
+	}//
+
+	
+	public boolean statusChange(int a) {
+			boolean result = false;
+		try {
+
+			// db연결
+			con = new SQLConnection().getConnection();
+
+			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
+			String SQL = "UPDATE test_reservation SET res_status = 2 where res_num = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, a);
+			
+			int rs = pstmt.executeUpdate();
+			
+			// 성공시 true 실패시 false 반환
+			result = (rs != 0) ? true : false;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+		} finally {
+			dbClose();
+		}
 		return result;
 	}
 

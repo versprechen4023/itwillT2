@@ -89,6 +89,29 @@ public class AdminService {
 		return result;
 	}
 
+	public boolean statusChange(HttpServletRequest request) {
+		
+		boolean result = false;
+		
+		try {
+
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			
+			// 지점번호, 날짜 변수에 저장
+			int a = Integer.parseInt(request.getParameter("res_status")); 
+			
+			// adminDAO에 값을 전달하고 로직처리 수행
+			adminDAO = new AdminDAO();
+			result = adminDAO.statusChange(a);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 	
 	
 	

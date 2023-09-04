@@ -62,8 +62,26 @@ public class AdminController extends HttpServlet {
 			 webForward(request, response, "admin", "admin_main");
 	     }// admin_main.ad [관리자메인]
 		
+		// 여기서부터 추가했음 ===================================================================================
 		
+		if (sPath.equals("/admin_daydate.ad")) {
+			
+			 webForward(request, response, "admin", "admin_daydate");
+	    }
 		
+		if (sPath.equals("/admin_disday.ad")) {
+			
+			// 어드민 서비스 객체생성
+			AdminService adminService = new AdminService();
+			// 휴무일 업데이트를 위한 서비스에 리퀘스트 전달
+			boolean result = adminService.insertDisDay(request);
+			
+			if(result) {
+				System.out.println("휴무일 업데이트 성공");
+			} else {
+				System.out.println("휴무일 업데이트 실패");
+			}
+	    }
 		
 		
 	}// doProcess

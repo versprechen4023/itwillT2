@@ -38,7 +38,7 @@ if(id != null){
 				<ul class="dropdown-menu">
 					<li><a href="notice.bo">공지사항</a></li>
 					<li><a href="qna.bo">qna</a></li>
-					<li><a href="contact.gr">contact</a></li>
+					<li><a href="admin_daydate.ad">contact</a></li>
 				</ul></li>
 		</ul>
 	</nav>

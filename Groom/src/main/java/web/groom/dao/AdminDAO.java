@@ -142,6 +142,39 @@ public class AdminDAO {
 		return adminDTO;
 	}//getCount() [관리자메인 count]
 	
+	// 여기서부터 추가했음 ===================================================================================
+	public boolean insertDisDay(int s_num, String off_day) {
+		
+		boolean result = false;
+		
+		try {
+
+			// db연결
+			con = new SQLConnection().getConnection();
+
+			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
+			String SQL = "INSERT INTO store_offdays(s_num, off_day) VALUE(?,?)";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, s_num);
+			pstmt.setString(2, off_day);
+			
+			int rs = pstmt.executeUpdate();
+			
+			// 성공시 true 실패시 false 반환
+			result = (rs != 0) ? true : false;
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+
+		} finally {
+			dbClose();
+		}
+
+		return result;
+	}
+	
 	
 	
 

@@ -38,9 +38,12 @@ public class OrderDAO {
 			
 			con = new SQLConnection().getConnection();
 			
-			String sql = "SELECT dis_day FROM myDate where s_num = ?";
+			String sql = "SELECT dis_day FROM myDate where s_num = ?\r\n"
+					+ "UNION\r\n"
+					+ "SELECT off_day FROM store_offdays WHERE s_num = ?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, s_num);
+			pstmt.setInt(2, s_num);
 			rs = pstmt.executeQuery();
 
 			serviceDate = new ArrayList<>();

@@ -376,7 +376,7 @@ $j(document).ready(function() {
 	var currentDate = new Date();
 	var currentYear = currentDate.getFullYear();
 	var currentMonth = currentDate.getMonth();
-	var currentDate = currentDate.getDate();
+	var currentDateVal = currentDate.getDate();
 	
 	// 데이트피커 초기화
 	$j("#datepicker").datepicker({
@@ -404,7 +404,7 @@ $j(document).ready(function() {
    	// 년도범위 년도 : 년도 형식 2021 : 2023이라면 2021~2023까지 활성
   	 yearRange: currentYear + ':' + (currentYear + 1),
    	// 최소 날짜 범위 년도, 달, 일로되어있음 지금은 23년8월17일로 되어있어서 8월18일부터 선택가능
-   	minDate: new Date(currentYear, currentMonth, currentDate+1),
+   	minDate: new Date(currentYear, currentMonth, currentDateVal+1),
    	// 최대 날짜 범위 +숫자m은 달제한 +숫자w는 주제한
    	maxDate: "+3w",
    	
@@ -492,6 +492,10 @@ $j(document).ready(function() {
             	price.value = result;
             	
             	//날짜선택에 대한 AJAX처리(비활성화 날짜)
+            	
+            	// 변수 초기화 작업
+                disabledTimes = [];
+            	
             	//가격값 반환시 날짜 입력 선택 활성
             	$j.ajax({
                 	type: "GET",

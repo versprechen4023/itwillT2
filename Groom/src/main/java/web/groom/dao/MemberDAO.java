@@ -328,11 +328,7 @@ public class MemberDAO {
 			
 
 			// 값 일치하면 memberdto 객체생성후 값저장후 넘김 값일치 없는 경우 memberdto는 null로 넘김
-			if(rs != 0) {
-				memberdto = new MemberDTO();
-			} else {
-				memberdto = null;
-			}
+			memberdto = (rs != 0) ? new MemberDTO() : null;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -397,11 +393,7 @@ public class MemberDAO {
 			
 
 			// 업데이트 성공유무 결정
-			if(rs != 0) {
-				isDisabled = true;
-			} else {
-				isDisabled = false;
-			}
+			isDisabled = (rs != 0) ? true : false;
 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -429,11 +421,8 @@ public class MemberDAO {
 			pstmt.setTimestamp(2, del_date);
 			int rs = pstmt.executeUpdate();
 
-			if (rs != 0) {
-				result = true;
-			} else {
-				result = false;
-			}
+			result = (rs != 0) ? true : false;
+	
 
 		} catch (Exception e) {
 			e.printStackTrace();

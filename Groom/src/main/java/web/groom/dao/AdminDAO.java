@@ -104,9 +104,8 @@ public class AdminDAO {
 					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 2 AND res_status = 0) AS res_b,"
 					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 2 AND res_status = 0 AND DATE(res_day) = CURDATE()) AS today_res_b,"
 					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 3 AND res_status = 0) AS res_c,"
-					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 3 AND res_status = 0 AND DATE(res_day) = CURDATE()) AS today_res_c"
-					+ "   FROM reservation;";
-			pstmt=con.prepareStatement(sql);
+					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 3 AND res_status = 0 AND DATE(res_day) = CURDATE()) AS today_res_c;"
+;			pstmt=con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				adminDTO = new AdminDTO();

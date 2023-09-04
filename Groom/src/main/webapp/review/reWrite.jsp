@@ -7,6 +7,18 @@
 	<head>
 	<!-- 헤드호출 -->
 	<jsp:include page="../inc/head.jsp"></jsp:include>
+	<%
+	String id = (String)session.getAttribute("id");
+	String role = (String)session.getAttribute("role"); 
+	String num = (String)session.getAttribute("num");
+	if (!"admin".equals(role)) {
+	%>
+	<script>
+        window.location.href = "main.gr"; // admin이 아니면 메인으로
+    </script>
+    <%
+    }
+    %>
 	</head>
 	
 <!-- 	리뷰상세 css 추가 -->
@@ -18,9 +30,7 @@
 <!-- =============================  네비게이션바 ============================= -->
 <form action="reWritePro.re" method="post">
 <%
-String id = (String)session.getAttribute("id");
-String role = (String)session.getAttribute("role"); 
-String num = (String)session.getAttribute("num");
+
 SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
 
 // //줄바꿈 자동으로해서 출력해주는 코드 ㄱ

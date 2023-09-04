@@ -39,7 +39,7 @@ public class MypageDAO {
 			//db연결
 			con = new SQLConnection().getConnection();
 			
-         	String SQL = "select a.u_id, b.u_name, b.u_phone, b.u_email, b.u_regdate , b.u_count, b.u_point from user a join user2 b on a.u_num  = b.u_num where a.u_num = ?";
+         	String SQL = "select a.u_num, a.u_id, b.u_name, b.u_phone, b.u_email, b.u_regdate , b.u_count, b.u_point from user a join user2 b on a.u_num  = b.u_num where a.u_num = ?";
 			 
 
 			// 얘가 원래 있던거 
@@ -52,6 +52,7 @@ public class MypageDAO {
 			if(rs.next()) {
 				mypagedto = new MypageDTO();
 				
+				mypagedto.setNum(rs.getInt("a.u_num"));
 				mypagedto.setId(rs.getString("a.u_id"));
 				mypagedto.setName(rs.getString("b.u_name"));
 				mypagedto.setPhone(rs.getString("b.u_phone"));

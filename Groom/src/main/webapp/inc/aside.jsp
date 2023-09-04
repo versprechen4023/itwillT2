@@ -24,7 +24,7 @@ if(id == null){
 if(id != null){
 	if(role.equals("admin")){
 %>
-	<p id="fh5co-main-to_adminpage"><a href="admin_main.ad">관리자페이지</a></p>
+	<p id="fh5co-main-to_adminpage"><a href="admin_main.ad" class="admin-link">관리자페이지</a></p>
 <%}}%>
 	  
 	<nav id="fh5co-main-menu" role="navigation">

@@ -40,6 +40,7 @@ public class AdminService {
 		try {
 			adminDAO = new AdminDAO();
 			adminDTO = adminDAO.getCount();
+			System.out.println("확인Ser"+adminDTO.getRes_a());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

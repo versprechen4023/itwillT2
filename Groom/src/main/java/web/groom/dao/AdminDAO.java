@@ -104,21 +104,23 @@ public class AdminDAO {
 					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 2 AND res_status = 0) AS res_b,"
 					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 2 AND res_status = 0 AND DATE(res_day) = CURDATE()) AS today_res_b,"
 					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 3 AND res_status = 0) AS res_c,"
-					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 3 AND res_status = 0 AND DATE(res_day) = CURDATE()) AS today_res_c;"
-;			pstmt=con.prepareStatement(sql);
+					+ "    (SELECT COUNT(*) FROM reservation WHERE s_num = 3 AND res_status = 0 AND DATE(res_day) = CURDATE()) AS today_res_c;";			
+			pstmt=con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				adminDTO = new AdminDTO();
+				
 				adminDTO.setTotal_user(rs.getInt("total_user"));
 				adminDTO.setTotal_rev(rs.getInt("total_rev"));
 				adminDTO.setTotal_res(rs.getInt("total_res"));
 				adminDTO.setToday_res(rs.getInt("today_res"));
 				adminDTO.setRes_a(rs.getInt("res_a"));
+				System.out.println("확인DAO"+adminDTO.getRes_a());
 				adminDTO.setToday_res_a(rs.getInt("today_res_a"));
-				adminDTO.setRes_a(rs.getInt("res_b"));
-				adminDTO.setToday_res_a(rs.getInt("today_res_b"));
-				adminDTO.setRes_a(rs.getInt("res_c"));
-				adminDTO.setToday_res_a(rs.getInt("today_res_c"));
+				adminDTO.setRes_b(rs.getInt("res_b"));
+				adminDTO.setToday_res_b(rs.getInt("today_res_b"));
+				adminDTO.setRes_c(rs.getInt("res_c"));
+				adminDTO.setToday_res_c(rs.getInt("today_res_c"));
 			} else {
 				adminDTO = new AdminDTO();
 				adminDTO.setTotal_user(0);
@@ -127,10 +129,10 @@ public class AdminDAO {
 				adminDTO.setToday_res(0);
 				adminDTO.setRes_a(0);
 				adminDTO.setToday_res_a(0);
-				adminDTO.setRes_a(0);
-				adminDTO.setToday_res_a(0);
-				adminDTO.setRes_a(0);
-				adminDTO.setToday_res_a(0);
+				adminDTO.setRes_b(0);
+				adminDTO.setToday_res_b(0);
+				adminDTO.setRes_c(0);
+				adminDTO.setToday_res_c(0);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

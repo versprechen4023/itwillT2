@@ -226,23 +226,60 @@ public class AdminDAO {
 	}//
 
 	
-	public boolean statusChange(int a) {
-			boolean result = false;
+	public boolean statusComplete(int a) {
+		boolean result = false;
 		try {
-
 			// db연결
 			con = new SQLConnection().getConnection();
+			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
+			String SQL = "UPDATE test_reservation SET res_status = 1 where res_num = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, a);
+			int rs = pstmt.executeUpdate();
+			// 성공시 true 실패시 false 반환
+			result = (rs != 0) ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+		} finally {
+			dbClose();
+		}
+		return result;
+	}
 
+	public boolean statusCancle(int b) {
+		boolean result = false;
+		try {
+			// db연결
+			con = new SQLConnection().getConnection();
 			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
 			String SQL = "UPDATE test_reservation SET res_status = 2 where res_num = ?";
 			pstmt = con.prepareStatement(SQL);
-			pstmt.setInt(1, a);
-			
+			pstmt.setInt(1, b);
 			int rs = pstmt.executeUpdate();
-			
 			// 성공시 true 실패시 false 반환
 			result = (rs != 0) ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+		} finally {
+			dbClose();
+		}
+		return result;
+	}
 
+	public boolean statusUnprocessed(int c) {
+		boolean result = false;
+		try {
+			// db연결
+			con = new SQLConnection().getConnection();
+			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
+			String SQL = "UPDATE test_reservation SET res_status = 0 where res_num = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, c);
+			int rs = pstmt.executeUpdate();
+			// 성공시 true 실패시 false 반환
+			result = (rs != 0) ? true : false;
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = false;

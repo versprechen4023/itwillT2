@@ -40,8 +40,31 @@
 <!-- <table class="admin-resCheck animate-box" data-animate-effect="fadeInLeft"> -->
 <table class="admin-resCheck">
     <tr><th colspan="3">예약 정보</th></tr>
-    <tr class="font-bold"><td>예약번호</td><td>날짜</td><td>시간</td><td>선택메뉴</td><td>매장</td><td>담당</td><td>예약자</td><td>연락처</td><td>결제금액</td></tr>
-    <tr><td>1001</td><td>23.08.22</td><td>11:00</td><td>[미용]대형견 15kg</td><td>서면점</td><td>원장 딩딩딩</td><td>동동동</td><td>010-1234-5678</td><td>300,000</td></tr>
+    <tr class="font-bold"><td>예약번호</td>
+    					  <td>날짜</td>
+    					  <td>시간</td>
+    					  <td>선택메뉴</td>
+    					  <td>매장</td>
+    					  <td>담당</td>
+    					  <td>예약자</td>
+    					  <td>연락처</td>
+    					  <td>결제금액</td>
+    					  <td></td>
+    					  <td></td>
+    					  <td></td></tr>
+    					  
+    <tr><td>1001</td>
+    	<td>23.08.22</td>
+    	<td>11:00</td>
+    	<td>[미용]대형견 15kg</td>
+    	<td>서면점</td>
+    	<td>원장 딩딩딩</td>
+    	<td>동동동</td>
+    	<td>010-1234-5678</td>
+    	<td>300,000</td>
+    	<td>0</td>
+    	<td><input type="button" value="완료"></td>
+    	<td><input type="button" value="취소"></td></tr>
 </table>
 <!-- <div class="resCheck-next animate-box" data-animate-effect="fadeInLeft"> -->
 <div class="resCheck-next">

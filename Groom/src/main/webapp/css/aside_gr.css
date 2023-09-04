@@ -192,3 +192,16 @@ font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수
 #fh5co-main-menu {
 	margin-top: 6em;
 }
+/*  */
+.admin-link {
+	background: silver;
+	border: 1px solid black;
+	border-radius: 20px;
+	padding: 0 5px 0 5px;
+}
+.admin-link:hover {
+	background: white;
+}
+
+
+

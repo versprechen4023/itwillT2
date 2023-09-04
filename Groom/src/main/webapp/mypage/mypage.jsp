@@ -68,7 +68,8 @@ List<MypageDTO> visibleItems = mypetList.subList(startIndex, endIndex);
 	</tr>
 	<tr>
 	    <td class="bold-cell">나의 리뷰</td>
-	    <td><input type="button" value="리뷰관리" onclick="location.href='myReviewList.re'"></td>
+	    <td><input type="button" value="리뷰관리"
+	         onclick="location.href='myReviewList.re?u_num=<%=mypageInfo.getNum() %>'"></td>
 	    
 	</tr>
 	<tr>

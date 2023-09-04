@@ -139,8 +139,7 @@ public class AjaxController extends HttpServlet {
 			}
 			
 			// 콜백함수에 최종결과값 출력
-		    response.setContentType("application/json");
-		    response.setCharacterEncoding("UTF-8");
+		    response.setContentType("application/json; charset=UTF-8");
 		    PrintWriter out = response.getWriter();
 		    out.print(arr);
 		    out.close();
@@ -172,8 +171,7 @@ public class AjaxController extends HttpServlet {
 			}
 		 	
 		 	// 콜백함수에 최종결과값 출력
-		 	response.setContentType("application/json");
-		    response.setCharacterEncoding("UTF-8");
+		 	response.setContentType("application/json; charset=UTF-8");
 		    PrintWriter out = response.getWriter();
 		    out.print(arr);
 		    out.close();
@@ -197,8 +195,7 @@ public class AjaxController extends HttpServlet {
 			}
 		 	
 		    // 콜백함수에 최종결과값 출력
-		 	response.setContentType("application/json");
-		    response.setCharacterEncoding("UTF-8");
+		 	response.setContentType("application/json; charset=UTF-8");
 		    PrintWriter out = response.getWriter();
 		    out.print(arr);
 		    out.close();
@@ -222,8 +219,7 @@ public class AjaxController extends HttpServlet {
 			}
 			
 			// 콜백함수에 최종결과값 출력
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print(arr);
 			out.close();
@@ -248,8 +244,7 @@ public class AjaxController extends HttpServlet {
 			}
 			
 			// 콜백함수에 최종결과값 출력
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print(arr);
 			out.close();

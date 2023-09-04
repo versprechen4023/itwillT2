@@ -9,6 +9,7 @@ import web.groom.dao.AdminDAO;
 import web.groom.dao.MemberDAO;
 import web.groom.dto.AdminDTO;
 import web.groom.dto.MemberDTO;
+import web.groom.dto.OrderReservationDTO;
 
 public class AdminService {
 	AdminDAO adminDAO = null;
@@ -24,6 +25,18 @@ public class AdminService {
 		}
 		return memberList;
 	}//getMemberList() [회원정보 목록]
+	
+	public List<OrderReservationDTO> getReservationList() {
+		System.out.println("AdminService getReservationList()");
+		List<OrderReservationDTO> reservationList = null;
+		try {
+			adminDAO = new AdminDAO();
+			reservationList = adminDAO.getReservationList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reservationList;
+	}//getReservationList() [예약내역 목록]
 
 	public List<AdminDTO> getEmpList() {
 		System.out.println("AdminService getEmpList()");
@@ -75,6 +88,8 @@ public class AdminService {
 		
 		return result;
 	}
+
+	
 	
 	
 

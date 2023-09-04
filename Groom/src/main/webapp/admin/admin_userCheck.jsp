@@ -63,7 +63,7 @@ List<MemberDTO> visibleItems = memberList.subList(startIndex, endIndex);
 <div class="admin-content">
 <table class="admin-userCheck">
     <tr><th colspan="3">회원 정보</th></tr>
-    <tr class="font-bold"><td>회원번호</td>
+    <tr class="font-bold border-bottom"><td>회원번호</td>
     	<td>권한</td>
     	<td>아이디</td>
     	<td>이름</td>

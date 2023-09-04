@@ -87,30 +87,55 @@ public class AdminService {
 		}
 		
 		return result;
-	}
-
-	public boolean statusChange(HttpServletRequest request) {
-		
+	}//
+	
+	public boolean statusComplete(HttpServletRequest request) {
 		boolean result = false;
-		
 		try {
-
 			// 한글 인코딩 처리
 			request.setCharacterEncoding("UTF-8");
-			
 			// 지점번호, 날짜 변수에 저장
 			int a = Integer.parseInt(request.getParameter("res_status")); 
-			
 			// adminDAO에 값을 전달하고 로직처리 수행
 			adminDAO = new AdminDAO();
-			result = adminDAO.statusChange(a);
-			
+			result = adminDAO.statusComplete(a);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result;
-	}
+	}// statusComplete [예약상태 "완료"]
+
+	public boolean statusCancel(HttpServletRequest request) {
+		boolean result = false;
+		try {
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			// 지점번호, 날짜 변수에 저장
+			int b = Integer.parseInt(request.getParameter("res_status")); 
+			// adminDAO에 값을 전달하고 로직처리 수행
+			adminDAO = new AdminDAO();
+			result = adminDAO.statusCancle(b);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}// statusCancel [예약상태 "취소"]
+
+	public boolean statusUnprocessed(HttpServletRequest request) {
+		boolean result = false;
+		try {
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			// 지점번호, 날짜 변수에 저장
+			int c = Integer.parseInt(request.getParameter("res_status")); 
+			// adminDAO에 값을 전달하고 로직처리 수행
+			adminDAO = new AdminDAO();
+			result = adminDAO.statusUnprocessed(c);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}// statusUnprocessed [예약상태 "진행중"]
 
 	
 	

@@ -48,7 +48,7 @@ AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 	<div class="admin-content1">
 		<table class="admin-main1">
 			<tr><th colspan="3">현재 현황</th></tr>
-   			<tr class="font-bold"><td>총 회원수</td><td>총 리뷰수</td><td>총 예약중</td><td>총 오늘 예약</td></tr>
+   			<tr class="font-bold border-bottom"><td>총 회원수</td><td>총 리뷰수</td><td>총 예약중</td><td>총 오늘 예약</td></tr>
     		<tr><td><%=adminDTO.getTotal_user() %>명</td><td><%=adminDTO.getTotal_rev() %>개</td><td><%=adminDTO.getTotal_res() %>건</td><td><%=adminDTO.getToday_res() %>건</td></tr>
 		</table>
 	</div>
@@ -60,7 +60,7 @@ AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 			<thead>　</thead>
 			<tr><th colspan="2">지점별 현황</th></tr>
 			<tr class="font-bold"><td colspan="2">서면점</td></tr>
-    		<tr class="font-bold"><td>예약중</td><td>오늘예약</td></tr>
+    		<tr class="font-bold border-bottom"><td>예약중</td><td>오늘예약</td></tr>
     		<tr><td><%=adminDTO.getRes_a() %>건</td><td><%=adminDTO.getToday_res_a() %>건</td></tr>
     	</table>	
     	</div>
@@ -70,7 +70,7 @@ AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 			<thead>　</thead>
 			<tr><th colspan="2">　</th></tr>
 			<tr class="font-bold"><td colspan ="2">명지점</td></tr>
-    		<tr class="font-bold"><td>예약중</td><td>오늘예약</td></tr>
+    		<tr class="font-bold border-bottom"><td>예약중</td><td>오늘예약</td></tr>
     		<tr><td><%=adminDTO.getRes_b() %>건</td><td><%=adminDTO.getToday_res_b() %>건</td></tr>
     	</table>	
     	</div>
@@ -80,7 +80,7 @@ AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 			<thead>　</thead>
 			<tr><th colspan="2">　</th></tr>
 			<tr class="font-bold"><td colspan ="2">율하점</td></tr>
-    		<tr class="font-bold"><td>예약중</td><td>오늘예약</td></tr>
+    		<tr class="font-bold border-bottom"><td>예약중</td><td>오늘예약</td></tr>
     		<tr><td><%=adminDTO.getRes_c() %>건</td><td><%=adminDTO.getToday_res_c() %>건</td></tr>
     	</table>	
     	</div>

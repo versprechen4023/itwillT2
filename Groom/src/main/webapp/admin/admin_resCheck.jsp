@@ -32,10 +32,7 @@ int endIndex = Math.min(startIndex + itemsPerPage, reservationList.size());
 int totalPages = (int) Math.ceil((double) reservationList.size() / itemsPerPage);
 
 List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, endIndex);
-
 %>
-
-
 
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
@@ -59,7 +56,7 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 <!-- <table class="admin-resCheck animate-box" data-animate-effect="fadeInLeft"> -->
 <table class="admin-resCheck">
     <tr><th colspan="3">예약 정보</th></tr>
-    <tr class="font-bold"><td>번호</td>
+    <tr class="font-bold border-bottom"><td>번호</td>
     					  <td>날짜</td>
     					  <td>시간</td>
     					  <td>선택메뉴</td>
@@ -71,25 +68,77 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
     					  <td>사용한<br>포인트</td>
     					  <td>최종<br>결제금액</td>
     					  <td>상태</td>
-    					  <td></td>
-    					  <td></td></tr>
+    					  <td style="background: #E2E2E2;">완료</td>
+    					  <td style="background: #E2E2E2;">취소</td>
+    					  <td style="background: #E2E2E2;">대기</td></tr>
 <%
 for(OrderReservationDTO orderReservationDTO : visibleItems) { 
+String res_day = orderReservationDTO.getRes_day(); // 예약날짜
+String format_res_day = res_day.replace("-", ".").substring(2);
+String res_time = orderReservationDTO.getRes_time(); // 예약시간
+String format_res_time = res_time.substring(0, 5);
+
+//enum > 문자
+	String s_location = orderReservationDTO.getS_location();
+		String location = "";
+	if (s_location.equals("A")) {
+	    location = "서면점";
+	} else if (s_location.equals("B")) {
+	    location = "명지점";
+	} else if (s_location.equals("C")) {
+	    location = "율하점";
+	} else {
+	    location = "알 수 없음";
+	}
+	
+	String emp_grade = orderReservationDTO.getEmp_grade();
+	String grade = "";
+	if (emp_grade.equals("A")) {
+		grade = "원장";
+	} else if (emp_grade.equals("B")) {
+		grade = "실장";
+	} else if (emp_grade.equals("C")) {
+		grade = "수석";
+	} else {
+		grade = "알 수 없음";
+	}
+	
+	int res_status = orderReservationDTO.getRes_status();
+	String status = "";
+	if (res_status == 0) {
+		status = "△";
+	} else if (res_status == 1) {
+		status = "○";
+	} else if (res_status == 2) {
+		status = "✕";
+	} else {
+		status = "알 수 없음";
+	}
 %>    					  
     <tr><td><%=orderReservationDTO.getRes_num() %></td>
-    	<td><%=orderReservationDTO.getRes_day() %></td>
-    	<td><%=orderReservationDTO.getRes_time() %></td>
-    	<td>[<%=orderReservationDTO.getPro_name() %>]<%=orderReservationDTO.getPet_size() %> <%=orderReservationDTO.getPet_weight() %></td>
-    	<td><%=orderReservationDTO.getS_location() %></td>
-    	<td><%=orderReservationDTO.getEmp_grade() %> <%=orderReservationDTO.getEmp_name() %></td>
+    	<td><%=format_res_day %></td>
+    	<td><%=format_res_time %></td>
+    	<td class="text-left">[<%=orderReservationDTO.getPro_name() %>] <%=orderReservationDTO.getPet_size() %> <%=orderReservationDTO.getPet_weight() %></td>
+    	<td><%=location %></td>
+    	<td><%=grade %> <%=orderReservationDTO.getEmp_name() %></td>
     	<td><%=orderReservationDTO.getU_name() %></td>
     	<td><%=orderReservationDTO.getU_phone() %></td>
     	<td><%=orderReservationDTO.getRes_price()+orderReservationDTO.getRes_point() %></td>
     	<td><%=orderReservationDTO.getRes_point() %></td>
-    	<td><%=orderReservationDTO.getRes_price() %></td>
-    	<td class="status"><%=orderReservationDTO.getRes_status() %></td>
-    	<td><input type="button" value="완료" onclick="statusChange(<%=orderReservationDTO.getRes_num()%>)"></td>
-    	<td><input type="button" value="취소"></td></tr>
+    	<td style="color: red;"><%=orderReservationDTO.getRes_price() %></td>
+    	<td class="status font-bold"><%=status %></td>
+    	<td>
+    	    <input type="button" value="○" class="status-button"
+    	     onclick="confirmStatusComplete(<%=orderReservationDTO.getRes_num()%>)">
+        </td>
+    	<td>
+    	    <input type="button" value="✕" class="status-button"
+    		 onclick="confirmStatusCancel(<%=orderReservationDTO.getRes_num()%>)">
+    	</td>
+    	<td>
+    	    <input type="button" value="△" class="status-button"
+    		 onclick="confirmStatusUnprocessed(<%=orderReservationDTO.getRes_num()%>)">
+    	</td></tr>
 <%
 }
 %>    	
@@ -110,7 +159,6 @@ for(OrderReservationDTO orderReservationDTO : visibleItems) {
 </div>
 </div>
 <!-- [예약정보] 끝 -->
-
 		</div>
 		</div>
 		</div>
@@ -125,33 +173,85 @@ for(OrderReservationDTO orderReservationDTO : visibleItems) {
 	<script src="./js/jquery.waypoints.min.js"></script>
 	<!-- Flexslider -->
 	<script src="./js/jquery.flexslider-min.js"></script>
-	
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
 
 <script type="text/javascript">
-var selected_r = "";
-
-function statusChange(status) {
-	alert(status);
-	selected_r = status;
-	
+var selected_a = "";
+function confirmStatusComplete(status) {
+    selected_a = status;
+    if (confirm("[완료]상태로 변경합니다.")) {
+        statusComplete(selected_a);
+    }
+}
+function statusComplete(status) {
+// 	alert(status);
+	selected_a = status;
 	$.ajax({
     	type: "GET",
-        url: 'statusChange.aj',
-        data: {"res_status":selected_r}, // 선택된 값을 서버로 전송
+        url: 'statusComplete.aj',
+        data: {"res_status":selected_a}, // 선택된 값을 서버로 전송
         success: function(result) {
    			  const data = $.trim(result);
    			  if(data=="true"){
-   				  alert("저장완료");
+//    				  alert("저장완료");
    				  location.reload();
    			  }else {
    				  alert("저장실패");
    			  }		
         }
-    });////endAJAX(서비스리스트)
+	});
+}// [예약상태 >> 완료]
+var selected_b = "";
+function confirmStatusCancel(status) {
+    selected_b = status;
+    if (confirm("[취소]상태로 변경합니다.")) {
+    	statusCancel(selected_b);
+    }
 }
-
+function statusCancel(status) {
+//   	alert(status);
+   	selected_b = status;
+   	$.ajax({
+       	type: "GET",
+        url: 'statusCancel.aj',
+        data: {"res_status":selected_b}, // 선택된 값을 서버로 전송
+        success: function(result) {
+      		const data = $.trim(result);
+      		if(data=="true"){
+// 				alert("저장완료");
+      			location.reload();
+       		}else {
+       			 alert("저장실패");
+       		}		
+      }
+	});
+}// [예약상태 >> 취소]
+var selected_c = "";
+function confirmStatusUnprocessed(status) {
+    selected_c = status;
+    if (confirm("[예약중]상태로 변경합니다.")) {
+        statusUnprocessed(selected_c);
+    }
+}
+function statusUnprocessed(status) {
+//   	alert(status);
+   	selected_c = status;
+   	$.ajax({
+       	type: "GET",
+        url: 'statusUnprocessed.aj',
+        data: {"res_status":selected_c}, // 선택된 값을 서버로 전송
+        success: function(result) {
+      		const data = $.trim(result);
+      		if(data=="true"){
+// 				alert("저장완료");
+      			location.reload();
+       		}else {
+       			 alert("저장실패");
+       		}		
+      }
+	});
+}// [예약상태 >> 미처리]
 </script>
 
 </body>

@@ -90,7 +90,7 @@ List<AdminDTO> visibleItems = empList.subList(startIndex, endIndex);
 <!-- [직원목록] -->
 <table class="admin-storeCheck1">
     <tr><th colspan="3">매장정보</th></tr>
-    <tr class="font-bold"><td>지점명</td><td>주소</td><td>전화번호</td><td class="closed-td">휴무일</td></tr>
+    <tr class="font-bold border-bottom"><td>지점명</td><td>주소</td><td>전화번호</td><td class="closed-td">휴무일</td></tr>
     <tr><td>서면점</td><td>부산광역시 부산진구 양정로 42번길 15</td><td>051-1234-5678</td><td><input type="button" value="선택"></td></tr>
     <tr><td>명지점</td><td>부산광역시 서구 신호로 98번길 7</td><td>051-1234-5678</td><td><input type="button" value="선택"></td></tr>
     <tr><td>율리점</td><td>부산광역시 동래구 명륜로 13번길 22</td><td>051-1234-5678</td><td><input type="button" value="선택"></td></tr>
@@ -98,7 +98,7 @@ List<AdminDTO> visibleItems = empList.subList(startIndex, endIndex);
 
 <table class="admin-storeCheck2">
 	<tr><th colspan="7">직원정보</th></tr>
-    <tr class="font-bold"><td>번호</td>
+    <tr class="font-bold border-bottom"><td>번호</td>
     	<td>지점명</td>
     	<td>직급</td>
     	<td>직원이름</td>

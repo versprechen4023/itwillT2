@@ -187,7 +187,7 @@ font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수
     text-decoration: none;
 }
 #fh5co-aside #fh5co-main-to_adminpage a:hover {
-  color: #228896;
+	color: blue;
 }
 #fh5co-main-menu {
 	margin-top: 6em;

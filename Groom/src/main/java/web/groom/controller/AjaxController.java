@@ -270,30 +270,40 @@ public class AjaxController extends HttpServlet {
 		
 		
 		// AJAX관련 예약상태 가져오기(상품가격)
-		if (sPath.equals("/statusChange.aj")) {
+		if (sPath.equals("/statusComplete.aj")) {
 			System.out.println("예약상태변경");
-			
 			AdminService adminService = new AdminService();
-			
-			boolean result = adminService.statusChange(request);
-
+			boolean result = adminService.statusComplete(request);
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print(Boolean.toString(result));
 			out.close();
-		}
+		}//
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		// AJAX관련 예약상태 가져오기(상품가격)
+		if (sPath.equals("/statusCancel.aj")) {
+			System.out.println("예약상태변경");
+			AdminService adminService = new AdminService();
+			boolean result = adminService.statusCancel(request);
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Boolean.toString(result));
+			out.close();
+		}//		
+
+		// AJAX관련 예약상태 가져오기(상품가격)
+		if (sPath.equals("/statusUnprocessed.aj")) {
+			System.out.println("예약상태변경");
+			AdminService adminService = new AdminService();
+			boolean result = adminService.statusUnprocessed(request);
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Boolean.toString(result));
+			out.close();
+		}//
 		
 	}
 

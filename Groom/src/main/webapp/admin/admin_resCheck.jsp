@@ -25,7 +25,7 @@ List<OrderReservationDTO> reservationList =
 (List<OrderReservationDTO>)request.getAttribute("reservationList");
 
 //아래 코드는 페이징코드
-int itemsPerPage = 20; // 페이지당 아이템 수
+int itemsPerPage = 10; // 페이지당 아이템 수
 int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
 int startIndex = (currentPage - 1) * itemsPerPage;
 int endIndex = Math.min(startIndex + itemsPerPage, reservationList.size());
@@ -69,7 +69,9 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
     					  <td>상태</td>
     					  <td style="background: #E2E2E2;">완료</td>
     					  <td style="background: #E2E2E2;">취소</td>
-    					  <td style="background: #E2E2E2;">대기</td></tr>
+    					  <td style="background: #E2E2E2;">대기</td>
+    					  <td colspan="2">포인트</td>
+    					  <td>확인</td></tr>
 <%
 for(OrderReservationDTO orderReservationDTO : visibleItems) { 
 String res_day = orderReservationDTO.getRes_day(); // 예약날짜
@@ -136,7 +138,11 @@ String format_res_time = res_time.substring(0, 5);
     	<td>
     	    <input type="button" value="△" class="status-button"
     		 onclick="confirmStatusUnprocessed(<%=orderReservationDTO.getRes_num()%>)">
-    	</td></tr>
+    	</td>
+    	<td><input type="button" value="버튼"></td>
+    	<td><input type="button" value="버튼"></td>
+    	<td>확인</td>
+    	</tr>
 <%
 }
 %>    	
@@ -178,7 +184,7 @@ String format_res_time = res_time.substring(0, 5);
 var selected_a = "";
 function confirmStatusComplete(status) {
     selected_a = status;
-    if (confirm("[완료]상태로 변경합니다.")) {
+    if (confirm("[완료]상태로 변경합니다.\n*포인트가 지급됩니다.")) {
         statusComplete(selected_a);
     }
 }
@@ -203,7 +209,7 @@ function statusComplete(status) {
 var selected_b = "";
 function confirmStatusCancel(status) {
     selected_b = status;
-    if (confirm("[취소]상태로 변경합니다.")) {
+    if (confirm("[취소]상태로 변경합니다.\n*포인트가 회수됩니다.")) {
     	statusCancel(selected_b);
     }
 }

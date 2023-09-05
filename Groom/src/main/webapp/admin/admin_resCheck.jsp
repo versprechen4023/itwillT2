@@ -57,8 +57,7 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 <table class="admin-resCheck">
     <tr><th colspan="3">예약 정보</th></tr>
     <tr class="font-bold border-bottom"><td>번호</td>
-    					  <td>날짜</td>
-    					  <td>시간</td>
+    					  <td>날짜/시간</td>
     					  <td>선택메뉴</td>
     					  <td>매장</td>
     					  <td>담당</td>
@@ -116,8 +115,7 @@ String format_res_time = res_time.substring(0, 5);
 	}
 %>    					  
     <tr><td><%=orderReservationDTO.getRes_num() %></td>
-    	<td><%=format_res_day %></td>
-    	<td><%=format_res_time %></td>
+    	<td><%=format_res_day %> <%=format_res_time %></td>
     	<td class="text-left">[<%=orderReservationDTO.getPro_name() %>] <%=orderReservationDTO.getPet_size() %> <%=orderReservationDTO.getPet_weight() %></td>
     	<td><%=location %></td>
     	<td><%=grade %> <%=orderReservationDTO.getEmp_name() %></td>

@@ -245,7 +245,7 @@ public class AdminDAO {
 			dbClose();
 		}
 		return result;
-	}
+	}// statusComplete() [예약상태 > 완료]
 
 	public boolean statusCancle(int b) {
 		boolean result = false;
@@ -266,7 +266,7 @@ public class AdminDAO {
 			dbClose();
 		}
 		return result;
-	}
+	}//statusCancel() [예약상태 > 취소]
 
 	public boolean statusUnprocessed(int c) {
 		boolean result = false;
@@ -287,7 +287,44 @@ public class AdminDAO {
 			dbClose();
 		}
 		return result;
-	}
+	}// statusUnprocessed() [예약상태 > 진행중]
+	
+	public void PointConfirm(int a) {
+		System.out.println("AdminDAO PointConfirm()");
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "UPDATE user2"
+					+ "   SET u_point = u_point + (SELECT res_price FROM test_reservation WHERE res_num = ?)*0.01"
+					+ "   WHERE u_num = (SELECT u_num FROM test_reservation WHERE res_num = ?);";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, a);
+			pstmt.setInt(2, a);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+	}// PointConfirm() [결제포인트 지급]
+	
+	public void PointCancle(int b) {
+		System.out.println("AdminDAO PointConfirm()");
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "UPDATE user2"
+					+ "   SET u_point = u_point - (SELECT res_price FROM test_reservation WHERE res_num = ?)*0.01"
+					+ "   WHERE u_num = (SELECT u_num FROM test_reservation WHERE res_num = ?);";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, b);
+			pstmt.setInt(2, b);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+	}// PointCancle() [결제포인트 회수]
+	// 
 
 	public boolean insertDisDayTime(int s_num, int emp_num, String dis_time, String dis_daydate) {
 		

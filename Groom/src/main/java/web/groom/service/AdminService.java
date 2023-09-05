@@ -99,6 +99,9 @@ public class AdminService {
 			// adminDAO에 값을 전달하고 로직처리 수행
 			adminDAO = new AdminDAO();
 			result = adminDAO.statusComplete(a);
+			if(result) {
+				adminDAO.PointConfirm(a);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -115,6 +118,9 @@ public class AdminService {
 			// adminDAO에 값을 전달하고 로직처리 수행
 			adminDAO = new AdminDAO();
 			result = adminDAO.statusCancle(b);
+			if(result) {
+				adminDAO.PointCancle(b);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

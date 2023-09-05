@@ -104,6 +104,7 @@ public class QnaDAO {
 				qnaDTO.setTitle(rs.getString("qna_title"));
 				qnaDTO.setId(rs.getString("u_id"));
 				qnaDTO.setDate(rs.getTimestamp("qna_date"));
+				qnaDTO.setRecontent(rs.getString("re_content"));
 				qnaDTO.setQreans(rs.getInt("qna_isanswered"));
 				// 배열 한칸에 저장
 				qnaList.add(qnaDTO);
@@ -223,6 +224,7 @@ public class QnaDAO {
 				qnaDTO.setQnaimgurl(rs.getString("qna_img_url"));
 				qnaDTO.setRedate(rs.getTimestamp("re_date"));
 				qnaDTO.setRecontent(rs.getString("re_content"));
+				System.out.println("DDDDDDDAAAAAOOOOOOO"+ qnaDTO);
 
 				qnaDTO.setQnanum(qnanum);
 			}

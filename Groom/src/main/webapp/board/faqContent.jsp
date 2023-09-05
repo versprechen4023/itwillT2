@@ -32,7 +32,7 @@ Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 <tr><td class="qnacontent">내용</td><td class="vcontent">
 	<img src="upload/<%=boardDTO.getFaq_img_url() %>" alt="이미지">
 	<br><br>
-	<%=boardDTO.getFaq_content() %> </td></tr>
+	<%=boardDTO.getFaq_content() %></td></tr>
 
 </table>
 

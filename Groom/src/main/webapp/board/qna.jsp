@@ -72,7 +72,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
             <td><%=qnaDTO.getId() %>	</td>
             <td><%=format.format(qnaDTO.getDate() )%>	</td>
             <% 
-            if(qnaDTO.getQreans()==0){
+            if(qnaDTO.getRecontent()== null ){
             %><td>X</td>
             <% }else {%>
             	<td>O</td><%

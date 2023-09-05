@@ -7,7 +7,7 @@ public class QnaDTO {
 	private int qnanum; //글번호
 	private String id;
 	private String title;
-	private String content;
+	private String content; //사용자가 입력한 값
 	private Timestamp date;
 	private String category;
 	private String qnaimgurl; //이미지

@@ -59,7 +59,7 @@ List<ReviewDTO> visibleItems = reviewList.subList(startIndex, endIndex);
 <%
 SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
 for (ReviewDTO reviewDTO : visibleItems){
-// if(reviewDTO != null){
+if(reviewDTO != null){
 // ========= 별점 받아서 별출력하는 코드 ㄱ
 //int rating = reviewDTO.getRev_rating(); // rev_rating 값 int로 바꾸면 수정하도록
 int rating = Integer.parseInt(reviewDTO.getRev_rating());
@@ -127,6 +127,7 @@ if(role.equals("admin")){
 <!-- 리뷰 목록 끝  -->
 <%
 	}
+}// end if
 %>
 		</div>
 
@@ -144,7 +145,7 @@ if(role.equals("admin")){
     <% if (currentPage < totalPages) { %>
         <a href="reviewList5.re?pro_name=<%= request.getParameter("pro_name") %>&page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
     <% }
-//     } 
+
     %>
 </div>
 

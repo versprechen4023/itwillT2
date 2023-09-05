@@ -57,7 +57,7 @@ public class MemberEmail {
 		    message.setFrom(new InternetAddress(id)); //관리자 id
 		    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(sendToEmail)); //보낼사람설정
 		    message.setSubject(subject); //제목설정
-		    message.setContent(content, "text/html"); //내용설정
+		    message.setContent(content, "text/html; charset=UTF-8"); //내용설정
 
 		    // 이메일 전송
 		    Transport.send(message);

@@ -309,10 +309,9 @@ var canCallFunction = true;
 
 function sendVerificationEmail() {
 	var email = $("#u_email").val();
-	alert("이메일로 인증번호가 전송되었습니다.");
     if (validateEmail(email)) {
       if (canCallFunction) {
-    	  
+      alert("이메일로 인증번호가 전송되었습니다.");  
       canCallFunction = false;
       
       setTimeout(function() {
@@ -323,7 +322,6 @@ function sendVerificationEmail() {
         url: "email.aj",
         data: {"u_email": email },
         success: function(response) {
-          alert("이메일로 인증번호가 전송되었습니다.");
           $('#emailtest').text("");
           $("#verificationCode").removeAttr("readonly");
           $('#verificationCode').attr('placeholder','인증번호를 입력해주세요'); 

@@ -122,6 +122,7 @@ public class AdminService {
 	}// statusCancel [예약상태 "취소"]
 
 	public boolean statusUnprocessed(HttpServletRequest request) {
+		
 		boolean result = false;
 		try {
 			// 한글 인코딩 처리
@@ -136,6 +137,33 @@ public class AdminService {
 		}
 		return result;
 	}// statusUnprocessed [예약상태 "진행중"]
+
+	public boolean insertDisDayTime(HttpServletRequest request) {
+		
+		boolean result = false;
+		
+		try {
+
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			
+			// 지점번호, 직원번호, 시간, 날짜 변수에 저장
+			int s_num = Integer.parseInt(request.getParameter("s_num"));
+			int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+			String dis_time = request.getParameter("timepicker");
+			String dis_daydate = request.getParameter("datepicker");
+			
+			// adminDAO에 값을 전달하고 로직처리 수행
+			adminDAO = new AdminDAO();
+			result = adminDAO.insertDisDayTime(s_num, emp_num, dis_time, dis_daydate);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 	
 	

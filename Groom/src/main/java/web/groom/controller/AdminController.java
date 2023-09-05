@@ -88,6 +88,25 @@ public class AdminController extends HttpServlet {
 			}
 	    }
 		
+		if (sPath.equals("/admin_daytime.ad")) {
+			
+			 webForward(request, response, "admin", "admin_daytime");
+	    }
+		
+		if (sPath.equals("/admin_distime.ad")) {
+			
+			// 어드민 서비스 객체생성
+			AdminService adminService = new AdminService();
+			// 휴무일 업데이트를 위한 서비스에 리퀘스트 전달
+			boolean result = adminService.insertDisDayTime(request);
+			
+			if(result) {
+				System.out.println("휴무시간 업데이트 성공");
+			} else {
+				System.out.println("휴무시간 업데이트 실패");
+			}
+	    }
+		
 		
 	}// doProcess
 	

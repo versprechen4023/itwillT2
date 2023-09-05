@@ -289,6 +289,40 @@ public class AdminDAO {
 		return result;
 	}
 
+	public boolean insertDisDayTime(int s_num, int emp_num, String dis_time, String dis_daydate) {
+		
+		boolean result = false;
+		
+		try {
+
+			// db연결
+			con = new SQLConnection().getConnection();
+
+			// SQL 쿼리 실행(휴무시간 내역 값 삽입)
+			String SQL = "INSERT INTO disabled_time(s_num, emp_num, dis_time, dis_daydate) VALUE(?,?,?,?)";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, s_num);
+			pstmt.setInt(2, emp_num);
+			pstmt.setString(3, dis_time);
+			pstmt.setString(4, dis_daydate);
+			
+			int rs = pstmt.executeUpdate();
+			
+			// 성공시 true 실패시 false 반환
+			result = (rs != 0) ? true : false;
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+
+		} finally {
+			dbClose();
+		}
+
+		return result;
+	}
+
 	
 	
 	

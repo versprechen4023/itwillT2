@@ -1,24 +1,33 @@
 @charset "UTF-8";
 	h2{
-		margin-left: 60px;
-		margin-top: 30px;
+		margin-left: 200px;
+		margin-top: 45px;
 		font-weight: bold;
 	}
 #qtable1 {
 border-collapse: collapse;
-width: 70%;
+width: 1000px;
 /* border: 1px solid #ddd; */
-margin-top: 20px;
-margin-left: 7%;
+margin-top: 70px;
+margin-left: 200px;
 background-color: white;
+}
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #000;
+    width: 1000px;
+    margin-left: 200px;
+    margin-bottom : 50px;
 }
 		
 /* 		검색창,버튼 테이블 */
 		#qtable2{
 			border-collapse: collapse;
-width: 70%;
+width: 1000px;
 margin-top: 10px;
-margin-left: 6.3%;
+margin-left: 200px;
 /* background-color: white; */
 		}
 th, td {
@@ -26,6 +35,9 @@ padding: 8px;
 text-align: left;
 text-align: center;
 border: none;
+}
+td{
+	cursor: pointer;
 }
 #qtr, #qtr td{
 	padding: 8px;
@@ -184,6 +196,7 @@ float: right;
 /* text-align: center; */
 /* } */
 	
+
 	
 .file-upload-container {
 position: relative;

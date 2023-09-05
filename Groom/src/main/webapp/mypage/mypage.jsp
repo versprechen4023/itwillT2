@@ -17,7 +17,7 @@ List<OrderReservationDTO> reservationList =
 (List<OrderReservationDTO>)request.getAttribute("reservationList");
 
 //아래 코드는 페이징코드
-int itemsPerPage = 10; // 페이지당 아이템 수
+int itemsPerPage = 5; // 페이지당 아이템 수
 int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
 int startIndex = (currentPage - 1) * itemsPerPage;
 int endIndex = Math.min(startIndex + itemsPerPage, reservationList.size());

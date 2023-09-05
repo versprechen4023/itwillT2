@@ -99,9 +99,6 @@ public class AdminService {
 			// adminDAO에 값을 전달하고 로직처리 수행
 			adminDAO = new AdminDAO();
 			result = adminDAO.statusComplete(a);
-			if(result) {
-				adminDAO.PointConfirm(a);
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -118,9 +115,6 @@ public class AdminService {
 			// adminDAO에 값을 전달하고 로직처리 수행
 			adminDAO = new AdminDAO();
 			result = adminDAO.statusCancle(b);
-			if(result) {
-				adminDAO.PointCancle(b);
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -143,7 +137,46 @@ public class AdminService {
 		}
 		return result;
 	}// statusUnprocessed [예약상태 "진행중"]
+	
+	public boolean pointStatusConfirm(HttpServletRequest request) {
+		boolean result = false;
+		try {
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			// 지점번호, 날짜 변수에 저장
+			int i = Integer.parseInt(request.getParameter("res_num_a")); 
+			// adminDAO에 값을 전달하고 로직처리 수행
+			adminDAO = new AdminDAO();
+			result = adminDAO.pointStatus1(i);
+			if(result) {
+				adminDAO.PointConfirm(i);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}// pointStatusConfirm [포인트지급상태 "지급완료"]
 
+	public boolean pointStatusReturn(HttpServletRequest request) {
+		boolean result = false;
+		try {
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			// 지점번호, 날짜 변수에 저장
+			int i = Integer.parseInt(request.getParameter("res_num_b")); 
+			// adminDAO에 값을 전달하고 로직처리 수행
+			adminDAO = new AdminDAO();
+			result = adminDAO.pointStatus2(i);
+			if(result) {
+				adminDAO.PointCancle(i);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}// pointStatusConfirm [포인트지급상태 "미지급"]
+	
+	
 	public boolean insertDisDayTime(HttpServletRequest request) {
 		
 		boolean result = false;
@@ -172,7 +205,6 @@ public class AdminService {
 	}
 
 	
-	
-	
+
 
 }// class

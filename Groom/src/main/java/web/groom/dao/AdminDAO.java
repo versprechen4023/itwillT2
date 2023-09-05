@@ -62,7 +62,7 @@ public class AdminDAO {
 		System.out.println("AdminDAO getReservationList()");
 		String sql = "select a.res_num, a.res_day, a.res_time, b.pro_name, c.pet_size, b.pet_weight,"
 				+ "          d.s_location, e.emp_grade, e.emp_name, f.u_name, f.u_phone, a.res_point,"
-				+ "          a.res_price, a.res_status, a.res_method"
+				+ "          a.res_price, a.res_status, a.res_method, a.res_point_status"
 				+ "   from test_reservation a"
 				+ "   join product2 b on a.pro_id2 = b.pro_id2"
 				+ "   join product1 c on a.pro_id1 = c.pro_id1"
@@ -93,6 +93,7 @@ public class AdminDAO {
 				orderReservationDTO.setRes_price(rs.getInt("res_price"));
 				orderReservationDTO.setRes_status(rs.getInt("res_status"));
 				orderReservationDTO.setRes_method(rs.getString("res_method"));
+				orderReservationDTO.setRes_point_status(rs.getInt("res_point_status"));
 				reservationList.add(orderReservationDTO);
 			}
 		} catch (Exception e) {
@@ -273,7 +274,7 @@ public class AdminDAO {
 		try {
 			// db연결
 			con = new SQLConnection().getConnection();
-			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
+			// SQL 쿼리 실행
 			String SQL = "UPDATE test_reservation SET res_status = 0 where res_num = ?";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, c);
@@ -288,8 +289,48 @@ public class AdminDAO {
 		}
 		return result;
 	}// statusUnprocessed() [예약상태 > 진행중]
+
+	public boolean pointStatus1(int i) {
+		System.out.println("dao");
+		boolean result = false;
+		try {
+			con = new SQLConnection().getConnection();
+			String SQL = "UPDATE test_reservation SET res_point_status = 1"
+					+ "   WHERE res_num = ?;";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, i);
+			int rs = pstmt.executeUpdate();
+			result = (rs != 0) ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+		} finally {
+			dbClose();
+		}
+		return result;
+	}// pointStatus() [포인트지급상태 변경 "완료"]
 	
-	public void PointConfirm(int a) {
+	public boolean pointStatus2(int i) {
+		System.out.println("dao");
+		boolean result = false;
+		try {
+			con = new SQLConnection().getConnection();
+			String SQL = "UPDATE test_reservation SET res_point_status = 0"
+					+ "   WHERE res_num = ?;";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, i);
+			int rs = pstmt.executeUpdate();
+			result = (rs != 0) ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+		} finally {
+			dbClose();
+		}
+		return result;
+	}// pointStatus() [포인트지급상태 변경 "취소"]
+	
+	public void PointConfirm(int i) {
 		System.out.println("AdminDAO PointConfirm()");
 		try {
 			con = new SQLConnection().getConnection();
@@ -297,8 +338,8 @@ public class AdminDAO {
 					+ "   SET u_point = u_point + (SELECT res_price FROM test_reservation WHERE res_num = ?)*0.01"
 					+ "   WHERE u_num = (SELECT u_num FROM test_reservation WHERE res_num = ?);";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, a);
-			pstmt.setInt(2, a);
+			pstmt.setInt(1, i);
+			pstmt.setInt(2, i);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -307,16 +348,16 @@ public class AdminDAO {
 		}
 	}// PointConfirm() [결제포인트 지급]
 	
-	public void PointCancle(int b) {
-		System.out.println("AdminDAO PointConfirm()");
+	public void PointCancle(int i) {
+		System.out.println("AdminDAO PointCancle()");
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "UPDATE user2"
 					+ "   SET u_point = u_point - (SELECT res_price FROM test_reservation WHERE res_num = ?)*0.01"
 					+ "   WHERE u_num = (SELECT u_num FROM test_reservation WHERE res_num = ?);";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, b);
-			pstmt.setInt(2, b);
+			pstmt.setInt(1, i);
+			pstmt.setInt(2, i);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -324,7 +365,7 @@ public class AdminDAO {
 			dbClose();
 		}
 	}// PointCancle() [결제포인트 회수]
-	// 
+	 
 
 	public boolean insertDisDayTime(int s_num, int emp_num, String dis_time, String dis_daydate) {
 		
@@ -360,6 +401,7 @@ public class AdminDAO {
 		return result;
 	}
 
+	
 	
 	
 	

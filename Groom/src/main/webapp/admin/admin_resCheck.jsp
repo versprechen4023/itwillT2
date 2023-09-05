@@ -115,6 +115,16 @@ String format_res_time = res_time.substring(0, 5);
 	} else {
 		status = "알 수 없음";
 	}
+	
+	int res_point_status = orderReservationDTO.getRes_point_status();
+	String point_status = "";
+	if (res_point_status == 0) {
+		point_status = "미지급";
+	} else if (res_point_status == 1) {
+		point_status = "완료!";
+	} else {
+		point_status = "오류";
+	}
 %>    					  
     <tr><td><%=orderReservationDTO.getRes_num() %></td>
     	<td><%=format_res_day %> <%=format_res_time %></td>
@@ -139,14 +149,42 @@ String format_res_time = res_time.substring(0, 5);
     	    <input type="button" value="△" class="status-button"
     		 onclick="confirmStatusUnprocessed(<%=orderReservationDTO.getRes_num()%>)">
     	</td>
-    	<td><input type="button" value="버튼"></td>
-    	<td><input type="button" value="버튼"></td>
-    	<td>확인</td>
+    	<td>
+    	<%
+    	if(res_point_status == 1){
+    	%>
+    		<input type="button" value="지급" class="disabled-button">
+    		
+    	<%
+    	} else if (res_point_status == 0){
+    	%>
+    		<input type="button" value="지급" class="point-button"
+    		 onclick="confirmPointConfirm(<%=orderReservationDTO.getRes_num()%>)">
+    	<%
+    	}
+    	%>
+    	</td>
+    	<td>
+    	<%
+    	if(res_point_status == 1){
+    	%>
+    		<input type="button" value="회수" class="point-button"
+    		 onclick="confirmPointReturn(<%=orderReservationDTO.getRes_num()%>)">
+    	<%
+    	} else if (res_point_status == 0){
+    	%>
+    		<input type="button" value="회수" class="disabled-button">
+    	<%
+    	}
+    	%>
+		</td>
+    	<td><%=point_status %></td>
     	</tr>
-<%
-}
-%>    	
+		<%
+		}
+		%>    	
 </table>
+
 <div class="resCheck-next">
     <% if (currentPage > 1) { %>
         <a href="?page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
@@ -206,6 +244,7 @@ function statusComplete(status) {
         }
 	});
 }// [예약상태 >> 완료]
+
 var selected_b = "";
 function confirmStatusCancel(status) {
     selected_b = status;
@@ -231,6 +270,7 @@ function statusCancel(status) {
       }
 	});
 }// [예약상태 >> 취소]
+
 var selected_c = "";
 function confirmStatusUnprocessed(status) {
     selected_c = status;
@@ -256,6 +296,58 @@ function statusUnprocessed(status) {
       }
 	});
 }// [예약상태 >> 미처리]
+
+var point_a = "";
+function confirmPointConfirm(point_status) {
+	point_a = point_status;
+    if (confirm("포인트를 지급합니다.")) {
+    	pointConfirm(point_a);
+    }
+}
+function pointConfirm(point_status) {
+//   	alert(point_status);
+   	point_a = point_status;
+   	$.ajax({
+       	type: "GET",
+        url: 'pointConfirm.aj',
+        data: {"res_num_a":point_a}, // 선택된 값을 서버로 전송
+        success: function(result) {
+      		const data = $.trim(result);
+      		if(data=="true"){
+// 				alert("저장완료");
+      			location.reload();
+       		}else {
+       			 alert("저장실패");
+       		}		
+      }
+	});
+}// [포인트 지급]
+
+var point_b = "";
+function confirmPointReturn(point_status) {
+	point_b = point_status;
+    if (confirm("포인트를 회수합니다.")) {
+    	pointReturn(point_b);
+    }
+}
+function pointReturn(point_status) {
+//   	alert(point_status);
+   	point_b = point_status;
+   	$.ajax({
+       	type: "GET",
+        url: 'pointReturn.aj',
+        data: {"res_num_b":point_b}, // 선택된 값을 서버로 전송
+        success: function(result) {
+      		const data = $.trim(result);
+      		if(data=="true"){
+// 				alert("저장완료");
+      			location.reload();
+       		}else {
+       			 alert("저장실패");
+       		}		
+      }
+	});
+}// [포인트 회수]
 </script>
 
 </body>

@@ -629,6 +629,23 @@ public class Board1Controller extends HttpServlet {
 			 response.sendRedirect("qna.bo"); // 글을 다 쓰고 나면 다시 리스트로 이동 	
 		 }//qna수정 후 등록
 		 
+		 if(sPath.equals("/qnaRe.bo")) {
+			 System.out.println("qnaRe.bo");
+			 QnaDTO qnaDTO = qnaService.getQna(request);
+			 request.setAttribute("qnaDTO", qnaDTO);
+			 webForward(request, response, "board", "qnaRe");
+			 //qnaReWritePro.bo
+		 }//qna수정 후 등록
+		 
+		 if(sPath.equals("/qnaReWritePro.bo")) {
+			 System.out.println("qnaReWritePro.bo");
+			 qnaService = new QnaService();
+			 qnaService.writeRe(request);
+			 response.sendRedirect("qna.bo");
+		 }//qna수정 후 등록
+		 
+		 
+		 
 		 
 		 
 		 

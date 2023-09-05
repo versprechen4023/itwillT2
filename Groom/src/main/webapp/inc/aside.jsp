@@ -37,7 +37,8 @@ if(id != null){
 				data-toggle="dropdown" href="#">카테고리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="notice.bo">공지사항</a></li>
-					<li><a href="qna.bo">qna</a></li>
+					<li><a href="faq.bo">FAQ</a></li>
+					<li><a href="qna.bo">Q&A</a></li>
 					<li><a href="admin_daydate.ad">contact</a></li>
 				</ul></li>
 		</ul>

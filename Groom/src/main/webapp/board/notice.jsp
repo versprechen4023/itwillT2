@@ -51,6 +51,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 %>
 
     <h2>공지사항</h2>
+    <hr>
 <div>
     <table id="qtable1">
          <tr id="qtr">
@@ -79,6 +80,9 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm");
 <!-- 페이지================================================== -->
 <div id="qtable2">
 	<div class="pagination">
+	
+
+
 <%
 // 시작페이지 1페이지 Prev 없음
 // 시작페이지 11,21,31 Prev 보임
@@ -106,6 +110,7 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 }
 %>
 </div>
+
 </div>
 <!-- ================================================== -->
 

@@ -16,22 +16,12 @@ List<MypageDTO> mypetList =
 List<OrderReservationDTO> reservationList =
 (List<OrderReservationDTO>)request.getAttribute("reservationList");
 
-
+//아래 코드는 페이징코드
 int itemsPerPage = 5; // 페이지당 아이템 수
 int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
-
-int totalPages = (int) Math.ceil((double) reservationList.size() / itemsPerPage);
-
-// currentPage를 확인하고 조정합니다.
-if (currentPage < 1) {
-    currentPage = 1;
-} else if (currentPage > totalPages) {
-    currentPage = totalPages;
-}
-
-// startIndex와 endIndex 계산
 int startIndex = (currentPage - 1) * itemsPerPage;
 int endIndex = Math.min(startIndex + itemsPerPage, reservationList.size());
+int totalPages = (int) Math.ceil((double) reservationList.size() / itemsPerPage);
 
 List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, endIndex);
 %>
@@ -101,34 +91,34 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 </div>
 
 <div class="table-container2">
-<table class="pet">
-<p class="h">대표반려동물 정보
-	<input type="button" value=" + " class="mbtn" onclick="location.href='insertmypet.my'"></p>
-	
-<tr>
-	    <td class="bold-cell">이름</td>
-	    <td><%=mypagepetInfo.getPetName()%></td>
-	</tr>
-	<tr>
-	    <td class="bold-cell">품종</td>
-	    <td><%=mypagepetInfo.getPetBreed()%></td>
-	</tr>
-	<tr>
-	    <td class="bold-cell">성별</td>
-	    <td><%=mypagepetInfo.getPetGender()%></td>
-	</tr>
-	<tr>
-	    <td class="bold-cell">중성화 여부</td>
-	    <td><%=mypagepetInfo.getPetNeuter() %></td>
-	</tr>
-	<tr>
-	    <td class="bold-cell">특이사항</td>
-	    <td><%=mypagepetInfo.getPetComment()%></td>
-	</tr>
+  <table class="pet">
+    <p class="h">대표반려동물 정보
+      <input type="button" value=" + " class="mbtn" onclick="location.href='insertmypet.my'">
+    </p>
 
-</table>
-
+    <tr>
+      <td class="bold-cell">이름</td>
+      <td><%= (mypagepetInfo.getPetName() != null) ? mypagepetInfo.getPetName() : "이름을 입력해주세요" %></td>
+    </tr>
+    <tr>
+      <td class="bold-cell">품종</td>
+      <td><%= (mypagepetInfo.getPetBreed() != null) ? mypagepetInfo.getPetBreed() : "품종을 등록해주세요" %></td>
+    </tr>
+    <tr>
+      <td class="bold-cell">성별</td>
+      <td><%= (mypagepetInfo.getPetGender() != null) ? mypagepetInfo.getPetGender() : "성별을 등록해주세요" %></td>
+    </tr>
+    <tr>
+      <td class="bold-cell">중성화 여부</td>
+      <td><%= (mypagepetInfo.getPetNeuter() != null) ? mypagepetInfo.getPetNeuter() : "중성화 여부를 등록해주세요" %></td>
+    </tr>
+    <tr>
+      <td class="bold-cell">특이사항</td>
+      <td><%= (mypagepetInfo.getPetComment() != null) ? mypagepetInfo.getPetComment() : "특이사항을 입력해주세요" %></td>
+    </tr>
+  </table>
 </div>
+
 
 
 <div class="table-container3">
@@ -275,7 +265,7 @@ String format_res_time = res_time.substring(0, 5);
 </table>
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <div class="petlist-next" data-animate-effect="fadeInLeft">
-    <% if (currentPage > 1) { %>
+       <% if (currentPage > 1) { %>
         <a href="?page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
     <% } %>
     <% 

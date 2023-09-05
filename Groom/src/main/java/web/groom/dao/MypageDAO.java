@@ -311,7 +311,7 @@ public class MypageDAO {
 		return mypageDTO;
 	}// userCheck()
 
-	public List<OrderReservationDTO> getReservationList() {
+	public List<OrderReservationDTO> getReservationList(int u_num) {
 		System.out.println("AdminDAO getReservationList()");
 		String sql = "select a.res_num, a.res_day, a.res_time, b.pro_name, c.pet_size, b.pet_weight,"
 				+ "          d.s_location, e.emp_grade, e.emp_name, f.u_name, f.u_phone, a.res_point,"
@@ -322,15 +322,18 @@ public class MypageDAO {
 				+ "   join store d on a.s_num = d.s_num"
 				+ "   join employees e on a.emp_num = e.emp_num"
 				+ "   join user2 f on a.u_num = f.u_num"
+				+ "   where f.u_num = ?"
 				+ "   order by a.res_num desc;";
 		List<OrderReservationDTO> reservationList = null;
 		try {
 			con = new SQLConnection().getConnection();
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, u_num);
 			rs = pstmt.executeQuery();
 			reservationList = new ArrayList<>();
 			while(rs.next()){
 				OrderReservationDTO orderReservationDTO = new OrderReservationDTO();
+				orderReservationDTO.setU_num(rs.getInt("u_num"));
 				orderReservationDTO.setRes_num(rs.getInt("res_num"));
 				orderReservationDTO.setRes_day(rs.getString("res_day"));
 				orderReservationDTO.setRes_time(rs.getString("res_time"));

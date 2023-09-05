@@ -246,7 +246,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 <tr><td class="qnawriter">글쓴이</td><td class="vwriter"><%=qnaDTO.getId() %></td></tr>
 <tr><td class="qnacategory">분류</td><td class="vwriter"><%=qnaDTO.getCategory() %></td></tr>
 <tr><td class="qnatitle">글제목</td><td class="vtitle"><%=qnaDTO.getTitle() %></td></tr>
-<tr><td class="qnacategory">작성일</td><td class="vwriter"><%=format.format(qnaDTO.getDate()) %></td></tr>
+<tr><td class="qnacategory">작성일</td><td class="vwriter"><%=format.format(qnaDTO.getDate())%></td></tr>
 <tr><td class="qnacontent">내용</td><td class="vcontent">
     <img src="upload/<%=qnaDTO.getQnaimgurl() %>" >
     <br><br>
@@ -256,16 +256,27 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 
 <div class="btn"> 
 
-		
-   <button type="button" value="삭제" class="deletebtn" onclick="location.href='qnaDelete.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 삭제</button>
+		<%
+		 if( id != null ) {
+			 if(id.equals(qnaDTO.getId())) {
+				%>
+				  <button type="button" value="삭제" class="deletebtn" onclick="location.href='qnaDelete.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 삭제</button>
    <button type="button" value="수정" class="modifybtn" onclick="location.href='qnaUpdate.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 수정 </button>
+				
+				<%  
+			 }
+		 }
+		%>
+  
    
 
  <button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
    </div>
 
-   
-   <h1 class="ansheadh1">답변</h1>
+   <%
+   if(qnaDTO.getRecontent() != null ){
+	   %>
+	      <h1 class="ansheadh1">답변</h1>
 <hr>
 <table id="notice" border="1">
 <tr><td class="qnawriter">글쓴이</td><td class="vwriter"> 관리자 </td></tr> <!--  관리자로 되어야 함  -->
@@ -278,6 +289,11 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
        <button type="button" value="답변" class="answerbtn" onclick="location.href='qnaRe.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 답변 및 수정 </button>
        <button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
    </div>
+	   <%
+   }
+   
+   %>
+
 
    </div> 
   

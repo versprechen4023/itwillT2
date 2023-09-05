@@ -223,6 +223,7 @@ public class QnaDAO {
 				qnaDTO.setQnaimgurl(rs.getString("qna_img_url"));
 				qnaDTO.setRedate(rs.getTimestamp("re_date"));
 				qnaDTO.setRecontent(rs.getString("re_content"));
+				System.out.println("DDDDDDDAAAAAOOOOOOO"+ qnaDTO);
 
 				qnaDTO.setQnanum(qnanum);
 			}

@@ -305,6 +305,28 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		}//
 		
+		if (sPath.equals("/pointConfirm.aj")) {
+			System.out.println("포인트지급");
+			AdminService adminService = new AdminService();
+			boolean result = adminService.pointStatusConfirm(request);
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Boolean.toString(result));
+			out.close();
+		}// [포인트지급]
+		
+		if (sPath.equals("/pointReturn.aj")) {
+			System.out.println("포인트회수");
+			AdminService adminService = new AdminService();
+			boolean result = adminService.pointStatusReturn(request);
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Boolean.toString(result));
+			out.close();
+		}// [포인트회수]
+		
 	}
 
 	@Override

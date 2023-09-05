@@ -53,6 +53,17 @@
 .status-button:hover {
 	background: #FFB319;
 }
+.disabled-button {
+background: silver;
+border-radius: 5px;
+}
+.point-button {
+background: #C3F8FF;
+border-radius: 5px;
+}
+.point-button:hover {
+background: #ABD9FF;	
+}
 /* (관리자 메뉴) ============================================ */
 .admin-content {
 	width: 800px;
@@ -63,7 +74,7 @@
     margin-left: 30px;
 }
 .admin-select a{
-	border: 1.6px solid;
+	border: 2px solid black;
 	width: 120px;
 	font-size: 18px;
     display: block;
@@ -78,7 +89,7 @@
     transition: background-color 0.3s;
 }
 .admin-select a:hover {
-	border: 2px solid black;
+/* 	border: 2px solid black; */
 	color: white;
     background-color: rgba(0, 0, 0, 0.4) ;
 }
@@ -150,18 +161,18 @@ thead {
     padding: 5px;
 }
 .admin-button {
+	border: 2px solid black;
 	color: white;
     margin-top: 0;
     padding: 5px 30px;
     height:40px;
     background-color: black;
-    border: none;
     border-radius: 20px;
     font-size: 14px;
     transition: background-color 0.3s;
 }
 .admin-button:hover {
-	border: 2px solid black;
+/* 	border: 2px solid black; */
 	color: black;
     background-color: white ;
 }

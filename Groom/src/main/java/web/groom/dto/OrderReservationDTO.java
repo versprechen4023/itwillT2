@@ -12,6 +12,7 @@ public class OrderReservationDTO {
 	private int res_point;
 	private int used_point;
 	private int res_status; //
+	private int res_point_status; //
 
 	private String res_u_req;
 	private String res_method;
@@ -28,6 +29,12 @@ public class OrderReservationDTO {
 	private String u_phone; //
 	
 	
+	public int getRes_point_status() {
+		return res_point_status;
+	}
+	public void setRes_point_status(int res_point_status) {
+		this.res_point_status = res_point_status;
+	}
 	public String getPro_name() {
 		return pro_name;
 	}

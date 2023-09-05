@@ -1,5 +1,6 @@
 <%@page import="web.groom.dto.MypageDTO"%>
 <%@page import="web.groom.dto.MemberDTO"%>
+<%@page import="web.groom.dto.OrderReservationDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,14 +11,29 @@ MypageDTO mypagepetInfo = (MypageDTO)request.getAttribute("mypagepetInfo");
 List<MypageDTO> mypetList =
 (List<MypageDTO>)request.getAttribute("mypetList");
 
-//아래 코드는 페이징코드
+
+
+List<OrderReservationDTO> reservationList =
+(List<OrderReservationDTO>)request.getAttribute("reservationList");
+
+
 int itemsPerPage = 5; // 페이지당 아이템 수
 int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
-int startIndex = (currentPage - 1) * itemsPerPage;
-int endIndex = Math.min(startIndex + itemsPerPage, mypetList.size());
-int totalPages = (int) Math.ceil((double) mypetList.size() / itemsPerPage);
 
-List<MypageDTO> visibleItems = mypetList.subList(startIndex, endIndex);
+int totalPages = (int) Math.ceil((double) reservationList.size() / itemsPerPage);
+
+// currentPage를 확인하고 조정합니다.
+if (currentPage < 1) {
+    currentPage = 1;
+} else if (currentPage > totalPages) {
+    currentPage = totalPages;
+}
+
+// startIndex와 endIndex 계산
+int startIndex = (currentPage - 1) * itemsPerPage;
+int endIndex = Math.min(startIndex + itemsPerPage, reservationList.size());
+
+List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, endIndex);
 %>
 
 
@@ -127,7 +143,7 @@ List<MypageDTO> visibleItems = mypetList.subList(startIndex, endIndex);
 </tr>
 
 <%
-for(MypageDTO mypageDTO : visibleItems) { 
+for(MypageDTO mypageDTO : mypetList) { 
 %>
     <tr><td><%=mypageDTO.getPetName() %></td>
     	<td><%=mypageDTO.getPetBreed() %></td>
@@ -145,7 +161,7 @@ for(MypageDTO mypageDTO : visibleItems) {
      내 반려동물: 　
     <select id="petlist" name="petlist">
         <%
-        for(MypageDTO mypageDTO : visibleItems) { 
+        for(MypageDTO mypageDTO : mypetList) { 
         %>
         <option value="<%=mypageDTO.getPetNum() %>"><%=mypageDTO.getPetName()%></option>
         <%
@@ -156,21 +172,8 @@ for(MypageDTO mypageDTO : visibleItems) {
     <input type="submit" value="정보수정/삭제" class="mbtn">
 </div>
 </form>
-<!-- 페이징 코드 5개씩 나눠서 페이징 -->
-<div class="petlist-next" data-animate-effect="fadeInLeft">
-    <% if (currentPage > 1) { %>
-        <a href="?page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
-    <% } %>
-    <% 
-    int startPage = ((currentPage - 1) / 5) * 5 + 1; // 현재 페이지 그룹의 시작 페이지 계산
-    int endPage = Math.min(startPage + 4, totalPages); // 현재 페이지 그룹의 마지막 페이지 계산
-    for (int i = startPage; i <= endPage; i++) { %>
-        <a href="?page=<%= i %>" <%= (i == currentPage) ? "class='review-active'" : "" %>><%= i %></a>
-    <% } %>
-    <% if (currentPage < totalPages) { %>
-        <a href="?page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
-    <% } %>
-</div>
+
+
 </div>
 
 
@@ -182,38 +185,93 @@ for(MypageDTO mypageDTO : visibleItems) {
 <table class="reservation">
   
     <tr><td class="bold-cell">예약번호</td>
-    	<td class="bold-cell">예약날짜</td>
-    	<td class="bold-cell">예약시간</td>
-       	<td class="bold-cell">선택메뉴</td>
-    	<td class="bold-cell">예약매장</td>
+    	<td class="bold-cell">날짜/시간</td>
+    	<td class="bold-cell">선택메뉴</td>
+       	<td class="bold-cell">매장</td>
     	<td class="bold-cell">담당직원</td>
     	<td class="bold-cell">예약자</td>
     	<td class="bold-cell">연락처</td>
-    	<td class="bold-cell">결제금액</td>
-    	<td class="bold-cell">예약상태</td>
-    	
+    	<td class="bold-cell">상품가격</td>
+    	<td class="bold-cell">사용한포인트</td>
+    	<td class="bold-cell">최종결제금액</td>
+    	<td class="bold-cell">상태</td>
+    	<td style="background: #E2E2E2;">예약취소</td>
+    	<td style="background: #E2E2E2;">일정변경</td>
+    	<td style="background: #E2E2E2;">리뷰작성</td>
 
 </tr>
 
-<!-- 여기 예약내역정보 입력
- 지금은 반려동물등록정보리스트 입력해둔 상태 -->
+
 <%
-for(MypageDTO mypageDTO : visibleItems) { 
-%>
-    <tr><td><%=mypageDTO.getPetName() %></td>
-    	<td><%=mypageDTO.getPetBreed() %></td>
-    	<td><%=mypageDTO.getPetGender() %></td>
-    	<td><%=mypageDTO.getPetName() %></td>
-    	<td><%=mypageDTO.getPetName() %></td>
-    	<td><%=mypageDTO.getPetName() %></td>
-    	<td><%=mypageInfo.getName() %></td>
-    	<td><%=mypageInfo.getPhone() %></td>
-    	<td><%=mypageDTO.getPetName() %></td>
-    	<td><%=mypageDTO.getPetName() %></td>
-</tr>
+for(OrderReservationDTO orderReservationDTO : visibleItems) { 
+String res_day = orderReservationDTO.getRes_day(); // 예약날짜
+String format_res_day = res_day.replace("-", ".").substring(2);
+String res_time = orderReservationDTO.getRes_time(); // 예약시간
+String format_res_time = res_time.substring(0, 5);
+
+//enum > 문자
+	String s_location = orderReservationDTO.getS_location();
+		String location = "";
+	if (s_location.equals("A")) {
+	    location = "서면점";
+	} else if (s_location.equals("B")) {
+	    location = "명지점";
+	} else if (s_location.equals("C")) {
+	    location = "율하점";
+	} else {
+	    location = "알 수 없음";
+	}
+	
+	String emp_grade = orderReservationDTO.getEmp_grade();
+	String grade = "";
+	if (emp_grade.equals("A")) {
+		grade = "원장";
+	} else if (emp_grade.equals("B")) {
+		grade = "실장";
+	} else if (emp_grade.equals("C")) {
+		grade = "수석";
+	} else {
+		grade = "알 수 없음";
+	}
+	
+	int res_status = orderReservationDTO.getRes_status();
+	String status = "";
+	if (res_status == 0) {
+		status = "△";
+	} else if (res_status == 1) {
+		status = "○";
+	} else if (res_status == 2) {
+		status = "✕";
+	} else {
+		status = "알 수 없음";
+	}
+%>    					  
+    <tr><td><%=orderReservationDTO.getRes_num() %></td>
+    	<td><%=format_res_day %> <%=format_res_time %></td>
+    	<td class="text-left">[<%=orderReservationDTO.getPro_name() %>] <%=orderReservationDTO.getPet_size() %> <%=orderReservationDTO.getPet_weight() %></td>
+    	<td><%=location %></td>
+    	<td><%=grade %> <%=orderReservationDTO.getEmp_name() %></td>
+    	<td><%=orderReservationDTO.getU_name() %></td>
+    	<td><%=orderReservationDTO.getU_phone() %></td>
+    	<td><%=orderReservationDTO.getRes_price()+orderReservationDTO.getRes_point() %></td>
+    	<td><%=orderReservationDTO.getRes_point() %></td>
+    	<td style="color: red;"><%=orderReservationDTO.getRes_price() %></td>
+    	<td class="status font-bold"><%=status %></td>
+    	<td>
+    	    <input type="button" value="○" class="status-button"
+    	     onclick="confirmStatusComplete(<%=orderReservationDTO.getRes_num()%>)">
+        </td>
+    	<td>
+    	    <input type="button" value="✕" class="status-button"
+    		 onclick="confirmStatusCancel(<%=orderReservationDTO.getRes_num()%>)">
+    	</td>
+    	<td>
+    	    <input type="button" value="△" class="status-button"
+    		 onclick="confirmStatusUnprocessed(<%=orderReservationDTO.getRes_num()%>)">
+    	</td></tr>
 <%
 }
-%>
+%>   
 </table>
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <div class="petlist-next" data-animate-effect="fadeInLeft">
@@ -221,8 +279,8 @@ for(MypageDTO mypageDTO : visibleItems) {
         <a href="?page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
     <% } %>
     <% 
-    int startPage2 = ((currentPage - 1) / 5) * 5 + 1; // 현재 페이지 그룹의 시작 페이지 계산
-    int endPage2 = Math.min(startPage + 4, totalPages); // 현재 페이지 그룹의 마지막 페이지 계산
+    int startPage = ((currentPage - 1) / 5) * 5 + 1; // 현재 페이지 그룹의 시작 페이지 계산
+    int endPage = Math.min(startPage + 4, totalPages); // 현재 페이지 그룹의 마지막 페이지 계산
     for (int i = startPage; i <= endPage; i++) { %>
         <a href="?page=<%= i %>" <%= (i == currentPage) ? "class='review-active'" : "" %>><%= i %></a>
     <% } %>

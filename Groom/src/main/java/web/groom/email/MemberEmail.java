@@ -57,10 +57,10 @@ public class MemberEmail {
 		    message.setFrom(new InternetAddress(id)); //관리자 id
 		    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(sendToEmail)); //보낼사람설정
 		    message.setSubject(subject); //제목설정
-		    message.setText(content); //내용설정
+		    message.setContent(content, "text/html"); //내용설정
 
 		    // 이메일 전송
-//		    Transport.send(message); 우선은 이메일전송없이
+		    Transport.send(message);
 		    System.out.println("이메일 전송 완료");
 
 		} catch (MessagingException e) {

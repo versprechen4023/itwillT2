@@ -302,12 +302,22 @@ $('#u_email').keyup(function(){
     var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     return regExp.test(email);
   }
-  
-//이메일 인증관련
+ 
+// 이메일 인증관련
+// 함수 호출 제어를 위한 변수선언
+var canCallFunction = true;
+
 function sendVerificationEmail() {
 	var email = $("#u_email").val();
-
+	alert("이메일로 인증번호가 전송되었습니다.");
     if (validateEmail(email)) {
+      if (canCallFunction) {
+    	  
+      canCallFunction = false;
+      
+      setTimeout(function() {
+          canCallFunction = true;
+      }, 60000);
       $.ajax({
         type: "POST",
         url: "email.aj",
@@ -322,7 +332,10 @@ function sendVerificationEmail() {
           alert("이메일 전송 중 오류가 발생했습니다. 다시 시도해주세요.");
         }//error 콜백함수 종료지점
       });// ajax
-    }
+      } else {
+    	  alert("이미 인증 코드를 발송하였습니다, 인증코드가 오지 않는다면 60초후에 다시 시도해 주십시오");
+      }// 60초 타이머 end if
+    }// 이메일인증 end if
  }//이메일인증종료
    
   //이메일 정규식 유효성 검사

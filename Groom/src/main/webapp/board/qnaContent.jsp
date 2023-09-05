@@ -275,6 +275,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 
    <%
    if(qnaDTO.getRecontent() != null ){
+
 	   %>
 	      <h1 class="ansheadh1">답변</h1>
 <hr>
@@ -290,10 +291,29 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
        <button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
    </div>
 	   <%
-   }
-   
+   } else { 
+	   if ( id != null ) {
+		if( role.equals("admin")){   
+	   
    %>
+   <h1 class="ansheadh1">답변</h1>
+<hr>
+<table id="notice" border="1">
+<tr><td class="qnawriter">글쓴이</td><td class="vwriter"> 관리자 </td></tr> <!--  관리자로 되어야 함  -->
+<tr><td class="anscontent">내용</td><td class="vcontent" > <%=qnaDTO.getRecontent()%></td></tr> <!--  관리지가 답변한 내용이 없으면 ? 없습니다.라고 뜨게해야함 -->
+</table>
 
+<div class="btn"> 
+		
+          <!--  qna답변  -->
+       <button type="button" value="답변" class="answerbtn" onclick="location.href='qnaRe.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 답변 및 수정 </button>
+       <button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
+   </div>
+<%
+   }
+   }
+   }
+%>
 
    </div> 
   

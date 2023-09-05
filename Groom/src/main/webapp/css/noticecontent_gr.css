@@ -11,10 +11,19 @@
 		format('woff');
 }
 
+#notice{
+	border-collapse: collapse;
+width: 1000px;
+margin-top: 40px;
+margin-left: 200px;
+}
+
 * {
       font-family: 'Godo';
       
 }
+
+
 #fh5co-main {
 	position: relative;
 	height: 1500px;
@@ -33,8 +42,8 @@ hr {
     margin-bottom: 20px;
     border: 0;
     border-top: 1px solid #000;
-    width: 80%;
-    margin-left: 100px;
+    width: 1000px;
+    margin-left: 200px;
     margin-bottom : 50px;
 }
 

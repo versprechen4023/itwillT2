@@ -9,6 +9,7 @@ import java.util.List;
 
 import web.groom.dto.MemberDTO;
 import web.groom.dto.MypageDTO;
+import web.groom.dto.OrderReservationDTO;
 import web.groom.security.MemberSecurity;
 
 public class MypageDAO {
@@ -309,6 +310,52 @@ public class MypageDAO {
 		}
 		return mypageDTO;
 	}// userCheck()
+
+	public List<OrderReservationDTO> getReservationList() {
+		System.out.println("AdminDAO getReservationList()");
+		String sql = "select a.res_num, a.res_day, a.res_time, b.pro_name, c.pet_size, b.pet_weight,"
+				+ "          d.s_location, e.emp_grade, e.emp_name, f.u_name, f.u_phone, a.res_point,"
+				+ "          a.res_price, a.res_status, a.res_method"
+				+ "   from test_reservation a"
+				+ "   join product2 b on a.pro_id2 = b.pro_id2"
+				+ "   join product1 c on a.pro_id1 = c.pro_id1"
+				+ "   join store d on a.s_num = d.s_num"
+				+ "   join employees e on a.emp_num = e.emp_num"
+				+ "   join user2 f on a.u_num = f.u_num"
+				+ "   order by a.res_num desc;";
+		List<OrderReservationDTO> reservationList = null;
+		try {
+			con = new SQLConnection().getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			reservationList = new ArrayList<>();
+			while(rs.next()){
+				OrderReservationDTO orderReservationDTO = new OrderReservationDTO();
+				orderReservationDTO.setRes_num(rs.getInt("res_num"));
+				orderReservationDTO.setRes_day(rs.getString("res_day"));
+				orderReservationDTO.setRes_time(rs.getString("res_time"));
+				orderReservationDTO.setPro_name(rs.getString("pro_name"));
+				orderReservationDTO.setPet_size(rs.getString("pet_size"));
+				orderReservationDTO.setPet_weight(rs.getString("pet_weight"));
+				orderReservationDTO.setS_location(rs.getString("s_location"));
+				orderReservationDTO.setEmp_grade(rs.getString("emp_grade"));
+				orderReservationDTO.setEmp_name(rs.getString("emp_name"));
+				orderReservationDTO.setU_name(rs.getString("u_name"));
+				orderReservationDTO.setU_phone(rs.getString("u_phone"));
+				orderReservationDTO.setRes_point(rs.getInt("res_point"));
+				orderReservationDTO.setRes_price(rs.getInt("res_price"));
+				orderReservationDTO.setRes_status(rs.getInt("res_status"));
+				orderReservationDTO.setRes_method(rs.getString("res_method"));
+				reservationList.add(orderReservationDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return reservationList;
+	}//예약리스트
+
 }
 	
 	

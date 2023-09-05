@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import web.groom.dto.MemberDTO;
 import web.groom.dto.MypageDTO;
+import web.groom.dto.OrderReservationDTO;
+import web.groom.service.AdminService;
 import web.groom.service.MemberService;
 import web.groom.service.MypageService;
 
@@ -60,7 +62,10 @@ public class MypageController extends HttpServlet {
 
 			List<MypageDTO> mypetList = ser.getMypetList(request);
 			request.setAttribute("mypetList", mypetList);
-
+			
+			List<OrderReservationDTO> reservationList = ser.getReservationList();
+			request.setAttribute("reservationList", reservationList);
+			
 			if (mypageInfo != null) {
 				webForward(request, response, "mypage", "mypage");
 			} else {

@@ -12,6 +12,7 @@ import web.groom.dao.MemberDAO;
 import web.groom.dao.MypageDAO;
 import web.groom.dto.MemberDTO;
 import web.groom.dto.MypageDTO;
+import web.groom.dto.OrderReservationDTO;
 
 public class MypageService {
 	MypageDAO mypagedao = null;
@@ -228,6 +229,17 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 		return mypagedto;
 	}
 
+	public List<OrderReservationDTO> getReservationList() {
+		System.out.println("AdminService getReservationList()");
+		List<OrderReservationDTO> reservationList = null;
+		try {
+			AdminDAO adminDAO = new AdminDAO();
+			reservationList = adminDAO.getReservationList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reservationList;
+	}
 
 
 

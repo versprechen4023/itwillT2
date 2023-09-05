@@ -224,6 +224,7 @@
 	String id = (String) session.getAttribute("id");
 	String role = (String)session.getAttribute("role");
 	String num = (String)session.getAttribute("num"); 
+	QnaDTO qnaDTO = (QnaDTO)request.getAttribute("qnaDTO");
 	%>
 
 	<jsp:include page="../inc/aside.jsp"></jsp:include>
@@ -233,12 +234,13 @@
 		<div class="fh5co-narrow-content">
 			<h2 class="h2">Q&A</h2>
 
-			<form action="qnaWritePro.bo" method="post" class="qnawrite" enctype="multipart/form-data">
+			<form action="qnaReWritePro.bo" method="post" class="qnawrite" enctype="multipart/form-data">
 <!--                 <form id="nwf" method="post" class="qnawrite" action="qnaWritePro.bo" enctype="multipart/form-data"> -->
 				<hr class="hrsolid">
 				<div class="abc">
 					<!--  name으로 값을 넘겨주기 때문에 서비스단에 form 안에 name과 String (name) = request.getparmeter("(name)"); 가 일치해야함 -->
 					<input type="hidden" name="u_id" value="<%=id%>" id="u_id">
+					<input type="hidden" name="qna_num" value="<%=qnaDTO.getQnanum()%>" id="qna_num">
 
 <!-- 					<div> -->
 <!-- 						<label class="category"> 분류: </label> <select name="qna_category" -->
@@ -255,15 +257,9 @@
 					<!--  category -->
 
 					<div>
-						<p class="p">글 제목</p>
-						<input type="text" class="qna_title" placeholder="제목을 입력해주세요."
-							name="qna_title" maxlength="50">
-					</div>
-
-					<div>
 						<p>글 내용</p>
 						<textarea cols="108" rows="10" placeholder="Input some text."
-							name="qna_content"></textarea>
+							name="re_content" id="re_content"><%=qnaDTO.getRecontent() %></textarea>
 					</div>
 
 					<div>

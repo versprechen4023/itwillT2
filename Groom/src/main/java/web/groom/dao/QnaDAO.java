@@ -218,7 +218,10 @@ public class QnaDAO {
 				qnaDTO.setId(rs.getString("u_id"));
 				qnaDTO.setTitle(rs.getString("qna_title"));
 				qnaDTO.setContent(rs.getString("qna_content"));
+				qnaDTO.setCategory(rs.getString("qna_category"));
+				qnaDTO.setDate(rs.getTimestamp("qna_date"));
 				qnaDTO.setQnaimgurl(rs.getString("qna_img_url"));
+				qnaDTO.setRedate(rs.getTimestamp("re_date"));
 				qnaDTO.setRecontent(rs.getString("re_content"));
 
 				qnaDTO.setQnanum(qnanum);
@@ -241,14 +244,16 @@ public class QnaDAO {
 			// QNA 테이블에 있는 값들 
 //			String sql = "INSERT INTO qna(u_id , qna_title , qna_content, qna_date, qna_category, qna_img_url,"
 //					+ "re_ref, re_lev, re_seq, qna_isanswered, re_content, re_date) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
-			String sql = "INSERT INTO qna(u_id , qna_title , qna_content, qna_date, qna_category, qna_img_url) VALUES(?,?,?,?,?,?)";
+			String sql = "INSERT INTO qna(u_id , qna_title , qna_category, qna_content,qna_img_url, qna_date ) VALUES(?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);  
 			pstmt.setString(1, qnaDTO.getId()); 
 			pstmt.setString(2, qnaDTO.getTitle());
-			pstmt.setString(3, qnaDTO.getContent());
-			pstmt.setTimestamp(4, qnaDTO.getDate());
-			pstmt.setString(5, qnaDTO.getCategory());
-			pstmt.setString(6, qnaDTO.getQnaimgurl());
+			pstmt.setString(3, qnaDTO.getCategory());
+			pstmt.setString(4, qnaDTO.getContent());
+			pstmt.setString(5, qnaDTO.getQnaimgurl());
+			pstmt.setTimestamp(6, qnaDTO.getDate());
+			
+			
 //			pstmt.setInt(7, qnaDTO.getQreref());
 //			pstmt.setInt(8, qnaDTO.getQrelev());
 //			pstmt.setInt(9, qnaDTO.getQreseq());
@@ -292,13 +297,14 @@ public class QnaDAO {
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "update qna"
-					+ "   set u_id=?, qna_title=?, qna_content=? "
+					+ "   set qna_title=?, qna_content=?,qna_img_url=?, qna_category=?"
 					+ "   where qna_num=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, qnaDTO.getId()); 
-			pstmt.setString(2, qnaDTO.getTitle());
-			pstmt.setString(3, qnaDTO.getContent());
-			pstmt.setInt(4, qnaDTO.getQnanum());
+			pstmt.setString(1, qnaDTO.getTitle());
+			pstmt.setString(2, qnaDTO.getContent());
+			pstmt.setString(3, qnaDTO.getQnaimgurl());
+			pstmt.setString(4, qnaDTO.getCategory());
+			pstmt.setInt(5, qnaDTO.getQnanum());
 			
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -317,16 +323,11 @@ public class QnaDAO {
 		System.out.println("QnaDAO writeRe()");
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "update qna"
-					+ "   set re_content=?,re_date=? re_ref=?+1, re_lev=?+1 re_seq=?+1"
-					+ "   where qna_num=?";
+			String sql = "update qna set re_content=? ,re_date=?  where qna_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, qnaDTO.getRecontent());
 			pstmt.setTimestamp(2, qnaDTO.getRedate());
-			pstmt.setInt(3, qnaDTO.getQreref());
-			pstmt.setInt(4, qnaDTO.getQrelev());
-			pstmt.setInt(5, qnaDTO.getQreseq());
-			pstmt.setInt(6, qnaDTO.getQnanum());
+			pstmt.setInt(3, qnaDTO.getQnanum());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

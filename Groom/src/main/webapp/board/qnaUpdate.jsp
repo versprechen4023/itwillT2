@@ -237,15 +237,15 @@
 				<div class="abc">
 					<!--  name으로 값을 넘겨주기 때문에 서비스단에 form 안에 name과 String (name) = request.getparmeter("(name)"); 가 일치해야함 -->
 					<input type="hidden" name="u_id" value="<%=id%>" id="u_id">
-
+					<input type="hidden" name="qna_num" value="<%=qnaDTO.getQnanum()%>" id="qna_num">
 					<div>
 						<label class="category"> 분류: </label> <select name="qna_category"
 							id="qna_category">
 							<option value="선택" disabled>분류</option>
-							<option value="A">서비스</option>
-							<option value="B">결제</option>
-							<option value="C">이용문의</option>
-							<option value="D">기타</option>
+							<option value="서비스">서비스</option>
+							<option value="결제">결제</option>
+							<option value="이용문의">이용문의</option>
+							<option value="기타">기타</option>
 
 						</select>
 
@@ -281,7 +281,7 @@
                   onclick="triggerFileInput()">
 <!--             <p class="img_text" style="margin: 0;">사진/동영상 추가</p> -->
 				<input type="hidden" name="oldfile" value="<%=qnaDTO.getQnaimgurl() %>">
-                <input type="file" id="fileInput" name="n_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
+                <input type="file" id="fileInput" name="qna_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
                 <div id="fileInfoDisplay">　<%=qnaDTO.getQnaimgurl() %></div>
         </div>
 					</div>

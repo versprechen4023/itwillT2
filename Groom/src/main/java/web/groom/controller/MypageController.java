@@ -63,7 +63,7 @@ public class MypageController extends HttpServlet {
 			List<MypageDTO> mypetList = ser.getMypetList(request);
 			request.setAttribute("mypetList", mypetList);
 			
-			List<OrderReservationDTO> reservationList = ser.getReservationList();
+			List<OrderReservationDTO> reservationList = ser.getReservationList(request);
 			request.setAttribute("reservationList", reservationList);
 			
 			if (mypageInfo != null) {

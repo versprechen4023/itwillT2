@@ -1,5 +1,5 @@
 @charset "UTF-8";
-#message {
+#res_u_req {
   height: 500px;
   width: 400px;
   resize:none;
@@ -12,4 +12,7 @@
 
 .custom-select option[value=""][disabled] {
 	display: none;
+}
+.center-button {
+    text-align: center; /* 버튼 내용을 수평 가운데 정렬 */
 }

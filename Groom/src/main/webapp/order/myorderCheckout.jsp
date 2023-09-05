@@ -2,7 +2,7 @@
 <%@page import="web.groom.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 
 OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
@@ -48,14 +48,6 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 									    <p>연락처</p>
 										<input type="text" class="form-control" id="phone" name="phone" value="<%=orderInfo.getU_phone()%>" readonly>
 									</div>
-									<div class="form-group">
-										<p>예상예약 요금</p>
-										<input type="text" class="form-control" id="res_price" name="res_price" value="<%=orderInfo.getRes_price()%>" readonly>
-									</div>
-									<div class="form-group">
-										<p>사용할 포인트</p>
-										<input type="text" class="form-control" id="res_point" name="res_point" value="<%=orderInfo.getRes_point()%>" readonly>
-									</div>
 								</div>
 								<div class="col-md-3">
 								    <div class="form-group">
@@ -89,6 +81,14 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 										<p>선택하신 예약시간</p>
 										<input type="text" id="res_time" name="res_time" class="form-control" value="<%=orderInfo.getRes_time()%>" readonly>
 									</div>
+									<div class="form-group">
+										<p>예상예약 요금</p>
+										<input type="text" class="form-control" id="res_price" name="res_price" value="<%=orderInfo.getRes_price()%>" readonly>
+									</div>
+									<div class="form-group">
+										<p>사용할 포인트</p>
+										<input type="text" class="form-control" id="res_point" name="res_point" value="<%=orderInfo.getRes_point()%>" readonly>
+									</div>
 								</div>
 								
 								<div class="col-md-3">
@@ -105,8 +105,21 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 								
 							</div>
 						</div>
-					<button type="button" class="btn btn-primary my-class" id="call_api" onclick="callAPI()">카드 결제</button>
-					<button type="button" class="btn btn-primary" id="call_api_kakao" onclick="callAPIKakao()">카카오페이 결제</button>	
+					<c:choose>
+						<c:when test="${param.price == 0}">
+						<div class="center-button">
+						<button type="button" class="btn btn-primary my-class" id="call_api" onclick="callconfirm()">예약하기</button>
+						<button type="button" class="btn btn-primary" id="cancel" onclick="backmain()">예약취소</button>
+						</div>	
+						</c:when>
+						<c:otherwise>
+						<div class="center-button">
+						<button type="button" class="btn btn-primary my-class" id="call_api" onclick="callAPI('html5_inicis')">카드 결제</button>
+						<button type="button" class="btn btn-primary" id="call_api_kakao" onclick="callAPI('kakaopay')">카카오페이 결제</button>
+						<button type="button" class="btn btn-primary" id="cancel" onclick="backmain()">결제취소</button>
+						</div>
+						</c:otherwise>
+					</c:choose>	
 					</div>
 					<input type="hidden" id="s_num" name="s_num" value="<%=orderInfo.getS_num()%>">
 					<input type="hidden" id="pro_id1" name="pro_id1" value="<%=orderInfo.getP_num()%>">
@@ -133,14 +146,23 @@ let name = "<%=orderInfo.getS_name()%>" // 서비스나 물건이름 여기서�
 let payment = "" //페이먼트 설정 html5_inicis, kakaopay, naverco
 let res_method = ""
 
-function callAPI(){
-	payment = "html5_inicis";
+function callAPI(pay){
+	payment = pay;
 	confirmPayment();
 }
 
-function callAPIKakao(){
-	payment = "kakaopay";
-	confirmPayment();
+function backmain(){
+	var confirmResult = confirm("결제를 취소하고 메인으로 돌아가시겠습니까?");
+	if (confirmResult) {
+		location.href='main.gr';
+	}
+}
+
+function callconfirm(){
+	var confirmResult = confirm("예약하시겠습니까?");
+	if (confirmResult) {
+		document.getElementById("checkout").submit();
+	}
 }
 
 function confirmPayment() {

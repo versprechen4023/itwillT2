@@ -160,7 +160,7 @@ public class OrderService {
 			String res_day = request.getParameter("datepicker");
 			String res_time = request.getParameter("timepicker");
 			String res_price = request.getParameter("price");
-			String res_u_req = request.getParameter("message");
+			String res_u_req = request.getParameter("res_u_req");
 			String res_point = request.getParameter("point");
 			
 			// 상품번호 계산(상품종류값+무게값)-1

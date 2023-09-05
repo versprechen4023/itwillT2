@@ -46,16 +46,6 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 									    <p>연락처</p>
 										<input type="text" class="form-control" id="phone" name="phone" value="<%=memberInfo.getU_Phone()%>" readonly>
 									</div>
-									<div class="form-group">
-										<p>예상예약 요금</p>
-										<input type="text" class="form-control" id="price" name="price" readonly>
-									</div>
-									<div class="form-group">
-										<p>포인트 사용</p>
-										<input type="text" class="form-control" id="point" name="point" value="0">
-										내 포인트 = <%=memberInfo.getU_Point()%><br>
-										포인트 사용<input type="checkbox" id="pointcheck" name="pointcheck">
-									</div>
 								</div>
 								<div class="col-md-3">
 								    <div class="form-group">
@@ -105,19 +95,33 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 										<p>예약시간 선택</p>
 										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="예약시간을 선택하세요" disabled>
 									</div>
+									<div class="form-group">
+										<p>기존 요금</p>
+										<input type="text" class="form-control" id="realprice" name="realprice" readonly>
+									</div>
+									<div class="form-group">
+										<p>예상예약 요금</p>
+										<input type="text" class="form-control" id="price" name="price" readonly>
+									</div>
+									<div class="form-group">
+										<p>포인트 사용</p>
+										<input type="text" class="form-control" id="point" name="point" value="0">
+										내 포인트 = <%=memberInfo.getU_Point()%><br>
+										포인트 사용<input type="checkbox" id="pointcheck" name="pointcheck">
+									</div>
 								</div>
 								
 								<div class="col-md-3">
 									<div class="form-group">
 										<p>요청사항작성</p>
-										<textarea id="message" name="message" cols="30" rows="7" class="form-control" placeholder="요청사항이 있으면 기입해 주십시오"></textarea>
+										<textarea id="res_u_req" name="res_u_req" cols="30" rows="7" class="form-control" placeholder="요청사항이 있으면 기입해 주십시오"></textarea>
 									</div>
 									
 								</div>
 								
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="center-button">
 							<input type="submit" class="btn btn-primary btn-md" value="예약하기">
 						</div>
 					</div>
@@ -218,6 +222,7 @@ var managerlist = document.getElementById("managerlist");
 var datepicker = document.getElementById("datepicker");
 var timepicker = document.getElementById("timepicker");
 var price = document.getElementById("price");
+var realprice = document.getElementById("realprice");
 var point = parseInt(document.getElementById("point").value);
 	
 //제이쿼리 함수 시작 지점
@@ -244,6 +249,8 @@ $j(document).ready(function() {
 		  managerlist.value = "";//금액을 재설정하기위해 초기화
 		  datepicker.value = "";
 		  timepicker.value ="";
+		  price.value= "";
+		  realprice.value ="";
 		  $j("#datepicker").attr('disabled','disabled');
 	});
 	
@@ -251,6 +258,8 @@ $j(document).ready(function() {
 		managerlist.value = "";//금액을 재설정하기위해 초기화
 		datepicker.value = "";
 		timepicker.value ="";
+		price.value= "";
+		realprice.value ="";
 		$j("#datepicker").attr('disabled','disabled');//날짜 입력 초기화
 	});
 	
@@ -294,6 +303,8 @@ $j(document).ready(function() {
 		timepicker.value ="";
 		
 		price.value ="";
+		
+		realprice.value ="";
 		
 		for (var i = servicelist.options.length - 1; i >= 0; i--) {
     	    if (servicelist.options[i].value !== "") {
@@ -455,6 +466,10 @@ $j(document).ready(function() {
     	datepicker.value = "";
 		timepicker.value ="";
 		
+		// 모든 값 입력 안되면 비활성화
+		$j("#datepicker").attr('disabled','disabled');
+    	$j("#timepicker").attr('disabled','disabled');
+    	
         // 서비스 가격 계산을 위한 밸류값 가져오기
         var selectedService = $j("#servicelist").val();
         var selectedWeight = $j("#weightlist").val();
@@ -480,6 +495,7 @@ $j(document).ready(function() {
             url: 'getPrice.aj',
             data: {"selectedPet": selectedPet, "selectedPrice":selectedPrice, "selectedManager":selectedManager}, // 선택된 값을 서버로 전송
             success: function(result) {
+            	realprice.value = result;
             	//포인트가 0이아니고 포인트 사용에 체크되어있으면 가격 계산
             	if(!point == "" && $('#pointcheck').prop('checked')){
             		//포인트 금액이 기존 금액에서 추가될경우 금액 강제 상한으로 변경

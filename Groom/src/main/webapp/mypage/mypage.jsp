@@ -253,7 +253,8 @@ String format_res_time = res_time.substring(0, 5);
         </td>
     	<td>
     	    <input type="button" value="✕" class="status-button"
-    		 onclick="isCanChange('<%=orderReservationDTO.getRes_day()%>', '<%=orderReservationDTO.getRes_time()%>', <%=orderReservationDTO.getRes_num() %>)">
+    		 onclick="isCanChange('<%=orderReservationDTO.getRes_day()%>', '<%=orderReservationDTO.getRes_time()%>', <%=orderReservationDTO.getRes_num() %>, 
+    		 <%=orderReservationDTO.getS_num()%>, <%=orderReservationDTO.getEmp_num()%>)">
     	</td>
     	<td>
     	    <input type="button" value="△" class="status-button"
@@ -286,23 +287,18 @@ String format_res_time = res_time.substring(0, 5);
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-var date = "";
-var time = "";
-function isCanChange(userDate, userTime, res_num) {
-	
-	date = userDate;
-	time = userTime;
-	
+function isCanChange(userDate, userTime, res_num, s_num, emp_num) {
+
 	// 예약 일정 변경 유무 AJAX처리
 	$.ajax({
 	  type: "GET",
 	  url: 'getChange.aj',
-	  data: {"userDate": date, "userTime": time}, // 선택된 값을 서버로 전송
+	  data: {"userDate": userDate, "userTime": userTime}, // 선택된 값을 서버로 전송
 	  success: function(data) {
 		  const result = $.trim(data);
 		  
 		  if(result=="true"){
-		  location.href = 'changeRes.my?res_num='+res_num;
+		  location.href = 'changeRes.my?res_num='+res_num+'&s_num='+s_num+'&emp_num='+emp_num;
 		  
  		  }else if ( result=="false"){
  		  alert("예약시간까지 2시간 미만일경우 예약 일정을 변경 하실 수 없습니다")

@@ -12,8 +12,8 @@
 <input type="text" id="datepicker" name="datepicker" placeholder="변경하실 날짜를 선택하세요" readonly>
 <input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="변경하실 시간을 선택하세요" disabled>
 <input type="submit" value="등록">
-<input type="hidden" id="s_num" name="s_num" value="1">
-<input type="hidden" id="emp_num" name="emp_num" value="1">
+<input type="hidden" id="s_num" name="s_num" value="${param.s_num}">
+<input type="hidden" id="emp_num" name="emp_num" value="${param.emp_num}">
 <input type="hidden" id="res_num" name="res_num" value="${param.res_num}">
 <%-- 밸류에는 지점값추가(${param.s_num}) 하면됨 --%>
 </form>

@@ -314,7 +314,7 @@ public class MypageDAO {
 
 	public List<OrderReservationDTO> getReservationList(int u_num) {
 		System.out.println("AdminDAO getReservationList()");
-		String sql = "select a.res_num, a.res_day, a.res_time, b.pro_name, c.pet_size, b.pet_weight,"
+		String sql = "select a.res_num, a.res_day, a.res_time, a.s_num, a.emp_num, b.pro_name, c.pet_size, b.pet_weight,"
 				+ "          d.s_location, e.emp_grade, e.emp_name, f.u_name, f.u_phone, a.res_point,"
 				+ "          a.res_price, a.res_status, a.res_method, a.res_point_status"
 				+ "   from test_reservation a"
@@ -334,10 +334,11 @@ public class MypageDAO {
 			reservationList = new ArrayList<>();
 			while(rs.next()){
 				OrderReservationDTO orderReservationDTO = new OrderReservationDTO();
-//				orderReservationDTO.setU_num(rs.getInt("u_num"));
 				orderReservationDTO.setRes_num(rs.getInt("res_num"));
 				orderReservationDTO.setRes_day(rs.getString("res_day"));
 				orderReservationDTO.setRes_time(rs.getString("res_time"));
+				orderReservationDTO.setS_num(rs.getInt("s_num"));
+				orderReservationDTO.setEmp_num(rs.getInt("emp_num"));
 				orderReservationDTO.setPro_name(rs.getString("pro_name"));
 				orderReservationDTO.setPet_size(rs.getString("pet_size"));
 				orderReservationDTO.setPet_weight(rs.getString("pet_weight"));

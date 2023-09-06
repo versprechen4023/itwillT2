@@ -333,7 +333,7 @@ public class MypageDAO {
 			reservationList = new ArrayList<>();
 			while(rs.next()){
 				OrderReservationDTO orderReservationDTO = new OrderReservationDTO();
-				orderReservationDTO.setU_num(rs.getInt("u_num"));
+//				orderReservationDTO.setU_num(rs.getInt("u_num"));
 				orderReservationDTO.setRes_num(rs.getInt("res_num"));
 				orderReservationDTO.setRes_day(rs.getString("res_day"));
 				orderReservationDTO.setRes_time(rs.getString("res_time"));

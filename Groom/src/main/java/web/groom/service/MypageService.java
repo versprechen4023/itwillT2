@@ -233,9 +233,10 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 		System.out.println("AdminService getReservationList()");
 		List<OrderReservationDTO> reservationList = null;
 		int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+	
 		try {
-			AdminDAO adminDAO = new AdminDAO();
-			reservationList = adminDAO.getReservationList();
+			mypagedao = new MypageDAO();
+			reservationList = mypagedao.getReservationList(u_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

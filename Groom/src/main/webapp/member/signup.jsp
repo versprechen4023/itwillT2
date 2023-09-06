@@ -314,6 +314,7 @@ function sendVerificationEmail() {
       alert("이메일로 인증번호가 전송되었습니다.");  
       canCallFunction = false;
       
+      // 60초후에 인증번호 다시 발송 할 수 있게 setTimeout 함수 사용
       setTimeout(function() {
           canCallFunction = true;
       }, 60000);
@@ -325,22 +326,13 @@ function sendVerificationEmail() {
           $('#emailtest').text("");
           $("#verificationCode").removeAttr("readonly");
           $('#verificationCode').attr('placeholder','인증번호를 입력해주세요'); 
-        },//success 콜백함수 종료지점
-        error: function(xhr, status, error) {
-          alert("이메일 전송 중 오류가 발생했습니다. 다시 시도해주세요.");
-        }//error 콜백함수 종료지점
+        }//success 콜백함수 종료지점
       });// ajax
       } else {
     	  alert("이미 인증 코드를 발송하였습니다, 인증코드가 오지 않는다면 60초후에 다시 시도해 주십시오");
       }// 60초 타이머 end if
     }// 이메일인증 end if
  }//이메일인증종료
-   
-  //이메일 정규식 유효성 검사
-  function validateEmail(email) {
-    var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    return regExp.test(email); //test메서드로 정규식 검사만함
-  }
 
 //이메일인증
 $('#verificationCode').keyup(function(){

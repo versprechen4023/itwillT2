@@ -132,7 +132,6 @@ public class AjaxController extends HttpServlet {
 		    
 		    //orderDTO의 내용을 모두 JSON 오브젝트에 삽입
 			for(OrderDTO orderDTO : serviceDate) {
-				
 				JSONObject object = new JSONObject();
 				object.put("date", format.format(orderDTO.getDate()));
 				// 배열 한칸에 저장

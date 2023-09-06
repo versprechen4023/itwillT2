@@ -14,6 +14,7 @@
 <input type="submit" value="등록">
 <input type="hidden" id="s_num" name="s_num" value="1">
 <input type="hidden" id="emp_num" name="emp_num" value="1">
+<input type="hidden" id="res_num" name="res_num" value="${param.res_num}">
 <%-- 밸류에는 지점값추가(${param.s_num}) 하면됨 --%>
 </form>
 

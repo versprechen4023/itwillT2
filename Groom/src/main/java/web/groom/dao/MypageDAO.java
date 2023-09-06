@@ -361,6 +361,36 @@ public class MypageDAO {
 		return reservationList;
 	}//예약리스트
 
+	public boolean changeRes(String res_day, String res_time, int res_num, int u_num) {
+		
+		boolean result = false;
+		
+		try {
+			
+			//db연결
+			con = new SQLConnection().getConnection();
+			
+			String SQL = "UPDATE test_reservation SET res_day = ?, res_time = ? WHERE res_num = ? and u_num = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, res_day);
+			pstmt.setString(2, res_time);
+			pstmt.setInt(3, res_num);
+			pstmt.setInt(4, u_num);
+			int rs = pstmt.executeUpdate();
+			
+
+			// 업데이트 성공유무 결정
+			result = (rs != 0) ? true : false;
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return result;
+	}
+
 }
 	
 	

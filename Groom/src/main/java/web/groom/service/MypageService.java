@@ -243,4 +243,26 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 		return reservationList;
 	}
 
+	public boolean changeRes(HttpServletRequest request) {
+		
+		boolean result = false;
+		
+		String res_day = request.getParameter("datepicker");
+		String res_time = request.getParameter("timepicker");
+		
+		int res_num = Integer.parseInt(request.getParameter("res_num"));
+		
+		int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+		
+		try {
+			
+			mypagedao = new MypageDAO();
+			result = mypagedao.changeRes(res_day, res_time, res_num, u_num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

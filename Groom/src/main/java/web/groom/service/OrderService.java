@@ -1,6 +1,10 @@
 package web.groom.service;
 
 import java.sql.Time;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -245,6 +249,56 @@ public class OrderService {
 			e.printStackTrace();
 		}
 		return orderReserv;
+	}
+
+	public boolean getCanChange(HttpServletRequest request) {
+		
+		boolean result = false;
+		
+		String userDate = request.getParameter("userDate");
+		String userTime = request.getParameter("userTime");
+		
+		// 현재 날짜 가져오는함수
+        LocalDate currentDate = LocalDate.now();
+        // 출력 형식 지정
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        // 현재 날짜를 지정된 형식으로 변수에 저장
+        String nowDate = currentDate.format(dateFormat);
+        
+        // 날짜가 같다면 시간계산
+        if(userDate.equals(nowDate)) {
+        	
+        	// 현재시간 가져오기
+            LocalTime currentTime = LocalTime.now();
+            // 출력 형식 지정
+            DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
+            // 현재 시간을 지정된 형식으로 변수에 저장
+            String nowTime = currentTime.format(timeFormat);
+            
+            // 시간 계산 수행을 위한 형변환
+            LocalTime localUserTime = LocalTime.parse(userTime);
+            
+            LocalTime localNowTime = LocalTime.parse(nowTime);
+            
+            // 시간 차이 계산 수행
+            Duration getTimeMath = Duration.between(localNowTime, localUserTime);
+            
+            // 시간 차이를 초로 변환
+            long TimeResult = getTimeMath.getSeconds();
+
+            if (TimeResult >= 2 * 60 * 60) {
+            	// 2시간 이상의 여유가 있다면 예약 일정 변경 가능
+                result = true;
+            } else {
+            	// 예약까지 2시간 미만이라면 예약 일정 변경 불가능
+                result = false;
+            }
+            
+        } else {
+        	result = true;
+        }
+		
+		return result;
 	}
 
 }

@@ -327,6 +327,21 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		}// [포인트회수]
 		
+		// AJAX관련 예약 일정 변경 유무 검사
+		if (sPath.equals("/getChange.aj")) {
+
+			OrderService orderService = new OrderService();
+			
+			// 예약 일정 변경 유무 확인
+			boolean result = orderService.getCanChange(request);
+
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Boolean.toString(result));
+			out.close();
+		}
+		
 	}
 
 	@Override

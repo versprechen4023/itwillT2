@@ -253,7 +253,7 @@ String format_res_time = res_time.substring(0, 5);
         </td>
     	<td>
     	    <input type="button" value="✕" class="status-button"
-    		 onclick="confirmStatusCancel(<%=orderReservationDTO.getRes_num()%>)">
+    		 onclick="isCanChange('<%=orderReservationDTO.getRes_day()%>', '<%=orderReservationDTO.getRes_time()%>')">
     	</td>
     	<td>
     	    <input type="button" value="△" class="status-button"
@@ -283,5 +283,33 @@ String format_res_time = res_time.substring(0, 5);
 </div>
 
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+var date = ""
+var time = ""
+function isCanChange(userDate, userTime) {
+	
+	date = userDate;
+	time = userTime;
+	
+	// 예약 일정 변경 유무 AJAX처리
+	$.ajax({
+	  type: "GET",
+	  url: 'getChange.aj',
+	  data: {"userDate": date, "userTime": time}, // 선택된 값을 서버로 전송
+	  success: function(data) {
+		  const result = $.trim(data);
+		  
+		  if(result=="true"){
+		  alert("예약 변경 가능");
+ 		  }else if ( result=="false"){
+ 		  alert("예약시간까지 2시간 미만일경우 예약 일정을 변경 하실 수 없습니다")
+ 		  }
+	  }
+	  
+	});// end ajax
+}// end function
+</script>
 </body>
 </html>

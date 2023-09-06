@@ -10,6 +10,7 @@ import java.util.List;
 import web.groom.dto.AdminDTO;
 import web.groom.dto.MemberDTO;
 import web.groom.dto.OrderReservationDTO;
+import web.groom.dto.ReviewDTO;
 
 public class AdminDAO {
 	
@@ -412,6 +413,95 @@ public class AdminDAO {
 		}
 		return result;
 	}//
+
+	public List<AdminDTO> getEmpDisTimeList() {
+		System.out.println("AdminDAO getEmpDisTimeList");
+		List<AdminDTO> empDisTimeList = null;
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "SELECT a.s_location, b.emp_name, c.dis_time, c.dis_daydate, c.dis_time_num"
+					+ "   FROM disabled_time c"
+					+ "   JOIN store a ON c.s_num = a.s_num"
+					+ "   JOIN employees b ON c.emp_num = b.emp_num"
+					+ "   ORDER BY a.s_num ASC, c.dis_time DESC, c.dis_daydate DESC;";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			empDisTimeList = new ArrayList<>();
+			while(rs.next()) {
+				AdminDTO adminDTO = new AdminDTO();
+				adminDTO.setS_location(rs.getString("s_location"));
+				adminDTO.setEmp_name(rs.getString("emp_name"));
+				adminDTO.setDis_time(rs.getString("dis_time"));
+				adminDTO.setDis_daydate(rs.getString("dis_daydate"));
+				adminDTO.setDis_time_num(rs.getInt("dis_time_num"));
+				
+				empDisTimeList.add(adminDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return empDisTimeList;
+	}// getEmpDisTimeList() [직원 쉬는시간 목록]
+
+	public List<AdminDTO> getEmpDisDaysList() {
+		System.out.println("AdminDAO getEmpDisDaysList");
+		List<AdminDTO> empDisDaysList = null;
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "SELECT a.s_location, b.emp_name, c.dis_day, c.dis_day_num"
+					+ "   FROM disabled_days c"
+					+ "   JOIN store a ON c.s_num = a.s_num"
+					+ "   JOIN employees b ON c.emp_num = b.emp_num"
+					+ "   ORDER BY a.s_num ASC, c.dis_day DESC;";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			empDisDaysList = new ArrayList<>();
+			while(rs.next()) {
+				AdminDTO adminDTO = new AdminDTO();
+				adminDTO.setS_location(rs.getString("s_location"));
+				adminDTO.setEmp_name(rs.getString("emp_name"));
+				adminDTO.setDis_day(rs.getString("dis_day"));
+				adminDTO.setDis_day_num(rs.getInt("dis_day_num"));
+				
+				empDisDaysList.add(adminDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return empDisDaysList;
+	}// getEmpDisDaysList() [직원 휴무일 목록]
+
+	public List<AdminDTO> getStoreDisDaysList() {
+		System.out.println("AdminDAO getStoreDisDaysList");
+		List<AdminDTO> storeDisDaysList = null;
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "SELECT a.s_location, b.off_day, b.off_num"
+					+ "   FROM store_offdays b"
+					+ "   JOIN store a ON a.s_num = b.s_num"
+					+ "   ORDER BY a.s_num ASC, b.off_day DESC;";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			storeDisDaysList = new ArrayList<>();
+			while(rs.next()) {
+				AdminDTO adminDTO = new AdminDTO();
+				adminDTO.setS_location(rs.getString("s_location"));
+				adminDTO.setOff_day(rs.getString("off_day"));
+				adminDTO.setOff_num(rs.getInt("off_num"));
+				
+				storeDisDaysList.add(adminDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return storeDisDaysList;
+	}// getStoreDisDaysList() [매장 휴무일 목록]
 
 	
 	

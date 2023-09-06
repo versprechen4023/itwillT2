@@ -28,7 +28,56 @@ public class AdminDTO {
 	private int today_res_b;
 	private int today_res_c;
 	
+	private int dis_time_num;//
+	private String dis_time;//
+	private String dis_daydate;//
+	private int dis_day_num;//
+	private String dis_day;//
+	private int off_num;//
+	private String off_day;//
 	
+	public int getOff_num() {
+		return off_num;
+	}
+	public void setOff_num(int off_num) {
+		this.off_num = off_num;
+	}
+	public String getOff_day() {
+		return off_day;
+	}
+	public void setOff_day(String off_day) {
+		this.off_day = off_day;
+	}
+	public int getDis_day_num() {
+		return dis_day_num;
+	}
+	public void setDis_day_num(int dis_day_num) {
+		this.dis_day_num = dis_day_num;
+	}
+	public String getDis_day() {
+		return dis_day;
+	}
+	public void setDis_day(String dis_day) {
+		this.dis_day = dis_day;
+	}
+	public int getDis_time_num() {
+		return dis_time_num;
+	}
+	public void setDis_time_num(int dis_time_num) {
+		this.dis_time_num = dis_time_num;
+	}
+	public String getDis_time() {
+		return dis_time;
+	}
+	public void setDis_time(String dis_time) {
+		this.dis_time = dis_time;
+	}
+	public String getDis_daydate() {
+		return dis_daydate;
+	}
+	public void setDis_daydate(String dis_daydate) {
+		this.dis_daydate = dis_daydate;
+	}
 	public int getTotal_user() {
 		return total_user;
 	}

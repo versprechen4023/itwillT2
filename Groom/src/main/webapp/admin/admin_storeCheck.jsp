@@ -89,7 +89,9 @@ List<AdminDTO> visibleItems = empList.subList(startIndex, endIndex);
 <div class="admin-content">
 <!-- [직원목록] -->
 <table class="admin-storeCheck1">
-    <tr><th colspan="3">매장정보</th></tr>
+    <tr><th colspan="3">매장정보
+    	<input type="button" value="매장 휴무일" class="disList-button"
+    	onclick="openStoreDisdays(); return false;"></th></tr>
     <tr class="font-bold border-bottom"><td>지점명</td><td>주소</td><td>전화번호</td><td class="closed-td">휴무일</td></tr>
     <tr><td>서면점</td><td>부산광역시 부산진구 양정로 42번길 15</td><td>051-1234-5678</td>
     	<td><input type="button" value="선택"
@@ -104,7 +106,11 @@ List<AdminDTO> visibleItems = empList.subList(startIndex, endIndex);
 </table>
 
 <table class="admin-storeCheck2">
-	<tr><th colspan="7">직원정보</th></tr>
+	<tr><th colspan="7" class="left-align2">직원정보
+		<input type="button" value="직원 휴무일" class="disList-button"
+		 onclick="openEmpDisdays(); return false;">
+		<input type="button" value="직원 쉬는시간" class="disList-button"
+		 onclick="openEmpDistime(); return false;"></tr>
     <tr class="font-bold border-bottom"><td>번호</td>
     	<td>지점명</td>
     	<td>직급</td>
@@ -212,6 +218,16 @@ function openDisDaytime(emp_num, s_num) {
 function openDisDay(emp_num, s_num) {
     var url = 'empDisDay.ad?emp_num='+emp_num+'&s_num='+s_num;
     var newWindow = window.open(url, '_blank', 'width=360px, height=360px, left=600px, top=300px');
+}
+//
+function openStoreDisdays(){
+	window.open('check_StoreDisdays.ad', '_blank', 'width=256px, height=300px');
+}
+function openEmpDisdays(){
+	window.open('check_EmpDisdays.ad', '_blank', 'width=256px, height=300px');
+}
+function openEmpDistime(){
+	window.open('check_EmpDistime.ad', '_blank', 'width=316px, height=300px');
 }
 </script>
 </body>

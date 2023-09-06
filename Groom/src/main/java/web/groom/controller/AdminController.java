@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import web.groom.dto.AdminDTO;
 import web.groom.dto.MemberDTO;
 import web.groom.dto.OrderReservationDTO;
+import web.groom.dto.ReviewDTO;
 import web.groom.service.AdminService;
+import web.groom.service.ReviewService;
 
 @WebServlet("*.ad") //.ad 관리자페이지 어노테이션 매핑 선언
 public class AdminController extends HttpServlet {
@@ -72,7 +74,6 @@ public class AdminController extends HttpServlet {
 		if (sPath.equals("/storeDisDay.ad")) {
 			 webForward(request, response, "admin", "admin_daydate");
 	    }
-		
 		if (sPath.equals("/admin_disday.ad")) {
 			// 어드민 서비스 객체생성
 			AdminService adminService = new AdminService();
@@ -80,15 +81,15 @@ public class AdminController extends HttpServlet {
 			boolean result = adminService.insertDisDay(request);
 			if(result) {
 				System.out.println("휴무일 업데이트 성공");
+				response.getWriter().println("<script>window.close();</script>");
 			} else {
 				System.out.println("휴무일 업데이트 실패");
 			}
-	    }
+	    }//
 		
 		if (sPath.equals("/empDisTime.ad")) {
 			 webForward(request, response, "admin", "admin_daytime");
-	    }//
-		
+	    }
 		if (sPath.equals("/admin_distime.ad")) {
 			// 어드민 서비스 객체생성
 			AdminService adminService = new AdminService();
@@ -96,25 +97,16 @@ public class AdminController extends HttpServlet {
 			boolean result = adminService.insertDisDayTime(request);
 			if(result) {
 				System.out.println("휴무시간 업데이트 성공");
+				response.getWriter().println("<script>window.close();</script>");
 			} else {
 				System.out.println("휴무시간 업데이트 실패");
 			}
 	    }//
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		if (sPath.equals("/empDisDay.ad")) {
 			 webForward(request, response, "admin", "admin_disdayEmp");
-	    }//
-		
+	    }
 		if (sPath.equals("/admin_disdayEmp.ad")) {
 			// 어드민 서비스 객체생성
 			AdminService adminService = new AdminService();
@@ -122,10 +114,46 @@ public class AdminController extends HttpServlet {
 			boolean result = adminService.insertDisDayEmp(request);
 			if(result) {
 				System.out.println("휴무시간 업데이트 성공");
+				response.getWriter().println("<script>window.close();</script>");
 			} else {
 				System.out.println("휴무시간 업데이트 실패");
 			}
 	    }//
+		
+		if (sPath.equals("/check_StoreDisdays.ad")) {
+			adminService = new AdminService();
+			List<AdminDTO> storeDisDaysList = adminService.getStoreDisDaysList();
+			request.setAttribute("storeDisDaysList", storeDisDaysList);
+			System.out.println("check_StoreDisdays.ad");
+			
+			webForward(request, response, "admin", "check_StoreDisdays");
+	     }// check_StoreDisdays.ad [매장 휴무일 목록]
+		
+		if (sPath.equals("/check_EmpDisdays.ad")) {
+			adminService = new AdminService();
+			List<AdminDTO> empDisDaysList = adminService.getEmpDisDaysList();
+			request.setAttribute("empDisDaysList", empDisDaysList);
+			System.out.println("check_EmpDisdays.ad");
+			
+			webForward(request, response, "admin", "check_EmpDisdays");
+	     }// check_StoreDisdays.ad [직원 휴무일 목록]
+		
+		if (sPath.equals("/check_EmpDistime.ad")) {
+			adminService = new AdminService();
+			List<AdminDTO> empDisTimeList = adminService.getEmpDisTimeList();
+			request.setAttribute("empDisTimeList", empDisTimeList);
+			System.out.println("check_EmpDistime.ad");
+			
+			webForward(request, response, "admin", "check_EmpDistime");
+	     }// check_StoreDisdays.ad [직원 쉬는시간 목록]
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}// doProcess
 	

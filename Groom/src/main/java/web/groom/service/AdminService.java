@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import web.groom.dao.AdminDAO;
 import web.groom.dao.MemberDAO;
+import web.groom.dao.ReviewDAO;
 import web.groom.dto.AdminDTO;
 import web.groom.dto.MemberDTO;
 import web.groom.dto.OrderReservationDTO;
+import web.groom.dto.ReviewDTO;
 
 public class AdminService {
 	AdminDAO adminDAO = null;
@@ -208,6 +210,42 @@ public class AdminService {
 		}
 		return result;
 	}//
+
+	public List<AdminDTO> getEmpDisTimeList() {
+		System.out.println("ReviewService getEmpDisTimeList()");
+		List<AdminDTO> empDisTimeList = null;
+		try {
+			adminDAO = new AdminDAO();
+			empDisTimeList = adminDAO.getEmpDisTimeList(); // 프로덕트 이름 전달
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return empDisTimeList;
+	}// getEmpDisTimeList() [직원 쉬는시간 목록]
+
+	public List<AdminDTO> getEmpDisDaysList() {
+		System.out.println("ReviewService getEmpDisDaysList()");
+		List<AdminDTO> empDisDaysList = null;
+		try {
+			adminDAO = new AdminDAO();
+			empDisDaysList = adminDAO.getEmpDisDaysList(); // 프로덕트 이름 전달
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return empDisDaysList;
+	}// getEmpDisDaysList() [직원 휴무일 목록]
+
+	public List<AdminDTO> getStoreDisDaysList() {
+		System.out.println("ReviewService getStoreDisDaysList()");
+		List<AdminDTO> storeDisDaysList = null;
+		try {
+			adminDAO = new AdminDAO();
+			storeDisDaysList = adminDAO.getStoreDisDaysList(); // 프로덕트 이름 전달
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return storeDisDaysList;
+	}// getStoreDisDaysList() [매장 휴무일 목록]
 
 	
 

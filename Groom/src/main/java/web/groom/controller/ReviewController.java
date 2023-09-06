@@ -119,7 +119,7 @@ public class ReviewController extends HttpServlet {
 			 request.setCharacterEncoding("utf-8");
 			 reviewService = new ReviewService();
 			 reviewService.insertReview(request);
-			 response.sendRedirect("reviewList.re?pro_name= "); //일단 목록페이지로
+			 response.getWriter().println("<script>window.close();</script>");//창닫기
 		 }// writereviewPro.re [리뷰작성 후 등록]
 		 
 	

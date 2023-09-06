@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+.flex-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 0;
+margin-bottom: 5px;
+}
+.left-align {
+text-align: left;
+font-size: 14px;
+font-weight: bold;
+margin: 0;
+}
+.right-align {
+font-size:13px;
+text-align: right;
+border-radius: 5px;
+background: silver;
+}
+.right-align:hover {
+background: gray;
+}
+.discancle-button {
+	width: 20px;
+	height: 20px;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+ 	background: silver;
+	border-radius: 3px;
+	font-weight: bold;
+	font-size: 8px;
+}
+.discancle-button:hover {
+	background: gray;
+}
+.discheck-table {
+width: 240px;
+	color: black;
+    text-align: center;
+    font-size: 16px;
+    border-collapse: collapse;
+    text-align: center;
+}
+.discheck-table th {
+text-align: left;
+  	font-size: 14px;
+    padding: 5px;
+}
+.discheck-table td {
+	background-color: white;
+	font-size: 13px;
+    border: 1px solid #ddd;
+}
+
+.discheck-table2 {
+width: 300px;
+	color: black;
+    text-align: center;
+    font-size: 16px;
+    border-collapse: collapse;
+    text-align: center;
+}
+.discheck-table2 th {
+text-align: left;
+  	font-size: 14px;
+    padding: 5px;
+}
+.discheck-table2 td {
+	background-color: white;
+	font-size: 13px;
+    border: 1px solid #ddd;
+}
+
+
+.discheck-head {
+font-weight: bold;
+border-bottom: 2px solid gray;
+}
+.center-align {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.disCheck-next {
+	margin-top: 10px;
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.disCheck-next a {
+	width: 20px;
+    height: 20px;
+    font-size: 12px;
+	background: white;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black !important;
+    border-radius: 30px;
+	border: 2px solid gray;
+    transition: background-color 0.3s;
+}
+.disCheck-next a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+}
+.disCheck-next a:hover {
+    background-color: rgba(0, 0, 0, 0.4) ;
+}
+.review-active {
+	background-color: silver !important;
+}
+.review-active:active {
+	background-color: silver !important;
+}

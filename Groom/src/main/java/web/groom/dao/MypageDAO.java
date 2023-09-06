@@ -9,6 +9,7 @@ import java.util.List;
 
 import web.groom.dto.MemberDTO;
 import web.groom.dto.MypageDTO;
+import web.groom.dto.OrderDTO;
 import web.groom.dto.OrderReservationDTO;
 import web.groom.security.MemberSecurity;
 
@@ -359,6 +360,35 @@ public class MypageDAO {
 		}
 		return reservationList;
 	}//예약리스트
+
+	public List<OrderReservationDTO> getUserDate(int u_num) {
+		
+		List<OrderReservationDTO> userDateList = null;
+		
+		try {
+			
+			con = new SQLConnection().getConnection();
+			
+			String sql = "SELECT res_day FROM test_reservation WHERE u_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, u_num);
+			rs = pstmt.executeQuery();
+
+			userDateList = new ArrayList<>();
+
+			while(rs.next()) {
+				OrderReservationDTO orderReserv = new OrderReservationDTO();
+				orderReserv.setRes_day(rs.getString("res_day"));
+
+				userDateList.add(orderReserv);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return userDateList;
+	}
 
 }
 	

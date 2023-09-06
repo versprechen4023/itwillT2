@@ -271,6 +271,17 @@ public class MypageController extends HttpServlet {
             }           
 			
 		}
+		
+		if (sPath.equals("/changeRes.my")) {
+			
+			ser = new MypageService();
+			
+			List<OrderReservationDTO> userDateList = ser.getUserDate(request);
+			
+			request.setAttribute("userDateList", userDateList);
+			
+			webForward(request, response, "mypage", "changeRes");
+		}
 	}
 
 	@Override

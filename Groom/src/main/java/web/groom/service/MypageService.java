@@ -243,12 +243,19 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 		return reservationList;
 	}
 
-
-
-
-
-
-
-
-
+	public List<OrderReservationDTO> getUserDate(HttpServletRequest request) {
+		
+		List<OrderReservationDTO> userDateList = null;
+		
+		int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+	
+		try {
+			mypagedao = new MypageDAO();
+			userDateList = mypagedao.getUserDate(u_num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return userDateList;
+	}
 }

@@ -8,7 +8,7 @@
 </head>
 <link rel="stylesheet" href="css/adminDisdate_gr.css">
 <body>
-<form action="admin_disday.ad" id="admin_disday" name="admin_disday" method="get">
+<form action="admin_disdayEmp.ad" id="admin_disdayEmp" name="admin_disdayEmp" method="get">
 <div class="pick-main">
 <div class="pick-button">
 <input type="text" id="datepicker" name="datepicker" placeholder="휴무일 선택" readonly>
@@ -19,6 +19,7 @@
 </div>
 </div>
 <input type="hidden" id="s_num" name="s_num" value="${param.s_num}">
+<input type="hidden" id="emp_num" name="emp_num" value="${param.emp_num}">
 <%-- 밸류에는 지점값추가(${param.s_num}) 하면됨 --%>
 </form>
 

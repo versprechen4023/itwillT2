@@ -63,31 +63,7 @@ public class AdminService {
 		return adminDTO;
 	}//getCount [관리자메인 count]
 	
-	// 여기서부터 추가했음 ===================================================================================
-	public boolean insertDisDay(HttpServletRequest request) {
-				
-		boolean result = false;
-		
-		try {
-
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
-			
-			// 지점번호, 날짜 변수에 저장
-			int s_num = Integer.parseInt(request.getParameter("s_num"));
-			String off_day = request.getParameter("datepicker");
-			
-			// adminDAO에 값을 전달하고 로직처리 수행
-			adminDAO = new AdminDAO();
-			result = adminDAO.insertDisDay(s_num, off_day);
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}//
+	
 	
 	public boolean statusComplete(HttpServletRequest request) {
 		boolean result = false;
@@ -177,32 +153,61 @@ public class AdminService {
 	}// pointStatusConfirm [포인트지급상태 "미지급"]
 	
 	
+	// 여기서부터 추가했음 ===================================================================================
+		public boolean insertDisDay(HttpServletRequest request) {
+			boolean result = false;
+			try {
+				// 한글 인코딩 처리
+				request.setCharacterEncoding("UTF-8");
+				// 지점번호, 날짜 변수에 저장
+				int s_num = Integer.parseInt(request.getParameter("s_num"));
+				String off_day = request.getParameter("datepicker");
+				// adminDAO에 값을 전달하고 로직처리 수행
+				adminDAO = new AdminDAO();
+				result = adminDAO.insertDisDay(s_num, off_day);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return result;
+		}//
+		
 	public boolean insertDisDayTime(HttpServletRequest request) {
-		
 		boolean result = false;
-		
 		try {
-
 			// 한글 인코딩 처리
 			request.setCharacterEncoding("UTF-8");
-			
 			// 지점번호, 직원번호, 시간, 날짜 변수에 저장
 			int s_num = Integer.parseInt(request.getParameter("s_num"));
 			int emp_num = Integer.parseInt(request.getParameter("emp_num"));
 			String dis_time = request.getParameter("timepicker");
 			String dis_daydate = request.getParameter("datepicker");
-			
 			// adminDAO에 값을 전달하고 로직처리 수행
 			adminDAO = new AdminDAO();
 			result = adminDAO.insertDisDayTime(s_num, emp_num, dis_time, dis_daydate);
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
+
+	
+	public boolean insertDisDayEmp(HttpServletRequest request) {
+		boolean result = false;
+		try {
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			// 지점번호, 날짜 변수에 저장
+			int s_num = Integer.parseInt(request.getParameter("s_num"));
+			int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+			String dis_day = request.getParameter("datepicker");
+			// adminDAO에 값을 전달하고 로직처리 수행
+			adminDAO = new AdminDAO();
+			result = adminDAO.insertDisDayEmp(s_num, emp_num, dis_day);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}//
 
 	
 

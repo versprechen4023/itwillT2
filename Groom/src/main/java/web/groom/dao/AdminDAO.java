@@ -108,9 +108,9 @@ public class AdminDAO {
 		System.out.println("AdminDAO getEmpList()");
 		String sql = "SELECT"
 				+ "   ROW_NUMBER() OVER (PARTITION BY a.s_location ORDER BY b.s_num, b.emp_grade) AS number,"
-				+ "   a.s_location, b.emp_grade, b.emp_name, b.emp_extrafee, b.emp_phone, b.emp_email, b.emp_date"
+				+ "   a.s_num, a.s_location, b.emp_num, b.emp_grade, b.emp_name, b.emp_extrafee, b.emp_phone, b.emp_email, b.emp_date"
 				+ "   FROM store a JOIN employees b ON a.s_num = b.s_num"
-				+ "   ORDER BY a.s_location, b.s_num, b.emp_grade";
+				+ "   ORDER BY a.s_location, b.s_num, b.emp_grade;";
 		List<AdminDTO> empList = null;
 		try {
 			con = new SQLConnection().getConnection();
@@ -120,7 +120,9 @@ public class AdminDAO {
 			while(rs.next()){
 				AdminDTO adminDTO = new AdminDTO();
 				adminDTO.setNumber(rs.getInt("number"));
+				adminDTO.setS_num(rs.getInt("s_num"));
 				adminDTO.setS_location(rs.getString("s_location"));
+				adminDTO.setEmp_num(rs.getInt("emp_num"));
 				adminDTO.setEmp_grade(rs.getString("emp_grade"));
 				adminDTO.setEmp_name(rs.getString("emp_name"));
 				adminDTO.setEmp_extrafee(rs.getInt("emp_extrafee"));
@@ -193,38 +195,7 @@ public class AdminDAO {
 	
 	
 	
-	// 여기서부터 추가했음 ===================================================================================
-	public boolean insertDisDay(int s_num, String off_day) {
-		
-		boolean result = false;
-		
-		try {
-
-			// db연결
-			con = new SQLConnection().getConnection();
-
-			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
-			String SQL = "INSERT INTO store_offdays(s_num, off_day) VALUE(?,?)";
-			pstmt = con.prepareStatement(SQL);
-			pstmt.setInt(1, s_num);
-			pstmt.setString(2, off_day);
-			
-			int rs = pstmt.executeUpdate();
-			
-			// 성공시 true 실패시 false 반환
-			result = (rs != 0) ? true : false;
-			
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			result = false;
-
-		} finally {
-			dbClose();
-		}
-
-		return result;
-	}//
+	
 
 	
 	public boolean statusComplete(int a) {
@@ -367,15 +338,37 @@ public class AdminDAO {
 	}// PointCancle() [결제포인트 회수]
 	 
 
+	// 여기서부터 추가했음 ===================================================================================
+		public boolean insertDisDay(int s_num, String off_day) {
+			boolean result = false;
+			try {
+				// db연결
+				con = new SQLConnection().getConnection();
+				// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
+				String SQL = "INSERT INTO store_offdays(s_num, off_day) VALUE(?,?)";
+				pstmt = con.prepareStatement(SQL);
+				pstmt.setInt(1, s_num);
+				pstmt.setString(2, off_day);
+				int rs = pstmt.executeUpdate();
+				// 성공시 true 실패시 false 반환
+				result = (rs != 0) ? true : false;
+			} catch (Exception e) {
+				e.printStackTrace();
+				result = false;
+			} finally {
+				dbClose();
+			}
+			return result;
+		}//
+		
+		
 	public boolean insertDisDayTime(int s_num, int emp_num, String dis_time, String dis_daydate) {
 		
 		boolean result = false;
 		
 		try {
-
 			// db연결
 			con = new SQLConnection().getConnection();
-
 			// SQL 쿼리 실행(휴무시간 내역 값 삽입)
 			String SQL = "INSERT INTO disabled_time(s_num, emp_num, dis_time, dis_daydate) VALUE(?,?,?,?)";
 			pstmt = con.prepareStatement(SQL);
@@ -388,18 +381,37 @@ public class AdminDAO {
 			
 			// 성공시 true 실패시 false 반환
 			result = (rs != 0) ? true : false;
-			
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = false;
-
 		} finally {
 			dbClose();
 		}
-
 		return result;
 	}
+
+	public boolean insertDisDayEmp(int s_num, int emp_num, String dis_day) {
+		boolean result = false;
+		try {
+			// db연결
+			con = new SQLConnection().getConnection();
+			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
+			String SQL = "INSERT INTO disabled_days(s_num, emp_num, dis_day) VALUE(?,?,?)";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, s_num);
+			pstmt.setInt(2, emp_num);
+			pstmt.setString(3, dis_day);
+			int rs = pstmt.executeUpdate();
+			// 성공시 true 실패시 false 반환
+			result = (rs != 0) ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+		} finally {
+			dbClose();
+		}
+		return result;
+	}//
 
 	
 	

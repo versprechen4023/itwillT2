@@ -222,7 +222,7 @@ String format_res_time = res_time.substring(0, 5);
 var selected_a = "";
 function confirmStatusComplete(status) {
     selected_a = status;
-    if (confirm("[완료]상태로 변경합니다.\n*포인트가 지급됩니다.")) {
+    if (confirm("[완료]상태로 변경합니다.")) {
         statusComplete(selected_a);
     }
 }
@@ -248,7 +248,7 @@ function statusComplete(status) {
 var selected_b = "";
 function confirmStatusCancel(status) {
     selected_b = status;
-    if (confirm("[취소]상태로 변경합니다.\n*포인트가 회수됩니다.")) {
+    if (confirm("[취소]상태로 변경합니다.")) {
     	statusCancel(selected_b);
     }
 }

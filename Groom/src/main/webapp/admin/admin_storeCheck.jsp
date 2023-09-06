@@ -113,7 +113,8 @@ List<AdminDTO> visibleItems = empList.subList(startIndex, endIndex);
     	<td>전화번호</td>
     	<td>이메일</td>
     	<td>입사일</td>
-    	<td class="closed-td">휴무일</td></tr>
+    	<td class="closed-td">휴무일</td>
+    	<td class="closed-td">시간</td></tr>
 <%
 SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
 for(AdminDTO adminDTO : visibleItems) {
@@ -150,7 +151,11 @@ for(AdminDTO adminDTO : visibleItems) {
     	<td><%=format.format(adminDTO.getEmp_date()) %></td>
     	<td style="text-align: center;">
     		<input type="button" value="선택"
-	         onclick="openDisDaytime(<%= adminDTO.getEmp_num() %>)">
+	         onclick="openDisDay(<%= adminDTO.getEmp_num()%>,<%= adminDTO.getS_num()%>)">
+		</td>
+		<td style="text-align: center;">
+    		<input type="button" value="선택"
+	         onclick="openDisDaytime(<%= adminDTO.getEmp_num()%>,<%= adminDTO.getS_num()%>)">
 		</td></tr>
 <%
 }
@@ -192,17 +197,21 @@ for(AdminDTO adminDTO : visibleItems) {
 	<script src="./js/main.js"></script>
 <script type="text/javascript">
 function openDisDayDate1(){
-	window.open('admin_daydate.ad?s_num=1', '_blank', 'width=360px, height=360px');
+	window.open('storeDisDay.ad?s_num=1', '_blank', 'width=360px, height=360px, left=600px, top=300px');
 }
 function openDisDayDate2(){
-	window.open('admin_daydate.ad?s_num=2', '_blank', 'width=360px, height=360px');
+	window.open('storeDisDay.ad?s_num=2', '_blank', 'width=360px, height=360px, left=600px, top=300px');
 }
 function openDisDayDate3(){
-	window.open('admin_daydate.ad?s_num=3', '_blank', 'width=360px, height=360px');
+	window.open('storeDisDay.ad?s_num=3', '_blank', 'width=360px, height=360px, left=600px, top=300px');
 }
-function openDisDaytime(emp_num) {
-    var url = 'admin_daytime.ad?emp_num=' + emp_num;
-    var newWindow = window.open(url, '_blank', 'width=360px, height=360px');
+function openDisDaytime(emp_num, s_num) {
+    var url = 'empDisTime.ad?emp_num='+emp_num+'&s_num='+s_num;
+    var newWindow = window.open(url, '_blank', 'width=360px, height=360px, left=600px, top=300px');
+}
+function openDisDay(emp_num, s_num) {
+    var url = 'empDisDay.ad?emp_num='+emp_num+'&s_num='+s_num;
+    var newWindow = window.open(url, '_blank', 'width=360px, height=360px, left=600px, top=300px');
 }
 </script>
 </body>

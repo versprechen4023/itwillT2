@@ -69,18 +69,15 @@ public class AdminController extends HttpServlet {
 		
 		// 여기서부터 추가했음 ===================================================================================
 		
-		if (sPath.equals("/admin_daydate.ad")) {
-			
+		if (sPath.equals("/storeDisDay.ad")) {
 			 webForward(request, response, "admin", "admin_daydate");
 	    }
 		
 		if (sPath.equals("/admin_disday.ad")) {
-			
 			// 어드민 서비스 객체생성
 			AdminService adminService = new AdminService();
 			// 휴무일 업데이트를 위한 서비스에 리퀘스트 전달
 			boolean result = adminService.insertDisDay(request);
-			
 			if(result) {
 				System.out.println("휴무일 업데이트 성공");
 			} else {
@@ -88,25 +85,47 @@ public class AdminController extends HttpServlet {
 			}
 	    }
 		
-		if (sPath.equals("/admin_daytime.ad")) {
-			
+		if (sPath.equals("/empDisTime.ad")) {
 			 webForward(request, response, "admin", "admin_daytime");
-	    }
+	    }//
 		
 		if (sPath.equals("/admin_distime.ad")) {
-			
 			// 어드민 서비스 객체생성
 			AdminService adminService = new AdminService();
 			// 휴무일 업데이트를 위한 서비스에 리퀘스트 전달
 			boolean result = adminService.insertDisDayTime(request);
-			
 			if(result) {
 				System.out.println("휴무시간 업데이트 성공");
 			} else {
 				System.out.println("휴무시간 업데이트 실패");
 			}
-	    }
+	    }//
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		if (sPath.equals("/empDisDay.ad")) {
+			 webForward(request, response, "admin", "admin_disdayEmp");
+	    }//
+		
+		if (sPath.equals("/admin_disdayEmp.ad")) {
+			// 어드민 서비스 객체생성
+			AdminService adminService = new AdminService();
+			// 휴무일 업데이트를 위한 서비스에 리퀘스트 전달
+			boolean result = adminService.insertDisDayEmp(request);
+			if(result) {
+				System.out.println("휴무시간 업데이트 성공");
+			} else {
+				System.out.println("휴무시간 업데이트 실패");
+			}
+	    }//
 		
 	}// doProcess
 	

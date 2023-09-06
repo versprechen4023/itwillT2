@@ -173,10 +173,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function openReviewWrite(){
-	window.open('reviewWrite.re', '_blank', 'width=800px, height=1000px');
+	window.open('reviewWrite.re', '_blank', 'width=630px, height=920px');
 }
-
-// dd
 </script>
 
 	

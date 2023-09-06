@@ -6,13 +6,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="css/adminDisdate_gr.css">
 <body>
 <form action="admin_distime.ad" id="admin_distime" name="admin_distime" method="get">
-<input type="text" id="datepicker" name="datepicker" placeholder="휴무일을 선택하세요" readonly>
-<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="휴무시간을 선택하세요" disabled>
+<div class="pick-main">
+<div class="pick-button">
+<input type="text" id="datepicker" name="datepicker" placeholder="날짜 선택" readonly>
+<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="시간 선택" disabled>
+</div>
+<div class="pickconfirm-button">
 <input type="submit" value="등록">
-<input type="hidden" id="s_num" name="s_num" value="1">
-<input type="hidden" id="emp_num" name="emp_num" value="1">
+<input type="button" value="취소" onClick="window.close()">
+</div>
+</div>
+<input type="hidden" id="s_num" name="s_num" value="${param.s_num}">
+<input type="hidden" id="emp_num" name="emp_num" value="${param.emp_num}">
 <%-- 밸류에는 지점값추가(${param.s_num}) 하면됨 --%>
 </form>
 
@@ -111,6 +119,9 @@ $("#datepicker").datepicker({
       });//end AJAX(시간값)
   },//end 날짜입력
 });
+
+//데이트피커를 초기에 열기 (창 열자마자 활성화)
+$("#datepicker").datepicker("show");
 
 // 데이트피커 AJAX 처리
 $.ajax({

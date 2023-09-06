@@ -17,14 +17,18 @@
 <link rel="stylesheet" href="./css/member_gr.css">
 <!-- 리뷰작성페이지 스타일  -->
 <link rel="stylesheet" href="./css/reviewWrite_gr.css">
-
+<style>
+.form-css {
+padding: 0;
+}
+</style>
 <body>
-<form action="reviewWritePro.re" method="post" enctype="multipart/form-data">
+<form action="reviewWritePro.re" method="post" enctype="multipart/form-data" class="form-css">
 	<div class="review-write-main">
 	<div style="text-align: center;">
 		<h1 class="logo"> Groom(로고) </h1>
-	<div><p class="title">리뷰 작성</p></div><br>
-	<div class="divider"></div>
+<!-- 	<div><p class="title">리뷰 작성</p></div><br> -->
+<!-- 	<div class="divider"></div> -->
 <!-- 별점 -->
 	<div>
 	<p>서비스는 만족하셨나요?</p><br><br>
@@ -38,7 +42,7 @@
 	</div>
 	<input type="text" name="rev_rating" class="star-rating" name="rev_rating" readonly>
 <!-- 리뷰 내용 작성 -->
-	<br><br><br><br>
+	<br><br>
 	<div><p>솔직한 서비스의 리뷰를 남겨주세요.</p></div><br>
 	<div>
 		<textarea name="rev_content" id="review-message" cols="30" rows="7" class="form-control" placeholder="내용을 입력해주세요"></textarea>

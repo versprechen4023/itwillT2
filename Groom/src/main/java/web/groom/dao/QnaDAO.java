@@ -161,7 +161,6 @@ public class QnaDAO {
 			//3 sql select count(*) from board
 			String sql = "select count(*) from qna where qna_isanswered=0"; //
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, "%"+pageDTO.getSearch()+"%");
 			//4 실행 => 결과저장
 			rs = pstmt.executeQuery();
 			//5 결과 행접근 => 열접근 => count변수 저장
@@ -325,7 +324,7 @@ public class QnaDAO {
 		System.out.println("QnaDAO writeRe()");
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "update qna set re_content=? ,re_date=?  where qna_num=?";
+			String sql = "update qna set re_content=? ,re_date=?, qna_isanswered=1  where qna_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, qnaDTO.getRecontent());
 			pstmt.setTimestamp(2, qnaDTO.getRedate());

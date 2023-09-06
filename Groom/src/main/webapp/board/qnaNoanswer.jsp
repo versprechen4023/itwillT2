@@ -72,7 +72,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
             <td><%=qnaDTO.getId() %>	</td>
             <td><%=format.format(qnaDTO.getDate() )%>	</td>
             <% 
-            if(qnaDTO.getQreans()==0){
+            if(qnaDTO.getQreans()==0 && qnaDTO.getRecontent()==null){
             %><td>X</td>
             <%	
             }%>
@@ -95,7 +95,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 // 시작페이지 11,21,31 Prev 보임
 if(pageDTO.getStartPage() > pageDTO.getPageBlock()){
 	%>
-	<a href="qna.bo?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>">Prev</a>
+	<a href="qnaNoanswer.bo?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>">Prev</a>
 	<%
 }
 %> 
@@ -103,7 +103,7 @@ if(pageDTO.getStartPage() > pageDTO.getPageBlock()){
 <%
 for(int i=pageDTO.getStartPage();i<=pageDTO.getEndPage();i++){
 	%>
-	<a href="qna.bo?pageNum=<%=i%>"><%=i %></a> 
+	<a href="qnaNoanswer.bo?pageNum=<%=i%>"><%=i %></a> 
 	<%
 }
 %>

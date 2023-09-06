@@ -92,7 +92,7 @@ public class QnaService {
 			// BoardDAO 객체생성
 			qnaDAO = new QnaDAO();
 			// notice = getNotice() 메서드 호출
-			qna = qnaDAO.getQnaList(pageDTO);
+			qna = qnaDAO.getNoanswer(pageDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

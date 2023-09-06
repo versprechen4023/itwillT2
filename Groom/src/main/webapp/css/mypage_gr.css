@@ -49,13 +49,21 @@
     height: 40px;
   }
   
-  
+  .pet td {
+    padding: 8px;
+    border: 1px solid pink;
+}
+
+/* 각 칸의 너비를 설정합니다. */
+.pet .bold-cell {
+    width: 150px; 
+}
   
    .table-container3{
   	display: inline-block;
 /* 	float:left; */
 	clear:left;
-	width: 65%;
+	width: 75%;
 	margin-left: 100px;
 	margin-right: 100px;
 	margin-top: 25px;
@@ -71,7 +79,7 @@
   	display: inline-block;
 /* 	float:left; */
 	clear:left;
-width: 65%;
+    width: 75%;
 	margin-left: 100px;
 	margin-right: 100px;
 	
@@ -181,3 +189,10 @@ width: 65%;
 #petlist {
     margin-right: 10px;     /* 선택 상자와 버튼 사이의 간격을 조정 */
 }
+
+.reservation th, .reservation td {
+    padding: 8px;
+    text-align: center; 
+    border: 1px solid pink;
+}
+ 

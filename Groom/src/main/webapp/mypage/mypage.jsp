@@ -93,7 +93,7 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 <div class="table-container2">
   <table class="pet">
     <p class="h">대표반려동물 정보
-      <input type="button" value=" + " class="mbtn" onclick="location.href='insertmypet.my'">
+      
     </p>
 
     <tr>
@@ -123,6 +123,7 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 
 <div class="table-container3">
 <p class="h">반려동물정보
+<input type="button" value=" + " class="mbtn" onclick="location.href='insertmypet.my'">
 <table class="petlist">
   
     <tr><td class="bold-cell">이름</td>
@@ -174,21 +175,19 @@ for(MypageDTO mypageDTO : mypetList) {
 
 <table class="reservation">
   
-    <tr><td class="bold-cell">예약번호</td>
+    <tr><td class="bold-cell">예약<br>번호</td>
     	<td class="bold-cell">날짜/시간</td>
     	<td class="bold-cell">선택메뉴</td>
        	<td class="bold-cell">매장</td>
     	<td class="bold-cell">담당직원</td>
-    	<td class="bold-cell">예약자</td>
-    	<td class="bold-cell">연락처</td>
-    	<td class="bold-cell">상품가격</td>
-    	<td class="bold-cell">사용한포인트</td>
-    	<td class="bold-cell">최종결제금액</td>
+    	<td class="bold-cell">상품<br>가격</td>
+    	<td class="bold-cell">사용한<br>포인트</td>
+    	<td class="bold-cell">최종<br>결제금액</td>
     	<td class="bold-cell">상태</td>
-    	<td style="background: #E2E2E2;">예약취소</td>
-    	<td style="background: #E2E2E2;">일정변경</td>
-    	<td style="background: #E2E2E2;">리뷰작성</td>
-
+    	<td style="background: #E2E2E2;">예약<br>취소</td>
+    	<td style="background: #E2E2E2;">일정<br>변경</td>
+    	<td style="background: #E2E2E2;">리뷰<br>작성</td>
+	 	<td class="bold-cell">포인트<br>지급여부</td>
 </tr>
 
 
@@ -227,39 +226,50 @@ String format_res_time = res_time.substring(0, 5);
 	int res_status = orderReservationDTO.getRes_status();
 	String status = "";
 	if (res_status == 0) {
-		status = "△";
+		status = "예약대기";
 	} else if (res_status == 1) {
-		status = "○";
+		status = "예약완료";
 	} else if (res_status == 2) {
-		status = "✕";
+		status = "예약취소";
 	} else {
 		status = "알 수 없음";
 	}
+	
+	int res_point_status = orderReservationDTO.getRes_point_status();
+	String point_status = "";
+	if (res_point_status == 0) {
+		point_status = "미지급";
+	} else if (res_point_status == 1) {
+		point_status = "완료!";
+	} else {
+		point_status = "오류";
+	}
 %>    					  
     <tr><td><%=orderReservationDTO.getRes_num() %></td>
-    	<td><%=format_res_day %> <%=format_res_time %></td>
+    	<td><%=format_res_day %>  <%=format_res_time %></td>
     	<td class="text-left">[<%=orderReservationDTO.getPro_name() %>] <%=orderReservationDTO.getPet_size() %> <%=orderReservationDTO.getPet_weight() %></td>
     	<td><%=location %></td>
     	<td><%=grade %> <%=orderReservationDTO.getEmp_name() %></td>
-    	<td><%=orderReservationDTO.getU_name() %></td>
-    	<td><%=orderReservationDTO.getU_phone() %></td>
+
     	<td><%=orderReservationDTO.getRes_price()+orderReservationDTO.getRes_point() %></td>
     	<td><%=orderReservationDTO.getRes_point() %></td>
     	<td style="color: red;"><%=orderReservationDTO.getRes_price() %></td>
     	<td class="status font-bold"><%=status %></td>
     	<td>
-    	    <input type="button" value="○" class="status-button"
+    	    <input type="button" value="취소" class="status-button"
     	     onclick="confirmStatusComplete(<%=orderReservationDTO.getRes_num()%>)">
         </td>
-    	<td>
-    	    <input type="button" value="✕" class="status-button"
+    <td>
+    	    <input type="button" value="변경" class="status-button"
     		 onclick="isCanChange('<%=orderReservationDTO.getRes_day()%>', '<%=orderReservationDTO.getRes_time()%>', <%=orderReservationDTO.getRes_num() %>, 
     		 <%=orderReservationDTO.getS_num()%>, <%=orderReservationDTO.getEmp_num()%>)">
     	</td>
     	<td>
-    	    <input type="button" value="△" class="status-button"
+    	    <input type="button" value="작성" class="status-button"
     		 onclick="confirmStatusUnprocessed(<%=orderReservationDTO.getRes_num()%>)">
-    	</td></tr>
+    	</td>
+    	<td><%=point_status %></td>
+    	</tr>
 <%
 }
 %>   
@@ -284,7 +294,6 @@ String format_res_time = res_time.substring(0, 5);
 </div>
 
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 function isCanChange(userDate, userTime, res_num, s_num, emp_num) {

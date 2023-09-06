@@ -1,12 +1,6 @@
-<%@page import="java.util.List"%>
-<%@page import="web.groom.dto.OrderReservationDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<% List<OrderReservationDTO> userDateList =
-(List<OrderReservationDTO>)request.getAttribute("userDateList");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="changeResPro.my" id="changeRes" name="changeRes" method="post">
-<select class="" id="datelist" name="datelist">
-		<option value="" disabled selected>예약하신 날짜를 선택하세요</option>
-		<c:forEach var="orderReserv" items="${userDateList}">
-			<option value="${orderReserv.res_day}">${orderReserv.res_day}</option>
-		</c:forEach>
-</select>
-										
+<form action="changeResPro.my" id="changeRes" name="changeRes" method="post">								
 <input type="text" id="datepicker" name="datepicker" placeholder="변경하실 날짜를 선택하세요" readonly>
 <input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="변경하실 시간을 선택하세요" disabled>
 <input type="submit" value="등록">

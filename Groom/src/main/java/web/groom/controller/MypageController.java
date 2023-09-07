@@ -191,7 +191,7 @@ public class MypageController extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 			ser = new MypageService();
 			ser.modifyinfo(request);
-			response.sendRedirect("mypage.my");
+			JSForward.locationHref(response, "내정보 수정처리가 완료되었습니다", "mypage.my");
 		}
 	
 		if (sPath.equals("/resetpassword.my")) {

@@ -291,6 +291,7 @@ $('#u_email').keyup(function(){
   	  } else {
   		$('#emailtest').css('color','red');
   		$('#emailtest').text("유효한 이메일 주소를 입력해주세요.");
+  		$('#submit').attr('disabled','disabled');
   		$('#u_email2').attr('disabled','disabled');
   		return;
   	  }

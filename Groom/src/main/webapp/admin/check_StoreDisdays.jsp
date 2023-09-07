@@ -65,6 +65,7 @@ int off_num = adminDTO.getOff_num();
 <script type="text/javascript">
 function cancelCheck3(off_num) { //
 	var result = confirm("삭제합니다.");
+// 	var result = prompt("삭제합니다.");
 	if (result) {
 		$.ajax({
 	    	type: "GET",

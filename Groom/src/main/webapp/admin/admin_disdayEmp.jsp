@@ -91,6 +91,7 @@ success: function (result) {
 disabledDates = result.map(function (item) {
 return item.date;
 });
+$("#datepicker").focus();
 }
 });
 </script>

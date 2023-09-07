@@ -257,12 +257,12 @@ String format_res_time = res_time.substring(0, 5);
     	<td class="status font-bold"><%=status %></td>
     	<td>
     	    <input type="button" value="취소" class="status-button"
-    	     onclick="confirmStatusComplete(<%=orderReservationDTO.getRes_num()%>)">
+    	     onclick="isCanceled(<%=orderReservationDTO.getRes_num()%>)">
         </td>
     <td>
     	    <input type="button" value="변경" class="status-button"
     		 onclick="isCanChange('<%=orderReservationDTO.getRes_day()%>', '<%=orderReservationDTO.getRes_time()%>', <%=orderReservationDTO.getRes_num() %>, 
-    		 <%=orderReservationDTO.getS_num()%>, <%=orderReservationDTO.getEmp_num()%>)">
+    		 <%=orderReservationDTO.getS_num()%>, <%=orderReservationDTO.getEmp_num()%>,<%=orderReservationDTO.getRes_status()%>)">
     	</td>
     	<td>
     	    <input type="button" value="작성" class="status-button"
@@ -296,7 +296,34 @@ String format_res_time = res_time.substring(0, 5);
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-function isCanChange(userDate, userTime, res_num, s_num, emp_num) {
+
+//예약 취소 AJAX처리
+function isCanceled(res_num ) {
+// alert (res_num);	
+
+$.ajax({
+  type: "GET",
+  url: 'cancelRes.aj',
+  data: {"res_num": res_num}, // 선택된 값을 서버로 전송
+  success: function(data) {
+	  const result = $.trim(data);
+	  if (result == "true") {
+		alert("예약취소되었습니다.");
+		  location.reload();
+	}else if(result == "false"){
+		alert("실패했습니다.");
+		
+	}
+
+  }
+  
+});// end ajax
+}//function
+
+function isCanChange(userDate, userTime, res_num, s_num, emp_num,res_status) {
+// 	alert(res_status)
+if (res_status == 0) {
+	
 
 	// 예약 일정 변경 유무 AJAX처리
 	$.ajax({
@@ -306,15 +333,19 @@ function isCanChange(userDate, userTime, res_num, s_num, emp_num) {
 	  success: function(data) {
 		  const result = $.trim(data);
 		  
+		  
 		  if(result=="true"){
 		  location.href = 'changeRes.my?res_num='+res_num+'&s_num='+s_num+'&emp_num='+emp_num;
 		  
  		  }else if ( result=="false"){
- 		  alert("예약시간까지 2시간 미만일경우 예약 일정을 변경 하실 수 없습니다")
+ 		  alert("예약시간까지 2시간 미만일경우 예약 일정을 변경 하실 수 없습니다");
  		  }
 	  }
-	  
+	
 	});// end ajax
+}else {
+	alert("예약 완료 및 취소 시에는 일정 변경이 불가능합니다.")
+}
 }// end function
 </script>
 </body>

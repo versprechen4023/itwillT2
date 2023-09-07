@@ -21,6 +21,7 @@ import web.groom.email.MemberEmail;
 import web.groom.email.VerifyEmail;
 import web.groom.service.AdminService;
 import web.groom.service.MemberService;
+import web.groom.service.MypageService;
 import web.groom.service.OrderService;
 
 @WebServlet("*.aj") // .Ajax Ajax관련 어노테이션 매핑 선언
@@ -334,6 +335,18 @@ public class AjaxController extends HttpServlet {
 			// 예약 일정 변경 유무 확인
 			boolean result = orderService.getCanChange(request);
 
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Boolean.toString(result));
+			out.close();
+		}
+		
+		if (sPath.equals("/cancelRes.aj")) {
+
+			int res_num = Integer.parseInt(request.getParameter("res_num"));
+			MypageService mypageservice = new MypageService();
+			boolean result = mypageservice.cancelRes(request);
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

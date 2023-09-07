@@ -16,3 +16,10 @@
 .center-button {
     text-align: center; /* 버튼 내용을 수평 가운데 정렬 */
 }
+
+.container1 {
+    display: inline-block;
+    background-color : white;
+    width: 300px;
+    height: 500px;
+  }

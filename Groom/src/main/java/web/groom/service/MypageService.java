@@ -265,4 +265,19 @@ public MypageDTO MypetInfo(HttpServletRequest request) {
 		return result;
 	}
 
+	public boolean cancelRes(HttpServletRequest request) {
+		boolean result = false;
+		int res_num = Integer.parseInt(request.getParameter("res_num"));
+		int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
+try {
+			
+			mypagedao = new MypageDAO();
+			result = mypagedao.cancelRes(res_num, u_num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

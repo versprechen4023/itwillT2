@@ -392,6 +392,33 @@ public class MypageDAO {
 		return result;
 	}
 
+	public boolean cancelRes(int res_num, int u_num) {
+	boolean result = false;
+		
+		try {
+			
+			//db연결
+			con = new SQLConnection().getConnection();
+			
+			String SQL = "UPDATE test_reservation SET res_status = 2 WHERE res_num = ? and u_num = ?";
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, res_num);
+			pstmt.setInt(2, u_num);
+			int rs = pstmt.executeUpdate();
+			
+
+			// 업데이트 성공유무 결정
+			result = (rs != 0) ? true : false;
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return result;
+	}
+
 }
 	
 	

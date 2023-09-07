@@ -7,221 +7,7 @@
 <head>
 <jsp:include page="../inc/head.jsp"></jsp:include>
 
-<style>
-@font-face {
-	font-family: 'Godo';
-	font-style: normal;
-	font-weight: 400;
-	src:
-		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2')
-		format('woff2'),
-		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff')
-		format('woff');
-}
-
-* {
-      font-family: 'Godo';
-      
-}
-#fh5co-main {
-	position: relative;
-	height: 1500px;
-}
-
-.headh1{
- margin-left: 97px;
- margin-top : 40px;
- font-family: 'Godo';
-}
-
-
-
-hr {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 0;
-    border-top: 1px solid #000;
-    width: 80%;
-    margin-left: 100px;
-    margin-bottom : 50px;
-}
-
-table { 
-margin-bottom: 100px;
-margin-left : 100px;
-}
-
-.qnawriter {
-text-align: center;
-     letter-spacing: 2px;
-     width : 40px;
-     height: 50px;
-     font-size:20px;
-     
-}
-
-.qnatitle {
-    text-align:center;
-     letter-spacing: 2px;
-     width: 40px;
-     height: 50px;
-     font-size:20px;
-     
-     
-}
-
-.qnacategory {
-    text-align:center;
-     letter-spacing: 2px;
-     width: 40px;
-     height: 50px;
-     font-size:20px;
-     
-     
-}
-
-.qnacontent {
-text-align: center;
-	letter-spacing: 2px;
-	width : 150px;
-	height : 300px;
-	font-size: 20px;
-	
-	
-}
-
-.vtitle {
-   width: 6px;
-    font-size: 20px;
-    padding-left: 10px;
-
-}
-
-.vwriter {
-width: 1000px;
-    font-size: 20px;
-    padding-left: 10px;
-
-}
-
-.vcontent { 
-
-    font-size: 20px;
-    padding-left: 10px;
-    vertical-align: top;	
-
-
-}
-
-.btn {
-
-    margin-right: 4px;
-    margin-bottom: 4px;
-    font-family: "Roboto", Arial, sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-transition: 0.5s;
-    -o-transition: 0.5s;
-    transition: 0.5s;
-    padding: 8px 20px !important;
-    float: right;
-    margin-right:255px;
-    font-family: 'Godo' !important;
-}
-
-.deletebtn {
-    background-color: black; /* 버튼 배경색을 초록색으로 설정 */
-    color: white; /* 글자 색상을 하얀색으로 설정 */
-    border: none; /* 테두리 없음 */
-    padding: 10px 20px; /* 안쪽 여백 설정 */
-    font-size: 16px; /* 글자 크기 설정 */
-    cursor: pointer; /* 커서 스타일을 포인터로 변경하여 버튼처럼 보이게 함 */
-    margin-left : 10px;
-    border-radius:10px;
-}
-
-/* 수정 버튼 스타일 */
-.modifybtn {
-    background-color: black; /* 버튼 배경색을 초록색으로 설정 */
-    color: white; /* 글자 색상을 하얀색으로 설정 */
-    border: none; /* 테두리 없음 */
-    padding: 10px 20px; /* 안쪽 여백 설정 */
-    font-size: 16px; /* 글자 크기 설정 */
-    cursor: pointer; /* 커서 스타일을 포인터로 변경하여 버튼처럼 보이게 함 */
-    margin-left : 10px;
-    border-radius:10px;
-    
-}
-
-.answerbtn{
-
-    background-color: black; /* 버튼 배경색을 초록색으로 설정 */
-    color: white; /* 글자 색상을 하얀색으로 설정 */
-    border: none; /* 테두리 없음 */
-    padding: 10px 20px; /* 안쪽 여백 설정 */
-    font-size: 16px; /* 글자 크기 설정 */
-    cursor: pointer; /* 커서 스타일을 포인터로 변경하여 버튼처럼 보이게 함 */
-    margin-left : 10px;
-    border-radius:10px;
-
-
-}
-
-
-.listbtn {
-    background-color: black; /* 버튼 배경색을 초록색으로 설정 */
-    color: white; /* 글자 색상을 하얀색으로 설정 */
-    border: none; /* 테두리 없음 */
-    padding: 10px 20px; /* 안쪽 여백 설정 */
-    font-size: 16px; /* 글자 크기 설정 */
-    cursor: pointer; /* 커서 스타일을 포인터로 변경하여 버튼처럼 보이게 함 */
-    margin-left : 10px;
-    border-radius:10px;
-
-  }
-  
-  .ansheadh1 {
-   
-    margin-left: 97px;
- margin-top : 230px;
- font-family: 'Godo';
-  
-  }
-  
-  .anscontent { 
-    text-align: center;
-	letter-spacing: 2px;
-	width : 150px;
-	height : 300px;
-	font-size: 20px;
-  
-  }
-  
-  .ansdate {
-  
-     text-align: center;
-     letter-spacing: 2px;
-     width : 40px;
-     height: 50px;
-     font-size:20px;
-  }
-  
-  .vansdate{
-    font-size:20px;
-    padding-left : 10px;
-  
-  }
-  
-
-
-
-</style>
+<link rel="stylesheet" href="./css/qnacontent_gr.css">
 </head>
 
 <jsp:include page="../inc/aside.jsp"></jsp:include>
@@ -239,7 +25,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 
 	<div id="fh5co-main">
 
-<h1 class="headh1">Q&A</h1>
+<h2 class="headh1">Q&A</h2>
 <hr>
 <table id="notice" border="1">
 
@@ -248,13 +34,19 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 <tr><td class="qnatitle">글제목</td><td class="vtitle"><%=qnaDTO.getTitle() %></td></tr>
 <tr><td class="qnacategory">작성일</td><td class="vwriter"><%=format.format(qnaDTO.getDate())%></td></tr>
 <tr><td class="qnacontent">내용</td><td class="vcontent">
-    <img src="upload/<%=qnaDTO.getQnaimgurl() %>" >
-    <br><br>
+    <%
+String imgURL = qnaDTO.getQnaimgurl(); // 이미지 URL 가져오기
+
+String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
+%>
+
+<%= imgTag %>
+    <br> 
     <%=qnaDTO.getContent() %> </td></tr>
 
 </table>
 
-<div class="btn"> 
+<div class="btn"  style="text-align: left; margin-left: 965px; margin-top: -10px;"> 
 
 		<%
 		 if( id != null ) {
@@ -262,7 +54,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 				%>
 				  <button type="button" value="삭제" class="deletebtn" onclick="location.href='qnaDelete.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 삭제</button>
    <button type="button" value="수정" class="modifybtn" onclick="location.href='qnaUpdate.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 수정 </button>
-				
+				<button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
 				<%  
 			 }
 		 }
@@ -270,21 +62,36 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
   
    
 
- <button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
+ 
    </div>
-
+<!--    ---------------------------------------------- -->
+<div class="btn"  style="text-align: left; margin-left: 1105px; margin-top: -36px" > 
+ 		<% 
+ 		if(id == null || !id.equals(qnaDTO.getId())) {
+ 			%>
+ 			<button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
+			<% 
+ 		}
+ 			%>
+ 			  </div>
+<!--    ---------------------------------------------- -->   
+   
+<%
+String content = qnaDTO.getRecontent()==null?"":qnaDTO.getRecontent();
+%>
    <%
    if(qnaDTO.getRecontent() != null ){
 
 	   %>
-	      <h1 class="ansheadh1">답변</h1>
+	      <h2 class="ansheadh1">답변</h2>
 <hr>
+
 <table id="notice" border="1">
 <tr><td class="qnawriter">글쓴이</td><td class="vwriter"> 관리자 </td></tr> <!--  관리자로 되어야 함  -->
-<tr><td class="anscontent">내용</td><td class="vcontent" > <%=qnaDTO.getRecontent()%></td></tr> <!--  관리지가 답변한 내용이 없으면 ? 없습니다.라고 뜨게해야함 -->
+<tr><td class="anscontent">내용</td><td class="vcontent" > <%=content %></td></tr> <!--  관리지가 답변한 내용이 없으면 ? 없습니다.라고 뜨게해야함 -->
 </table>
 
-<div class="btn"> 
+<div class="btn" style="text-align: left; margin-left: 990px;margin-top: -10px;" > 
 		
           <!--  qna답변  -->
        <button type="button" value="답변" class="answerbtn" onclick="location.href='qnaRe.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 답변 및 수정 </button>
@@ -296,14 +103,14 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 		if( role.equals("admin")){   
 	   
    %>
-   <h1 class="ansheadh1">답변</h1>
+   <h2 class="ansheadh1">답변</h2>
 <hr>
 <table id="notice" border="1">
 <tr><td class="qnawriter">글쓴이</td><td class="vwriter"> 관리자 </td></tr> <!--  관리자로 되어야 함  -->
-<tr><td class="anscontent">내용</td><td class="vcontent" > <%=qnaDTO.getRecontent()%></td></tr> <!--  관리지가 답변한 내용이 없으면 ? 없습니다.라고 뜨게해야함 -->
+<tr><td class="anscontent">내용</td><td class="vcontent" > <%=content %></td></tr> <!--  관리지가 답변한 내용이 없으면 ? 없습니다.라고 뜨게해야함 -->
 </table>
 
-<div class="btn"> 
+<div class="btn" style="text-align: left; margin-left: 990px; margin-top: -10px;" > 
 		
           <!--  qna답변  -->
        <button type="button" value="답변" class="answerbtn" onclick="location.href='qnaRe.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 답변 및 수정 </button>

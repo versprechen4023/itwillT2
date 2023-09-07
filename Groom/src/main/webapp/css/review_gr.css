@@ -119,21 +119,20 @@ margin-bottom: 5px;
     border-radius: 20px;
     background-color: white;
     color: black;
-    text-decoration: none;
     text-align: center; 
     line-height: 1.5;
     transition: background-color 0.3s;
 }
 .review-select a:hover {
 	padding: 3px 10px 3px 10px;
-	color: white;
-    background: pink;
+	color: black;
+    background: rgb(232, 232, 232);
 }
 .review-active {
-	background-color: pink !important;
+	background-color: rgb(232, 232, 232)  !important;
 }
 .review-active:active {
-	background-color: pink !important;
+	background-color: #A4CDC5 !important;
 }
 
 .fh5co-heading-colored{ /* 맨아래 내용 타이틀 */

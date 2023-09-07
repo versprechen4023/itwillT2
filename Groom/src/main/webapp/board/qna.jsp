@@ -73,9 +73,9 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
             <td><%=format.format(qnaDTO.getDate() )%>	</td>
             <% 
             if(qnaDTO.getQreans()==0 && qnaDTO.getRecontent()==null ){
-            %><td>X</td>
+            %><td id="answer">미답변</td>
             <% }else if(qnaDTO.getQreans()== 1 && qnaDTO.getRecontent()!= null )  {%>
-            	<td>O</td><%
+            	<td id="answer">답변완료</td><%
             	
             }%>
         </tr>
@@ -196,7 +196,7 @@ function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘�
 if(id != null){
 	if(role.equals("admin")){
 		%>
-			    <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn">
+			    <input type="button" value= "미답변" onclick="location.href='qnaNoanswer.bo'" id="rebtn">
 <%
 	}
 }

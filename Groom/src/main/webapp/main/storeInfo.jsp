@@ -131,7 +131,7 @@
 <!--  예약하기 버튼 -->
 
     <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
-    <button type="button" onclick="location.href='myorder.or';"style="background-color: black; color: white; border: none; margin-left: -50px;
+    <button type="button" onclick="location.href='myorder.or';"style="background-color: #E1E2CD; color: black; border: none; margin-left: -50px;
            border-radius: 5px; padding: 14px 9px; cursor: pointer; width: 1000px; font-size: 15px; font-weight: bold;">예약하기</button>
 </div>
 </div>

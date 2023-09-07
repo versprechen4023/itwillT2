@@ -10,8 +10,14 @@
 
 <aside id="fh5co-aside" role="complementary"
 	class="border js-fullheight">
+   
     
-	<h1 id="fh5co-logo"><a href="main.gr">Groom </a></h1>
+<!-- 로고 -->
+	<h1 id="fh5co-logo"><a href="main.gr">
+	<img src="./images/LOGO.png" width="125px" height="80px" href="main.gr"></a></h1>
+
+                 
+
 <%
 if(id == null){
 %>
@@ -47,16 +53,21 @@ if(id != null){
 
 <div class="fh5co-footer">
     <p>
-        <small class="nav-bottom-text">대표:itwillT2<br>
-        사업자등록번호:1234--<br>
-        주소:부산광역시 부산진구 부전동<br>
-        <br>
-        <a href="about.gr">about</a><br>
-        <a href="about.html">개인정보처리방침</a>
+        <small class="nav-bottom-text">대표이사 : 조현민<br>
+
+        사업자등록번호 : 735-90-25263<br>
+        주소: 부산광역시 부산진구 동천로 109<br>
+
+<!--         대표전화 : 051-803-0909<br><br> --><br>
+        Copyright © <br>
+        All rights reserved Groom<br>
+
+<!--         <a href="about.gr">about</a><br> -->
+<!--         <a href="about.html">Copyright © 2023 All rights reserved Groom</a> -->
         </small>
     </p>
-    <ul>
-        <li><a href="#"><i class="icon-facebook2"></i></a></li>
+    <ul class="icon">
+        <li><a href="#"><i class="icon-facebook2" ></i></a></li>
         <li><a href="#"><i class="icon-twitter2"></i></a></li>
         <li><a href="#"><i class="icon-instagram"></i></a></li>
         <li><a href="#"><i class="icon-linkedin2"></i></a></li>

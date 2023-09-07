@@ -1,6 +1,12 @@
 @charset "UTF-8";
 /* 폰트 추가 ========================================================= */
 @font-face {
+    font-family: 'KOTRAHOPE';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
     font-family: 'Arita';
     src: url('../fonts/Arita4.0_SB.ttf') format('truetype');
 }
@@ -25,7 +31,7 @@ body {
 font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 /* background: whitesmoke; */
 /* background: #F4F9F9; */
-background: #FAF5FA; /* >>>>>>>>>>>> 새롭게 바뀐 배경색 */
+background: #FDFDFC; /* >>>>>>>>>>>> 새롭게 바뀐 배경색 */
 /* background: #ECF9FF; */
 /* background: #F7ECDE; */
 /* background: #EEE0C9; */
@@ -45,7 +51,7 @@ font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수
 /* background: #DAF5FF; */
 /* background: #ECF9FF; */
 /* background: #E3F6FF; */
-background: #F2EEFA; /* >>>>>>>>>>>> 새롭게 바뀐 네비색 */
+background: #F2F3CC; /* >>>>>>>>>>>> 새롭게 바뀐 네비색 */
   /* >>>>>>>>>>>>>>>> 네비게이션바 색 추가*/
 }
 @media screen and (max-width: 1200px) {
@@ -58,8 +64,8 @@ body.offcanvas #fh5co-aside {
 }
 #fh5co-aside #fh5co-logo {
 font-family: "Comic Sans MS", cursive, sans-serif !important; /* (로고만 다름) 폰트 수정 */
-margin-bottom: 8px; /* >>>>>>>>>>>>>>>>>>> 로고 아래 로그인/회원가입과의 간격 조절 */
-margin-top: 25px; /* >>> 위에 붙어있어서 간격줌 */
+margin-bottom: 15px; /* >>>>>>>>>>>>>>>>>>> 로고 아래 로그인/회원가입과의 간격 조절 */
+margin-top: 30px; /* >>> 위에 붙어있어서 간격줌 */
 text-transform: none; /* >>>>>>>>>>>>>>>>> 자동 대문자 변환 취소 */
 }
 #fh5co-aside #fh5co-main-menu ul li a {
@@ -114,14 +120,14 @@ font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수
     letter-spacing: .1em;
     text-transform: uppercase;
     font-size: 13px;
-    font-weight: 400;
+    font-weight: 50;
     position: relative;
     letter-spacing: .2em;
     color: black;
 }
 #fh5co-aside #fh5co-main-login_signup a {
     color: black; /* 검은색 글자색 지정 */
-    font-weight: 500;
+    font-weight: 1000;
     text-decoration: none; /* 밑줄 제거 */
 }
 
@@ -161,9 +167,12 @@ font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수
 /* 	네비바 하단 글자 클래스 */
 .nav-bottom-text
 {
-    text-align: left; /* 글자를 왼쪽으로 정렬 없애버리면 중앙으로 자동정렬*/
+    text-align: center; /* 글자를 왼쪽으로 정렬 없애버리면 중앙으로 자동정렬*/
     display: block; /* 각 요소를 블록 레벨로 표시하여 줄 바꿈 적용 */
+    color: #77734d;
+/*    margin-left: 20px;*/
 }
+
 
 /* ============================================== 추가 관리자페이지 버튼*/
 /* 기존 로그인|회원가입 링크 부분 */
@@ -190,9 +199,9 @@ font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수
 	color: blue;
 }
 #fh5co-main-menu {
-	margin-top: 6em;
+/*	메뉴 윗간격*/
+	margin-top: 4.7em;
 }
-/*  */
 .admin-link {
 	background: silver;
 	border: 1px solid black;

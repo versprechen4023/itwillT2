@@ -139,8 +139,8 @@ width: 1000px;
 
 /* 수정 버튼 스타일 */
 .modifybtn {
-    background-color: black; /* 버튼 배경색을 초록색으로 설정 */
-    color: white; /* 글자 색상을 하얀색으로 설정 */
+    background-color: #E1E2CD; /* 버튼 배경색을 초록색으로 설정 */
+    color: black; /* 글자 색상을 하얀색으로 설정 */
     border: none; /* 테두리 없음 */
     padding: 10px 20px; /* 안쪽 여백 설정 */
     font-size: 16px; /* 글자 크기 설정 */
@@ -152,8 +152,8 @@ width: 1000px;
 
 
 .listbtn {
-    background-color: black; /* 버튼 배경색을 초록색으로 설정 */
-    color: white; /* 글자 색상을 하얀색으로 설정 */
+    background-color: #E1E2CD; /* 버튼 배경색을 초록색으로 설정 */
+    color: black; /* 글자 색상을 하얀색으로 설정 */
     border: none; /* 테두리 없음 */
     padding: 10px 20px; /* 안쪽 여백 설정 */
     font-size: 16px; /* 글자 크기 설정 */

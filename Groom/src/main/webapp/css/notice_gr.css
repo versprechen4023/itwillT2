@@ -46,8 +46,8 @@ text-align: center;
 border-bottom: 1px solid black;
 }
 th {
-background-color: black;
-color: white;
+background-color: #A4CDC5;
+color: black;
 }
 #qtr:hover {
 background-color: rgb(241, 241, 241);
@@ -67,8 +67,8 @@ background-color: rgb(241, 241, 241);
 /* 버튼 */
 #searchbtn{
 	border: none;
-	background-color: black;
-	color:white;
+	background-color: #E1E2CD;
+	color:black;
 	border-radius: 5px;
 	padding: 7px 15px;
 	margin-left: 10px;
@@ -76,8 +76,8 @@ background-color: rgb(241, 241, 241);
 }
 #writebtn{
 	border: none;
-	background-color: black;
-	color:white;
+	background-color: #E1E2CD;
+	color:black;
 	border-radius: 5px;
 	padding: 7px 15px;
 /* 	margin-left: 280px; */

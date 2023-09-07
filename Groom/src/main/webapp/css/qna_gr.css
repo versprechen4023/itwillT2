@@ -1,4 +1,7 @@
 @charset "UTF-8";
+#answer{
+	color: gray;
+}
 *{
 	color: black;
 }
@@ -48,14 +51,14 @@ text-align: center;
 border-bottom: 1px solid black;
 }
 th {
-background-color: black;
-color:white;
+background-color: #A4CDC5;
+color: black;
 }
 /* tr:hover { */
 /* background-color: rgb(241, 241, 241); */
 /* } */
 #qtr:hover{
-	background-color: rgb(241, 241, 241);;
+	background-color: rgb(241, 241, 241);
 }
 /* 검색창 */
 #searchkey{
@@ -79,12 +82,13 @@ color:white;
 	height: 35.5px;
 	border: 1px solid black;
 	border-radius: 5px;
+	color: gray;
 }
 /* 버튼 */
 #searchbtn{
 	border: none;
-	background-color: black;
-	color:white;
+	background-color: #E1E2CD;
+	color:black;
 	border-radius: 5px;
 	padding: 6px 15px;
 	margin-left: 10px;
@@ -93,8 +97,8 @@ color:white;
 /* 글쓰기버튼+답글X버튼 */
 #writebtn{
 	border: none;
-	background-color: black;
-	color:white;
+	background-color: #E1E2CD;
+	color:black;
 	border-radius: 5px;
 	padding: 6px 15px;
 /* 	margin-left: 400px; */
@@ -103,8 +107,8 @@ color:white;
 }
 #rebtn{
 	border: none;
-	background-color: black;
-	color:white;
+	background-color: #E1E2CD;
+	color:black;
 	border-radius: 5px;
 	padding: 6px 15px;
 /* 	margin-left: 200px; */
@@ -117,7 +121,7 @@ color:white;
 	width: 10%;
 }
 #lsub{
-	width: 50%;
+	width: 45%;
 }
 #lname{
 	width:15%;
@@ -126,7 +130,7 @@ color:white;
 	width: 20%;
 }
 #lre{
-	width: 5%;
+	width: 10%;
 }
 table #subject{
 	text-align: left;
@@ -142,10 +146,10 @@ table #subject{
 		.pagination a {
 		 color: black;
 		 padding: 6px 12px;
-		 margin: 0 5px;
+		 margin: 0 4px;
 		 border: 1px solid black;
 		 text-decoration: none;
-		 border-radius: 5px;
+		 border-radius: 30px;
 		 font-weight: bold;
 		}
 	

@@ -20,7 +20,7 @@ reviewContent-main{
 }
 /* ========================================= 리뷰상세 상단 */
 .content-top {
-background: #F8E8EE;
+background: rgb(232, 232, 232);
 border-radius: 20px;
 	display: flex; 
 	justify-content: space-between; 
@@ -28,11 +28,11 @@ border-radius: 20px;
 	padding: 20px 35px;
 }
 .user-info {
-	color: #228896;
+	color: black;
 	font-size: 16px;
 }
 .user-info a{
-color: #ff69b4;
+color: dodgerblue;
 }
 .product-info {
 	color: black;
@@ -40,7 +40,7 @@ color: #ff69b4;
 div input {
 float: right;
   	margin-right: 10px;
-  	background-color: pink;
+  	background-color: lightgrey;
   	color: white;
   	border-radius: 7px;
 }
@@ -65,10 +65,10 @@ float: right;
 /* =========================================== 답글 */
 .re-review-content {
 	border-radius: 20px;
-	background: #F8E8EE;
+	background: rgb(232, 232, 232);
 }
 .recontent-top {
-/* 	background: #F8E8EE; */
+ 	background: rgb(232, 232, 232); 
 	border-radius: 20px;
 	display: flex; 
 	justify-content: space-between; 

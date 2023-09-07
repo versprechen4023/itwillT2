@@ -2,7 +2,7 @@
 
 body {
 	min-height: 100vh;
-	background: #f0f0f0;
+	background: rgb(241, 241, 241);
 	font-family: 'Noto Sans KR', sans-serif;
 }
 .review-write-main {
@@ -55,7 +55,7 @@ content: "\2606"; /* 빈 별(☆)의 문자를 유니코드로 설정 */
 }
 .filled-star:before {
 content: "\2605"; /* 채워진 별(★)의 문자를 유니코드로 설정 */
-color: #FB2681;
+color: dodgerblue;
 }
 /* =================================================== 리뷰 내용 */
 #review-message {

@@ -79,7 +79,7 @@ $("#datepicker").datepicker({
   }//
 });
 //데이트피커를 초기에 열기 (창 열자마자 활성화)
-$("#datepicker").datepicker("show");
+// $("#datepicker").datepicker("show");
 
 // 데이트피커 AJAX 처리
 $.ajax({

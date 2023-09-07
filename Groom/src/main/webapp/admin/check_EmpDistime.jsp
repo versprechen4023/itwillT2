@@ -34,12 +34,16 @@ String dis_daydate = adminDTO.getDis_daydate(); // 날짜
 String format_dis_daydate = dis_daydate.replace("-", ".").substring(2);
 String dis_time = adminDTO.getDis_time(); // 시간
 String format_dis_time = dis_time.substring(0, 5);
+int dis_time_num = adminDTO.getDis_time_num();
 %>		
 		<tr><td><%=adminDTO.getS_location() %></td>
 			<td><%=adminDTO.getEmp_name() %></td>
 			<td><%=format_dis_daydate %></td>
 			<td><%=format_dis_time %></td>
-			<td class="center-align"><input type="button" value="✕" class="discancle-button"></td>
+			<td class="center-align">
+			<input type="button" value="✕" class="discancle-button"
+			 onclick="cancleCheck2('<%=dis_time_num%>')">
+		</td>
 		</tr>
 <%
 }
@@ -61,5 +65,27 @@ String format_dis_time = dis_time.substring(0, 5);
 </div>	
 	
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+function cancleCheck2(dis_time_num) { //
+	var result = confirm("삭제합니다.");
+	if (result) {
+		$.ajax({
+	    	type: "GET",
+	        url: 'del_EmpDisTime.aj',
+	        data: {"dis_time_num":dis_time_num}, // 선택된 값을 서버로 전송
+	        success: function(result) {
+	   			  const data = $.trim(result);
+	   			  if(data=="true"){
+// 	    				  alert("저장완료");
+	   				  location.reload();
+	   			  }else {
+	   				  alert("저장실패");
+	   			  }		
+	        }
+		});
+	}
+}
+</script>
 </body>
 </html>

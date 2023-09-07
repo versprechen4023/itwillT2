@@ -147,14 +147,6 @@ public class AdminController extends HttpServlet {
 			webForward(request, response, "admin", "check_EmpDistime");
 	     }// check_StoreDisdays.ad [직원 쉬는시간 목록]
 		
-		
-		
-		
-		
-		
-		
-		
-		
 	}// doProcess
 	
 	@Override

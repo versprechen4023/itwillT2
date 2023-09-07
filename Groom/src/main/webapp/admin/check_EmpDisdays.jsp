@@ -32,12 +32,17 @@ List<AdminDTO> visibleItems = empDisDaysList.subList(startIndex, endIndex);
 for(AdminDTO adminDTO : visibleItems) {
 String dis_day = adminDTO.getDis_day(); //
 String format_dis_day = dis_day.replace("-", ".").substring(2);
+int dis_day_num = adminDTO.getDis_day_num();
 %>
 	<tr>
 		<td><%=adminDTO.getS_location() %></td>
 		<td><%=adminDTO.getEmp_name() %></td>
 		<td><%=format_dis_day %></td>
-		<td class="center-align"><input type="button" value="✕" class="discancle-button"></td>
+<!-- 		<td class="center-align"><input type="button" value="✕" class="discancle-button"></td> -->
+		<td class="center-align">
+			<input type="button" value="✕" class="discancle-button"
+			 onclick="cancelCheck1('<%=dis_day_num%>')">
+		</td>
 	</tr>
 <%
 }
@@ -57,7 +62,29 @@ String format_dis_day = dis_day.replace("-", ".").substring(2);
         <a href="?page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
     <% } %>
 </div>	
-
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+function cancelCheck1(dis_day_num) { //
+	var result = confirm("삭제합니다.");
+	if (result) {
+		$.ajax({
+	    	type: "GET",
+	        url: 'del_EmpDisDays.aj',
+	        data: {"dis_day_num":dis_day_num}, // 선택된 값을 서버로 전송
+	        success: function(result) {
+	   			  const data = $.trim(result);
+	   			  if(data=="true"){
+// 	    				  alert("저장완료");
+	   				  location.reload();
+	   			  }else {
+	   				  alert("저장실패");
+	   			  }		
+	        }
+		});
+// 		location.href = 'del_EmpDisDays.ad?dis_day_num='+dis_day_num;
+	}
+}
+</script>
 </body>
 </html>

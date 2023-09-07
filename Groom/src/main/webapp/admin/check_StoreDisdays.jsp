@@ -32,11 +32,15 @@ List<AdminDTO> visibleItems = storeDisDaysList.subList(startIndex, endIndex);
 for(AdminDTO adminDTO : visibleItems) {
 String off_day = adminDTO.getOff_day(); // 날짜
 String format_off_day = off_day.replace("-", ".").substring(2);
+int off_num = adminDTO.getOff_num();
 %>    
 	<tr>
 		<td><%=adminDTO.getS_location() %></td>
 		<td><%=format_off_day %></td>
-		<td class="center-align"><input type="button" value="✕" class="discancle-button"></td>
+		<td class="center-align">
+			<input type="button" value="✕" class="discancle-button"
+			 onclick="cancelCheck3('<%=off_num%>')">
+		</td>
 	</tr>
 <%
 }
@@ -56,7 +60,29 @@ String format_off_day = off_day.replace("-", ".").substring(2);
         <a href="?page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
     <% } %>
 </div>	
-
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+function cancelCheck3(off_num) { //
+	var result = confirm("삭제합니다.");
+	if (result) {
+		$.ajax({
+	    	type: "GET",
+	        url: 'del_StoreDisDays.aj',
+	        data: {"off_num":off_num}, // 선택된 값을 서버로 전송
+	        success: function(result) {
+	   			  const data = $.trim(result);
+	   			  if(data=="true"){
+// 	    				  alert("저장완료");
+	   				  location.reload();
+	   			  }else {
+	   				  alert("저장실패");
+	   			  }		
+	        }
+		});
+// 		location.href = 'del_StoreDisDays.ad?off_num='+off_num;
+	}
+}
+</script>
 </body>
 </html>

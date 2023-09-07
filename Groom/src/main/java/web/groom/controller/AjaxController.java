@@ -341,6 +341,38 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		}
 		
+		if (sPath.equals("/del_StoreDisDays.aj")) {
+			System.out.println("del_StoreDisDays.aj");
+			AdminService adminService = new AdminService();
+			boolean result = adminService.del_StoreDisDays(request);
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Boolean.toString(result));
+			out.close();
+		}// del_StoreDisDays.aj [매장 휴무일 취소]
+		
+		if (sPath.equals("/del_EmpDisDays.aj")) {
+			System.out.println("del_EmpDisDays.aj");
+			AdminService adminService = new AdminService();
+			boolean result = adminService.del_EmpDisDays(request);
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Boolean.toString(result));
+			out.close();
+		}// del_EmpDisDays.aj [직원 휴무일 취소]
+		
+		if (sPath.equals("/del_EmpDisTime.aj")) {
+			System.out.println("del_EmpDisTime.aj");
+			AdminService adminService = new AdminService();
+			boolean result = adminService.del_EmpDisTime(request);
+			// 콜백함수에 최종결과값 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(Boolean.toString(result));
+			out.close();
+		}// del_EmpDisTime.aj [직원 쉬는시간 취소]
 	}
 
 	@Override

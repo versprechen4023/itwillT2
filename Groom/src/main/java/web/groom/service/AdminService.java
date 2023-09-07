@@ -247,6 +247,45 @@ public class AdminService {
 		return storeDisDaysList;
 	}// getStoreDisDaysList() [매장 휴무일 목록]
 
+	public boolean del_EmpDisDays(HttpServletRequest request) {
+		System.out.println("AdminService del_EmpDisDays()");
+		boolean result = false;
+		try {
+			int dis_day_num = Integer.parseInt(request.getParameter("dis_day_num"));
+			adminDAO = new AdminDAO();
+			result = adminDAO.del_EmpDisDays(dis_day_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}// del_EmpDisDays() [직원 휴무일 취소]
+
+	public boolean del_EmpDisTime(HttpServletRequest request) {
+		System.out.println("AdminService del_EmpDisTime()");
+		boolean result = false;
+		try {
+			int dis_time_num = Integer.parseInt(request.getParameter("dis_time_num"));
+			adminDAO = new AdminDAO();
+			result = adminDAO.del_EmpDisTime(dis_time_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}// del_EmpDisTime() [직원 쉬는시간 취소]
+
+	public boolean del_StoreDisDays(HttpServletRequest request) {
+		System.out.println("AdminService del_StoreDisDays()");
+		boolean result = false;
+		try {
+			int off_num = Integer.parseInt(request.getParameter("off_num"));
+			adminDAO = new AdminDAO();
+			result = adminDAO.del_StoreDisDays(off_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}// del_StoreDisDays() [매장 휴무일 취소]
+
 	
 
 

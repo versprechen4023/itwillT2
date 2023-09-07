@@ -503,6 +503,66 @@ public class AdminDAO {
 		return storeDisDaysList;
 	}// getStoreDisDaysList() [매장 휴무일 목록]
 
+	public boolean del_EmpDisDays(int dis_day_num) {
+		System.out.println("AdminDAO del_EmpDisDays()");
+		boolean result = false;
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "DELETE FROM disabled_days"
+					+ "   WHERE dis_day_num = ?;";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, dis_day_num);
+			
+			int i = pstmt.executeUpdate();
+			result = (i != 0) ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return result;
+	}// del_EmpDisDays() [직원 휴무일 취소]
+
+	public boolean del_EmpDisTime(int dis_time_num) {
+		System.out.println("AdminDAO del_EmpDisDays()");
+		boolean result = false;
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "DELETE FROM disabled_time"
+					+ "   WHERE dis_time_num = ?;";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, dis_time_num);
+			
+			int i = pstmt.executeUpdate();
+			result = (i != 0) ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return result;
+	}// del_EmpDisTime() [직원 쉬는시간 취소]
+
+	public boolean del_StoreDisDays(int off_num) {
+		boolean result = false;
+		System.out.println("AdminDAO del_StoreDisDays()");
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "DELETE FROM store_offdays"
+					+ "   WHERE off_num = ?;";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, off_num);
+			
+			int i = pstmt.executeUpdate();
+			result = (i != 0) ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return result;
+	}// del_StoreDisDays() [매장 휴무일 취소]
+
 	
 	
 	

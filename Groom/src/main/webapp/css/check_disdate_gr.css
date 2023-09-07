@@ -16,11 +16,11 @@ margin: 0;
 .right-align {
 font-size:13px;
 text-align: right;
-border-radius: 5px;
-background: silver;
+/* border-radius: 5px; */
+/* background: silver; */
 }
 .right-align:hover {
-background: gray;
+/* background: gray; */
 }
 .discancle-button {
 	width: 20px;
@@ -28,16 +28,16 @@ background: gray;
 	display: flex;
 	text-align: center;
 	justify-content: center;
- 	background: silver;
-	border-radius: 3px;
+/*  	background: silver; */
+/* 	border-radius: 3px; */
 	font-weight: bold;
 	font-size: 8px;
 }
 .discancle-button:hover {
-	background: gray;
+/* 	background: gray; */
 }
 .discheck-table {
-width: 240px;
+width: 452px;
 	color: black;
     text-align: center;
     font-size: 16px;
@@ -56,7 +56,7 @@ text-align: left;
 }
 
 .discheck-table2 {
-width: 300px;
+width: 452px;
 	color: black;
     text-align: center;
     font-size: 16px;
@@ -104,8 +104,8 @@ align-items: center;
     justify-content: center;
     text-decoration: none;
     color: black !important;
-    border-radius: 30px;
-	border: 2px solid gray;
+/*     border-radius: 30px; */
+	border: 1px solid gray;
     transition: background-color 0.3s;
 }
 .disCheck-next a:-webkit-any-link {

@@ -221,13 +221,13 @@ function openDisDay(emp_num, s_num) {
 }
 //
 function openStoreDisdays(){
-	window.open('check_StoreDisdays.ad', '_blank', 'width=256px, height=300px');
+	window.open('check_StoreDisdays.ad', '_blank', 'width=468px, height=300px');
 }
 function openEmpDisdays(){
-	window.open('check_EmpDisdays.ad', '_blank', 'width=256px, height=300px');
+	window.open('check_EmpDisdays.ad', '_blank', 'width=468px, height=300px');
 }
 function openEmpDistime(){
-	window.open('check_EmpDistime.ad', '_blank', 'width=316px, height=300px');
+	window.open('check_EmpDistime.ad', '_blank', 'width=468px, height=300px');
 }
 </script>
 </body>

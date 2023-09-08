@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import web.groom.dto.ReviewDTO;
+import web.groom.javascript.JSForward;
 import web.groom.service.ReviewService;
 
 @WebServlet("*.re") //.re 리뷰페이지 어노테이션 매핑 선언
@@ -119,7 +120,7 @@ public class ReviewController extends HttpServlet {
 			 request.setCharacterEncoding("utf-8");
 			 reviewService = new ReviewService();
 			 reviewService.insertReview(request);
-			 response.getWriter().println("<script>window.close();</script>");//창닫기
+			 JSForward.windowClose(response); // 창닫기 라인
 		 }// writereviewPro.re [리뷰작성 후 등록]
 		 
 	

@@ -36,6 +36,8 @@ var disabledDates = []; // 여기에 비활성화될 데이터들 JSON으로 가
 
 // 지점번호 변수값
 var selectedStore = $('#s_num').val();
+var selectedManager = $('#emp_num').val();
+
 
 // 날짜 구하는 함수
 var currentDate = new Date();
@@ -85,7 +87,7 @@ $("#datepicker").datepicker({
 $.ajax({
 type: "GET",
 url: 'getDate.aj',
-data: { "selectedStore": selectedStore }, // 선택된 값을 서버로 전송
+data: { "selectedStore": selectedStore, "selectedManager": selectedManager }, // 선택된 값을 서버로 전송
 dataType: 'json',
 success: function (result) {
 disabledDates = result.map(function (item) {

@@ -127,7 +127,7 @@ $("#datepicker").datepicker({
 $.ajax({
   type: "GET",
   url: 'getDate.aj',
-  data: {"selectedStore": selectedStore}, // 선택된 값을 서버로 전송
+  data: {"selectedStore": selectedStore, "selectedManager": selectedManager}, // 선택된 값을 서버로 전송
   dataType: 'json',
   success: function(result) {
     disabledDates = result.map(function(item) {

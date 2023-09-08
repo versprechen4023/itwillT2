@@ -37,7 +37,25 @@ public class OrderService {
 		
 		return serviceDate;
 	} // getServiceDate
-
+	
+	public List<OrderDTO> getAdServiceDate(HttpServletRequest request) {
+		
+		List<OrderDTO> serviceDate = null;
+		
+		// 리퀘스트 파라미터값 변수에 저장
+		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
+		
+		try {
+			// OrderDAO에 값을 전달하고 로직처리 수행
+			serviceDate = new OrderDAO().getServiceDate(s_num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return serviceDate;
+	} // getAdServiceDate
+	
 	public List<OrderDTO> getServiceTime(HttpServletRequest request) {
 
 		List<OrderDTO> serviceTime = null;

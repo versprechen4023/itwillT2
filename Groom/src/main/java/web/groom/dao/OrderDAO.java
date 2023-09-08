@@ -54,6 +54,36 @@ public class OrderDAO {
 		return serviceDate;
 	}
     
+	// 데이트 피커 날짜 비활성화를 위한 메서드 [Admin 전용]
+	public List<OrderDTO> getServiceDate(int s_num) {
+		
+		List<OrderDTO> serviceDate = null;
+		
+		try {
+			
+			con = new SQLConnection().getConnection();
+			
+			String sql = "SELECT off_day FROM store_offdays WHERE s_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, s_num);
+			rs = pstmt.executeQuery();
+
+			serviceDate = new ArrayList<>();
+
+			while(rs.next()) {
+				orderDTO = new OrderDTO();
+				orderDTO.setDate(rs.getDate("off_day"));
+
+				serviceDate.add(orderDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return serviceDate;
+	}
+	
 	// 타임 피커 날짜 비활성화를 위한 메서드
 	public List<OrderDTO> getServiceTime(int s_num, int emp_num, String dis_daydate) {
 		

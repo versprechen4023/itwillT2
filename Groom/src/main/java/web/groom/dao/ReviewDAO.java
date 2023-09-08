@@ -28,11 +28,11 @@ public class ReviewDAO {
 			String sql = "SELECT a.rev_num, b.res_num, c.u_num, c.u_name, c.u_count, d.pro_name, e.emp_grade, e.emp_name,"
 					+ "          f.s_location, a.rev_rating, a.rev_content, a.rev_img_url, a.rev_count, a.rev_date,"
 					+ "          a.re_ref, a.re_lev, a.re_seq, a.re_content, a.re_date, c.u_point"
-					+ "   FROM test_review a JOIN test_reservation b on a.res_num = b.res_num"
-					+ "                      JOIN user2 c ON b.u_num = c.u_num"
-					+ "                      JOIN product2 d ON b.pro_id2 = d.pro_id2"
-					+ "                      JOIN employees e ON b.emp_num = e.emp_num"
-					+ "                      JOIN store f ON b.s_num = f.s_num;";
+					+ "   FROM review a JOIN reservation b on a.res_num = b.res_num"
+					+ "                 JOIN user2 c ON b.u_num = c.u_num"
+					+ "                 JOIN product2 d ON b.pro_id2 = d.pro_id2"
+					+ "                 JOIN employees e ON b.emp_num = e.emp_num"
+					+ "                 JOIN store f ON b.s_num = f.s_num;";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			reviewList = new ArrayList<>();
@@ -77,11 +77,11 @@ public class ReviewDAO {
 			String sql = "SELECT a.rev_num, b.res_num, c.u_num, c.u_name, c.u_count, d.pro_name, e.emp_grade, e.emp_name,"
 					+ "          f.s_location, a.rev_rating, a.rev_content, a.rev_img_url, a.rev_count, a.rev_date,"
 					+ "          a.re_ref, a.re_lev, a.re_seq, a.re_content, a.re_date, c.u_point"
-					+ "   FROM test_review a JOIN test_reservation b ON a.res_num = b.res_num"
-					+ "                      JOIN user2 c ON b.u_num = c.u_num"
-					+ "                      JOIN product2 d ON b.pro_id2 = d.pro_id2"
-					+ "                      JOIN employees e ON b.emp_num = e.emp_num"
-					+ "                      JOIN store f ON b.s_num = f.s_num"
+					+ "   FROM review a JOIN reservation b ON a.res_num = b.res_num"
+					+ "                 JOIN user2 c ON b.u_num = c.u_num"
+					+ "                 JOIN product2 d ON b.pro_id2 = d.pro_id2"
+					+ "                 JOIN employees e ON b.emp_num = e.emp_num"
+					+ "                 JOIN store f ON b.s_num = f.s_num"
 					+ "   WHERE d.pro_name = ?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proName); // 프로덕트 이름 설정
@@ -127,11 +127,11 @@ public class ReviewDAO {
 			String sql = "SELECT a.rev_num, b.res_num, c.u_num, c.u_name, c.u_count, d.pro_name, e.emp_grade, e.emp_name,"
 					+ "          f.s_location, a.rev_rating, a.rev_content, a.rev_img_url, a.rev_count, a.rev_date,"
 					+ "          a.re_ref, a.re_lev, a.re_seq, a.re_content, a.re_date, c.u_point"
-					+ "   FROM test_review a JOIN test_reservation b ON a.res_num = b.res_num"
-					+ "                      JOIN user2 c ON b.u_num = c.u_num"
-					+ "                      JOIN product2 d ON b.pro_id2 = d.pro_id2"
-					+ "                      JOIN employees e ON b.emp_num = e.emp_num"
-					+ "                      JOIN store f ON b.s_num = f.s_num"
+					+ "   FROM review a JOIN reservation b ON a.res_num = b.res_num"
+					+ "                 JOIN user2 c ON b.u_num = c.u_num"
+					+ "                 JOIN product2 d ON b.pro_id2 = d.pro_id2"
+					+ "                 JOIN employees e ON b.emp_num = e.emp_num"
+					+ "                 JOIN store f ON b.s_num = f.s_num"
 					+ "   WHERE b.u_num = ?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, u_num); // 프로덕트 이름 설정
@@ -178,11 +178,11 @@ public class ReviewDAO {
 			String sql = "SELECT a.rev_num, b.res_num, c.u_num, c.u_name, c.u_count, d.pro_name, e.emp_grade, e.emp_name,"
 					+ "          f.s_location, a.rev_rating, a.rev_content, a.rev_img_url, a.rev_count, a.rev_date,"
 					+ "          a.re_ref, a.re_lev, a.re_seq, a.re_content, a.re_date, c.u_point"
-					+ "   FROM test_review a JOIN test_reservation b on a.res_num = b.res_num"
-					+ "                      JOIN user2 c ON b.u_num = c.u_num"
-					+ "                      JOIN product2 d ON b.pro_id2 = d.pro_id2"
-					+ "                      JOIN employees e ON b.emp_num = e.emp_num"
-					+ "                      JOIN store f ON b.s_num = f.s_num"
+					+ "   FROM review a JOIN reservation b on a.res_num = b.res_num"
+					+ "                 JOIN user2 c ON b.u_num = c.u_num"
+					+ "                 JOIN product2 d ON b.pro_id2 = d.pro_id2"
+					+ "                 JOIN employees e ON b.emp_num = e.emp_num"
+					+ "                 JOIN store f ON b.s_num = f.s_num"
 					+ "   WHERE a.rev_num = ?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rev_num);
@@ -223,7 +223,7 @@ public class ReviewDAO {
 		System.out.println("ReviewDAO updateReadcount");
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "UPDATE test_review"
+			String sql = "UPDATE review"
 					+ "   SET rev_count = rev_count+1 WHERE rev_num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rev_num);
@@ -240,7 +240,7 @@ public class ReviewDAO {
 		System.out.println("ReviewDAO insertReview()");
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "INSERT INTO test_review"
+			String sql = "INSERT INTO review"
 					+ "   (u_num, res_num, pro_id2, s_num, rev_content,"
 					+ "    rev_img_url, rev_rating, rev_date, rev_count,"
 					+ "    re_ref, re_lev, re_seq, re_content, re_date);"
@@ -272,7 +272,7 @@ public class ReviewDAO {
 		System.out.println("ReviewDAO updateReview()");
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "UPDATE test_review"
+			String sql = "UPDATE review"
 					+ "   SET rev_content=?,rev_img_url=?"
 					+ "   WHERE rev_num=?;";
 			pstmt = con.prepareStatement(sql);
@@ -292,7 +292,7 @@ public class ReviewDAO {
 		System.out.println("ReviewDAO deleteReview()");
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "delete from test_review where rev_num=?";
+			String sql = "DELETE FROM review WHERE rev_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, rev_num);
 			
@@ -309,12 +309,12 @@ public class ReviewDAO {
 		System.out.println("ReviewDAO deleteReviewPoint()");
 		try {
 			con = new SQLConnection().getConnection();
-			String sql1 = "update user2"
-					+ "   set u_point = u_point - 1000"
-					+ "   where u_num = (select u_num from test_review"
-					+ "                  where rev_num = ?);";
+			String sql1 = "UPDATE user2"
+					+ "    SET u_point = u_point - 1000"
+					+ "    WHERE u_num = (SELECT u_num FROM review"
+					+ "                   WHERE rev_num = ?);";
 			
-			String sql2 = "delete from test_review where rev_num=?";
+			String sql2 = "DELETE FROM review WHERE rev_num=?";
 			
 			PreparedStatement pstmt1 = null;
 			pstmt1 = con.prepareStatement(sql1);
@@ -338,14 +338,14 @@ public class ReviewDAO {
 		System.out.println("ReviewDAO writeRe()");
 		try {
 			con = new SQLConnection().getConnection();
-			String sql1 = "update user2"
-					+ "   set u_point = u_point + 1000"
-					+ "   where u_num = (select u_num from test_review"
-					+ "                  where rev_num = ?);";
+			String sql1 = "UPDATE user2"
+					+ "    SET u_point = u_point + 1000"
+					+ "    WHERE u_num = (SELECT u_num FROM review"
+					+ "                   WHERE rev_num = ?);";
 			
-			String sql2 = "update test_review"
-					+ "   set re_content=?,re_date=?,re_ref=re_ref+1,re_lev=re_lev+1,re_seq=re_seq+1"
-					+ "   where rev_num=?";
+			String sql2 = "UPDATE review"
+					+ "    SET re_content=?,re_date=?,re_ref=re_ref+1,re_lev=re_lev+1,re_seq=re_seq+1"
+					+ "    WHERE rev_num=?";
 			PreparedStatement pstmt1 = null;
 			pstmt1 = con.prepareStatement(sql1);
 			pstmt1.setInt(1, reviewDTO.getRev_num());
@@ -369,9 +369,9 @@ public class ReviewDAO {
 		System.out.println("ReviewDAO updateRe()");
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "update test_review"
-					+ "   set re_content=?"
-					+ "   where rev_num=?";
+			String sql = "UPDATE review"
+					+ "   SET re_content=?"
+					+ "   WHERE rev_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, reviewDTO.getRe_content());
 			pstmt.setInt(2, reviewDTO.getRev_num());
@@ -388,9 +388,9 @@ public class ReviewDAO {
 		System.out.println("ReviewDAO writeRe()");
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "update test_review"
-					+ "   set re_content=null,re_date=null,re_ref=re_ref-1,re_lev=re_lev-1,re_seq=re_seq-1"
-					+ "   where rev_num=?";
+			String sql = "UPDATE review"
+					+ "   SET re_content=null,re_date=null,re_ref=re_ref-1,re_lev=re_lev-1,re_seq=re_seq-1"
+					+ "   WHERE rev_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, reviewDTO.getRev_num());
 			pstmt.executeUpdate();

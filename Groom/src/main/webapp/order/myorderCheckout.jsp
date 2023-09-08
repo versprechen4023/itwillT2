@@ -207,7 +207,7 @@ function callImportAPI() {
             amount: val, 
             //가격 
 //             buyer_email: 'iamport@siot.do',
-//             buyer_name: 'itwillbsT2',
+            buyer_name: '<%=orderInfo.getU_name()%>',
 //             buyer_tel: '010-1234-5678',
 //             buyer_addr: '부산광역시 부산진구 부전동',
 //             buyer_postcode: '123-456',

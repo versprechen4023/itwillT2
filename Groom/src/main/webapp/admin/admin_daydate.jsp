@@ -83,7 +83,7 @@ $("#datepicker").datepicker({
 // 데이트피커 AJAX 처리
 $.ajax({
 type: "GET",
-url: 'getDate.aj',
+url: 'getAdDate.aj',
 data: { "selectedStore": selectedStore }, // 선택된 값을 서버로 전송
 dataType: 'json',
 success: function (result) {

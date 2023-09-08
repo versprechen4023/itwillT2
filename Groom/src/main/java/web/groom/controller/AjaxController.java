@@ -133,6 +133,36 @@ public class AjaxController extends HttpServlet {
 		    out.close();
 		} // end_of_getDate.aj
 		
+		// AJAX관련 예약에 대한 날짜 비활성화 로직 [Admin 전용]
+		if (sPath.equals("/getAdDate.aj")) {
+		    
+			//오더 관련 처리를 위한 오더 서비스 객체생성
+		    OrderService orderService = new OrderService();
+		    
+		    // 예약 비활성화 날짜를 리스트로 받아오기
+		 	List<OrderDTO> serviceDate = orderService.getAdServiceDate(request);
+		 	
+		 	// JSON 배열 객체 생성
+		    JSONArray arr = new JSONArray();
+		    
+		    // 날짜 포맷을 JSON에 맞게 처리하기 위해 변경
+		    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		    
+		    //orderDTO의 내용을 모두 JSON 오브젝트에 삽입
+			for(OrderDTO orderDTO : serviceDate) {
+				JSONObject object = new JSONObject();
+				object.put("date", format.format(orderDTO.getDate()));
+				// 배열 한칸에 저장
+				arr.add(object);
+			}
+			
+			// 콜백함수에 최종결과값 출력
+		    response.setContentType("application/json; charset=UTF-8");
+		    PrintWriter out = response.getWriter();
+		    out.print(arr);
+		    out.close();
+		}
+		
 		// AJAX관련 예약에 대한 시간 비활성화 로직
 		if (sPath.equals("/getTime.aj")) {
 			

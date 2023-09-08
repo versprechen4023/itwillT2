@@ -61,16 +61,16 @@ public class AdminDAO {
 	
 	public List<OrderReservationDTO> getReservationList() {
 		System.out.println("AdminDAO getReservationList()");
-		String sql = "select a.res_num, a.res_day, a.res_time, b.pro_name, c.pet_size, b.pet_weight,"
+		String sql = "SELECT a.res_num, a.res_day, a.res_time, b.pro_name, c.pet_size, b.pet_weight,"
 				+ "          d.s_location, e.emp_grade, e.emp_name, f.u_name, f.u_phone, a.res_point,"
 				+ "          a.res_price, a.res_status, a.res_method, a.res_point_status"
-				+ "   from reservation a"
-				+ "   join product2 b on a.pro_id2 = b.pro_id2"
-				+ "   join product1 c on a.pro_id1 = c.pro_id1"
-				+ "   join store d on a.s_num = d.s_num"
-				+ "   join employees e on a.emp_num = e.emp_num"
-				+ "   join user2 f on a.u_num = f.u_num"
-				+ "   order by a.res_num desc;";
+				+ "   FROM reservation a"
+				+ "   JOIN product2 b on a.pro_id2 = b.pro_id2"
+				+ "   JOIN product1 c on a.pro_id1 = c.pro_id1"
+				+ "   JOIN store d on a.s_num = d.s_num"
+				+ "   JOIN employees e on a.emp_num = e.emp_num"
+				+ "   JOIN user2 f ON a.u_num = f.u_num"
+				+ "   ORDER BY a.res_num desc;";
 		List<OrderReservationDTO> reservationList = null;
 		try {
 			con = new SQLConnection().getConnection();
@@ -107,11 +107,27 @@ public class AdminDAO {
 
 	public List<AdminDTO> getEmpList() {
 		System.out.println("AdminDAO getEmpList()");
+//		String sql = "SELECT"
+//				+ "   ROW_NUMBER() OVER (PARTITION BY a.s_location ORDER BY b.s_num, b.emp_grade) AS number,"
+//				+ "   a.s_num, a.s_location, b.emp_num, b.emp_grade, b.emp_name, b.emp_extrafee, b.emp_phone, b.emp_email, b.emp_date"
+//				+ "   FROM store a JOIN employees b ON a.s_num = b.s_num"
+//				+ "   ORDER BY a.s_location, b.s_num, b.emp_grade;";
 		String sql = "SELECT"
-				+ "   ROW_NUMBER() OVER (PARTITION BY a.s_location ORDER BY b.s_num, b.emp_grade) AS number,"
+				+ "   ROW_NUMBER() OVER (PARTITION BY a.s_location ORDER BY a.s_location_order, emp_order) AS number,"
 				+ "   a.s_num, a.s_location, b.emp_num, b.emp_grade, b.emp_name, b.emp_extrafee, b.emp_phone, b.emp_email, b.emp_date"
-				+ "   FROM store a JOIN employees b ON a.s_num = b.s_num"
-				+ "   ORDER BY a.s_location, b.s_num, b.emp_grade;";
+				+ "   FROM (SELECT *, CASE s_location"
+				+ "				      WHEN '서면점' THEN 1"
+				+ "				      WHEN '명지점' THEN 2"
+				+ "				      WHEN '율하점' THEN 3"
+				+ "				      END AS s_location_order"
+				+ "				      FROM store) a"
+				+ "   JOIN employees b ON a.s_num = b.s_num"
+				+ "   JOIN (SELECT '원장' AS emp_grade, 1 AS emp_order"
+				+ "	        UNION ALL"
+				+ "	        SELECT '실장', 2"
+				+ "	        UNION ALL"
+				+ "	        SELECT '수석', 3) AS grade_order ON b.emp_grade = grade_order.emp_grade"
+				+ "   ORDER BY a.s_location_order, emp_order;";
 		List<AdminDTO> empList = null;
 		try {
 			con = new SQLConnection().getConnection();
@@ -205,7 +221,7 @@ public class AdminDAO {
 			// db연결
 			con = new SQLConnection().getConnection();
 			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
-			String SQL = "UPDATE reservation SET res_status = 1 where res_num = ?";
+			String SQL = "UPDATE reservation SET res_status = 1 WHERE res_num = ?";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, a);
 			int rs = pstmt.executeUpdate();
@@ -226,7 +242,7 @@ public class AdminDAO {
 			// db연결
 			con = new SQLConnection().getConnection();
 			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
-			String SQL = "UPDATE reservation SET res_status = 2 where res_num = ?";
+			String SQL = "UPDATE reservation SET res_status = 2 WHERE res_num = ?";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, b);
 			int rs = pstmt.executeUpdate();
@@ -247,7 +263,7 @@ public class AdminDAO {
 			// db연결
 			con = new SQLConnection().getConnection();
 			// SQL 쿼리 실행
-			String SQL = "UPDATE reservation SET res_status = 0 where res_num = ?";
+			String SQL = "UPDATE reservation SET res_status = 0 WHERE res_num = ?";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, c);
 			int rs = pstmt.executeUpdate();

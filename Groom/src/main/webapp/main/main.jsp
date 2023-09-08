@@ -102,9 +102,9 @@
 List<ReviewDTO> reviewList
 =(List<ReviewDTO>)request.getAttribute("reviewList");
 SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
-
+if(reviewList != null){
 for (ReviewDTO reviewDTO : reviewList){
-if(reviewDTO != null){
+
 // ========= 별점 받아서 별출력하는 코드 ㄱ
 //int rating = reviewDTO.getRev_rating(); // rev_rating 값 int로 바꾸면 수정하도록
 int rating = Integer.parseInt(reviewDTO.getRev_rating());

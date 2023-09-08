@@ -29,7 +29,7 @@
 				<!-- 비디오 자동실행 오른쪽에 autoplay muted 추가 controls 명시하면 사용자가 비디오 멈출 수 있음-->
 					<div class="video-container">
 						<video id="video" autoplay loop muted style="max-width: 100%; height: auto;">
-							<source src="./images/parkpark.mp4" type="video/mp4">
+							<source src="./images/main3.mp4" type="video/mp4">
 						</video>
 						
 						<div class="video-text">이름</div>

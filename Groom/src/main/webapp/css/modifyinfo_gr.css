@@ -11,6 +11,10 @@
 		format('woff');
 }
 
+#id, #name {
+    background-color: #E2E2E2; /* 원하는 색상으로 변경하세요 */
+}
+
 /* 가로선 */
 .separator {
 	width: 660px;

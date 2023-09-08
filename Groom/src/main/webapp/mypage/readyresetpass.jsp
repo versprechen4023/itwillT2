@@ -20,7 +20,7 @@ String id = (String)session.getAttribute("id");
 	<link rel="stylesheet" href="./css/login_gr.css">
 
 	<body>
-	  <form action="resetpasswordPro.my" id="resetpass" name="resetpass" method="post">
+	  <form action="readyresetpassPro.my" id="resetpass" name="resetpass" method="post">
 	  
 <!-- 로고 자리 -->		
 		<h1 style="margin-top: -55px; margin-bottom: 55px;"> Groom(로고) </h1>

@@ -317,7 +317,7 @@ public class MypageDAO {
 		String sql = "select a.res_num, a.res_day, a.res_time, a.s_num, a.emp_num, b.pro_name, c.pet_size, b.pet_weight,"
 				+ "          d.s_location, e.emp_grade, e.emp_name, f.u_name, f.u_phone, a.res_point,"
 				+ "          a.res_price, a.res_status, a.res_method, a.res_point_status"
-				+ "   from test_reservation a"
+				+ "   from reservation a"
 				+ "   join product2 b on a.pro_id2 = b.pro_id2"
 				+ "   join product1 c on a.pro_id1 = c.pro_id1"
 				+ "   join store d on a.s_num = d.s_num"

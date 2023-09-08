@@ -84,7 +84,7 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 	</tr>
 </table>
 <input type="button" value="회원탈퇴" class="mbtn mbtn-left" onclick="location.href='withdraw.my'">
-<input type="button" value="비밀번호 변경" class="mbtn mbtn-center" onclick="location.href='resetpassword.my'">
+<input type="button" value="비밀번호 변경" class="mbtn mbtn-center" onclick="location.href='readyresetpass.my'">
 <input type="button" value="정보수정" class="mbtn mbtn-right" onclick="location.href='modifyinfo.my'">
 
 

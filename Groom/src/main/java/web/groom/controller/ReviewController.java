@@ -128,46 +128,63 @@ public class ReviewController extends HttpServlet {
 			 System.out.println("reviewDelete.re");
 			 reviewService = new ReviewService();
 			 reviewService.deleteReview(request);
-			 response.sendRedirect("reviewList.re?pro_name=");
+			 JSForward.locationHref(response, "리뷰 삭제 완료.", "reviewList.re");
 		 }// reviewDelete.re [리뷰삭제]
 		 
 		 if(sPath.equals("/reviewDeletePoint.re")) {
 			 System.out.println("reviewDeletePoint.re");
 			 reviewService = new ReviewService();
 			 reviewService.deleteReviewPoint(request);
-			 response.sendRedirect("reviewList.re?pro_name=");
+			 JSForward.locationHref(response, "리뷰 삭제 완료.\n* 포인트가 회수됩니다.", "reviewList.re");
 		 }// reviewDelete.re [리뷰삭제 + 포인트회수]
 		 
 		 
 		 if(sPath.equals("/reWrite.re")) {
-			 System.out.println("reWrite.re");
-			 reviewService = new ReviewService();
-			 ReviewDTO reviewDTO = reviewService.getReview(request);
-			 request.setAttribute("reviewDTO", reviewDTO);
-			 webForward(request, response, "review", "reWrite");
+			//유저 세션 검증
+				String id = (String)request.getSession().getAttribute("id");
+				String role = (String)request.getSession().getAttribute("role");
+				//세션에 id값이 존재하지않거나 role이 admin이 아닐 경우 메인으로
+					if (id == null || !role.equals("admin")){
+						JSForward.locationHref(response, "비정상적인 접근입니다.", "main.gr");
+					} else {
+						System.out.println("reWrite.re");
+						reviewService = new ReviewService();
+						ReviewDTO reviewDTO = reviewService.getReview(request);
+						request.setAttribute("reviewDTO", reviewDTO);
+						webForward(request, response, "review", "reWrite");
+					}
 		 }//reWrite.re [답글작성]
 		 
 		 if(sPath.equals("/reWritePro.re")) {
 			 System.out.println("reWritePro.re");
 			 reviewService = new ReviewService();
 			 reviewService.writeRe(request);
-			 response.sendRedirect("reviewList.re?pro_name="); // 목록으로
+			 JSForward.locationHref(response, "답글 작성 완료.\n* 포인트가 지급됩니다.", "reviewList.re");
 		 }//reWritePro.re [답글작성 후 등록 + 포인트추가]
 		 
 		 
 		 if(sPath.equals("/reUpdate.re")) {
-			 System.out.println("reUpdate.re");
-			 reviewService = new ReviewService();
-			 ReviewDTO reviewDTO = reviewService.getReview(request);
-			 request.setAttribute("reviewDTO", reviewDTO);
-			 webForward(request, response, "review", "reUpdate");
+			//유저 세션 검증
+				String id = (String)request.getSession().getAttribute("id");
+				String role = (String)request.getSession().getAttribute("role");
+				//세션에 id값이 존재하지않거나 role이 admin이 아닐 경우 메인으로
+					if (id == null || !role.equals("admin")){
+						JSForward.locationHref(response, "비정상적인 접근입니다.", "main.gr");
+					} else {
+						System.out.println("reUpdate.re");
+						reviewService = new ReviewService();
+						ReviewDTO reviewDTO = reviewService.getReview(request);
+						request.setAttribute("reviewDTO", reviewDTO);
+						webForward(request, response, "review", "reUpdate");
+					}
 		 }//reUpdate.re [답글수정]
 		 
 		 if(sPath.equals("/reUpdatePro.re")) {
 			 System.out.println("reUpdatePro.re");
 			 reviewService = new ReviewService();
 			 reviewService.updateRe(request);
-			 response.sendRedirect("reviewList.re?pro_name="); // 목록으로
+//			 response.sendRedirect("reviewList.re"); // 목록으로
+			 JSForward.locationHref(response, "답글 수정 완료.", "reviewList.re");
 		 }//reUpdatePro.re [답글수정 후 등록]
 		 
 		 
@@ -175,7 +192,7 @@ public class ReviewController extends HttpServlet {
 			 System.out.println("reDelete.re");
 			 reviewService = new ReviewService();
 			 reviewService.deleteRe(request);
-			 response.sendRedirect("reviewList.re?pro_name="); // 목록으로
+			 JSForward.locationHref(response, "답글 삭제 완료.", "reviewList.re");
 		 }// reDelete.re [답글삭제]
 		 
 		 
@@ -191,7 +208,7 @@ public class ReviewController extends HttpServlet {
 			 System.out.println("reviewUpdatePro.re");
 			 reviewService = new ReviewService();
 			 reviewService.updateReview(request);
-			 response.sendRedirect("reviewList.re?pro_name="); // 목록으로
+			 JSForward.locationHref(response, "리뷰 수정 완료.", "reviewList.re");
 		 }//reviewUpdatePro.re [리뷰수정 후 등록]
 		 
 		 

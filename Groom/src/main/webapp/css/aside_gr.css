@@ -96,6 +96,7 @@ font-family: 'Noto', sans-serif !important;/* >>>>>>>>>>>>>>>>>>>>>> 폰트 수�
 font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수정 */
 }
 .blog-entry {
+background: whitesmoke;
 border-radius: 10px;  /* >>>>>>>>>>>>>>>>>>>>>>>>> 리뷰내용 모서리 둥글게 */ 	
 }
 .blog-entry .blog-img {
@@ -196,7 +197,7 @@ font-family: 'Noto', sans-serif !important; /* >>>>>>>>>>>>>>>>>>>>>> 폰트 수
     text-decoration: none;
 }
 #fh5co-aside #fh5co-main-to_adminpage a:hover {
-	color: blue;
+	color: #228896;
 }
 #fh5co-main-menu {
 /*	메뉴 윗간격*/

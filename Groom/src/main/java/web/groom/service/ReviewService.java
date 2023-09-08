@@ -87,10 +87,8 @@ ReviewDAO reviewDAO = null;
 			= new MultipartRequest(request, uploadPath, maxSize,"utf-8", new DefaultFileRenamePolicy()); 
 			
 //			int rev_num = 1; // (auto_increment)
-			int u_num = 9; // 세션받기, 9번 = user2469 role=user 
-			int res_num = 0; // from예약내역
-			int pro_id = 0; // from예약내역
-			int s_num = 0; // from예약내역 값있어야 오류안남 (fk이기떄문)
+			int u_num = Integer.parseInt(multi.getParameter("u_num"));
+			int res_num = Integer.parseInt(multi.getParameter("res_num"));
 			String rev_content = multi.getParameter("rev_content");
 			String rev_img_url = multi.getFilesystemName("rev_img_url");
 			String rev_rating = multi.getParameter("rev_rating");
@@ -106,8 +104,6 @@ ReviewDAO reviewDAO = null;
 			ReviewDTO reviewDTO = new ReviewDTO();
 			reviewDTO.setU_num(u_num);
 			reviewDTO.setRes_num(res_num);
-			reviewDTO.setPro_id2(pro_id);
-			reviewDTO.setS_num(s_num);
 			reviewDTO.setRev_content(rev_content);
 			reviewDTO.setRev_img_url(rev_img_url);
 			reviewDTO.setRev_rating(rev_rating);
@@ -118,6 +114,7 @@ ReviewDAO reviewDAO = null;
 			reviewDTO.setRe_seq(re_seq);
 			reviewDTO.setRe_content(re_content); //
 			reviewDTO.setRe_date(re_date); //
+			
 			reviewDAO.insertReview(reviewDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,14 +133,14 @@ ReviewDAO reviewDAO = null;
 			int rev_num = Integer.parseInt(multi.getParameter("rev_num"));
 			String rev_content = multi.getParameter("rev_content");
 			String rev_img_url = multi.getFilesystemName("rev_img_url");
-//			String rev_rating = multi.getParameter("rev_rating"); // 잠시
+			String rev_rating = multi.getParameter("rev_rating"); // 잠시
 			
 			reviewDAO = new ReviewDAO();
 			ReviewDTO reviewDTO = new ReviewDTO();
 			reviewDTO.setRev_num(rev_num);
 			reviewDTO.setRev_content(rev_content);
 			reviewDTO.setRev_img_url(rev_img_url);
-//			reviewDTO.setRev_rating(rev_rating); // 잠시
+			reviewDTO.setRev_rating(rev_rating); // 잠시
 			reviewDAO.updateReview(reviewDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -214,7 +211,7 @@ ReviewDAO reviewDAO = null;
 	}// updateRe [답글수정]
 
 
-	public void deleteRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
+	public void deleteRe(HttpServletRequest request) {
 		System.out.println("ReviewService deleteRe()");
 		try {
 			int rev_num = Integer.parseInt(request.getParameter("rev_num"));

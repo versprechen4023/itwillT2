@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import web.groom.dto.MemberDTO;
 import web.groom.dto.OrderDTO;
 import web.groom.dto.OrderReservationDTO;
 import web.groom.dto.OrderServiceDTO;
@@ -20,6 +18,7 @@ public class OrderDAO {
 	PreparedStatement pstmt = null;;
 	ResultSet rs = null;
 	OrderDTO orderDTO = null;
+	OrderServiceDTO orderServiceDTO = null;
 	
 	// 데이트 피커 날짜 비활성화를 위한 메서드
 	public List<OrderDTO> getServiceDate(int s_num, int emp_num) {
@@ -42,7 +41,7 @@ public class OrderDAO {
 			serviceDate = new ArrayList<>();
 
 			while(rs.next()) {
-				OrderDTO orderDTO = new OrderDTO();
+				orderDTO = new OrderDTO();
 				orderDTO.setDate(rs.getDate("dis_day"));
 
 				serviceDate.add(orderDTO);
@@ -78,7 +77,7 @@ public class OrderDAO {
 			serviceTime = new ArrayList<>();
 
 			while(rs.next()) {
-				OrderDTO orderDTO = new OrderDTO();
+				orderDTO = new OrderDTO();
 				orderDTO.setTime(rs.getTime("dis_time"));
 
 				serviceTime.add(orderDTO);
@@ -138,7 +137,7 @@ public class OrderDAO {
 			int increment = 4;
 			
 			while(rs.next()) {
-				OrderServiceDTO orderServiceDTO = new OrderServiceDTO();
+				orderServiceDTO = new OrderServiceDTO();
 			    orderServiceDTO.setS_num(startingNumber);
 				orderServiceDTO.setPro_name(rs.getString("pro_name"));
 				
@@ -176,7 +175,7 @@ public class OrderDAO {
 			int increment = 1;
 
 			while (rs.next()) {
-				OrderServiceDTO orderServiceDTO = new OrderServiceDTO();
+				orderServiceDTO = new OrderServiceDTO();
 				orderServiceDTO.setS_num(startingNumber);
 				orderServiceDTO.setPet_weight(rs.getString("pet_weight"));
 
@@ -211,7 +210,7 @@ public class OrderDAO {
 			serviceList = new ArrayList<>();
 
 			while (rs.next()) {
-				OrderServiceDTO orderServiceDTO = new OrderServiceDTO();
+				orderServiceDTO = new OrderServiceDTO();
 				
 				orderServiceDTO.setEmp_num(rs.getInt("emp_num"));
 				orderServiceDTO.setEmp_name(rs.getString("emp_name"));
@@ -351,7 +350,6 @@ public class OrderDAO {
 
 			if (rs.next()) {
 				orderInfoDTO.setPet_size(rs.getString("pet_size"));
-				System.out.println(orderInfoDTO.getPet_size());
 			}
 
 		} catch (Exception e) {

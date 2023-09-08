@@ -23,11 +23,6 @@ public class OrderController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String sPath = request.getServletPath();
-		
-		 //페이지이동
-		 if (sPath.equals("/something.or")) {
-	            
-	     }
 		 
 		 //예약하기페이지 이동
 		 if (sPath.equals("/myorder.or")) {
@@ -61,9 +56,9 @@ public class OrderController extends HttpServlet {
 				 JSForward.locationHref(response, "다시 로그인 후 이용해주세요", "login.me");
 			 }
 			 }
-	     }
+	     } // end_of_myorder.or
 		 
-		 //페이지이동
+		 // 사용자가 선택한 예약내역을 다시 보여주게 함
 		 if (sPath.equals("/myorderCheckout.or")) {
 			 
 			 //유저 세션 검증
@@ -76,10 +71,8 @@ public class OrderController extends HttpServlet {
 			 
 			 else {
 				 
-				 //정보들을 가지고 오기 위한 객체생성
-				 OrderService orderservice = new OrderService();
-				 
-				 OrderinfoDTO orderInfoDTO = orderservice.getOrderInfo(request);
+				 //정보들을 가지고 오기 위한 메서드 호출
+				 OrderinfoDTO orderInfoDTO = new OrderService().getOrderInfo(request);
 				 
 				 // request에 오더 정보 있는 orderInfo 저장
 				 request.setAttribute("orderInfo", orderInfoDTO);
@@ -89,15 +82,13 @@ public class OrderController extends HttpServlet {
 				 webForward(request, response, "order", "myorderCheckout");
 			 }
 			 
-	     }
+	     } // end_of_myorderCheckout.or
 		 
-		//페이지이동
+		 // 예약 처리 및 DB에 저장
 		 if (sPath.equals("/orderReservation.or")) {
 				 
-				 //정보들을 가지고 오기 위한 객체생성
-				 OrderService orderservice = new OrderService();
-				 
-				 OrderReservationDTO orderReserv = orderservice.insertOrderReserv(request);
+				 //정보들을 가지고 오기 위한 메서드 호출
+				 OrderReservationDTO orderReserv = new OrderService().insertOrderReserv(request);
 				 
 				if (orderReserv != null) {
 					System.out.println("예약처리 완료");
@@ -109,7 +100,7 @@ public class OrderController extends HttpServlet {
 				 
 
 			 
-	     }
+	     } // end_of_orderReservation.or
 		 
 		 
 	}

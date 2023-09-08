@@ -12,14 +12,15 @@ private int s_num;
 private int pro_id1;
 private int serveiceNum;
 private int emp_num;
+private int res_price;
+private int res_point;
 
 private String u_name;
 private String u_phone;
 private String res_day;
 private String res_time;
-private String res_price;
 private String res_u_req;
-private String res_point;
+
 
 
 public String getU_name() {
@@ -34,13 +35,13 @@ public String getRes_day() {
 public String getRes_time() {
 	return res_time;
 }
-public String getRes_price() {
+public int getRes_price() {
 	return res_price;
 }
 public String getRes_u_req() {
 	return res_u_req;
 }
-public String getRes_point() {
+public int getRes_point() {
 	return res_point;
 }
 public void setU_name(String u_name) {
@@ -55,13 +56,13 @@ public void setRes_day(String res_day) {
 public void setRes_time(String res_time) {
 	this.res_time = res_time;
 }
-public void setRes_price(String res_price) {
+public void setRes_price(int res_price) {
 	this.res_price = res_price;
 }
 public void setRes_u_req(String res_u_req) {
 	this.res_u_req = res_u_req;
 }
-public void setRes_point(String res_point) {
+public void setRes_point(int res_point) {
 	this.res_point = res_point;
 }
 public int getS_num() {

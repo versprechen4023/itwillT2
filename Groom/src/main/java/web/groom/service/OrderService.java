@@ -5,7 +5,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,32 +23,33 @@ public class OrderService {
 		
 		List<OrderDTO> serviceDate = null;
 		
-		// 지점번호, 직원번호 넘겨주기
+		// 리퀘스트 파라미터값 변수에 저장
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		int emp_num = Integer.parseInt(request.getParameter("selectedManager"));
 		
 		try {
-			orderDAO = new OrderDAO();
-			serviceDate = orderDAO.getServiceDate(s_num, emp_num);
+			// OrderDAO에 값을 전달하고 로직처리 수행
+			serviceDate = new OrderDAO().getServiceDate(s_num, emp_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return serviceDate;
-	}
+	} // getServiceDate
 
 	public List<OrderDTO> getServiceTime(HttpServletRequest request) {
 
 		List<OrderDTO> serviceTime = null;
 		
+		// 리퀘스트 파라미터값 변수에 저장
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		int emp_num = Integer.parseInt(request.getParameter("selectedManager"));
 		String dis_daydate = (request.getParameter("selectedDate"));
 		
 		try {
-			orderDAO = new OrderDAO();
-			serviceTime = orderDAO.getServiceTime(s_num, emp_num, dis_daydate);
+			// OrderDAO에 값을 전달하고 로직처리 수행
+			serviceTime = new OrderDAO().getServiceTime(s_num, emp_num, dis_daydate);
 			
 			//타임피커 비활성화를 위한 1분추가를 위한 시간계산
 			for(OrderDTO orderDTO : serviceTime) {
@@ -68,17 +68,20 @@ public class OrderService {
 		}
 		
 		return serviceTime;
-	}
+	} // getServiceTime
 
 	public List<OrderServiceDTO> getServiceList(HttpServletRequest request) {
 		
 		List<OrderServiceDTO> serviceList = null;
 		
+		// 리퀘스트 파라미터값 변수에 저장
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		
 		try {
 			orderDAO = new OrderDAO();
+			// 서비스의 시작 번호를 얻기위한 메서드 호출
 			int startNum = orderDAO.getServiceStartNum(s_num);
+			// OrderDAO에 값을 전달하고 로직처리 수행
 			serviceList = orderDAO.getServiceList(s_num, startNum);
 			
 		} catch (Exception e) {
@@ -86,41 +89,43 @@ public class OrderService {
 		}
 		
 		return serviceList;
-	}
+	} // getServiceList
 	
 	public List<OrderServiceDTO> getWeightList(HttpServletRequest request) {
 
 		List<OrderServiceDTO> weightList = null;
-
+		
+		// 리퀘스트 파라미터값 변수에 저장
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 
 		try {
-			orderDAO = new OrderDAO();
-			weightList = orderDAO.getWeightList(s_num);
+			// OrderDAO에 값을 전달하고 로직처리 수행
+			weightList = new OrderDAO().getWeightList(s_num);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return weightList;
-	}
+	} // getWeightList
 
 	public List<OrderServiceDTO> getManagerList(HttpServletRequest request) {
 
 		List<OrderServiceDTO> managerList = null;
-
+		
+		// 리퀘스트 파라미터값 변수에 저장
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 
 		try {
-			orderDAO = new OrderDAO();
-			managerList = orderDAO.getManagerList(s_num);
+			// OrderDAO에 값을 전달하고 로직처리 수행
+			managerList = new OrderDAO().getManagerList(s_num);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return managerList;
-	}
+	} // getMangerList
 
 	public int getServicePrice(HttpServletRequest request) {
 		
@@ -138,8 +143,9 @@ public class OrderService {
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		
 		try {
-			orderDAO = new OrderDAO();
 			
+			orderDAO = new OrderDAO();
+			// OrderDAO에 값을 전달하고 로직처리 수행
 			pro_price = orderDAO.getServicePrice(pro_id2);
 			pet_extrafee = orderDAO.getAddPrice(pro_id1, s_num);
 			emp_extrafee = orderDAO.getAddFee(emp_num);
@@ -152,26 +158,27 @@ public class OrderService {
 		}
 		
 		return pro_price;
-	}
+	} // getServicePrice
 
 	public OrderinfoDTO getOrderInfo(HttpServletRequest request) {
 		
 		OrderinfoDTO orderInfoDTO = null;
 		
 		try {
+			// 리퀘스트 파라미터값 변수에 저장
 			int s_num = Integer.parseInt(request.getParameter("storelist"));
 			int pro_id1 = Integer.parseInt(request.getParameter("petlist"));
 			int num1 = Integer.parseInt(request.getParameter("servicelist"));
 			int num2 = Integer.parseInt(request.getParameter("weightlist"));
 			int emp_num = Integer.parseInt(request.getParameter("managerlist"));
+			int res_price = Integer.parseInt(request.getParameter("price"));
+			int res_point = Integer.parseInt(request.getParameter("point"));
 			
 			String u_name = request.getParameter("name");
 			String u_phone = request.getParameter("phone");
 			String res_day = request.getParameter("datepicker");
 			String res_time = request.getParameter("timepicker");
-			String res_price = request.getParameter("price");
 			String res_u_req = request.getParameter("res_u_req");
-			String res_point = request.getParameter("point");
 			
 			// 상품번호 계산(상품종류값+무게값)-1
 			int serviceNum = (num1+num2)-1;
@@ -202,7 +209,7 @@ public class OrderService {
 			e.printStackTrace();
 		}
 		return orderInfoDTO;
-	}
+	} // getOrderInfo
 
 	public OrderReservationDTO insertOrderReserv(HttpServletRequest request) {
 		
@@ -210,6 +217,9 @@ public class OrderService {
 		
 		//유저 오더 정보 변수에 저장
 		try {
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+			
 			int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
 			int pro_id1 = Integer.parseInt(request.getParameter("pro_id1"));
 			int pro_id2 = Integer.parseInt(request.getParameter("pro_id2"));
@@ -250,12 +260,12 @@ public class OrderService {
 			e.printStackTrace();
 		}
 		return orderReserv;
-	}
+	} // insertOrderReserv
 
 	public boolean getCanChange(HttpServletRequest request) {
 		
 		boolean result = false;
-		
+					
 		String userDate = request.getParameter("userDate");
 		String userTime = request.getParameter("userTime");
 		
@@ -300,6 +310,6 @@ public class OrderService {
         }
 		
 		return result;
-	}
+	} // getCanChange
 
 }

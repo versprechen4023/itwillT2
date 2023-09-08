@@ -1,30 +1,39 @@
 @charset "UTF-8";
 
+/* @font-face { */
+/* 	font-family: 'Godo'; */
+/* 	font-style: normal; */
+/* 	font-weight: 400; */
+/* 	src: */
+/* 		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') */
+/* 		format('woff2'), */
+/* 		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') */
+/* 		format('woff'); */
+/* } */
 
-@font-face {
-	font-family: 'Godo';
-	font-style: normal;
-	font-weight: 400;
-	src:
-		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2')
-		format('woff2'),
-		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff')
-		format('woff');
+#notice{
+	border-collapse: collapse;
+width: 1000px;
+margin-top: 70px;
+margin-left: 200px;
 }
 
-* {
-      font-family: 'Godo';
+/* * { */
+/*       font-family: 'Godo'; */
       
-}
+/* } */
+
+
 #fh5co-main {
 	position: relative;
 	height: 1500px;
 }
 
 .headh1{
- margin-left: 97px;
- margin-top : 40px;
- font-family: 'Godo';
+ margin-left: 200px;
+ margin-top : 45px;
+/*  font-family: 'Godo'; */
+ font-weight: bold;
 }
 
 
@@ -34,20 +43,20 @@ hr {
     margin-bottom: 20px;
     border: 0;
     border-top: 1px solid #000;
-    width: 80%;
-    margin-left: 100px;
+    width: 1000px;
+    margin-left: 200px;
     margin-bottom : 50px;
 }
 
 table { 
-margin-bottom: 100px;
+margin-bottom: 20px;
 margin-left : 100px;
 }
 
 .qnawriter {
 text-align: center;
      letter-spacing: 2px;
-     width : 40px;
+     width : 100px;
      height: 50px;
      font-size:20px;
      
@@ -56,7 +65,7 @@ text-align: center;
 .qnatitle {
     text-align:center;
      letter-spacing: 2px;
-     width: 40px;
+     width: 100px;
      height: 50px;
      font-size:20px;
      
@@ -66,7 +75,7 @@ text-align: center;
 .qnacategory {
     text-align:center;
      letter-spacing: 2px;
-     width: 40px;
+     width: 100px;
      height: 50px;
      font-size:20px;
      
@@ -76,7 +85,7 @@ text-align: center;
 .qnacontent {
 text-align: center;
 	letter-spacing: 2px;
-	width : 150px;
+	width : 100px;
 	height : 300px;
 	font-size: 20px;
 	
@@ -84,33 +93,37 @@ text-align: center;
 }
 
 .vtitle {
-   	width: 850px;
-    font-size: 20px;
+   width: 900px;
+    font-size: 14px;
     padding-left: 10px;
+    background-color: white;
 
 }
 
 .vwriter {
-width: 1000px;
+width: 900px;
     font-size: 20px;
     padding-left: 10px;
 
 }
 
 .vcontent { 
-
-    font-size: 20px;
-    padding-left: 10px;
-
+width: 900px;
+    font-size: 14px;
+    padding-left: 20px;
+	background-color: white;
+	vertical-align: top;
+	padding-bottom: 20px;
+	padding-right: 20px;
 
 }
 
 .btn {
 
-    margin-right: 27%;  
+    margin-right: 27%;
     margin-bottom: 4px;
     font-family: "Roboto", Arial, sans-serif;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -122,20 +135,20 @@ width: 1000px;
     -o-transition: 0.5s;
     transition: 0.5s;
     padding: 8px 20px !important;
-    float: right;
+/*     float: right; */
 /*     margin-right:255px; */
-    font-family: 'Godo' !important;
+/*     font-family: 'Godo' !important; */
 }
 
 .deletebtn {
     background-color: black; /* 버튼 배경색을 초록색으로 설정 */
     color: white; /* 글자 색상을 하얀색으로 설정 */
     border: none; /* 테두리 없음 */
-    padding: 10px 20px; /* 안쪽 여백 설정 */
-    font-size: 16px; /* 글자 크기 설정 */
+    padding: 7px 15px; /* 안쪽 여백 설정 */
+/*     font-size: 16px; 글자 크기 설정 */
     cursor: pointer; /* 커서 스타일을 포인터로 변경하여 버튼처럼 보이게 함 */
     margin-left : 10px;
-    border-radius:10px;
+    border-radius:5px;
 }
 
 /* 수정 버튼 스타일 */
@@ -143,11 +156,11 @@ width: 1000px;
     background-color: black; /* 버튼 배경색을 초록색으로 설정 */
     color: white; /* 글자 색상을 하얀색으로 설정 */
     border: none; /* 테두리 없음 */
-    padding: 10px 20px; /* 안쪽 여백 설정 */
-    font-size: 16px; /* 글자 크기 설정 */
+    padding: 7px 15px; /* 안쪽 여백 설정 */
+/*     font-size: 16px; 글자 크기 설정 */
     cursor: pointer; /* 커서 스타일을 포인터로 변경하여 버튼처럼 보이게 함 */
     margin-left : 10px;
-    border-radius:10px;
+    border-radius:5px;
     
 }
 
@@ -156,11 +169,11 @@ width: 1000px;
     background-color: black; /* 버튼 배경색을 초록색으로 설정 */
     color: white; /* 글자 색상을 하얀색으로 설정 */
     border: none; /* 테두리 없음 */
-    padding: 10px 20px; /* 안쪽 여백 설정 */
-    font-size: 16px; /* 글자 크기 설정 */
+    padding: 7px 15px; /* 안쪽 여백 설정 */
+/*     font-size: 16px; 글자 크기 설정 */
     cursor: pointer; /* 커서 스타일을 포인터로 변경하여 버튼처럼 보이게 함 */
     margin-left : 10px;
-    border-radius:10px;
+    border-radius:5px;
 
   }
   
@@ -195,3 +208,14 @@ width: 1000px;
     padding-left : 10px;
   
   }
+  
+  .botbtn{
+  	margin-left: 990px;
+/*   	안먹혀서 faqContent.jsp에서 적용 */
+  }
+  
+  img{
+	width: 800px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}

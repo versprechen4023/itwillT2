@@ -14,8 +14,7 @@
 <jsp:include page="../inc/aside.jsp"></jsp:include>
 
 <link rel="stylesheet" href="./css/noticecontent_gr.css">
-<link rel="stylesheet" href="./css/style.css">
-<link rel="stylesheet" href="./css/aside_gr.css">
+
 
 <body>
 <%
@@ -31,7 +30,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 
 	<div id="fh5co-main">
 
-<h1 class="headh1">공지사항</h1>
+<h2 class="headh1">공지사항</h2>
 <hr>
 <input type="hidden" name="n_num" value="<%=boardDTO.getN_num() %>">
 <table id="notice" border="1">
@@ -39,8 +38,13 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 <tr><td class="qnatitle">글제목</td><td class="vtitle"><%=boardDTO.getN_title() %> </td></tr>
 <!-- <tr><td class="qnacategory">분류</td><td class="vwriter">boardDTO.getCategory()  </td></tr> -->
 <tr><td class="qnacontent">내용</td><td class="vcontent">
-	<img src="upload/<%=boardDTO.getN_img_url() %>" alt="이미지">
-	<br><br>
+	<%
+String imgURL = boardDTO.getN_img_url(); // 이미지 URL 가져오기
+
+String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\" >" : "";
+%>
+<%= imgTag %>
+<br>
 	<%=boardDTO.getN_content() %> </td></tr>
 
 

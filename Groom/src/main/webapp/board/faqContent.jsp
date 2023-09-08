@@ -11,6 +11,7 @@
 
 <jsp:include page="../inc/aside.jsp"></jsp:include>
 <link rel="stylesheet" href="./css/faqcontent_gr.css">
+
 <body>
 <%
 
@@ -22,7 +23,7 @@ Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 
 	<div id="fh5co-main">
 
-<h1 class="headh1">자주 묻는 질문 </h1>
+<h2 class="headh1">자주 묻는 질문 </h2>
 <hr>
 <input type="hidden" name="faq_num" value="<%=boardDTO.getFaq_num() %>">
 <table id="notice" border="1">
@@ -30,13 +31,19 @@ Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 <tr><td class="qnatitle">글제목</td><td class="vtitle" ><%= boardDTO.getFaq_title()%> </td></tr>  <!--  단 제목과 내용은 어디서 참고해서 넣을것 -->
 <!-- <tr><td class="qnacategory">분류</td><td class="vwriter"> boardDTO.getCategory()  </td></tr>  받아오는게 아니라 우리가 입력 -->
 <tr><td class="qnacontent">내용</td><td class="vcontent">
-	<img src="upload/<%=boardDTO.getFaq_img_url() %>" alt="이미지">
-	<br><br>
+	<%
+String imgURL = boardDTO.getFaq_img_url(); // 이미지 URL 가져오기
+
+String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
+%>
+
+<%= imgTag %>
+	<br>
 	<%=boardDTO.getFaq_content() %></td></tr>
 
 </table>
 
-<div class="btn"> 
+<div class="bobtn" style="text-align: left; margin-left: 990px;" > 
 
 <%
 if(id != null){

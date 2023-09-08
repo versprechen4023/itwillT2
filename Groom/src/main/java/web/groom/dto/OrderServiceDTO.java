@@ -3,9 +3,9 @@ package web.groom.dto;
 public class OrderServiceDTO {
 	private int s_num;
 	private int l_num;
-	private String s_name;
-	private String s_weight;
-	private int s_price;
+	private String pro_name;
+	private String pet_weight;
+	private int pro_price;
 	private String emp_name;
 	private String emp_grade;
 	private int emp_num;
@@ -28,11 +28,11 @@ public class OrderServiceDTO {
 	public void setEmp_grade(String emp_grade) {
 		this.emp_grade = emp_grade;
 	}
-	public String getS_weight() {
-		return s_weight;
+	public String getPet_weight() {
+		return pet_weight;
 	}
-	public void setS_weight(String s_wight) {
-		this.s_weight = s_wight;
+	public void setPet_weight(String pet_wight) {
+		this.pet_weight = pet_wight;
 	}
 	
 	public int getS_num() {
@@ -41,11 +41,11 @@ public class OrderServiceDTO {
 	public int getL_num() {
 		return l_num;
 	}
-	public String getS_name() {
-		return s_name;
+	public String getPro_name() {
+		return pro_name;
 	}
-	public int getS_price() {
-		return s_price;
+	public int getPro_price() {
+		return pro_price;
 	}
 	public void setS_num(int s_num) {
 		this.s_num = s_num;
@@ -53,11 +53,11 @@ public class OrderServiceDTO {
 	public void setL_num(int l_num) {
 		this.l_num = l_num;
 	}
-	public void setS_name(String s_name) {
-		this.s_name = s_name;
+	public void setPro_name(String pro_name) {
+		this.pro_name = pro_name;
 	}
-	public void setS_price(int s_price) {
-		this.s_price = s_price;
+	public void setPro_price(int pro_price) {
+		this.pro_price = pro_price;
 	}
 	
 }

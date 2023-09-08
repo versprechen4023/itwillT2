@@ -3,13 +3,13 @@ package web.groom.dto;
 public class OrderinfoDTO {
 	
 private String s_location;
-private String p_dog;
-private String s_name;
-private String s_weight;
+private String pet_size;
+private String pro_name;
+private String pet_weight;
 private String emp_name;
 
 private int s_num;
-private int p_num;
+private int pro_id1;
 private int serveiceNum;
 private int emp_num;
 
@@ -67,8 +67,8 @@ public void setRes_point(String res_point) {
 public int getS_num() {
 	return s_num;
 }
-public int getP_num() {
-	return p_num;
+public int getPro_id1() {
+	return pro_id1;
 }
 public int getServeiceNum() {
 	return serveiceNum;
@@ -79,8 +79,8 @@ public int getEmp_num() {
 public void setS_num(int s_num) {
 	this.s_num = s_num;
 }
-public void setP_num(int p_num) {
-	this.p_num = p_num;
+public void setPro_id1(int pro_id1) {
+	this.pro_id1 = pro_id1;
 }
 public void setServeiceNum(int serveiceNum) {
 	this.serveiceNum = serveiceNum;
@@ -91,14 +91,14 @@ public void setEmp_num(int emp_num) {
 public String getS_location() {
 	return s_location;
 }
-public String getP_dog() {
-	return p_dog;
+public String getPet_size() {
+	return pet_size;
 }
-public String getS_name() {
-	return s_name;
+public String getPro_name() {
+	return pro_name;
 }
-public String getS_weight() {
-	return s_weight;
+public String getPet_weight() {
+	return pet_weight;
 }
 public String getEmp_name() {
 	return emp_name;
@@ -106,26 +106,17 @@ public String getEmp_name() {
 public void setS_location(String s_location) {
 	this.s_location = s_location;
 }
-public void setP_dog(String p_dog) {
-	this.p_dog = p_dog;
+public void setPet_size(String pet_size) {
+	this.pet_size = pet_size;
 }
-public void setS_name(String s_name) {
-	this.s_name = s_name;
+public void setPro_name(String pro_name) {
+	this.pro_name = pro_name;
 }
-public void setS_weight(String s_weight) {
-	this.s_weight = s_weight;
+public void setPet_weight(String pet_weight) {
+	this.pet_weight = pet_weight;
 }
 public void setEmp_name(String emp_name) {
 	this.emp_name = emp_name;
-}
-
-@Override
-public String toString() {
-	return "OrderinfoDTO [s_location=" + s_location + ", p_dog=" + p_dog + ", s_name=" + s_name + ", s_weight="
-			+ s_weight + ", emp_name=" + emp_name + ", s_num=" + s_num + ", p_num=" + p_num + ", serveiceNum="
-			+ serveiceNum + ", emp_num=" + emp_num + ", u_name=" + u_name + ", u_phone=" + u_phone + ", res_day="
-			+ res_day + ", res_time=" + res_time + ", res_price=" + res_price + ", res_u_req=" + res_u_req
-			+ ", res_point=" + res_point + "]";
 }
 
 }

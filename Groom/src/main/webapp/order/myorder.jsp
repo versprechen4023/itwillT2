@@ -339,7 +339,7 @@ $j(document).ready(function() {
             	result.forEach(function(service) {
             	    var option = document.createElement("option");
             	    option.value = service.s_num;
-            	    option.text = service.s_name;
+            	    option.text = service.pro_name;
             	    servicelist.appendChild(option);
             	});
             }
@@ -356,7 +356,7 @@ $j(document).ready(function() {
             	result.forEach(function(weight) {
             	    var option = document.createElement("option");
             	    option.value = weight.s_num;
-            	    option.text = weight.s_weight;
+            	    option.text = weight.pet_weight;
             	    weightlist.appendChild(option);
             	});
             }
@@ -493,7 +493,7 @@ $j(document).ready(function() {
         $j.ajax({
         	type: "GET",
             url: 'getPrice.aj',
-            data: {"selectedPet": selectedPet, "selectedPrice":selectedPrice, "selectedManager":selectedManager}, // 선택된 값을 서버로 전송
+            data: {"selectedPet": selectedPet, "selectedPrice":selectedPrice, "selectedManager":selectedManager, "selectedStore": selectedStore}, // 선택된 값을 서버로 전송
             success: function(result) {
             	realprice.value = result;
             	//포인트가 0이아니고 포인트 사용에 체크되어있으면 가격 계산
@@ -516,7 +516,7 @@ $j(document).ready(function() {
             	$j.ajax({
                 	type: "GET",
                     url: 'getDate.aj',
-                    data: {"selectedStore": selectedStore}, // 선택된 값을 서버로 전송
+                    data: {"selectedStore": selectedStore, "selectedManager":selectedManager}, // 선택된 값을 서버로 전송
                     dataType: 'json',
                     success: function(result) {
                     	$j("#datepicker").removeAttr("disabled");

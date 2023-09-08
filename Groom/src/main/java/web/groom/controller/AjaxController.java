@@ -190,7 +190,7 @@ public class AjaxController extends HttpServlet {
 				
 				JSONObject object = new JSONObject();
 				object.put("s_num", orderServiceDTO.getS_num());
-				object.put("s_name", orderServiceDTO.getS_name());
+				object.put("pro_name", orderServiceDTO.getPro_name());
 				// 배열 한칸에 저장
 				arr.add(object);
 			}
@@ -214,7 +214,7 @@ public class AjaxController extends HttpServlet {
 
 				JSONObject object = new JSONObject();
 				object.put("s_num", orderServiceDTO.getS_num());
-				object.put("s_weight", orderServiceDTO.getS_weight());
+				object.put("pet_weight", orderServiceDTO.getPet_weight());
 				// 배열 한칸에 저장
 				arr.add(object);
 			}

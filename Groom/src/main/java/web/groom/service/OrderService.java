@@ -24,12 +24,13 @@ public class OrderService {
 		
 		List<OrderDTO> serviceDate = null;
 		
-		// 지점번호 받아오기
+		// 지점번호, 직원번호 넘겨주기
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
+		int emp_num = Integer.parseInt(request.getParameter("selectedManager"));
 		
 		try {
 			orderDAO = new OrderDAO();
-			serviceDate = orderDAO.getServiceDate(s_num);
+			serviceDate = orderDAO.getServiceDate(s_num, emp_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,11 +45,11 @@ public class OrderService {
 		
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		int emp_num = Integer.parseInt(request.getParameter("selectedManager"));
-		String dis_date = (request.getParameter("selectedDate"));
+		String dis_daydate = (request.getParameter("selectedDate"));
 		
 		try {
 			orderDAO = new OrderDAO();
-			serviceTime = orderDAO.getServiceTime(s_num, emp_num, dis_date);
+			serviceTime = orderDAO.getServiceTime(s_num, emp_num, dis_daydate);
 			
 			//타임피커 비활성화를 위한 1분추가를 위한 시간계산
 			for(OrderDTO orderDTO : serviceTime) {
@@ -73,12 +74,12 @@ public class OrderService {
 		
 		List<OrderServiceDTO> serviceList = null;
 		
-		int store_num = Integer.parseInt(request.getParameter("selectedStore"));
+		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		
 		try {
 			orderDAO = new OrderDAO();
-			int startNum = orderDAO.getServiceStartNum(store_num);
-			serviceList = orderDAO.getServiceList(store_num, startNum);
+			int startNum = orderDAO.getServiceStartNum(s_num);
+			serviceList = orderDAO.getServiceList(s_num, startNum);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -91,11 +92,11 @@ public class OrderService {
 
 		List<OrderServiceDTO> weightList = null;
 
-		int store = Integer.parseInt(request.getParameter("selectedStore"));
+		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 
 		try {
 			orderDAO = new OrderDAO();
-			weightList = orderDAO.getWeightList(store);
+			weightList = orderDAO.getWeightList(s_num);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -108,11 +109,11 @@ public class OrderService {
 
 		List<OrderServiceDTO> managerList = null;
 
-		int store = Integer.parseInt(request.getParameter("selectedStore"));
+		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 
 		try {
 			orderDAO = new OrderDAO();
-			managerList = orderDAO.getManagerList(store);
+			managerList = orderDAO.getManagerList(s_num);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -123,29 +124,34 @@ public class OrderService {
 
 	public int getServicePrice(HttpServletRequest request) {
 		
-		int servicePrice = 0;
-		int addPrice = 0;
-		int addFee = 0;
+		int pro_price = 0;
+		int pet_extrafee = 0;
+		int emp_extrafee = 0;
 		
-		int servicenum = Integer.parseInt(request.getParameter("selectedPrice"));
-		int servicepet = Integer.parseInt(request.getParameter("selectedPet"));
-		int servicemanager = Integer.parseInt(request.getParameter("selectedManager"));
+		// 최종적으로 사용자가 선택한 서비스 번호(pro_id2의 목욕등)를 변수에 지정
+		int pro_id2 = Integer.parseInt(request.getParameter("selectedPrice"));
+		// 최종적으로 사용자가 선택한 서비스 번호(pro_id1의 견종)를 변수에 지정
+		int pro_id1 = Integer.parseInt(request.getParameter("selectedPet"));
+		// 최종적으로 사용자가 선택한 직원 번호(pro_id1의 견종)를 변수에 지정
+		int emp_num = Integer.parseInt(request.getParameter("selectedManager"));
+		// 최종적으로 사용자가 선택한 지점 번호(s_num)를 변수에 지정
+		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		
 		try {
 			orderDAO = new OrderDAO();
 			
-			servicePrice = orderDAO.getServicePrice(servicenum);
-			addPrice = orderDAO.getAddPrice(servicepet);
-			addFee = orderDAO.getAddFee(servicemanager);
+			pro_price = orderDAO.getServicePrice(pro_id2);
+			pet_extrafee = orderDAO.getAddPrice(pro_id1, s_num);
+			emp_extrafee = orderDAO.getAddFee(emp_num);
 			
 			//추가금액 포함 가격계산
-			servicePrice = servicePrice+addPrice+addFee;
+			pro_price = pro_price+pet_extrafee+emp_extrafee;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return servicePrice;
+		return pro_price;
 	}
 
 	public OrderinfoDTO getOrderInfo(HttpServletRequest request) {
@@ -154,7 +160,7 @@ public class OrderService {
 		
 		try {
 			int s_num = Integer.parseInt(request.getParameter("storelist"));
-			int p_num = Integer.parseInt(request.getParameter("petlist"));
+			int pro_id1 = Integer.parseInt(request.getParameter("petlist"));
 			int num1 = Integer.parseInt(request.getParameter("servicelist"));
 			int num2 = Integer.parseInt(request.getParameter("weightlist"));
 			int emp_num = Integer.parseInt(request.getParameter("managerlist"));
@@ -173,7 +179,7 @@ public class OrderService {
 			//오더 DTO에 값삽입
 			orderInfoDTO = new OrderinfoDTO();
 			orderInfoDTO.setS_num(s_num);
-			orderInfoDTO.setP_num(p_num);
+			orderInfoDTO.setPro_id1(pro_id1);
 			orderInfoDTO.setServeiceNum(serviceNum);
 			orderInfoDTO.setEmp_num(emp_num);
 			
@@ -236,11 +242,6 @@ public class OrderService {
 			System.out.println(orderReserv);
 			
 			orderDAO = new OrderDAO();
-			
-			// 포인트 사용이 있다면 포인트 계산 처리
-			if(orderReserv.getRes_point() != 0) {
-				orderReserv = orderDAO.updatePoint(orderReserv);
-			}
 			
 			// 예약내역 값 삽입
 			orderReserv = orderDAO.insertOrderReserv(orderReserv);

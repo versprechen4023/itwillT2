@@ -56,15 +56,15 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 									</div>
 									<div class="form-group">
 										<p>선택하신 견종</p>
-										<input type="text" class="form-control" id="petlist" name="petlist" value="<%=orderInfo.getP_dog()%>" readonly>
+										<input type="text" class="form-control" id="petlist" name="petlist" value="<%=orderInfo.getPet_size()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>선택하신 서비스명</p>
-										<input type="text" class="form-control" id="servicelist" name="servicelist" value="<%=orderInfo.getS_name()%>" readonly>
+										<input type="text" class="form-control" id="servicelist" name="servicelist" value="<%=orderInfo.getPro_name()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>선택하신 무게</p>
-										<input type="text" class="form-control" id="weightlist" name="weightlist" value="<%=orderInfo.getS_weight()%>" readonly>
+										<input type="text" class="form-control" id="weightlist" name="weightlist" value="<%=orderInfo.getPet_weight()%>" readonly>
 									</div>
 									<div class="form-group">
 										<p>선택하신 직원</p>
@@ -122,7 +122,7 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 					</c:choose>	
 					</div>
 					<input type="hidden" id="s_num" name="s_num" value="<%=orderInfo.getS_num()%>">
-					<input type="hidden" id="pro_id1" name="pro_id1" value="<%=orderInfo.getP_num()%>">
+					<input type="hidden" id="pro_id1" name="pro_id1" value="<%=orderInfo.getPro_id1()%>">
 					<input type="hidden" id="pro_id2" name="pro_id2" value="<%=orderInfo.getServeiceNum()%>">
 					<input type="hidden" id="emp_num" name="emp_num" value="<%=orderInfo.getEmp_num()%>">
 					<input type="hidden" id="u_point" name="u_point" value="${param.u_point}">
@@ -142,7 +142,7 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 					
 <script>
 let val = "<%=orderInfo.getRes_price()%>" //여기서 일단 가격 조정 추후에 DB에서 가져와야함?
-let name = "<%=orderInfo.getS_name()%>" // 서비스나 물건이름 여기서일단 설정
+let name = "<%=orderInfo.getPro_name()%>" // 서비스나 물건이름 여기서일단 설정
 let payment = "" //페이먼트 설정 html5_inicis, kakaopay, naverco
 let res_method = ""
 

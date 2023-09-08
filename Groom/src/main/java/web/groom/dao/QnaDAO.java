@@ -344,11 +344,12 @@ public class QnaDAO {
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "update qna"
-					+ "   set re_content=?"
+					+ "   set re_content=? , qna_category=? "
 					+ "   where qna_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, qnaDTO.getRecontent());
-			pstmt.setInt(2, qnaDTO.getQnanum());
+			pstmt.setString(2, qnaDTO.getCategory());
+			pstmt.setInt(3, qnaDTO.getQnanum());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

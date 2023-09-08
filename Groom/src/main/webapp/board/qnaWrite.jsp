@@ -34,10 +34,10 @@
 						<label class="category"> 분류: </label> <select name="qna_category"
 							id="qna_category">
 							<option value="선택" disabled>분류</option>
-							<option value="A">서비스</option>
-							<option value="B">결제</option>
-							<option value="C">이용문의</option>
-							<option value="D">기타</option>
+							<option value="서비스">서비스</option>
+							<option value="결제">결제</option>
+							<option value="이용문의">이용문의</option>
+							<option value="기타">기타</option>
 
 						</select>
 

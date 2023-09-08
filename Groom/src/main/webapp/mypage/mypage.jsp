@@ -13,8 +13,7 @@ List<MypageDTO> mypetList =
 
 
 
-List<OrderReservationDTO> reservationList =
-(List<OrderReservationDTO>)request.getAttribute("reservationList");
+List<OrderReservationDTO> reservationList =(List<OrderReservationDTO>)request.getAttribute("reservationList");
 
 //아래 코드는 페이징코드
 int itemsPerPage = 5; // 페이지당 아이템 수

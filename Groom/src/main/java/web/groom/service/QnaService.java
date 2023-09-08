@@ -212,6 +212,7 @@ public class QnaService {
 			int qnanum = Integer.parseInt(multi.getParameter("qna_num"));
 			String title = multi.getParameter("qna_title");
 			String content = multi.getParameter("qna_content");
+			String category = multi.getParameter("qna_category");
 			// file oldfile
 			String qnaimgurl = multi.getFilesystemName("qna_img_url");
 			// 첨부파일 없는 경우
@@ -226,6 +227,7 @@ public class QnaService {
 			qnaDTO.setQnanum(qnanum);
 			qnaDTO.setTitle(title);
 			qnaDTO.setContent(content);
+			qnaDTO.setCategory(category);
 			// 파일
 			qnaDTO.setQnaimgurl(qnaimgurl);
 			// BoardDAO 객체생성

@@ -401,7 +401,7 @@ public class MemberDAO {
 			con = new SQLConnection().getConnection();
 
 			// SQL 쿼리 실행(유저탈퇴 테이블에 값 삽입)
-			String SQL = "INSERT INTO cancel(s_num, del_date) VALUE(?,?)";
+			String SQL = "INSERT INTO cancel(u_num, del_date) VALUE(?,?)";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, u_num);
 			pstmt.setTimestamp(2, del_date);

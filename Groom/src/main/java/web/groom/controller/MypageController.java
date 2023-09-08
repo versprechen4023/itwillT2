@@ -222,7 +222,7 @@ public class MypageController extends HttpServlet {
             	
             } else {
             	
-            	response.sendRedirect("mapageError.er");
+            	JSForward.locationHref(response, "비밀번호가 일치하지 않습니다.", "resetpassword.my");
             }
 			
 		}
@@ -258,7 +258,7 @@ public class MypageController extends HttpServlet {
         			HttpSession session = request.getSession();
         			session.invalidate();
             		System.out.println("회원 탈퇴 처리 완료");
-            		response.sendRedirect("main.gr");
+            		JSForward.locationHref(response, "회원탈퇴 처리가 되었습니다.", "main.gr");
             	} else {
             		//세션초기화
         			HttpSession session = request.getSession();

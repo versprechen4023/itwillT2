@@ -179,11 +179,10 @@ public class MemberController extends HttpServlet {
 			// 결과값 확인
 			if (memberDTO != null) {
 
-				// 세션 초기화
-				request.getSession().invalidate();
+				
 
 				// 로그인창으로 보내기위한 메세지 출력
-				JSForward.locationHref(response, "비밀번호가 재설정 되었습니다.", "login.me");
+				JSForward.locationHref(response, "비밀번호가 재설정 되었습니다.", "mypage.my");
 
 				System.out.println("비밀번호 재설정됨");
 			} else {

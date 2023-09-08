@@ -39,6 +39,7 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 	
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="stylesheet" href="./css/aside_gr.css">
+	
 
 	
 <div id="fh5co-page">

@@ -24,7 +24,7 @@ import web.groom.service.MemberService;
 import web.groom.service.MypageService;
 import web.groom.service.OrderService;
 
-@WebServlet("*.aj") // .Ajax Ajax관련 어노테이션 매핑 선언
+@WebServlet("*.aj") // .aj Ajax관련 어노테이션 매핑 선언
 public class AjaxController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)

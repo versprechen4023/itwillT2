@@ -120,7 +120,7 @@ public class MemberController extends HttpServlet {
 			ser = new MemberService();
 
 			// 메서드호출(리퀘스트 값 넘겨주기)
-			MemberDTO memberDTO = ser.findid(request);
+			MemberDTO memberDTO = ser.findId(request);
 
 			// 처리결과 확인
 			if (memberDTO != null) {

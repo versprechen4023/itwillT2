@@ -1,4 +1,7 @@
 @charset "UTF-8";
+*{
+	color:  black;
+}
 	h2{
 		margin-left: 200px;
 		margin-top: 45px;
@@ -116,7 +119,7 @@ table #subject{
 		 margin: 0 5px;
 		 border: 1px solid black;
 		 text-decoration: none;
-		 border-radius: 5px;
+		 border-radius: 30px;
 		 font-weight: bold;
 		}
 	

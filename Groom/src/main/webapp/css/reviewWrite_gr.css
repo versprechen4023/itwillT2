@@ -107,8 +107,8 @@ justify-content: center;
 .buttons input{
 width: 80px;
 height: 35px;
-background: black;
-color: white;
+background: #E1E2CD;
+color: black;
 border: none;
 border-radius: 5px;
 font-size: 14px;

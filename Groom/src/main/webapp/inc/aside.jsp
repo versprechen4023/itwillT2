@@ -59,7 +59,8 @@ if(id != null){
         주소: 부산광역시 부산진구 동천로 109<br>
 
 <!--         대표전화 : 051-803-0909<br><br> --><br>
-        Copyright © <br>
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script><br>
         All rights reserved Groom<br>
 
 <!--         <a href="about.gr">about</a><br> -->

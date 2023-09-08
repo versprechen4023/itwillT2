@@ -113,7 +113,7 @@ String content = qnaDTO.getRecontent()==null?"":qnaDTO.getRecontent();
 <div class="btn" style="text-align: left; margin-left: 990px; margin-top: -10px;" > 
 		
           <!--  qna답변  -->
-       <button type="button" value="답변" class="answerbtn" onclick="location.href='qnaRe.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 답변 및 수정 </button>
+       <button type="button" value="답변" class="answerbtn" onclick="really1(<%=qnaDTO.getQnanum() %>"> 답변 및 수정 </button>
        <button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
    </div>
 <%

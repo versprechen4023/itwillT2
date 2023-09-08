@@ -145,8 +145,8 @@ public class QnaService {
 
 	public QnaDTO insertQna(HttpServletRequest request) {
 		try {
+			
 			request.setCharacterEncoding("utf-8");
-
 			// qnawrite에서 받는 값
 			String uploadPath = request.getRealPath("/upload");
 			int maxSize = 1010241024;

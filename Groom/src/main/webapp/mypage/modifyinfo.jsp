@@ -52,7 +52,7 @@ MypageDTO mypageInfo = (MypageDTO)request.getAttribute("mypageInfo");
 			  <div>
 				<br><label class="imp2">이름</label>
 				<div>
-				<input type="text" name="name" value="<%=mypageInfo.getName()%>" readonly>
+				<input type="text" id ="name" name="name" value="<%=mypageInfo.getName()%>" readonly>
 				</div>
 			  </div>
 		

@@ -194,7 +194,7 @@ public class MypageController extends HttpServlet {
 			JSForward.locationHref(response, "내정보 수정처리가 완료되었습니다", "mypage.my");
 		}
 	
-		if (sPath.equals("/resetpassword.my")) {
+		if (sPath.equals("/readyresetpass.my")) {
 			
 			 //유저 세션 검증
 			 String id = (String)request.getSession().getAttribute("id");
@@ -204,11 +204,11 @@ public class MypageController extends HttpServlet {
 				 response.sendRedirect("login.me");
 			 } 
 			 
-			webForward(request, response, "mypage", "resetpassword");
+			webForward(request, response, "mypage", "readyresetpass");
 			
 		}
 		
-		if (sPath.equals("/resetpasswordPro.my")) {
+		if (sPath.equals("/readyresetpassPro.my")) {
 			
 			MemberService memberService = new MemberService();
 			

@@ -171,7 +171,7 @@ public class MemberController extends HttpServlet {
 			 JSForward.locationHref(response, "등록된 회원 정보가 없습니다", "login.me");
 			 System.out.println("비밀번호 재설정안됨");
 			}
-			 
+
 	     }
          
          if (sPath.equals("/resetpassword.me")) {
@@ -190,7 +190,7 @@ public class MemberController extends HttpServlet {
  			session.invalidate();
  			
  			//로그인창으로 보내기위한 메세지 출력
- 			response.sendRedirect("changeOK.er");
+ 			JSForward.locationHref(response, "비밀번호가 재설정 되었습니다.", "login.me");
 
  			System.out.println("비밀번호 재설정됨");
  			} else  {

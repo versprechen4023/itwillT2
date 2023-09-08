@@ -306,7 +306,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 <div class="btn"> 
 		
           <!--  qna답변  -->
-       <button type="button" value="답변" class="answerbtn" onclick="location.href='qnaRe.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 답변 및 수정 </button>
+       <button type="button" value="답변" class="answerbtn" onclick="really1(<%=qnaDTO.getQnanum() %>"> 답변 및 수정 </button>
        <button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
    </div>
 <%

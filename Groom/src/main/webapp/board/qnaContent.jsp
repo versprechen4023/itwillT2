@@ -25,7 +25,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 
 	<div id="fh5co-main">
 
-<h2 class="headh1">Q&A</h2>
+<h2 class="headh1" onclick="location.href='qna.bo'">Q&A</h2>
 <hr>
 <table id="notice" border="1">
 
@@ -54,7 +54,7 @@ String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
 				%>
 				  <button type="button" value="삭제" class="deletebtn" onclick="location.href='qnaDelete.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 삭제</button>
    <button type="button" value="수정" class="modifybtn" onclick="location.href='qnaUpdate.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 수정 </button>
-				<button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
+<!-- 				<button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button> -->
 				<%  
 			 }
 		 }
@@ -69,7 +69,7 @@ String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
  		<% 
  		if(id == null || !id.equals(qnaDTO.getId())) {
  			%>
- 			<button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
+<!--  			<button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button> -->
 			<% 
  		}
  			%>
@@ -94,7 +94,7 @@ String content = qnaDTO.getRecontent()==null?"":qnaDTO.getRecontent();
 <div class="btn" style="text-align: left; margin-left: 990px;margin-top: -10px;" > 
 		
           <!--  qna답변  -->
-       <button type="button" value="답변" class="answerbtn" onclick="location.href='qnaRe.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 답변 및 수정 </button>
+       <button type="button" value="답변" class="answerbtn" onclick="location.href='qnaRe.bo?qna_num=<%=qnaDTO.getQnanum()%> '"> 답변 및 수정 </button>
        <button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
    </div>
 	   <%

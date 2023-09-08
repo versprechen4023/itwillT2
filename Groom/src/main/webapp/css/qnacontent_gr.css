@@ -26,7 +26,7 @@ margin-left: 200px;
 
 #fh5co-main {
 	position: relative;
-	height: 1500px;
+/* 	height: 1500px; */
 }
 
 .headh1{
@@ -34,6 +34,7 @@ margin-left: 200px;
  margin-top : 45px;
 /*  font-family: 'Godo'; */
  font-weight: bold;
+  cursor: pointer;
 }
 
 
@@ -227,7 +228,7 @@ width: 900px;
 	float: left;
   }
   
-  img{
+  table img{
 	width: 800px;
 	margin-top: 20px;
 	margin-bottom: 20px;

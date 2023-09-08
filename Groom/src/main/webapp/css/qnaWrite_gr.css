@@ -1,32 +1,48 @@
 @charset "UTF-8";
-@font-face {
-	font-family: 'Godo';
-	font-style: normal;
-	font-weight: 400;
-	src:
-		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2')
-		format('woff2'),
-		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff')
-		format('woff');
+/* @font-face { */
+/* 	font-family: 'Godo'; */
+/* 	font-style: normal; */
+/* 	font-weight: 400; */
+/* 	src: */
+/* 		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') */
+/* 		format('woff2'), */
+/* 		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') */
+/* 		format('woff'); */
+/* } */
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #000;
+    width: 1000px;
+    margin-left: 200px;
+    margin-bottom : 50px;
 }
+h2{
+		margin-left: 200px;
+		margin-top: 45px;
+		font-weight: bold;
+		 cursor: pointer;
+	}
 
 #fh5co-main {
 	position: relative;
 	height: 100%;
 }
 
-#fh5co-main h2 {
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 0;
-	padding: 40px;
-	background-color: #FAF5FA;
-	font-family: 'Godo';
-	color: black;
-	margin-left: 5px;
-	font-family: 'Godo' !important;
-}
+/* #fh5co-main h2 { */
+/* 	position: absolute; */
+/* 	top: 0; */
+/* 	left: 0; */
+/* 	margin: 0; */
+/* 	padding: 40px; */
+/* 	background-color: #FAF5FA; */
+/* 	font-family: 'Godo'; */
+/* 	color: black; */
+/* 	margin-left: 5px; */
+/* 	font-family: 'Godo' !important; */
+/* } */
 
 .fh5co-narrow-content {
 	background-color: #FAF5FA;
@@ -169,7 +185,7 @@
 	margin-bottom: 5px;
 	font-weight: bold;
 	font-size: 20px;
-	font-family: 'Godo';
+/* 	font-family: 'Godo'; */
 	width: 55px;
 }
 
@@ -177,7 +193,7 @@
 	height: 35px;
 	width: 85px;
 	text-align: center;
-	font-family: 'Godo';
+/* 	font-family: 'Godo'; */
 	border: 1px solid black;
 	border-radius: 20px;
     color: black;
@@ -204,7 +220,7 @@ display: flex;
     width: fit-content;
     letter-spacing: 2px;
     font-size: 18px;
-    font-family: 'Godo';
+/*     font-family: 'Godo'; */
     color: white;
     background-color: black;
     border: 1px solid black;

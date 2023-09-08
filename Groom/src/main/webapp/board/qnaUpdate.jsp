@@ -230,7 +230,7 @@
 	<div id="fh5co-main">
 
 		<div class="fh5co-narrow-content">
-			<h2 class="h2">Q&A</h2>
+			<h2 class="h2" onclick="location.href='qna.bo'">Q&A</h2>
 
 			<form action="qnaUpdatePro.bo" method="post" class="qnaupdate" enctype="multipart/form-data">
 				<hr class="hrsolid">

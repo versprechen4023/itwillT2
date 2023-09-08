@@ -50,7 +50,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 	<div id="fh5co-main">
 	
 	
-<h2>Q&A</h2>
+<h2 onclick="location.href='qna.bo'">Q&A</h2>
 
 <table id="qtable1">
 <tr id="qtr">

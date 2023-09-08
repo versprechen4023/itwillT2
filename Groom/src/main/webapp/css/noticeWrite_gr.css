@@ -1,13 +1,40 @@
+@charset "UTF-8";
+/* 윗부분 */
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #000;
+    width: 1000px;
+    margin-left: 200px;
+    margin-bottom : 50px;
+}
+h2{
+		margin-left: 200px;
+		margin-top: 45px;
+		font-weight: bold;
+		 cursor: pointer;
+	}
+
+
+/* --------- */
+
 
 /* 폼전체를 가운데정렬 */
 #nwf {
 /* 	 text-align: center;  */
-width: 80%;
-margin-left: 10%;
+width: 1200px;
+margin-left: 220px;
 margin-top: 50px;
 }
+/* 제목,내용 */
+th {
+	font-size: 20px;
+	
+}
+
 #nwf table{
-	width: 100%;
+	width: 1200px;
 }
 /* 	각각 요소의 크기 */
 .sub, .cont, .file-upload-container {
@@ -18,7 +45,7 @@ padding: 10px;
 
 /* 버튼 ================================================================== */
 .buttons {
-width: 83%;
+width: 960px;
 /* padding: 10px; */
 margin-top: 20px;
 position: relative;

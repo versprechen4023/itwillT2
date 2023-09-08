@@ -50,8 +50,8 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 	<div id="fh5co-main">
 	
 	
-<h2>Q&A</h2>
-
+<h2 onclick="location.href='qna.bo'"> Q&A</h2>
+<hr>
 <table id="qtable1">
 <tr id="qtr">
 <th id="lnum">글번호</th>
@@ -139,7 +139,7 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 			</div>		 	
 			
 			
-		 <input type="text" name="search" size=80 placeholder="검색어를 입력하세요" id="searchkey">
+		 <input type="text" name="search" size=45 placeholder="검색어를 입력하세요" id="searchkey">
 		 <input type="submit" value="검색" id="searchbtn">
 		 <input type="button" value="글쓰기" onclick="location.href='qnaWrite.bo'" id="writebtn">
 <!-- 		 <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn"> -->

@@ -34,6 +34,7 @@ margin-left: 200px;
  margin-top : 45px;
 /*  font-family: 'Godo'; */
  font-weight: bold;
+  cursor: pointer;
 }
 
 
@@ -212,11 +213,11 @@ width: 900px;
   .botbtn{
 /*   float : right; */
 /*   margin-right: 325px; */
-	margin-left: 990px;
+	margin-left: 1060px;
   }
   
   
-  img{
+  table img{
 	width: 800px;
 	margin-top: 20px;
 	margin-bottom: 20px;

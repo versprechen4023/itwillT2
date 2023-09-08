@@ -51,7 +51,7 @@ List<Board1DTO> notice=(List<Board1DTO>)request.getAttribute("notice");
 PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 %>
 
-    <h2>공지사항</h2>
+    <h2 onclick="location.href='notice.bo'">공지사항</h2>
 <div>
     <table id="qtable1">
          <tr id="qtr">

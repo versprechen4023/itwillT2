@@ -30,7 +30,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 
 	<div id="fh5co-main">
 
-<h2 class="headh1">공지사항</h2>
+<h2 class="headh1"  onclick="location.href='notice.bo'">공지사항</h2>
 <hr>
 <input type="hidden" name="n_num" value="<%=boardDTO.getN_num() %>">
 <table id="notice" border="1">
@@ -64,7 +64,7 @@ if(id != null){
 }
 %>
 
- <button type="button" value="목록" class="listbtn" onclick="location.href='notice.bo'"> 목록 </button>
+<!--  <button type="button" value="목록" class="listbtn" onclick="location.href='notice.bo'"> 목록 </button> -->
  
  
    </div>

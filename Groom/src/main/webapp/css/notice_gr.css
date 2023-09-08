@@ -3,6 +3,7 @@
 		margin-left: 200px;
 		margin-top: 45px;
 		font-weight: bold;
+		 cursor: pointer;
 	}
 #qtable1 {
 border-collapse: collapse;

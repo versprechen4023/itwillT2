@@ -198,7 +198,7 @@ import web.groom.dto.PageDTO;
 				//1,2 디비연결
 				con = new SQLConnection().getConnection();
 				//3 sql select count(*) from board
-				String sql = "select count(*) from faq;";
+				String sql = "select count(*) from notice;"; //faq-> notice로 수정
 				pstmt=con.prepareStatement(sql);
 				//4 실행 => 결과저장
 				rs = pstmt.executeQuery();

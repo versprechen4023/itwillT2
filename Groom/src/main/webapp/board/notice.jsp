@@ -50,7 +50,7 @@ List<Board1DTO> notice=(List<Board1DTO>)request.getAttribute("notice");
 PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 %>
 
-    <h2>공지사항</h2>
+    <h2  onclick="location.href='notice.bo'">공지사항</h2>
     <hr>
 <div>
     <table id="qtable1">
@@ -60,7 +60,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
             <th id="ldate">작성일</th>
         </tr>
 <%
-SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm");
+SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
     for(int i=0;i<notice.size();i++){
     	Board1DTO boardDTO=notice.get(i);
     	%>

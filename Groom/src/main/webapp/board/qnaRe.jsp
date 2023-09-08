@@ -232,7 +232,7 @@
 	<div id="fh5co-main">
 
 		<div class="fh5co-narrow-content">
-			<h2 class="h2">Q&A</h2>
+			<h2 class="h2" onclick="location.href='qna.bo'">Q&A</h2>
 
 			<form action="qnaReWritePro.bo" method="post" class="qnawrite" enctype="multipart/form-data">
 <!--                 <form id="nwf" method="post" class="qnawrite" action="qnaWritePro.bo" enctype="multipart/form-data"> -->

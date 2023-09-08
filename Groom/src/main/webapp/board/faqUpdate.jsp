@@ -26,7 +26,7 @@ String role = (String)session.getAttribute("role");
 Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 %>
 
-<h2>FAQ</h2>
+<h2 onclick="location.href='faq.bo'">FAQ</h2>
 <hr>
 
 <form id="nwf" method="post" action="faqUpdatePro.bo" enctype="multipart/form-data">
@@ -56,7 +56,7 @@ Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 	</table>
 	<!-- 	/* 버튼 ================================================================== */	 -->
 	<div class="buttons">
-		<button type="button" onclick="location.href='faq.bo'" id="writebtn" class="nwbtn">목록</button>
+<!-- 		<button type="button" onclick="location.href='faq.bo'" id="writebtn" class="nwbtn">목록</button> -->
 		<button type="submit" class="nwbtn">수정</button>
 <!-- 		<button class="nwbtn">수정</button> -->
 <!-- 		<button class="nwbtn">삭제</button> -->

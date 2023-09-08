@@ -34,6 +34,7 @@ margin-left: 200px;
  margin-top : 45px;
 /*  font-family: 'Godo'; */
  font-weight: bold;
+  cursor: pointer;
 }
 
 
@@ -214,7 +215,7 @@ width: 900px;
 /*   	안먹혀서 faqContent.jsp에서 적용 */
   }
   
-  img{
+  table img{
 	width: 800px;
 	margin-top: 20px;
 	margin-bottom: 20px;

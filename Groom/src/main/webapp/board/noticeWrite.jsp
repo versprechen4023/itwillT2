@@ -7,8 +7,8 @@
 
 <!-- noticeWrite css 추가 -->
 <link rel="stylesheet" href="./css/noticeWrite_gr.css">
-<link rel="stylesheet" href="./css/style.css">
-<link rel="stylesheet" href="./css/aside_gr.css">
+<!-- <link rel="stylesheet" href="./css/style.css"> -->
+<!-- <link rel="stylesheet" href="./css/aside_gr.css"> -->
 
 <!-- 사이드바호출 -->
 <jsp:include page="../inc/aside.jsp"></jsp:include>
@@ -22,7 +22,7 @@
 <%
 String id = (String)session.getAttribute("id");
 %>
-<h2>공지사항</h2>
+<h2  onclick="location.href='notice.bo'">공지사항</h2>
 <hr>
 
 <form id="nwf" method="post" action="noticeWritePro.bo" enctype="multipart/form-data">
@@ -50,7 +50,7 @@ String id = (String)session.getAttribute("id");
 	</table>
 	<!-- 	/* 버튼 ================================================================== */	 -->
 	<div class="buttons">
-		<button type="button" onclick="location.href='notice.bo'" id="writebtn" class="nwbtn">목록</button>
+<!-- 		<button type="button" onclick="location.href='notice.bo'" id="writebtn" class="nwbtn">목록</button> -->
 		<button type="submit" class="nwbtn">확인</button>
 <!-- 		<button class="nwbtn">수정</button> -->
 <!-- 		<button class="nwbtn">삭제</button> -->

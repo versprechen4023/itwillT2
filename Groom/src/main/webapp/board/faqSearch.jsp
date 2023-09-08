@@ -51,7 +51,8 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 %>
 
 
-<h2>FAQ</h2>
+<h2 onclick="location.href='faq.bo'">FAQ</h2>
+<hr>
 	<div>
 	 <table id="qtable1">
 		 <tr id="qtr">

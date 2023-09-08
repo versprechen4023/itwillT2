@@ -49,7 +49,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 %>
 
 
-<h2>FAQ</h2>
+<h2 onclick="location.href='faq.bo'">FAQ</h2>
 <hr>
 	<div>
 	 <table id="qtable1">
@@ -60,7 +60,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 	 </tr>
 	 
 <%
-SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd HH:mm");
+SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
     for(int i=0;i<faq.size();i++){
     	Board1DTO boardDTO=faq.get(i);
     	%>

@@ -64,7 +64,7 @@ public class AdminDAO {
 		String sql = "select a.res_num, a.res_day, a.res_time, b.pro_name, c.pet_size, b.pet_weight,"
 				+ "          d.s_location, e.emp_grade, e.emp_name, f.u_name, f.u_phone, a.res_point,"
 				+ "          a.res_price, a.res_status, a.res_method, a.res_point_status"
-				+ "   from test_reservation a"
+				+ "   from reservation a"
 				+ "   join product2 b on a.pro_id2 = b.pro_id2"
 				+ "   join product1 c on a.pro_id1 = c.pro_id1"
 				+ "   join store d on a.s_num = d.s_num"
@@ -205,7 +205,7 @@ public class AdminDAO {
 			// db연결
 			con = new SQLConnection().getConnection();
 			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
-			String SQL = "UPDATE test_reservation SET res_status = 1 where res_num = ?";
+			String SQL = "UPDATE reservation SET res_status = 1 where res_num = ?";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, a);
 			int rs = pstmt.executeUpdate();
@@ -226,7 +226,7 @@ public class AdminDAO {
 			// db연결
 			con = new SQLConnection().getConnection();
 			// SQL 쿼리 실행(휴무날짜 내역 값 삽입)
-			String SQL = "UPDATE test_reservation SET res_status = 2 where res_num = ?";
+			String SQL = "UPDATE reservation SET res_status = 2 where res_num = ?";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, b);
 			int rs = pstmt.executeUpdate();
@@ -247,7 +247,7 @@ public class AdminDAO {
 			// db연결
 			con = new SQLConnection().getConnection();
 			// SQL 쿼리 실행
-			String SQL = "UPDATE test_reservation SET res_status = 0 where res_num = ?";
+			String SQL = "UPDATE reservation SET res_status = 0 where res_num = ?";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, c);
 			int rs = pstmt.executeUpdate();
@@ -267,7 +267,7 @@ public class AdminDAO {
 		boolean result = false;
 		try {
 			con = new SQLConnection().getConnection();
-			String SQL = "UPDATE test_reservation SET res_point_status = 1"
+			String SQL = "UPDATE reservation SET res_point_status = 1"
 					+ "   WHERE res_num = ?;";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, i);
@@ -287,7 +287,7 @@ public class AdminDAO {
 		boolean result = false;
 		try {
 			con = new SQLConnection().getConnection();
-			String SQL = "UPDATE test_reservation SET res_point_status = 0"
+			String SQL = "UPDATE reservation SET res_point_status = 0"
 					+ "   WHERE res_num = ?;";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, i);
@@ -307,8 +307,8 @@ public class AdminDAO {
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "UPDATE user2"
-					+ "   SET u_point = u_point + (SELECT res_price FROM test_reservation WHERE res_num = ?)*0.01"
-					+ "   WHERE u_num = (SELECT u_num FROM test_reservation WHERE res_num = ?);";
+					+ "   SET u_point = u_point + (SELECT res_price FROM reservation WHERE res_num = ?)*0.01"
+					+ "   WHERE u_num = (SELECT u_num FROM reservation WHERE res_num = ?);";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, i);
 			pstmt.setInt(2, i);
@@ -325,8 +325,8 @@ public class AdminDAO {
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "UPDATE user2"
-					+ "   SET u_point = u_point - (SELECT res_price FROM test_reservation WHERE res_num = ?)*0.01"
-					+ "   WHERE u_num = (SELECT u_num FROM test_reservation WHERE res_num = ?);";
+					+ "   SET u_point = u_point - (SELECT res_price FROM reservation WHERE res_num = ?)*0.01"
+					+ "   WHERE u_num = (SELECT u_num FROM reservation WHERE res_num = ?);";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, i);
 			pstmt.setInt(2, i);

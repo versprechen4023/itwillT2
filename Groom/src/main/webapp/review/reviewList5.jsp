@@ -26,14 +26,6 @@ String num = (String)session.getAttribute("num");
 List<ReviewDTO> reviewList
 =(List<ReviewDTO>)request.getAttribute("reviewList");
 
-// =============== 페이징코드 ㄱ
-int itemsPerPage = 10; // 페이지당 아이템 수
-int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
-int startIndex = (currentPage - 1) * itemsPerPage;
-int endIndex = Math.min(startIndex + itemsPerPage, reviewList.size());
-int totalPages = (int) Math.ceil((double) reviewList.size() / itemsPerPage);
-
-List<ReviewDTO> visibleItems = reviewList.subList(startIndex, endIndex);
 %>
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
@@ -57,6 +49,16 @@ List<ReviewDTO> visibleItems = reviewList.subList(startIndex, endIndex);
 		
 <!-- 목록 시작 -->	
 <%
+if(reviewList != null){
+int itemsPerPage = 10; // 페이지당 아이템 수
+int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
+int startIndex = (currentPage - 1) * itemsPerPage;
+int endIndex = Math.min(startIndex + itemsPerPage, reviewList.size());
+int totalPages = (int) Math.ceil((double) reviewList.size() / itemsPerPage);
+
+List<ReviewDTO> visibleItems = reviewList.subList(startIndex, endIndex);
+//
+
 SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
 for (ReviewDTO reviewDTO : visibleItems){
 if(reviewDTO != null){
@@ -72,28 +74,28 @@ if (i <= rating) {
 		}
 }
 //enum > 문자
-	String s_location = reviewDTO.getS_location();
-	String emp_grade = reviewDTO.getEmp_grade();
-		String location = "";
-	if (s_location.equals("A")) {
-	    location = "서면점";
-	} else if (s_location.equals("B")) {
-	    location = "명지점";
-	} else if (s_location.equals("C")) {
-	    location = "율하점";
-	} else {
-	    location = "알 수 없음";
-	}
-	String grade = "";
-	if (emp_grade.equals("A")) {
-		grade = "원장";
-	} else if (emp_grade.equals("B")) {
-		grade = "실장";
-	} else if (emp_grade.equals("C")) {
-		grade = "수석";
-	} else {
-		grade = "알 수 없음";
-	}
+// 	String s_location = reviewDTO.getS_location();
+// 	String emp_grade = reviewDTO.getEmp_grade();
+// 		String location = "";
+// 	if (s_location.equals("A")) {
+// 	    location = "서면점";
+// 	} else if (s_location.equals("B")) {
+// 	    location = "명지점";
+// 	} else if (s_location.equals("C")) {
+// 	    location = "율하점";
+// 	} else {
+// 	    location = "알 수 없음";
+// 	}
+// 	String grade = "";
+// 	if (emp_grade.equals("A")) {
+// 		grade = "원장";
+// 	} else if (emp_grade.equals("B")) {
+// 		grade = "실장";
+// 	} else if (emp_grade.equals("C")) {
+// 		grade = "수석";
+// 	} else {
+// 		grade = "알 수 없음";
+// 	}
 %>		
 <!-- 리뷰 목록  -->	
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
@@ -104,7 +106,7 @@ if (i <= rating) {
 		</div>
 		<div class="review-desc">
 			<h3><a><%=reviewDTO.getPro_name() %></a><br>
-			<small><%=grade %> <%=reviewDTO.getEmp_name() %></small><small> / <%=location %></small></h3>
+			<small><%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %></small><small> / <%=reviewDTO.getS_location() %></small></h3>
 			<h3><%=stars %></h3>
 			<span class="review_text1"><a><%=reviewDTO.getU_name() %></a> / <a><%=format.format(reviewDTO.getRev_date()) %></a> / <a><%=reviewDTO.getU_count() %>번째 방문</a></span>
 			<p class="review_text2"><%=reviewDTO.getRev_content() %></p>
@@ -144,11 +146,13 @@ if(role.equals("admin")){
     <% } %>
     <% if (currentPage < totalPages) { %>
         <a href="reviewList5.re?pro_name=<%= request.getParameter("pro_name") %>&page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
-    <% }
-
+    <%
+    }
     %>
 </div>
-
+<%
+}
+%>
 </div>
 </div>
 	

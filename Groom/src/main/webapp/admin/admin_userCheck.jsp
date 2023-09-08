@@ -38,14 +38,6 @@ if(id == null){
 List<MemberDTO> memberList =
 (List<MemberDTO>)request.getAttribute("memberList");
 
-//아래 코드는 페이징코드
-int itemsPerPage = 20; // 페이지당 아이템 수
-int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
-int startIndex = (currentPage - 1) * itemsPerPage;
-int endIndex = Math.min(startIndex + itemsPerPage, memberList.size());
-int totalPages = (int) Math.ceil((double) memberList.size() / itemsPerPage);
-
-List<MemberDTO> visibleItems = memberList.subList(startIndex, endIndex);
 %>
 <div id="fh5co-main"> <!-- 블로그 페이지 이미지 테두리? 변경시  stycle.css 481 .blog-entry .blog-img 에서 css 코드 추가 -->
 	<div class="fh5co-narrow-content">
@@ -73,6 +65,17 @@ List<MemberDTO> visibleItems = memberList.subList(startIndex, endIndex);
     	<td>방문수</td>
     	<td>포인트</td></tr>
 <%
+if(memberList != null){
+//아래 코드는 페이징코드
+int itemsPerPage = 20; // 페이지당 아이템 수
+int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
+int startIndex = (currentPage - 1) * itemsPerPage;
+int endIndex = Math.min(startIndex + itemsPerPage, memberList.size());
+int totalPages = (int) Math.ceil((double) memberList.size() / itemsPerPage);
+
+List<MemberDTO> visibleItems = memberList.subList(startIndex, endIndex);
+//
+
 SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd HH:mm");
 for(MemberDTO memberDTO : visibleItems) { 
 %>
@@ -104,6 +107,9 @@ for(MemberDTO memberDTO : visibleItems) {
         <a href="?page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
     <% } %>
 </div>
+<%
+}
+%>
 </div>
 <!-- [회원정보] 끝 -->
 		</div>

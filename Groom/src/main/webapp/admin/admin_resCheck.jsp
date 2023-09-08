@@ -24,14 +24,6 @@
 List<OrderReservationDTO> reservationList =
 (List<OrderReservationDTO>)request.getAttribute("reservationList");
 
-//아래 코드는 페이징코드
-int itemsPerPage = 10; // 페이지당 아이템 수
-int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
-int startIndex = (currentPage - 1) * itemsPerPage;
-int endIndex = Math.min(startIndex + itemsPerPage, reservationList.size());
-int totalPages = (int) Math.ceil((double) reservationList.size() / itemsPerPage);
-
-List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, endIndex);
 %>
 
 <!-- =============================  네비게이션바 ============================= -->	
@@ -73,6 +65,17 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
     					  <td colspan="2">포인트</td>
     					  <td>확인</td></tr>
 <%
+//아래 코드는 페이징코드
+if(reservationList != null){
+int itemsPerPage = 10; // 페이지당 아이템 수
+int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
+int startIndex = (currentPage - 1) * itemsPerPage;
+int endIndex = Math.min(startIndex + itemsPerPage, reservationList.size());
+int totalPages = (int) Math.ceil((double) reservationList.size() / itemsPerPage);
+
+List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, endIndex);
+//
+
 for(OrderReservationDTO orderReservationDTO : visibleItems) { 
 String res_day = orderReservationDTO.getRes_day(); // 예약날짜
 String format_res_day = res_day.replace("-", ".").substring(2);
@@ -80,29 +83,29 @@ String res_time = orderReservationDTO.getRes_time(); // 예약시간
 String format_res_time = res_time.substring(0, 5);
 
 //enum > 문자
-	String s_location = orderReservationDTO.getS_location();
-		String location = "";
-	if (s_location.equals("A")) {
-	    location = "서면점";
-	} else if (s_location.equals("B")) {
-	    location = "명지점";
-	} else if (s_location.equals("C")) {
-	    location = "율하점";
-	} else {
-	    location = "알 수 없음";
-	}
+// 	String s_location = orderReservationDTO.getS_location();
+// 		String location = "";
+// 	if (s_location.equals("A")) {
+// 	    location = "서면점";
+// 	} else if (s_location.equals("B")) {
+// 	    location = "명지점";
+// 	} else if (s_location.equals("C")) {
+// 	    location = "율하점";
+// 	} else {
+// 	    location = "알 수 없음";
+// 	}
 	
-	String emp_grade = orderReservationDTO.getEmp_grade();
-	String grade = "";
-	if (emp_grade.equals("A")) {
-		grade = "원장";
-	} else if (emp_grade.equals("B")) {
-		grade = "실장";
-	} else if (emp_grade.equals("C")) {
-		grade = "수석";
-	} else {
-		grade = "알 수 없음";
-	}
+// 	String emp_grade = orderReservationDTO.getEmp_grade();
+// 	String grade = "";
+// 	if (emp_grade.equals("A")) {
+// 		grade = "원장";
+// 	} else if (emp_grade.equals("B")) {
+// 		grade = "실장";
+// 	} else if (emp_grade.equals("C")) {
+// 		grade = "수석";
+// 	} else {
+// 		grade = "알 수 없음";
+// 	}
 	
 	int res_status = orderReservationDTO.getRes_status();
 	String status = "";
@@ -129,8 +132,8 @@ String format_res_time = res_time.substring(0, 5);
     <tr><td><%=orderReservationDTO.getRes_num() %></td>
     	<td><%=format_res_day %> <%=format_res_time %></td>
     	<td class="text-left">[<%=orderReservationDTO.getPro_name() %>] <%=orderReservationDTO.getPet_size() %> <%=orderReservationDTO.getPet_weight() %></td>
-    	<td><%=location %></td>
-    	<td><%=grade %> <%=orderReservationDTO.getEmp_name() %></td>
+    	<td><%=orderReservationDTO.getS_location() %></td>
+    	<td><%=orderReservationDTO.getEmp_grade() %> <%=orderReservationDTO.getEmp_name() %></td>
     	<td><%=orderReservationDTO.getU_name() %></td>
     	<td><%=orderReservationDTO.getU_phone() %></td>
     	<td><%=orderReservationDTO.getRes_price()+orderReservationDTO.getRes_point() %></td>
@@ -199,6 +202,9 @@ String format_res_time = res_time.substring(0, 5);
         <a href="?page=<%= currentPage + 1 %>" class="pgR"><span class="m-tcol-c">&gt;</span></a>
     <% } %>
 </div>
+<%
+}
+%>
 </div>
 <!-- [예약정보] 끝 -->
 		</div>

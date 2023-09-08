@@ -124,32 +124,32 @@ List<AdminDTO> visibleItems = empList.subList(startIndex, endIndex);
 <%
 SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
 for(AdminDTO adminDTO : visibleItems) {
-	String s_location = adminDTO.getS_location();
-	String emp_grade = adminDTO.getEmp_grade();
-	String location = "";
-	if (s_location.equals("A")) {
-	    location = "서면점";
-	} else if (s_location.equals("B")) {
-	    location = "명지점";
-	} else if (s_location.equals("C")) {
-	    location = "율하점";
-	} else {
-	    location = "알 수 없음";
-	}
-	String grade = "";
-	if (emp_grade.equals("A")) {
-		grade = "원장";
-	} else if (emp_grade.equals("B")) {
-		grade = "실장";
-	} else if (emp_grade.equals("C")) {
-		grade = "수석";
-	} else {
-		grade = "알 수 없음";
-	}
+// 	String s_location = adminDTO.getS_location();
+// 	String emp_grade = adminDTO.getEmp_grade();
+// 	String location = "";
+// 	if (s_location.equals("A")) {
+// 	    location = "서면점";
+// 	} else if (s_location.equals("B")) {
+// 	    location = "명지점";
+// 	} else if (s_location.equals("C")) {
+// 	    location = "율하점";
+// 	} else {
+// 	    location = "알 수 없음";
+// 	}
+// 	String grade = "";
+// 	if (emp_grade.equals("A")) {
+// 		grade = "원장";
+// 	} else if (emp_grade.equals("B")) {
+// 		grade = "실장";
+// 	} else if (emp_grade.equals("C")) {
+// 		grade = "수석";
+// 	} else {
+// 		grade = "알 수 없음";
+// 	}
 %>
     <tr><td><%=adminDTO.getNumber() %></td>
-    	<td><%=location %></td>
-    	<td><%=grade %></td>
+    	<td><%=adminDTO.getS_location() %></td>
+    	<td><%=adminDTO.getEmp_grade() %></td>
     	<td><%=adminDTO.getEmp_name() %></td>
     	<td><%=adminDTO.getEmp_extrafee() %></td>
     	<td><%=adminDTO.getEmp_phone() %></td>

@@ -371,7 +371,7 @@ public class MypageDAO {
 			//db연결
 			con = new SQLConnection().getConnection();
 			
-			String SQL = "UPDATE test_reservation SET res_day = ?, res_time = ? WHERE res_num = ? and u_num = ?";
+			String SQL = "UPDATE reservation SET res_day = ?, res_time = ? WHERE res_num = ? and u_num = ?";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setString(1, res_day);
 			pstmt.setString(2, res_time);

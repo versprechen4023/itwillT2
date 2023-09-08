@@ -63,7 +63,7 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 											<option value="" disabled selected>견종을 선택하세요</option>
 											<option value="1">소형견</option>
 											<option value="2">중형견</option>
-											<option value="3">대형견</option>
+											<option value="3">특수견</option>
 										</select>
 									</div>
 									<div class="form-group">

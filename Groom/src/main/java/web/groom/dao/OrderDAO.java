@@ -202,7 +202,7 @@ public class OrderDAO {
 
 			con = new SQLConnection().getConnection();
 
-			String sql = "SELECT emp_num, emp_name, emp_grade FROM employees WHERE s_num = ?";
+			String sql = "SELECT emp_num, emp_name, emp_grade, emp_extrafee FROM employees WHERE s_num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, s_num);
 			rs = pstmt.executeQuery();
@@ -215,7 +215,7 @@ public class OrderDAO {
 				orderServiceDTO.setEmp_num(rs.getInt("emp_num"));
 				orderServiceDTO.setEmp_name(rs.getString("emp_name"));
 				orderServiceDTO.setEmp_grade(rs.getString("emp_grade"));
-				
+				orderServiceDTO.setEmp_extrafee(rs.getInt("emp_extrafee"));
 				serviceList.add(orderServiceDTO);
 
 			}

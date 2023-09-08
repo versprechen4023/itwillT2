@@ -240,6 +240,7 @@ public class AjaxController extends HttpServlet {
 				object.put("emp_num", orderServiceDTO.getEmp_num());
 				object.put("emp_name", orderServiceDTO.getEmp_name());
 				object.put("emp_grade", orderServiceDTO.getEmp_grade());
+				object.put("emp_extrafee", orderServiceDTO.getEmp_extrafee());
 				// 배열 한칸에 저장
 				arr.add(object);
 			}

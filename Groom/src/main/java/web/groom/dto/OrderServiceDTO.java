@@ -9,7 +9,14 @@ public class OrderServiceDTO {
 	private String emp_name;
 	private String emp_grade;
 	private int emp_num;
+	private int emp_extrafee;
 	
+	public int getEmp_extrafee() {
+		return emp_extrafee;
+	}
+	public void setEmp_extrafee(int emp_extrafee) {
+		this.emp_extrafee = emp_extrafee;
+	}
 	public int getEmp_num() {
 		return emp_num;
 	}

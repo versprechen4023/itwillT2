@@ -373,7 +373,12 @@ $j(document).ready(function() {
             	result.forEach(function(manager) {
             	    var option = document.createElement("option");
             	    //이름을 직급 이름 따로 가져오므로 합치는 작업
-            	    var fullName = manager.emp_grade + ' ' + manager.emp_name;
+            	    var fullName = "";
+            	    if(manager.emp_extrafee != 0){
+            	    fullName = manager.emp_grade + ' ' + manager.emp_name+'(추가금액='+manager.emp_extrafee+')';	
+            	    } else {
+            	    fullName = manager.emp_grade + ' ' + manager.emp_name;
+            	    }
             	    option.value = manager.emp_num;
             	    option.text = fullName;
             	    managerlist.appendChild(option);

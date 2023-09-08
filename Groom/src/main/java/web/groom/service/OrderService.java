@@ -165,6 +165,10 @@ public class OrderService {
 		OrderinfoDTO orderInfoDTO = null;
 		
 		try {
+			
+			// 한글 인코딩 처리
+			request.setCharacterEncoding("UTF-8");
+						
 			// 리퀘스트 파라미터값 변수에 저장
 			int s_num = Integer.parseInt(request.getParameter("storelist"));
 			int pro_id1 = Integer.parseInt(request.getParameter("petlist"));

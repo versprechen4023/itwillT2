@@ -51,18 +51,36 @@ String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\" >" : "";
 </table>
 
 <div class="botbtn"> 
-<%
-if(id != null){
-	if(role.equals("admin")){
-		%>
-   <button type="button" value="삭제" class="deletebtn" 
-	onclick="location.href='noticeDelete.bo?n_num=<%=boardDTO.getN_num()%>'"> 삭제</button>
-   <button type="button" value="수정" class="modifybtn" 
-   	onclick="location.href='noticeUpdate.bo?n_num=<%=boardDTO.getN_num()%>'"> 수정 </button>
- <%
-	}
+<%-- <% --%>
+<!-- // if(id != null){ -->
+<!-- // 	if(role.equals("admin")){ -->
+<%-- 		%> --%>
+<!--    <button type="button" value="삭제" class="deletebtn"  -->
+<%-- 	onclick="location.href='noticeDelete.bo?n_num=<%=boardDTO.getN_num()%>'"> 삭제</button> --%>
+<!--    <button type="button" value="수정" class="modifybtn"  -->
+<%--    	onclick="location.href='noticeUpdate.bo?n_num=<%=boardDTO.getN_num()%>'"> 수정 </button> --%>
+<%--  <% --%>
+<!-- // 	} -->
+<!-- // } -->
+<%-- %> --%>
+<% if (id != null) {
+    if (role.equals("admin")) { %>
+        <button type="button" value="삭제" class="deletebtn" 
+            onclick="confirmDelete(<%=boardDTO.getN_num()%>)"> 삭제</button>
+        <button type="button" value="수정" class="modifybtn" 
+            onclick="location.href='noticeUpdate.bo?n_num=<%=boardDTO.getN_num()%>'"> 수정 </button>
+<% }
+} %>
+
+<!-- JavaScript로 삭제 확인 대화 상자 표시 -->
+<script>
+function confirmDelete(n_num) {
+    if (confirm("정말로 삭제하시겠습니까?")) {
+        // 확인을 선택한 경우 "noticeDelete.bo"로 삭제 요청을 보냅니다.
+        location.href = 'noticeDelete.bo?n_num=' + n_num;
+    }
 }
-%>
+</script>
 
 <!--  <button type="button" value="목록" class="listbtn" onclick="location.href='notice.bo'"> 목록 </button> -->
  

@@ -38,7 +38,7 @@
 /* 	비디오 관련 쪽 */
 .video-container {
     position: relative;
-    margin-bottom: 200px; /* 요청하신 그림과 간격주는거 */
+    margin-bottom: 37px; /* 요청하신 그림과 간격주는거 */
 }
 /* 	비디오 왼쪽 상단 텍스트 설정 */
 .video-text {
@@ -55,12 +55,55 @@
 
 /* 	동그란이미지 글자 관련 쪽*/
 .circle-text {
-    font-size: 50px; /* 둥근 이미지 라인 쪽 원하는 폰트 크기로 수정 */
-    margin-top: 200px; /* 글자가 가운데에 배치될수있도록 위(TOP)에서 멀어지기 */
+    font-size: 22px; /* 둥근 이미지 라인 쪽 원하는 폰트 크기로 수정 */
+    text-align : center;
+    margin-top: 40px; /* 글자가 가운데에 배치될수있도록 위(TOP)에서 멀어지기 */
+}
+
+h1{
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+	color: #3E2723;
+}
+
+h2{
+	font-size: 30px;
+	text-align: left;
+	font-weight: bold;
+	color: #3E2723;
+}
+
+.text-center1{
+	text-align: center;
+	font-size: 22px;
+	width: 520px;
+	color: #A1887F;
+}
+
+.text-center2{
+	text-align: center;
+	font-size: 22px;
+	width: 548px;
+	color: #A1887F;
+	
+}
+
+.text-center3{
+	text-align: center;
+	font-size: 22px;
+	width: 566px;
+	margin-top: 40px;
+	color: #A1887F;
 }
 
 /* 	맨아래 글자 관련 쪽*/
 .blog-entry {
     border-radius: 50px; /* 모서리 둥글게? */
      overflow: hidden; /* 이미지를 모서리 안에 잘라내는 역할 */
+}
+
+/* 네비바, 동영상 사이 간격제거 */
+.container-fluid{
+padding: 0;
 }

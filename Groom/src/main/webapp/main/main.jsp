@@ -32,7 +32,7 @@
 							<source src="./images/main3.mp4" type="video/mp4">
 						</video>
 						
-						<div class="video-text">이름</div>
+						<!-- <div class="video-text">이름</div> -->
 					</div>
 				</div>
 			</section>
@@ -43,14 +43,20 @@
 				<div class="container px-5">
 					<div class="row gx-5 align-items-center">
 						<div class="col-lg-6">
-							<div class="p-5 text-center">
-								<p class="circle-text">실시간 반려동물 미용실 예약 플랫폼</p>
+							<div class="text-center1">
+								<p class="circle-text">
+								<h1>반려동물 미용</h1>
+								미용은 반려동물의 외모뿐만 아니라 <br>생활과 건강에도 큰 영향을 미칩니다.<br>
+								정기적인 미용은 반려동물의 피부와 <br>털을 건강하게 유지하는 데 도움을 주며,<br>
+								털, 발톱, 귀 등을 깔끔하게 관리하고 <br>점검하여 특정 질병이나 감염을<br>
+								조기에 발견하고 예방할 수 있습니다. <br>또한 관리되지 않은 긴 털과 발톱을<br>
+								정리하여 반려동물의 편안함을 <br>증진시킬 수 있습니다.<br></p>
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="p-5">
-								<img class="img-responsive img-circle" src="./images/dog.jpg"
-									alt="..." />
+								<img class="img-responsive img-circle" src="./images/mainimage1.jpg">
+									
 							</div>
 						</div>
 					</div>
@@ -62,13 +68,19 @@
 					<div class="row gx-5 align-items-center">
 						<div class="col-lg-6 order-lg-2">
 							<div class="p-5">
-								<img class="img-responsive img-circle" src="./images/dog.jpg" 
-									alt="엑박시출력할텍스트" />
+								<img class="img-responsive img-circle" src="./images/mainimage4.png">
 							</div>
 						</div>
 						<div class="col-lg-6 order-lg-1">
-							<div class="p-5">
-								<p class="circle-text">무슨무슨 서비스등</p>
+							<div class="text-center2">
+								<p class="circle-text">
+								<h1>반려동물 목욕</h1>
+								목욕은 피부 문제 예방 및 건강을 개선하는 데 도움을 줍니다.<br>
+								목욕을 통해 먼지, 땀 그리고 다른 미생물로부터<br>반려견의 피부를 깨끗이 유지하며
+								알레르기 유발 물질을<br> 제거하고 진드기와 벼룩과 같은 해충의 예방에도 도움을 줄 수 있습니다.
+								또한 반려동물의 체취를 제거하고 털을 청결하게 관리하며
+								정기적인 목욕은 반려동물의 자연적인 <br>피부 기름층을 유지하는 데 도움이 됩니다.
+								<br>이는 피부와 털을 보호하는 역할을 합니다.</p>
 							</div>
 						</div>
 					</div>
@@ -79,14 +91,22 @@
 				<div class="container px-5">
 					<div class="row gx-5 align-items-center">
 						<div class="col-lg-6">
-							<div class="p-5 text-center">
-								<p class="circle-text">아무글자</p>
+							<div class="text-center3">
+							<br>
+							<h1>스포팅컷</h1>
+								<p class="circle-text">
+								다리에 볼륨감을 주는 미용법입니다.<br>
+								털이 엉키거나 이물질이 묻기 쉬운 몸통은 <br>상대적으로 짧게 자르고 
+								다리털은 둥글게 다듬어 <br>실용성과 심미성을 모두 잡습니다.<br> 
+								스포팅컷은 반려견의 체형을 보정하기에도 좋은 스타일입니다.<br> 
+								질병 및 수술등으로 한쪽 다리가 왜소해진 강아지라면<br> 
+								스포팅컷을 통해 양쪽 다리의 균형감을 맞출 수 있습니다.
+								</p>
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="p-5">
-								<img class="img-responsive img-circle" src="./images/dog.jpg"
-									alt="..." />
+								<img class="img-responsive img-circle" src="./images/mainimage3.png">
 							</div>
 						</div>
 					</div>
@@ -96,7 +116,7 @@
             
 			<div class="fh5co-narrow-content">
 				<div class="row row-bottom-padded-md">
-				 <h1>베스트 리뷰</h1>
+				 <h2>베스트 리뷰</h2>
 				<!-- 목록 시작 -->	
 <%
 List<ReviewDTO> reviewList
@@ -117,7 +137,7 @@ if (i <= rating) {
 		}
 }
 //enum > 문자
-	String s_location = reviewDTO.getS_location();
+	/* String s_location = reviewDTO.getS_location();
 	String emp_grade = reviewDTO.getEmp_grade();
 		String location = "";
 	if (s_location.equals("A")) {
@@ -138,7 +158,7 @@ if (i <= rating) {
 		grade = "수석";
 	} else {
 		grade = "알 수 없음";
-	}
+	} */
 %>		
 <!-- 리뷰 목록  -->	
 		<div class="col-md-4 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
@@ -150,7 +170,7 @@ if (i <= rating) {
 					</div>	
 					<div class="desc">
 						<h3><a><%=reviewDTO.getPro_name() %></a><br>
-						<small><%=grade %> <%=reviewDTO.getEmp_name() %></small><small> / <%=location %></small></h3>
+						<small><%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %></small><small> / <%=reviewDTO.getS_location() %></small></h3>
 						<h3><%=stars %></h3>
 						<span class="review_text1"><a><%=reviewDTO.getU_name() %></a> / <a><%=format.format(reviewDTO.getRev_date()) %></a> / <a><%=reviewDTO.getU_count() %>번째 방문</a></span>
 						<p class="review_text2"><%=reviewDTO.getRev_content() %></p>

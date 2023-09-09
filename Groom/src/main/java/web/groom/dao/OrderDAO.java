@@ -95,13 +95,14 @@ public class OrderDAO {
 			
 			String sql = "SELECT dis_time FROM disabled_time WHERE s_num = ? and emp_num = ? and dis_daydate = ?\r\n"
 					+ "UNION\r\n"
-					+ "SELECT res_time FROM reservation WHERE s_num = ? and emp_num = ?";
+					+ "SELECT res_time FROM reservation WHERE s_num = ? and emp_num = ? and res_day = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, s_num);
 			pstmt.setInt(2, emp_num);
 			pstmt.setString(3, dis_daydate);
 			pstmt.setInt(4, s_num);
 			pstmt.setInt(5, emp_num);
+			pstmt.setString(6, dis_daydate);
 			rs = pstmt.executeQuery();
 
 			serviceTime = new ArrayList<>();

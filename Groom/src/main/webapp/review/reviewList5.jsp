@@ -73,36 +73,14 @@ if (i <= rating) {
 		stars += "☆";
 		}
 }
-//enum > 문자
-// 	String s_location = reviewDTO.getS_location();
-// 	String emp_grade = reviewDTO.getEmp_grade();
-// 		String location = "";
-// 	if (s_location.equals("A")) {
-// 	    location = "서면점";
-// 	} else if (s_location.equals("B")) {
-// 	    location = "명지점";
-// 	} else if (s_location.equals("C")) {
-// 	    location = "율하점";
-// 	} else {
-// 	    location = "알 수 없음";
-// 	}
-// 	String grade = "";
-// 	if (emp_grade.equals("A")) {
-// 		grade = "원장";
-// 	} else if (emp_grade.equals("B")) {
-// 		grade = "실장";
-// 	} else if (emp_grade.equals("C")) {
-// 		grade = "수석";
-// 	} else {
-// 		grade = "알 수 없음";
-// 	}
+//enumD
 %>		
 <!-- 리뷰 목록  -->	
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 		<div class="blog-entry">
 		<div class="img-wrapper">
 			<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img">
-			<img src="upload/<%=reviewDTO.getRev_img_url()%>" class="img-responsive" alt="이미지없음"></a>
+			<img src="upload/<%=reviewDTO.getRev_img_url()%>" class="img-responsive" alt="이미지" onerror="this.src='images/LOGO.png'" /></a>
 		</div>
 		<div class="review-desc">
 			<h3><a><%=reviewDTO.getPro_name() %></a><br>

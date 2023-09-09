@@ -241,25 +241,23 @@ public class ReviewDAO {
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "INSERT INTO review"
-					+ "   (u_num, res_num, pro_id2, s_num, rev_content,"
+					+ "   (u_num, res_num, rev_content,"
 					+ "    rev_img_url, rev_rating, rev_date, rev_count,"
-					+ "    re_ref, re_lev, re_seq, re_content, re_date);"
-					+ "   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "    re_ref, re_lev, re_seq, re_content, re_date)"
+					+ "   VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, reviewDTO.getU_num());
 			pstmt.setInt(2, reviewDTO.getRes_num());
-			pstmt.setInt(3, reviewDTO.getPro_id2());
-			pstmt.setInt(4, reviewDTO.getS_num());
-			pstmt.setString(5, reviewDTO.getRev_content()); 
-			pstmt.setString(6, reviewDTO.getRev_img_url());
-			pstmt.setString(7, reviewDTO.getRev_rating()); 
-			pstmt.setTimestamp(8, reviewDTO.getRev_date());
-			pstmt.setInt(9, reviewDTO.getRev_count());
-			pstmt.setInt(10, reviewDTO.getRe_ref());
-			pstmt.setInt(11, reviewDTO.getRe_lev());
-			pstmt.setInt(12, reviewDTO.getRe_seq());
-			pstmt.setString(13, reviewDTO.getRe_content());
-			pstmt.setTimestamp(14, reviewDTO.getRe_date());
+			pstmt.setString(3, reviewDTO.getRev_content()); 
+			pstmt.setString(4, reviewDTO.getRev_img_url());
+			pstmt.setString(5, reviewDTO.getRev_rating()); 
+			pstmt.setTimestamp(6, reviewDTO.getRev_date());
+			pstmt.setInt(7, reviewDTO.getRev_count());
+			pstmt.setInt(8, reviewDTO.getRe_ref());
+			pstmt.setInt(9, reviewDTO.getRe_lev());
+			pstmt.setInt(10, reviewDTO.getRe_seq());
+			pstmt.setString(11, reviewDTO.getRe_content());
+			pstmt.setTimestamp(12, reviewDTO.getRe_date());
 			
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -273,13 +271,13 @@ public class ReviewDAO {
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "UPDATE review"
-					+ "   SET rev_content=?,rev_img_url=?"
+					+ "   SET rev_rating=?,rev_content=?,rev_img_url=?"
 					+ "   WHERE rev_num=?;";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, reviewDTO.getRev_content()); 
-			pstmt.setString(2, reviewDTO.getRev_img_url());
-//			pstmt.setString(3, reviewDTO.getRev_rating()); // 잠시
-			pstmt.setInt(3, reviewDTO.getRev_num());
+			pstmt.setString(1, reviewDTO.getRev_rating());
+			pstmt.setString(2, reviewDTO.getRev_content()); 
+			pstmt.setString(3, reviewDTO.getRev_img_url());
+			pstmt.setInt(4, reviewDTO.getRev_num());
 			
 			pstmt.executeUpdate();
 		} catch (Exception e) {

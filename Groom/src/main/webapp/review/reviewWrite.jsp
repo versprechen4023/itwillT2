@@ -17,16 +17,12 @@
 <link rel="stylesheet" href="./css/member_gr.css">
 <!-- 리뷰작성페이지 스타일  -->
 <link rel="stylesheet" href="./css/reviewWrite_gr.css">
-<style>
-.form-css {
-padding: 0;
-}
-</style>
 <body>
-<form action="reviewWritePro.re" method="post" enctype="multipart/form-data" class="form-css">
+<form action="reviewWritePro.re" method="post" enctype="multipart/form-data"
+	  id="review-write" class="form-css">
 	<div class="review-write-main">
 	<div style="text-align: center;">
-		<h1 class="logo"> Groom(로고) </h1>
+		<h1 class="logo"><img src="./images/LOGO.png" class="review-logo"></h1>
 <!-- 	<div><p class="title">리뷰 작성</p></div><br> -->
 <!-- 	<div class="divider"></div> -->
 <!-- 별점 -->
@@ -39,8 +35,9 @@ padding: 0;
     	<div class="star empty-star" data-rating="4"></div>
     	<div class="star empty-star" data-rating="5"></div>
 	</div>
-	</div>
-	<input type="text" name="rev_rating" class="star-rating" name="rev_rating" readonly>
+	</div><br>
+	<p id="starmsg"></p>
+	<input type="text" name="rev_rating" class="star-rating" id="rev-star" name="rev_rating" readonly>
 <!-- 리뷰 내용 작성 -->
 	<br><br>
 	<div><p>솔직한 서비스의 리뷰를 남겨주세요.</p></div><br>
@@ -66,12 +63,16 @@ padding: 0;
 	</div>
 	</div>
 <br><br><br>
+<input type="hidden" id="res_num" name="res_num" value="${param.res_num}">
+<input type="hidden" id="u_num" name="u_num" value="${param.u_num}">
 </form>
 
 <script>
+
 // // ============================ 별점부분
 const stars = document.querySelectorAll('.star');
 const revRatingInput = document.querySelector('input[name="rev_rating"]');
+const starMessage = document.getElementById('starmsg');//
 	stars.forEach((star, index) => {
 	star.addEventListener('click', () => {
 		const rating = index + 1;
@@ -87,7 +88,15 @@ const revRatingInput = document.querySelector('input[name="rev_rating"]');
 		revRatingInput.value = rating; // Set the input value
 		});
 	});	
-	
+
+// Submit 버튼을 클릭할 때 별점이 선택되지 않은 경우 메시지 표시
+document.getElementById('review-write').addEventListener('submit', (e) => {
+    if (revRatingInput.value === '') {
+        e.preventDefault(); // 폼 제출 방지
+        starMessage.textContent = '별점을 선택해주세요.';
+        starMessage.style.color = 'red';
+    }
+});
 // ============================ 파일첨부	
 function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘리먼트 클릭
 	const fileInput = document.getElementById('fileInput');

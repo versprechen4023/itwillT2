@@ -159,7 +159,7 @@ public class AdminController extends HttpServlet {
 			//유저 세션 검증
 			String id = (String)request.getSession().getAttribute("id");
 			String role = (String)request.getSession().getAttribute("role");
-			//세션에 id값이 존재하지않거나 role이 admin이 아닐 경우 창닫기
+			//세션에 id값이 존재하지않거나 role이 admin이 아닐 경우 메인으로
 				if (id == null || !role.equals("admin")){
 					JSForward.locationHref(response, "비정상적인 접근입니다.", "main.gr");
 				} else {
@@ -176,7 +176,7 @@ public class AdminController extends HttpServlet {
 			//유저 세션 검증
 			String id = (String)request.getSession().getAttribute("id");
 			String role = (String)request.getSession().getAttribute("role");
-			//세션에 id값이 존재하지않거나 role이 admin이 아닐 경우 창닫기
+			//세션에 id값이 존재하지않거나 role이 admin이 아닐 경우 메인으로
 				if (id == null || !role.equals("admin")){
 					JSForward.locationHref(response, "비정상적인 접근입니다.", "main.gr");
 				} else {
@@ -193,7 +193,7 @@ public class AdminController extends HttpServlet {
 			//유저 세션 검증
 			String id = (String)request.getSession().getAttribute("id");
 			String role = (String)request.getSession().getAttribute("role");
-			//세션에 id값이 존재하지않거나 role이 admin이 아닐 경우 창닫기
+			//세션에 id값이 존재하지않거나 role이 admin이 아닐 경우 메인으로
 				if (id == null || !role.equals("admin")){
 					JSForward.locationHref(response, "비정상적인 접근입니다.", "main.gr");
 				} else {

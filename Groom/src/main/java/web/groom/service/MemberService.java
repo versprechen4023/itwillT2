@@ -148,7 +148,7 @@ public class MemberService {
 		return memberdto;
 	}// searchEmail
 
-	public MemberDTO findid(HttpServletRequest request) {
+	public MemberDTO findId(HttpServletRequest request) {
 
 		try {
 			// 한글 인코딩 처리
@@ -159,12 +159,10 @@ public class MemberService {
 			String email = request.getParameter("u_email");
 
 			// MemberDAO에 값을 전달하고 로직처리 수행
-			memberdto = new MemberDAO().findid(name, email);
+			memberdto = new MemberDAO().findId(name, email);
 
 		} catch (Exception e) {
-
 			e.printStackTrace();
-
 		}
 
 		return memberdto;

@@ -4,8 +4,8 @@
     pageEncoding="UTF-8"%>
 
 <%
-MypageDTO mypageInfo = (MypageDTO)request.getAttribute("mypageInfo");
-MypageDTO mypagepetInfo = (MypageDTO)request.getAttribute("mypagepetInfo");
+// MypageDTO mypageInfo = (MypageDTO)request.getAttribute("mypageInfo");
+// MypageDTO mypagepetInfo = (MypageDTO)request.getAttribute("mypagepetInfo");
 MypageDTO mypageDTOTest = (MypageDTO)request.getAttribute("mypageDTOTest");
 %>
 
@@ -13,10 +13,11 @@ MypageDTO mypageDTOTest = (MypageDTO)request.getAttribute("mypageDTOTest");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Groom</title>
 
  <link rel="stylesheet" type="text/css" href="./css/mypet_gr.css">
-
+<!-- 파비콘 적용 코드 -->
+<link rel="icon" href="images/favicon.ico" />
 </head>
 <body>
  <form action="updatemypetPro.my" id="updatemypet" name="updatemypet" method="post">
@@ -57,7 +58,7 @@ MypageDTO mypageDTOTest = (MypageDTO)request.getAttribute("mypageDTOTest");
     <!-- 성별 및 중성화여부 라디오 버튼 그룹 -->
       <label for="gender" class="labelstyle">성별</label>
     <div class="select" id = "gender">
-      <input type="radio" value="M" id="male" name="petgender" value="M"><label for="male">수컷</label>
+      <input type="radio" value="M" id="male" name="petgender" value="M" checked><label for="male">수컷</label>
       <input type="radio" value="F" id="female" name="petgender" value="F"><label for="female">암컷</label>
     </div>
 
@@ -65,7 +66,7 @@ MypageDTO mypageDTOTest = (MypageDTO)request.getAttribute("mypageDTOTest");
     <label for="neuter" class="labelstyle">중성화 여부</label>
     <div class="select" id = "netuer">
       <input type="radio" value="Y" id="yes" name="petneuter" value="Y"><label for="yes">유</label>
-      <input type="radio" value="N" id="no" name="petneuter" value="N"><label for="no">무</label>
+      <input type="radio" value="N" id="no" name="petneuter" value="N" checked><label for="no">무</label>
     </div>
 
     

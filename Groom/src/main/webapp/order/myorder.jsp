@@ -13,161 +13,128 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 	<head>
 	<!-- 헤드호출 -->
 	<jsp:include page="../inc/head.jsp"></jsp:include>
-
 	</head>
-	
-	<body>
-    <!-- 	css설정 -->
-	<link rel="stylesheet" href="./css/myorder_gr.css">
-	
-	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-		<!-- 사이드바호출 -->
-		<jsp:include page="../inc/aside.jsp"></jsp:include>
+<!-- 	css설정 -->
+	<link rel="stylesheet" href="./css/myorder_gr.css">	
+<body>
+<!-- 사이드바호출 -->
+		<jsp:include page="../inc/aside.jsp"></jsp:include>	
 
-		<div id="fh5co-main">
-			<div class="fh5co-narrow-content">
-				
-				<div class="row">
-					<div class="col-md-4">
-						<h2>예약주문</h2>
-					</div>
-				</div>
-				<form action="myorderCheckout.or" id="checkout" method="post">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="row">
-								<div class="col-md-3">
-									<div class="form-group">
-										<p>예약자명</p>
-										<input type="text" class="form-control" id="name" name="name" value="<%=memberInfo.getU_Name()%>" readonly>
-									</div>
-									<div class="form-group">
-									    <p>연락처</p>
-										<input type="text" class="form-control" id="phone" name="phone" value="<%=memberInfo.getU_Phone()%>" readonly>
-									</div>
-								</div>
-								<div class="col-md-3">
-								    <div class="form-group">
-								    	<p>예약매장 선택</p>
-										<select class="form-control" id="storelist" name="storelist">
-											<option value="" disabled selected>매장을 선택하세요</option>
-											<option value="1">서면점</option>
-											<option value="2">명지점</option>
-											<option value="3">율하점</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<p>견종 선택</p>
-										<select class="form-control" id="petlist" name="petlist" disabled>
-											<option value="" disabled selected>견종을 선택하세요</option>
-											<option value="1">소형견</option>
-											<option value="2">중형견</option>
-											<option value="3">특수견</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<p>서비스 선택</p>
-										<select class="form-control custom-select" id="servicelist" name="servicelist" disabled>
-											<option value="" disabled selected>서비스를 선택하세요</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<p>무게 선택</p>
-										<select class="form-control custom-select" id="weightlist" name="weightlist" disabled>
-											<option value="" disabled selected>무게를 선택하세요</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<p>직원 선택</p>
-										<select class="form-control custom-select" id="managerlist" name="managerlist" disabled>
-											<option value="" disabled selected>담당직원을 선택하세요</option>
-										</select>
-									</div>
-								</div>
-								
-								<div class="col-md-3">
-									<div class="form-group">
-										<p>예약날짜 선택</p>
-										<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="예약일을 선택하세요" disabled readonly>
-									</div>
-									<div class="form-group">
-										<p>예약시간 선택</p>
-										<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="예약시간을 선택하세요" disabled>
-									</div>
-									<div class="form-group">
-										<p>기존 요금</p>
-										<input type="text" class="form-control" id="realprice" name="realprice" readonly>
-									</div>
-									<div class="form-group">
-										<p>예상예약 요금</p>
-										<input type="text" class="form-control" id="price" name="price" readonly>
-									</div>
-									<div class="form-group">
-										<p>포인트 사용</p>
-										<input type="text" class="form-control" id="point" name="point" value="0">
-										내 포인트 = <%=memberInfo.getU_Point()%><br>
-										포인트 사용<input type="checkbox" id="pointcheck" name="pointcheck">
-									</div>
-								</div>
-								
-								<div class="col-md-3">
-									<div class="form-group">
-										<p>요청사항작성</p>
-										<textarea id="res_u_req" name="res_u_req" cols="30" rows="7" class="form-control" placeholder="요청사항이 있으면 기입해 주십시오"></textarea>
-									</div>
+<div id="fh5co-page">
+	<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+<div id="fh5co-main">
+<div class="fh5co-narrow-content">
+	<h2>예약주문</h2>
+
+<form action="myorderCheckout.or" id="checkout" method="post">
+
+<div class="order-form">
+<!--   예약자정보 첫 번째 줄	 -->
+<div class="order-container">
+<div class="form-group">
+	<p>예약자</p>
+	<input type="text" class="form-control" id="name" name="name" value="<%=memberInfo.getU_Name()%>" >
+</div>
+
+<div class="form-group">
+	<p>연락처</p>
+	<input type="text" class="form-control" id="phone" name="phone" value="<%=memberInfo.getU_Phone()%>" >
+</div>
+<div class="form-group">
+	<p>이메일</p>
+	<input type="text" class="form-control form-control2" id="email" name="email" value="<%=memberInfo.getU_Email()%>" >
+</div>
+</div><!-- 첫 번째 줄 끝 -->
+
+<!--   상품정보 두 번째 줄	 -->								
+<div class="order-container">
+<div class="form-group">
+	<p>매장 선택</p>
+	<select class="form-control" id="storelist" name="storelist">
+		<option value="" disabled selected>매장을 선택하세요</option>
+		<option value="1">서면점</option>
+		<option value="2">명지점</option>
+		<option value="3">율하점</option>
+	</select>
+</div>
+<div class="form-group">
+	<p>견종 선택</p>
+	<select class="form-control" id="petlist" name="petlist" disabled>
+		<option value="" disabled selected>견종을 선택하세요</option>
+		<option value="1">소형견</option>
+		<option value="2">중형견</option>
+		<option value="3">특수견</option>
+	</select>
+</div>
+<div class="form-group">
+	<p>서비스 선택</p>
+	<select class="form-control custom-select" id="servicelist" name="servicelist" disabled>
+		<option value="" disabled selected>서비스를 선택하세요</option>
+	</select>
+</div>
+<div class="form-group">
+	<p>무게 선택</p>
+	<select class="form-control custom-select" id="weightlist" name="weightlist" disabled>
+		<option value="" disabled selected>무게를 선택하세요</option>
+	</select>
+</div>
+</div><!--  두 번째 줄 끝  -->									
 									
-								</div>
-								
-							</div>
-						</div>
-						<div class="center-button">
-							<input type="submit" class="btn btn-primary btn-md" value="예약하기">
-						</div>
-					</div>
-					<input type="hidden" id="u_point" name="u_point" value="<%=memberInfo.getU_Point()%>">
-				</form>
-				
-				<div class="fh5co-more-contact">
-				<div class="fh5co-narrow-content">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="fh5co-icon">
-									<i class="icon-globe"></i>
-								</div>
-								<div class="fh5co-text">
-									<p><a href="#">info@domain.com</a></p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="fh5co-icon">
-									<i class="icon-map"></i>
-								</div>
-								<div class="fh5co-text">
-									<p>198 West 21th Street, Suite 721 New York NY 10016</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="fh5co-icon">
-									<i class="icon-phone"></i>
-								</div>
-								<div class="fh5co-text">
-									<p><a href="tel://">+123 456 7890</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			</div>
-				
-		</div>
+<!--  포인트, 디자이너, 시간선택 세 번째 줄  -->
+<div class="order-container">
+<div class="form-group">
+	<p>포인트 사용</p>
+<div class="form-group-point">
+	<input type="text" class="form-control form-control-point" id="point" name="point" value="0">
+	<input type="checkbox" id="pointcheck" name="pointcheck">
+</div>
+	(보유 포인트 = <%=memberInfo.getU_Point()%>)<br>
+</div>
+<div class="form-group">
+	<p>디자이너 선택</p>
+	<select class="form-control custom-select" id="managerlist" name="managerlist" disabled>
+		<option value="" disabled selected>담당직원을 선택하세요</option>
+	</select>
+</div>
+<div class="form-group">
+	<p>날짜 선택</p>
+	<input type="text" id="datepicker" name="datepicker" class="form-control" placeholder="예약일을 선택하세요" disabled readonly>
+</div>
+<div class="form-group">
+	<p>시간 선택</p>
+	<input type="text" id="timepicker" name="timepicker" class="form-control" placeholder="예약시간을 선택하세요" disabled>
+</div>
+</div><!--  세 번째 줄 끝  -->	
+
+<!--  요청사항, 금액, 버튼 네 번째 줄  -->
+<div class="order-container">
+<div class="form-group nomargin">
+	<p>요청사항</p>
+	<textarea id="res_u_req" name="res_u_req" cols="30" rows="7" class="form-control" placeholder="요청사항이 있으면 기입해 주십시오"></textarea>
+</div>
+
+<div class="div2">
+<div class="div3">
+	<div class="form-group">
+		<p>상품 금액</p>
+		<input type="text" class="form-control" id="realprice" name="realprice" readonly>
+	</div>
+	<div class="form-group">
+		<p class="text-black">결제 금액</p>
+		<input type="text" class="form-control text-red" id="price" name="price" readonly>
+	</div>
+	</div>
+	<div class="center-button">
+		<input type="submit" class="order-btn" value="결제하기">
+	</div>
+</div>
+</div><!--  네 번째 줄 끝  -->
+</div>
+
+<input type="hidden" id="u_point" name="u_point" value="<%=memberInfo.getU_Point()%>">
+</form>
+	</div>
+	</div>
 	</div>
 
 	<!-- jQuery -->
@@ -181,10 +148,8 @@ MemberDTO memberInfo = (MemberDTO)request.getAttribute("memberInfo");
 	<!-- Flexslider -->
 	<script src="./js/jquery.flexslider-min.js"></script>
 	
-	
 	<!-- MAIN JS -->
 	<script src="./js/main.js"></script>
-	
 
 <!-- 데이트피커 타임피커를 사용하기위한 j쿼리 -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -374,8 +339,10 @@ $j(document).ready(function() {
             	    var option = document.createElement("option");
             	    //이름을 직급 이름 따로 가져오므로 합치는 작업
             	    var fullName = "";
+            	    
             	    if(manager.emp_extrafee != 0){
-            	    fullName = manager.emp_grade + ' ' + manager.emp_name+'(추가금액='+manager.emp_extrafee+')';	
+            	    fullName = manager.emp_grade + ' ' + manager.emp_name+'(추가+'+manager.emp_extrafee+')';
+            	    
             	    } else {
             	    fullName = manager.emp_grade + ' ' + manager.emp_name;
             	    }

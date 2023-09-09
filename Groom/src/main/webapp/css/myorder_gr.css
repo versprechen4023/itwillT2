@@ -1,25 +1,124 @@
 @charset "UTF-8";
 #res_u_req {
-  height: 500px;
-  width: 400px;
-  resize:none;
-  
+	width: 520px;
+	height: 200px;
+	resize:none;
 }
 .custom-select {
     max-height: 100px; /* 셀렉트 박스의 최대 높이 지정 */
     overflow-y: auto; /* 스크롤바 추가 */
 }
-
 .custom-select option[value=""][disabled] {
 	display: none;
 }
 .center-button {
     text-align: center; /* 버튼 내용을 수평 가운데 정렬 */
 }
-
 .container1 {
     display: inline-block;
     background-color : white;
     width: 300px;
     height: 500px;
-  }
+}
+.order-container {
+display: flex;
+justify-content: flex-start;
+margin-bottom: 15px;
+}
+.center-button {
+margin-right: 20px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.nomargin {
+margin-bottom: 0;
+}
+.div2 {
+	width: 540px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.div3 {
+display: flex;
+justify-content: flex-end;
+}
+.form-control {
+width: 250px;
+height: 50px;
+border: 2px solid #D3D3D3;
+border-radius: 5px;
+margin-right: 20px;
+}
+.form-control-point {
+width: 180px;
+border: none;
+height: 45px;
+}
+.form-control:hover, .form-control:focus {
+border: 2px solid black;
+}
+.form-control-point:hover, .form-control-point:focus {
+border: none;
+}
+.form-control2 {
+width: 520px;
+}
+p {
+margin-bottom: 8px;
+font-weight: bold;
+}
+.order-btn {
+width: 120px;
+height: 45px;
+background: #E1E2CD;
+border-radius: 5px;
+border: 2px solid gray;
+color: black;
+font-size: 18px;
+font-weight: bold;
+margin-left: 5px;
+}
+.order-btn2 { /* 카카오결제 버튼 */
+width: 180px;
+}
+.order-btn3 {
+background: silver;
+}
+.order-btn:hover {
+background: #c8c9af;
+border: 2px solid black;
+}
+.order-btn3:hover {
+background: gray;
+}
+.text-black {
+color: black;
+}
+.text-red {
+color: red;
+}
+.order-form {
+margin-top: 50px;
+margin-left: 50px;
+}
+.form-group-point {
+display: flex;
+justify-content: space-between;
+border: 2px solid #D3D3D3;
+border-radius: 5px;
+width: 250px;
+height: 50px;
+margin-right: 20px;
+padding: 0;
+}
+.form-group-point:hover, .form-group-point:focus {
+border: 2px solid black;
+}
+input[type="checkbox"] {
+ width: 25px;
+margin: 0 10px 0 0;
+}

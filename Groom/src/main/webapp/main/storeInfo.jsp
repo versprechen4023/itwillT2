@@ -29,8 +29,8 @@
     <h1 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft" style="font-size: 30px; margin-right: 10px;">매장 안내</h1>
     
     <!-- 리뷰보기 버튼 -->
-    <button type="button" onclick="location.href='reviewList.re?pro_name= ';" style="background-color: #ccc;
-    color: white; border: none; border-radius: 5px; padding: 6px 11px; cursor: pointer; margin-bottom: 50px; margin-left: 10px;">리뷰보기</button>
+    <button type="button" onclick="location.href='reviewList.re?pro_name= ';" style="background-color: black;
+    color: white; border: none; border-radius: 50px; padding: 6px 11px; cursor: pointer; margin-bottom: 50px; margin-left: 10px;">리뷰보기</button>
 </div>
         
         
@@ -138,7 +138,7 @@
             </div>
             <div style="display: flex; justify-content: center; align-items: center;">
     <button type="button" onclick="location.href='myorder.or';" style="background-color: #E1E2CD; width: 1000px; margin-left: -80px;
-    color: black; border: none; border-radius: 5px; padding: 14px 30px; cursor: pointer; margin-top: 40px;
+    color: black; border: none; border-radius: 20px; padding: 14px 30px; cursor: pointer; margin-top: 40px;
     font-size: 15px; font-weight: bold;">예약하기</button>
 </div>
         </div>

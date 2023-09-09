@@ -17,7 +17,8 @@
 	<body>
 	
 <!-- 로고 자리 -->
-       <h1 style="margin-top: 70px; margin-bottom: -10px;"> Groom(로고) </h1>
+	<h1 id="fh5co-logo"><a href="main.gr">
+	<img src="./images/LOGO.png"></a></h1>
        	  
 <!-- 아이디 -->
          <form action="signupPro.me" id="signup" name="signup" method="post">

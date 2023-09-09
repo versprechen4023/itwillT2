@@ -55,7 +55,7 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
   <div class="table-container1">
   
 <table class="user">
-<p class="h">회원정보</p>
+<p class="h">회원 정보</p>
 	<tr>
 	    <td class="bold-cell">아이디</td>
 	    <td><%=mypageInfo.getId()%></td>
@@ -74,7 +74,8 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 	</tr>
 	<tr>
 	    <td class="bold-cell">나의 리뷰</td>
-	    <td><input type="button" value="리뷰관리"
+	    <td><input type="button" value="리뷰관리" style="background-color: rgb(232, 232, 232); color: dodgerblue; border: none;
+	    border-radius: 10px;"
 	         onclick="location.href='myReviewList.re?u_num=<%=mypageInfo.getNum() %>'"></td>
 	    
 	</tr>
@@ -92,7 +93,7 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 
 <div class="table-container2">
   <table class="pet">
-    <p class="h">대표반려동물 정보
+    <p class="h">대표 반려동물 정보
       
     </p>
 <!--     mypetList가 null인지 검증 null 이 아니라면 맨위에있는 대표반려동물을 출력 -->
@@ -150,8 +151,8 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 
 
 
-<div class="table-container3">
-<p class="h">반려동물정보
+<div class="table-container3"><br>
+<p class="h">반려동물 정보
 <input type="button" value=" + " class="mbtn" onclick="location.href='insertmypet.my'">
 <table class="petlist">
   
@@ -174,7 +175,7 @@ for(MypageDTO mypageDTO : mypetList) {
 <%
 }
 %>
-</table>
+</table><br><br>
 <!-- 펫이 있을때만 표시 -->
 <c:if test="${not empty mypetList}">
 <form action="updatemypet.my" id="updatepet" method="post" class="pet-form">

@@ -38,9 +38,9 @@ if(id != null){
 			<li><a href="storeInfo.gr">매장안내</a></li>
 			<li><a href="portfolio.gr">이용안내</a></li>
 			<li><a href="myorder.or">예약하기</a></li>
-			<li><a href="reviewList.re">리뷰</a></li>
+			<li><a href="reviewList.re">이용후기</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#">카테고리 <span class="caret"></span></a>
+				data-toggle="dropdown" href="#">게시판 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="notice.bo">공지사항</a></li>
 					<li><a href="faq.bo">FAQ</a></li>

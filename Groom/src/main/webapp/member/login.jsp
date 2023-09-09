@@ -24,11 +24,12 @@
 	<form action="loginPro.me" id="login" method="post">
 
 		<!-- 로고 자리 -->
-		<h1 style="margin-top: -55px; margin-bottom: 55px;">Groom(로고)</h1>
+	<h1 id="fh5co-logo1"><a href="main.gr">
+	<img src="./images/LOGO.png" style="margin-top:-10px; margin-bottom:-5px;"></a></h1>
 
 		<!-- 테두리선 시작 -->
 		<div class="membership"
-			style="border: 1px solid #ccc; border-radius: 10px; padding: 30px;">
+			style="border: 1px solid #ccc; border-radius: 10px; padding: 30px; margin-top: 40px;">
 
 
 			<!-- 아이디 -->

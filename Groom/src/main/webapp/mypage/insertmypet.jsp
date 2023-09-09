@@ -11,10 +11,13 @@
 
 </head>
 <body>
+
+
+	<h1 id="fh5co-logo1"><a href="main.gr">
+	<img src="./images/LOGO.png" style="margin-top:-10px; margin-bottom: 155px; width: 130px; height: 80px;"></a></h1>
  <form action="insertmypetPro.my" id="insertmypet" name="insertmypet" method="post">
-<div class="logo">
-  <img src="./images/logo01.png" alt="logo" width="85%" >
-</div>
+
+
 
 <div class="content-wrapper">
   <div class="container">
@@ -22,14 +25,14 @@
     
     <div>
       <label for="petname" class="labelstyle">이름</label><br>
-      <input id="petname" name="petname" type="text" placeholder="이름을 입력해주세요"><br>
+      <input id="petname" name="petname" type="text" placeholder="이름을 입력해주세요"><br><br>
 <!--  반려동물 이름 공란시 sumbit 제어 "반려동물 이름 입력해주세요 출력" -->
  	  <span id="error-message" style="color: red; font-size: 12px; margin-top:-10px;"></span>
     </div>
     
     <div>
       <label for="breed" class="labelstyle">품종</label><br>
-      <input id="petbreed" name="petbreed" type="text" placeholder="품종을 입력해주세요"><br>
+      <input id="petbreed" name="petbreed" type="text" placeholder="품종을 입력해주세요"><br><br>
     </div>
     
 <!--     	성별 및 중성화여부 드롭다운방식 -->
@@ -50,15 +53,15 @@
       <label for="gender" class="labelstyle">성별</label>
     <div class="select">
       <input type="radio" value="M" id="male" name="petgender"><label for="male">수컷</label>
-      <input type="radio" value="F" id="female" name="petgender"><label for="female">암컷</label>
-    </div>
+      <input type="radio" value="F" id="female" name="petgender"><label for="female">암컷</label><br>
+    </div><br>
 
     <!-- 중성화 여부 라디오 버튼 그룹 -->
     <label for="neuter" class="labelstyle">중성화 여부</label>
     <div class="select">
       <input type="radio" value="Y" id="yes" name="petneuter"><label for="yes">유</label>
-      <input type="radio" value="N" id="no" name="petneuter"><label for="no">무</label>
-    </div>
+      <input type="radio" value="N" id="no" name="petneuter"><label for="no">무</label><br>
+    </div><br>
 
     
   <label for="content" class="labelstyle">특이사항</label><br>

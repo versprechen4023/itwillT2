@@ -113,7 +113,7 @@
 								%>
 								<input type="button" value="(관리자)&#10;삭제"
 									onclick="really1('<%=reviewDTO.getRev_num()%>')"
-									style="font-size: 5px; padding: 1px; background: maroon;">
+									style="font-size: 5px; padding: 1px; background: black; color:white;">
 								<%
 								}
 								}

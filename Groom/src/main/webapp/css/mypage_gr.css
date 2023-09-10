@@ -35,7 +35,7 @@
     margin-left: 100px;
     margin-right: 100px;
     margin-top: 30px;
-    width: 300px;
+    width: 330px;
     height: 350px;
   }
   
@@ -45,7 +45,7 @@
 /*     clear:left; */
     margin-right: 100px;
     margin-top: 30px;
-    width: 350px;
+    width: 370px;
     height: 40px;
   }
   
@@ -63,7 +63,7 @@
   	display: inline-block;
 /* 	float:left; */
 	clear:left;
-	width: 75%;
+	width: 82%;
 	margin-left: 100px;
 	margin-right: 100px;
 	margin-top: 25px;
@@ -79,7 +79,7 @@
   	display: inline-block;
 /* 	float:left; */
 	clear:left;
-    width: 75%;
+    width: 82%;
 	margin-left: 100px;
 	margin-right: 100px;
 	
@@ -130,57 +130,39 @@
     font-weight: bold;
 }
 
-.petlist { /* 표 전체 */
-/* 	color: black; */
-/*     width: 800px; */
-/*     font-size: 13px; */
-/*     border-collapse: collapse; */
-/*     margin-top: 80% */
-}
-
-
-.petlist th, .petlist td {
-        padding: 8px;
-        text-align: left;
-        border: 1px solid black;
-    }
-.petlist td {
-    background-color: white;
-}
-.petlist-next {
+.resCheck-next {
 	margin-top: 10px;
-	width: 100%;
+	width: 1100px;
     height: 40px;
     display: flex;
     justify-content: center;
     position: relative;
 }
-.petlist-next a {
+.resCheck-next a {
 	width: 28px;
     height: 28px;
     font-weight: 400;
     font-size: 15px;
-	border-radius: 8px;
 	background: white;
     display: inline-block;
     margin: 0 2px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    line-height: 30px;
     text-align: center;
     justify-content: center;
     text-decoration: none;
     color: black !important;
+    border-radius: 30px;
+	border: 2px solid gray;
     transition: background-color 0.3s;
 }
-.petlist-next a:-webkit-any-link {
+.resCheck-next a:-webkit-any-link {
     color: -webkit-link;
     cursor: pointer;
 }
-.petlist-next a:hover {
+.resCheck-next a:hover {
     background-color: rgba(0, 0, 0, 0.4) ;
 }
-
 /* 펫 정보수정 select 와 정보수정 버튼 사이 간격 조절 */
 .pet-form {
     /* 내부 요소들을 수직으로 중앙 정렬 */

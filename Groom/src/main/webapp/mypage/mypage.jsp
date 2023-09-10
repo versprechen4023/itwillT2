@@ -2,12 +2,13 @@
 <%@page import="web.groom.dto.MemberDTO"%>
 <%@page import="web.groom.dto.OrderReservationDTO"%>
 <%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
 MypageDTO mypageInfo = (MypageDTO)request.getAttribute("mypageInfo");
-MypageDTO mypagepetInfo = (MypageDTO)request.getAttribute("mypagepetInfo");
+// MypageDTO mypagepetInfo = (MypageDTO)request.getAttribute("mypagepetInfo"); 기존의 펫리스트는 이제 mypetList에서 호출
 List<MypageDTO> mypetList =
 (List<MypageDTO>)request.getAttribute("mypetList");
 
@@ -94,27 +95,56 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
     <p class="h">대표반려동물 정보
       
     </p>
+<!--     mypetList가 null인지 검증 null 이 아니라면 맨위에있는 대표반려동물을 출력 -->
 
+    <c:if test="${not empty mypetList}">
     <tr>
       <td class="bold-cell">이름</td>
-      <td><%= (mypagepetInfo.getPetName() != null) ? mypagepetInfo.getPetName() : "이름을 입력해주세요" %></td>
+      <td>${mypetList[0].petName}</td>
     </tr>
     <tr>
       <td class="bold-cell">품종</td>
-      <td><%= (mypagepetInfo.getPetBreed() != null) ? mypagepetInfo.getPetBreed() : "품종을 등록해주세요" %></td>
+      <td>${mypetList[0].petBreed}</td>
     </tr>
     <tr>
       <td class="bold-cell">성별</td>
-      <td><%= (mypagepetInfo.getPetGender() != null) ? mypagepetInfo.getPetGender() : "성별을 등록해주세요" %></td>
+      <td>${mypetList[0].petGender}</td>
     </tr>
     <tr>
       <td class="bold-cell">중성화 여부</td>
-      <td><%= (mypagepetInfo.getPetNeuter() != null) ? mypagepetInfo.getPetNeuter() : "중성화 여부를 등록해주세요" %></td>
+      <td>${mypetList[0].petNeuter}</td>
     </tr>
     <tr>
       <td class="bold-cell">특이사항</td>
-      <td><%= (mypagepetInfo.getPetComment() != null) ? mypagepetInfo.getPetComment() : "특이사항을 입력해주세요" %></td>
+      <td>${mypetList[0].petComment}</td>
     </tr>
+    </c:if>
+
+<!-- mypetList가 null인지 검증 null이라면 입력해주세요 등 출력 -->
+
+    <c:if test="${empty mypetList}">
+    <tr>
+      <td class="bold-cell">이름</td>
+      <td>이름을 입력해주세요</td>
+    </tr>
+    <tr>
+      <td class="bold-cell">품종</td>
+      <td>품종을 등록해주세요</td>
+    </tr>
+    <tr>
+      <td class="bold-cell">성별</td>
+      <td>성별을 등록해주세요</td>
+    </tr>
+    <tr>
+      <td class="bold-cell">중성화 여부</td>
+      <td>중성화 여부를 등록해주세요</td>
+    </tr>
+    <tr>
+      <td class="bold-cell">특이사항</td>
+      <td>특이사항을 입력해주세요</td>
+    </tr>
+    </c:if>
+    
   </table>
 </div>
 
@@ -145,6 +175,8 @@ for(MypageDTO mypageDTO : mypetList) {
 }
 %>
 </table>
+<!-- 펫이 있을때만 표시 -->
+<c:if test="${not empty mypetList}">
 <form action="updatemypet.my" id="updatepet" method="post" class="pet-form">
     <!-- 선택 상자와 버튼을 가로로 배치하고, 내용을 수직으로 중앙 정렬 -->
     <div class="selectNbtn">
@@ -159,9 +191,12 @@ for(MypageDTO mypageDTO : mypetList) {
         %>
     </select>
     <!-- 정보수정 버튼 -->
+    
     <input type="submit" value="정보수정/삭제" class="mbtn">
+ 
 </div>
 </form>
+</c:if>
 
 
 </div>
@@ -197,30 +232,30 @@ String format_res_day = res_day.replace("-", ".").substring(2);
 String res_time = orderReservationDTO.getRes_time(); // 예약시간
 String format_res_time = res_time.substring(0, 5);
 
-// //enum > 문자
-// 	String s_location = orderReservationDTO.getS_location();
-// 		String location = "";
-// 	if (s_location.equals("A")) {
-// 	    location = "서면점";
-// 	} else if (s_location.equals("B")) {
-// 	    location = "명지점";
-// 	} else if (s_location.equals("C")) {
-// 	    location = "율하점";
-// 	} else {
-// 	    location = "알 수 없음";
-// 	}
+//enum > 문자
+	String s_location = orderReservationDTO.getS_location();
+		String location = "";
+	if (s_location.equals("A")) {
+	    location = "서면점";
+	} else if (s_location.equals("B")) {
+	    location = "명지점";
+	} else if (s_location.equals("C")) {
+	    location = "율하점";
+	} else {
+	    location = "알 수 없음";
+	}
 	
-// 	String emp_grade = orderReservationDTO.getEmp_grade();
-// 	String grade = "";
-// 	if (emp_grade.equals("A")) {
-// 		grade = "원장";
-// 	} else if (emp_grade.equals("B")) {
-// 		grade = "실장";
-// 	} else if (emp_grade.equals("C")) {
-// 		grade = "수석";
-// 	} else {
-// 		grade = "알 수 없음";
-// 	}
+	String emp_grade = orderReservationDTO.getEmp_grade();
+	String grade = "";
+	if (emp_grade.equals("A")) {
+		grade = "원장";
+	} else if (emp_grade.equals("B")) {
+		grade = "실장";
+	} else if (emp_grade.equals("C")) {
+		grade = "수석";
+	} else {
+		grade = "알 수 없음";
+	}
 	
 	int res_status = orderReservationDTO.getRes_status();
 	String status = "";
@@ -247,8 +282,8 @@ String format_res_time = res_time.substring(0, 5);
     <tr><td><%=orderReservationDTO.getRes_num() %></td>
     	<td><%=format_res_day %>  <%=format_res_time %></td>
     	<td class="text-left">[<%=orderReservationDTO.getPro_name() %>] <%=orderReservationDTO.getPet_size() %> <%=orderReservationDTO.getPet_weight() %></td>
-    	<td><%=orderReservationDTO.getS_location() %></td>
-    	<td><%=orderReservationDTO.getEmp_grade() %> <%=orderReservationDTO.getEmp_name() %></td>
+    	<td><%=location %></td>
+    	<td><%=grade %> <%=orderReservationDTO.getEmp_name() %></td>
 
     	<td><%=orderReservationDTO.getRes_price()+orderReservationDTO.getRes_point() %></td>
     	<td><%=orderReservationDTO.getRes_point() %></td>
@@ -264,8 +299,8 @@ String format_res_time = res_time.substring(0, 5);
     		 <%=orderReservationDTO.getS_num()%>, <%=orderReservationDTO.getEmp_num()%>,<%=orderReservationDTO.getRes_status()%>)">
     	</td>
     	<td>
-    	    <input type="button" value="작성" class="status-button"
-  			onclick="openReviewWrite(<%=mypageInfo.getNum() %>,<%=orderReservationDTO.getRes_num()%>)">
+		<input type="button" value="작성" class="status-button"
+  		onclick="openReviewWrite(<%=mypageInfo.getNum() %>,<%=orderReservationDTO.getRes_num()%>)">
     	</td>
     	<td><%=point_status %></td>
     	</tr>
@@ -274,7 +309,7 @@ String format_res_time = res_time.substring(0, 5);
 %>   
 </table>
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
-<div class="resCheck-next">
+<div class="resCheck-next" data-animate-effect="fadeInLeft">
        <% if (currentPage > 1) { %>
         <a href="?page=<%= currentPage - 1 %>" class="pgL"><span class="m-tcol-c">&lt;</span></a>
     <% } %>

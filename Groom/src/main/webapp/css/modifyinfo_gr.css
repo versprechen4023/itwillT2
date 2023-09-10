@@ -27,13 +27,13 @@
 .text {
 	margin: 80px 630px 30px;
 	font-size: 25px;
-	font-family : 'Godo';
+/*	font-family : 'Godo';*/
 }
 
 .h1 {
 margin-top :70px;
 margin-bottom : 30px;
-font-family: 'Godo';
+/*font-family: 'Godo';*/
 
 }
 
@@ -43,7 +43,7 @@ font-size : 13px;
 }
 .submit { 
 margin-left : 150px;
-font-size: 19px;
+font-size: 18px;
 width: 120px;
 margin-left: 220px;
 margin-top: 30px;
@@ -53,12 +53,12 @@ border-radius: 30px;
 form .membership div input {
     width: 100%;
     font-size: 15px;
-    font-family: 'Godo';
+/*    font-family: 'Godo';*/
 }
 
 form div label {
     font-size: 15px;
     font-weight: bold;
-    font-family: 'Godo';
+/*    font-family: 'Godo';*/
     letter-spacing: 2px;
 }

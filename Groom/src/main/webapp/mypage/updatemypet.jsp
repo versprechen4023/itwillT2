@@ -19,26 +19,29 @@ MypageDTO mypageDTOTest = (MypageDTO)request.getAttribute("mypageDTOTest");
 <!-- 파비콘 적용 코드 -->
 <link rel="icon" href="images/favicon.ico" />
 </head>
-<body>
- <form action="updatemypetPro.my" id="updatemypet" name="updatemypet" method="post">
-<div class="logo">
-  <img src="./images/logo01.png" alt="logo" width="100%" height="225px">
-</div>
 
+<body>
+
+
+	<h1 id="fh5co-logo1"><a href="main.gr">
+	<img src="./images/LOGO.png" style="margin-top:-10px; margin-bottom: 155px; width: 130px; height: 80px;"></a></h1>
+
+	
+ <form action="updatemypetPro.my" id="updatemypet" name="updatemypet" method="post">
 <div class="content-wrapper">
   <div class="container">
     <h2>반려동물 정보 수정</h2>
     
     <div>
       <label for="petname" class="labelstyle">이름</label><br>
-      <input id="petname" name="petname" type="text" value="<%=mypageDTOTest.getPetName()%>" ><br>
+      <input id="petname" name="petname" type="text" value="<%=mypageDTOTest.getPetName()%>" ><br><br>
 <!--  반려동물 이름 공란시 sumbit 제어 "반려동물 이름 입력해주세요 출력" -->
  	  <span id="error-message" style="color: red; font-size: 12px"></span>
     </div>
     
     <div>
       <label for="breed" class="labelstyle">품종</label><br>
-      <input id="petbreed" name="petbreed" type="text" value="<%=mypageDTOTest.getPetBreed()%>"><br>
+      <input id="petbreed" name="petbreed" type="text" value="<%=mypageDTOTest.getPetBreed()%>"><br><br>
     </div>
     
 <!--     	성별 및 중성화여부 드롭다운방식 -->
@@ -60,14 +63,14 @@ MypageDTO mypageDTOTest = (MypageDTO)request.getAttribute("mypageDTOTest");
     <div class="select" id = "gender">
       <input type="radio" value="M" id="male" name="petgender" value="M" checked><label for="male">수컷</label>
       <input type="radio" value="F" id="female" name="petgender" value="F"><label for="female">암컷</label>
-    </div>
+    </div><br>
 
     <!-- 중성화 여부 라디오 버튼 그룹 -->
     <label for="neuter" class="labelstyle">중성화 여부</label>
     <div class="select" id = "netuer">
       <input type="radio" value="Y" id="yes" name="petneuter" value="Y"><label for="yes">유</label>
       <input type="radio" value="N" id="no" name="petneuter" value="N" checked><label for="no">무</label>
-    </div>
+    </div><br>
 
     
   <label for="content" class="labelstyle">특이사항</label><br>

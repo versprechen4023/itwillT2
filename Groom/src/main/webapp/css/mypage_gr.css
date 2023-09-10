@@ -11,13 +11,13 @@
 		format('woff');
 } /*  웹에서 폰트 받아오는 태그 */
 
-* {
-	font-family: 'Godo';
+/** {*/
+/*	font-family: 'Godo';*/
 	
-}
+/*}*/
 
 .myh2{
-	font-family: 'Godo' !important;
+/*	font-family: 'Godo' !important;*/
 	margin-left: 150px;
 	margin-top: 60px;
 }
@@ -37,6 +37,7 @@
     margin-top: 30px;
     width: 330px;
     height: 350px;
+    
   }
   
    .table-container2 {
@@ -45,7 +46,7 @@
 /*     clear:left; */
     margin-right: 100px;
     margin-top: 30px;
-    margin-left: 130px;
+    margin-left: 100px;
     width: 350px;
     height: 40px;
   }
@@ -98,12 +99,12 @@
   th, td {
     padding: 8px;
     text-align: left;
-    border: 1px solid #FDFDFC;
+    border: 1px solid lightgray;
   }
   
 .h{
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 19px;
 	color: black;
 }
 
@@ -123,7 +124,7 @@ hr {
     margin-top: 10px;
     border: 0;
     border-top: 1px solid #000;
-    width: 1150px;
+    width: 1200px;
     margin-left: 130px;
     margin-bottom : 30px;
 }

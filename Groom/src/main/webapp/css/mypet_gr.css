@@ -9,7 +9,7 @@
 		format('woff');
 } /*  웹에서 폰트 받아오는 태그 */
 *{
-	font-family: 'Godo';
+/*	font-family: 'Godo';*/
 	
 	
 }
@@ -26,8 +26,8 @@
 
   h2 {
     text-align: center;
-    font-size: 25px;
-    font-family : 'Godo';
+    font-size: 23px;
+/*    font-family : 'Godo';*/
     margin-top: 50px;
     margin-bottom: 50px;
   }
@@ -62,8 +62,8 @@
 
   .labelstyle {
     margin: 10px 0; /* 라벨 위 아래 간격 조정 */
-    font-weight: bold; /* 굵은 글꼴 추가 */
-    font-size: 17px;
+    font-weight: bold;  
+    font-size: 16px;
   }
 
   input[type="text"], select, textarea {
@@ -76,8 +76,9 @@
 
 button {
     width: 40%;
-    font-size: 20px;
-    padding: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 5px;
     margin-left: 10px;
     border-radius: 40px;
     color: black;

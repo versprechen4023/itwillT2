@@ -1,4 +1,15 @@
 @charset "UTF-8";
+
+/* 네비바 겹침 수정 */
+.nav-bottom-text {
+position:relative;
+z-index: 1;
+}
+#fh5co-main-menu {
+position:relative;
+z-index: 2;
+}
+
 /* 폰트 추가 ========================================================= */
 @font-face {
     font-family: 'KOTRAHOPE';

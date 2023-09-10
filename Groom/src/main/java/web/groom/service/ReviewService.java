@@ -14,37 +14,38 @@ import web.groom.dto.ReviewDTO;
 public class ReviewService {
 ReviewDAO reviewDAO = null;
 	
-	
+    //모든 리뷰 리스트 가져오는 서비스
 	public List<ReviewDTO> getReviewListAll() {
 		System.out.println("ReviewService getReviewList()");
 		List<ReviewDTO> reviewList = null;
 		try {
-			reviewDAO = new ReviewDAO();
-			reviewList = reviewDAO.getReviewListAll(); // 프로덕트 이름 전달
+			// getReviewListAll()메서드 호출
+			reviewList = new ReviewDAO().getReviewListAll(); // 프로덕트 이름 전달
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return reviewList;
 	}// getReviewList() [리뷰목록]
 	
+	// 특정 프로덕트에 대한 리뷰 리스트 가져오는 서비스
 	public List<ReviewDTO> getReviewList(String proName) {
 		System.out.println("ReviewService getReviewList()");
 		List<ReviewDTO> reviewList = null;
 		try {
-			reviewDAO = new ReviewDAO();
-			reviewList = reviewDAO.getReviewList(proName); // 프로덕트 이름 전달
+			// getReviewList(proName)메서드 호출
+			reviewList = new ReviewDAO().getReviewList(proName); // 프로덕트 이름 전달
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return reviewList;
 	}// getReviewList() [리뷰목록 선택]
 	
+	// 내 리뷰 리스트 가져오는 서비스
 	public List<ReviewDTO> getMyReviewList(int u_num) {
 		System.out.println("ReviewService getReviewList()");
 		List<ReviewDTO> reviewList = null;
 		try {
-			reviewDAO = new ReviewDAO();
-			reviewList = reviewDAO.getMyReviewList(u_num); // 프로덕트 이름 전달
+			reviewList = new ReviewDAO().getMyReviewList(u_num); // 유저번호 전달
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -122,8 +123,11 @@ ReviewDAO reviewDAO = null;
 	}// insertReview() [리뷰작성]
 	
 	
-	public void updateReview(HttpServletRequest request) {
+	public boolean updateReview(HttpServletRequest request) {
 		System.out.println("ReviewService updateReview()");
+		
+		boolean result = false;
+		
 		try {
 			String uploadPath=request.getRealPath("/upload");
 			int maxSize=10*1024*1024;
@@ -135,28 +139,34 @@ ReviewDAO reviewDAO = null;
 			String rev_img_url = multi.getFilesystemName("rev_img_url");
 			String rev_rating = multi.getParameter("rev_rating"); // 잠시
 			
-			reviewDAO = new ReviewDAO();
 			ReviewDTO reviewDTO = new ReviewDTO();
 			reviewDTO.setRev_num(rev_num);
 			reviewDTO.setRev_content(rev_content);
 			reviewDTO.setRev_img_url(rev_img_url);
 			reviewDTO.setRev_rating(rev_rating); // 잠시
-			reviewDAO.updateReview(reviewDTO);
+			result = new ReviewDAO().updateReview(reviewDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}// insertReview() [리뷰수정]
 	
 	
-	public void deleteReview(HttpServletRequest request) {
+	public boolean deleteReview(HttpServletRequest request) {
 		System.out.println("ReviewService deleteReview()");
+		boolean result = false;
+		
 		try {
+			// 리퀘스트로 부터 리뷰번호 가져오기
 			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 			reviewDAO = new ReviewDAO();
-			reviewDAO.deleteReview(rev_num);
+			result = reviewDAO.deleteReview(rev_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}// deleteReview() [리뷰삭제]
 	
 	public void deleteReviewPoint(HttpServletRequest request) {
@@ -171,8 +181,10 @@ ReviewDAO reviewDAO = null;
 	}// deleteReviewPoint() [리뷰삭제 + 포인트회수]
 
 
-	public void writeRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
+	public boolean writeRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
 		System.out.println("ReviewService writeRe()");
+		
+		boolean result = false;
 		try {
 			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 			String re_content = request.getParameter("re_content");
@@ -184,48 +196,57 @@ ReviewDAO reviewDAO = null;
 			reviewDTO.setRe_date(re_date);
 			
 			reviewDAO = new ReviewDAO();
-			reviewDAO.writeRe(reviewDTO);
+			result = new ReviewDAO().writeRe(reviewDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}// writeRe [답글작성 + 포인트추가]
 	
 
-	public void updateRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
+	public boolean updateRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
 		System.out.println("ReviewService updateRe()");
+		
+		boolean result = false;
 		try {
+			// 변수에 리퀘스트 파라미터값 저장(리뷰번호, 리뷰내용)
 			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 			String re_content = request.getParameter("re_content");
 //			Timestamp re_date = new Timestamp(System.currentTimeMillis());
 			
+			// DTO에 변경할 리뷰의 내용과 번호를 저장
 			ReviewDTO reviewDTO = new ReviewDTO();
 			reviewDTO.setRev_num(rev_num);
 			reviewDTO.setRe_content(re_content);
 //			reviewDTO.setRe_date(re_date); // 수정해도 시간은 그대로
 			
-			reviewDAO = new ReviewDAO();
-			reviewDAO.updateRe(reviewDTO);
+			// 리뷰 내용을 변경하기위해 DAO 호출
+			result = new ReviewDAO().updateRe(reviewDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}// updateRe [답글수정]
 
-
-	public void deleteRe(HttpServletRequest request) {
+	// 답글 삭제를 위한 서비스
+	public boolean deleteRe(HttpServletRequest request) {
 		System.out.println("ReviewService deleteRe()");
+		
+		boolean result = false;
+		
 		try {
+			// 변수에 리퀘스트 파라미터값 저장(리뷰번호)
 			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
-			String re_content = request.getParameter("re_content");
 			
-			ReviewDTO reviewDTO = new ReviewDTO();
-			reviewDTO.setRev_num(rev_num);
-			reviewDTO.setRe_content(re_content);
-			
-			reviewDAO = new ReviewDAO();
-			reviewDAO.deleteRe(reviewDTO);
+			// 답글 삭제후 초기화를 위한 DAO 호출
+			result = new ReviewDAO().deleteRe(rev_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}// deleteRe [답글삭제]
 
 

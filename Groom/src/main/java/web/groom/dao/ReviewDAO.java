@@ -266,8 +266,10 @@ public class ReviewDAO {
 	}// insertReview() [리뷰작성]
 	
 	
-	public void updateReview(ReviewDTO reviewDTO) {
+	public boolean updateReview(ReviewDTO reviewDTO) {
 		System.out.println("ReviewDAO updateReview()");
+		boolean result = false;
+		
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "UPDATE review"
@@ -279,27 +281,39 @@ public class ReviewDAO {
 			pstmt.setString(3, reviewDTO.getRev_img_url());
 			pstmt.setInt(4, reviewDTO.getRev_num());
 			
-			pstmt.executeUpdate();
+			int rs = pstmt.executeUpdate();
+			
+			// 리뷰가 정상 수정 되었는지 결과값 반환
+			result = (rs !=0) ? true : false;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}// updateReview() [리뷰수정]
 	
-	
-	public void deleteReview(int rev_num) {
+	// 리뷰 삭제하는 메서드
+	public boolean deleteReview(int rev_num) {
 		System.out.println("ReviewDAO deleteReview()");
+		boolean result = false;
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "DELETE FROM review WHERE rev_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, rev_num);
 			
-			pstmt.executeUpdate();
+			int rs = pstmt.executeUpdate();
+			// 리뷰가 정상 삭제 되었는지 결과값 반환
+			result = (rs !=0) ? true : false;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			dbClose();
 		}
+		
+		return result;
 	}// deleteReview() [리뷰삭제]
 	
 	
@@ -332,7 +346,9 @@ public class ReviewDAO {
 	}// deleteReviewPoint() [리뷰삭제 + 포인트회수]
 
 	
-	public void writeRe(ReviewDTO reviewDTO) {
+	public boolean writeRe(ReviewDTO reviewDTO) {
+		boolean result = false;
+		
 		System.out.println("ReviewDAO writeRe()");
 		try {
 			con = new SQLConnection().getConnection();
@@ -347,24 +363,34 @@ public class ReviewDAO {
 			PreparedStatement pstmt1 = null;
 			pstmt1 = con.prepareStatement(sql1);
 			pstmt1.setInt(1, reviewDTO.getRev_num());
-			pstmt1.executeUpdate();
+			int rs1 = pstmt1.executeUpdate();
 			
 			PreparedStatement pstmt2 = null;
 			pstmt2=con.prepareStatement(sql2);
 			pstmt2.setString(1, reviewDTO.getRe_content());
 			pstmt2.setTimestamp(2, reviewDTO.getRe_date());
 			pstmt2.setInt(3, reviewDTO.getRev_num());
-			pstmt2.executeUpdate();
+			int rs2 = pstmt2.executeUpdate();
+			
+			if(rs1 != 0 && rs2 != 0) {
+				result = true;
+			} else {
+				result = false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
+		
+		return result;
 	}// writeRe() [답글작성 + 포인트추가]
 	
 	
-	public void updateRe(ReviewDTO reviewDTO) {
+	public boolean updateRe(ReviewDTO reviewDTO) {
 		System.out.println("ReviewDAO updateRe()");
+		boolean result = false;
+		
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "UPDATE review"
@@ -373,30 +399,43 @@ public class ReviewDAO {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, reviewDTO.getRe_content());
 			pstmt.setInt(2, reviewDTO.getRev_num());
-			pstmt.executeUpdate();
+			int rs = pstmt.executeUpdate();
+			
+			// 답글이 정상 수정 되었는지 결과값 반환
+			result = (rs !=0) ? true : false;
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
+		
+		return result;
 	}// updateRe() [답글수정]
 
 	
-	public void deleteRe(ReviewDTO reviewDTO) {
+	public boolean deleteRe(int rev_num) {
 		System.out.println("ReviewDAO writeRe()");
+		boolean result = false;
 		try {
 			con = new SQLConnection().getConnection();
 			String sql = "UPDATE review"
 					+ "   SET re_content=null,re_date=null,re_ref=re_ref-1,re_lev=re_lev-1,re_seq=re_seq-1"
 					+ "   WHERE rev_num=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, reviewDTO.getRev_num());
-			pstmt.executeUpdate();
+			pstmt.setInt(1, rev_num);
+			int rs = pstmt.executeUpdate();
+			
+			// 리뷰가 정상 삭제되고 초기화(null) 되었는지 결과값 반환
+			result = (rs !=0) ? true : false;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
+		
+		return result;
 	}// deleteRe() [답글삭제]
 
 	

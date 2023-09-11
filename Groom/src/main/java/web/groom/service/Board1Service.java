@@ -362,7 +362,7 @@ public class Board1Service {
 			// BoardDAO 객체생성
 			boardDAO = new Board1DAO();
 			// count = getBoardCount() 호출
-			count = boardDAO.getBoardCountSearch(pageDTO);
+			count = boardDAO.getBoardCountSearch2(pageDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

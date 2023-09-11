@@ -17,13 +17,14 @@
 	%>
 
 	<jsp:include page="../inc/aside.jsp"></jsp:include>
-
+<div id="fh5co-page">
 	<div id="fh5co-main">
 
-		<div class="fh5co-narrow-content">
+<!-- 		<div class="fh5co-narrow-content"> -->
 			<h2 onclick="location.href='qna.bo'">Q&A</h2>
 				<hr>
-			<form action="qnaWritePro.bo" method="post" class="qnawrite" enctype="multipart/form-data">
+<!-- 			<form action="qnaWritePro.bo" method="post" class="qnawrite" enctype="multipart/form-data"> //수정 -->
+<form id="nwf" action="qnaWritePro.bo" method="post" enctype="multipart/form-data">
 <!--                 <form id="nwf" method="post" class="qnawrite" action="qnaWritePro.bo" enctype="multipart/form-data"> -->
 				
 				<div class="abc">
@@ -45,21 +46,22 @@
 					<!--  category -->
 
 					<div>
-						<p class="p">글 제목</p>
-						<input type="text" class="qna_title" placeholder="제목을 입력해주세요."
+						<p class="p">제목</p>
+						<input type="text" class="qna_title" placeholder="제목을 입력해주세요"
 							name="qna_title" maxlength="50">
 					</div>
 
 					<div>
-						<p>글 내용</p>
-						<textarea cols="108" rows="10" placeholder="Input some text."
+						<p>내용</p>
+						<textarea cols="108" rows="10" placeholder="내용을 입력해주세요"
 							name="qna_content"></textarea>
 					</div>
 
 					<div>
-					<p>첨부 파일</p>
+<!-- 					<p>첨부 파일</p> -->
 						<div class="review-input-img">
 							<img src="./images/photo.png" class="review-input-img1"
+							style="height: 15px; width: auto; margin-right: 5px;"
 								onclick="triggerFileInput()"> <input type="file"
 								id="fileInput" name="qna_img_url"
 								accept=".png, .jpg, .jpeg, .gif" style="display: none">
@@ -73,11 +75,11 @@
 
 
 				<div class="qna-buttons">
-					<div class="button-container">
+<!-- 					<div class="button-container"> -->
 						<input type="submit" value="확인" class="qnasubmit" >
-						<button onclick="location.href='qna.bo'" class="qnalist">목록</button>
+<!-- 						<button onclick="location.href='qna.bo'" class="qnalist">목록</button> -->
 					</div>
-				</div>
+<!-- 				</div> -->
 
 			</form>
 

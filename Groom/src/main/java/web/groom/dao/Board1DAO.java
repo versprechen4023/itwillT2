@@ -24,14 +24,6 @@ import web.groom.dto.PageDTO;
 		PreparedStatement pstmt=null;
 		ResultSet rs =null;
 		
-		//1,2 단계 디비 연결 메서드  정의 => 필요로 할때 호출 사용
-		public Connection getConnection() throws Exception {
-			Context init = new InitialContext();
-			DataSource ds=
-			(DataSource)init.lookup("java:comp/env/jdbc/c1d2304t2");
-			con=ds.getConnection();
-			return con;
-		}
 		//기억장소 해제 메서드()
 		public void dbClose() {
 			//  => con, pstmt, rs 기억장소 해제
@@ -159,7 +151,9 @@ import web.groom.dto.PageDTO;
 				pstmt.executeUpdate();			
 			} catch (Exception e) {
 				e.printStackTrace();
-			}		
+			}finally {
+				dbClose();
+			}	
 		}//insertNotice//
 		
 		public Board1DTO getBoard(int n_num) {
@@ -401,7 +395,9 @@ import web.groom.dto.PageDTO;
 				pstmt.executeUpdate();			
 			} catch (Exception e) {
 				e.printStackTrace();
-			}		
+			}finally {
+				dbClose();
+			}	
 		}//insertFaq//
 		
 		public Board1DTO getBoard2(int faq_num) {

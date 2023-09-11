@@ -97,7 +97,7 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
 // 시작페이지 11,21,31 Prev 보임
 if(pageDTO.getStartPage() > pageDTO.getPageBlock()){
 	%>
-	<a href="qna.bo?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>">Prev</a>
+	<a href="qna.bo?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>">&lt;</a>
 	<%
 }
 %> 
@@ -114,7 +114,7 @@ for(int i=pageDTO.getStartPage();i<=pageDTO.getEndPage();i++){
 //끝페이지번호  전체페이지수 비교 => 전체페이지수 크면 => Next보임
 if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 	%>
-	<a href="qna.bo?pageNum=<%=pageDTO.getStartPage()+pageDTO.getPageBlock()%>">Next</a>
+	<a href="qna.bo?pageNum=<%=pageDTO.getStartPage()+pageDTO.getPageBlock()%>">&gt;</a>
 	<%
 }
 %>

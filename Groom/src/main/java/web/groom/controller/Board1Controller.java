@@ -64,7 +64,7 @@ public class Board1Controller extends HttpServlet {
 			// 게시판 전체 글 개수 구하기 
 			int count = boardService.getBoardCount();
 			// 한화면에 보여줄 페이지개수 설정
-			int pageBlock = 10;
+			int pageBlock = 3;
 			// 시작하는 페이지 번호
 			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 			// 끝나는 페이지 번호
@@ -195,7 +195,7 @@ public class Board1Controller extends HttpServlet {
 			// 게시판 전체 글 개수 구하기 
 			int count = boardService.getBoardCountSearch(pageDTO);
 			// 한화면에 보여줄 페이지개수 설정
-			int pageBlock = 10;
+			int pageBlock = 3;
 			// 시작하는 페이지 번호
 			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 			// 끝나는 페이지 번호
@@ -256,7 +256,7 @@ public class Board1Controller extends HttpServlet {
 			// 게시판 전체 글 개수 구하기 
 			int count = boardService.getBoardCount2();
 			// 한화면에 보여줄 페이지개수 설정
-			int pageBlock = 10;
+			int pageBlock = 3;
 			// 시작하는 페이지 번호
 			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 			// 끝나는 페이지 번호
@@ -387,7 +387,7 @@ public class Board1Controller extends HttpServlet {
 			// 게시판 전체 글 개수 구하기 
 			int count = boardService.getBoardCountSearch2(pageDTO);
 			// 한화면에 보여줄 페이지개수 설정
-			int pageBlock = 10;
+			int pageBlock = 3;
 			// 시작하는 페이지 번호
 			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 			// 끝나는 페이지 번호
@@ -458,7 +458,7 @@ public class Board1Controller extends HttpServlet {
 			// 게시판 전체 글 개수 구하기 
 			int count = qnaService.getQnaCountSearch(pageDTO);
 			// 한화면에 보여줄 페이지개수 설정
-			int pageBlock = 10;
+			int pageBlock = 3;
 			// 시작하는 페이지 번호
 			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 			// 끝나는 페이지 번호
@@ -513,7 +513,7 @@ public class Board1Controller extends HttpServlet {
 				
 							int count = qnaService.getQnaCount();
 							// 한화면에 보여줄 페이지개수 설정
-							int pageBlock = 10;
+							int pageBlock = 3;
 							int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 							int endPage=startPage+pageBlock-1;
 							int pageCount = count / pageSize + (count % pageSize==0?0:1);
@@ -569,7 +569,7 @@ public class Board1Controller extends HttpServlet {
 				
 							int count = qnaService.getCountNoanswer(pageDTO);
 							// 한화면에 보여줄 페이지개수 설정
-							int pageBlock = 10;
+							int pageBlock = 3;
 							int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 							int endPage=startPage+pageBlock-1;
 							int pageCount = count / pageSize + (count % pageSize==0?0:1);

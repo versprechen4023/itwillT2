@@ -64,17 +64,17 @@ String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
 
  
    </div>
-<!--    ---------------------------------------------- -->
-<div class="btn"  style="text-align: left; margin-left: 1105px; margin-top: -36px" > 
- 		<% 
- 		if(id == null || !id.equals(qnaDTO.getId())) {
- 			%>
-<!--  			<button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button> -->
-			<% 
- 		}
- 			%>
- 			  </div>
-<!--    ---------------------------------------------- -->   
+<!-- <!--    ---------------------------------------------- -->
+<!-- <div class="btn"  style="text-align: left; margin-left: 1105px; margin-top: -36px" >  -->
+<%--  		<%  --%>
+<!-- //  		if(id == null || !id.equals(qnaDTO.getId())) { -->
+<%--  			%> --%>
+<!-- <!--  			<button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button> -->
+<%-- 			<%  --%>
+<!-- //  		} -->
+<%--  			%> --%>
+<!--  			  </div> -->
+<!-- <!--    ---------------------------------------------- --> 
    
 <%
 String content = qnaDTO.getRecontent()==null?"":qnaDTO.getRecontent();
@@ -82,7 +82,6 @@ String content = qnaDTO.getRecontent()==null?"":qnaDTO.getRecontent();
    <%
 
    if(qnaDTO.getRecontent() != null ){
-
 	   %>
 	      <h2 class="ansheadh1">답변</h2>
 <hr>
@@ -107,7 +106,7 @@ String content = qnaDTO.getRecontent()==null?"":qnaDTO.getRecontent();
 <div class="btn" style="text-align: left; margin-left: 990px; margin-top: -10px;" > 
 		
           <!--  qna답변  -->
-<%--        <button type="button" value="답변" class="answerbtn" onclick="location.href='qnaRe.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 답변 및 수정 </button> --%>
+       <button type="button" value="답변" class="answerbtn" onclick="location.href='qnaRe.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 답변 및 수정 </button>
 <!--              이 위에건 정민씨가 아까 커밋 하셔서 일단 오류날까봐 주석 처리해놨습니다ㅓ.  -->
        <button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button>
    </div>

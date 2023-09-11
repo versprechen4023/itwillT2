@@ -10,6 +10,21 @@
 /* 		format('woff'); */
 /* } */
 
+/* 추가 수정 */
+/* 폼전체를 가운데정렬 */
+#nwf {
+/* 	 text-align: center;  */
+width: 1200px;
+margin-left: 180px;
+margin-top: 50px;
+
+}
+#nwf table{
+	width: 1200px;
+	margin-top: 3px;
+}
+/* -------------------------------- */
+
 hr {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -26,10 +41,10 @@ h2{
 		 cursor: pointer;
 	}
 
-#fh5co-main {
-	position: relative;
-	height: 100%;
-}
+/* #fh5co-main {  */
+/* 	position: relative; */
+/* 	height: 100%; */
+/* } */
 
 /* #fh5co-main h2 { */
 /* 	position: absolute; */
@@ -58,13 +73,13 @@ h2{
 
 .abc input, .abc textarea {
 	margin-bottom: 10px;
-	width: 700px;
-	font-family: 'Godo';
+/* 	width: 700px; */
+/* 	font-family: 'Godo'; */
 	font-size : 18px;
 }
 
 .abc qnasubject {
-	width: 800px;
+	width: 960px;
 }
 
 .qnawriter {
@@ -87,23 +102,20 @@ h2{
 	margin: 0 auto;
 	display: block;
 	text-align: center; /* Center-align the text inside the button */
+	
 }
 
 .qna-buttons {
 	text-align: center;
-	position: absolute;
-	bottom: 20px; /* Adjust the bottom position */
-	left: 50%; /* Move to the horizontal center */
-	transform: translateX(-50%); /* Center horizontally */
+/* 	position: absolute; */
+/* 	bottom: 20px; Adjust the bottom position */
+/* 	left: 50%; Move to the horizontal center */
+/* 	transform: translateX(-50%); Center horizontally */
+float: left;
+margin-left: 945px;
+margin-top: 20px;
 }
 
-.qna-buttons {
-	text-align: center;
-	position: absolute;
-	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
-}
 
 
 
@@ -118,29 +130,33 @@ h2{
 
 .abc p {
 	font-size: 20px;
-	font-family: 'Godo';
+/* 	font-family: 'Godo'; */
 	margin-bottom: 5px; /* Reduce the space below the paragraph */
 	margin-top: 20px;
 	color: black;
+	font-weight: bold;
 }
 
 .abc input {
 	margin-bottom: 10px;
-	width: 900px;
-	font-family: 'Godo';
-	height: 50px;
+	width: 960px;
+/* 	font-family: 'Godo'; */
+/* 	height: 50px; */
 	border-radius: 5px;
 	border: 1px solid black;
-	padding : 5px;
+	padding : 10px;
+	font-size: 14px;
 }
 
 .abc textarea {
 	margin-bottom: 10px;
-	width: 900px;
-	font-family: 'Godo';
+	width: 960px;
+/* 	font-family: 'Godo'; */
 	resize: none;
 	border-radius: 5px;
-	font-size: 17px;
+	font-size: 14px;
+	border: 1px solid black;
+	padding : 10px;
 }
 
 .button-container {
@@ -155,12 +171,13 @@ h2{
     display: flex;
     text-align: left;
     align-items: center;
-    justify-content: left;
-    height: 40px;
+    justify-content: center;
+/*     height: 40px; */
     border: 1px solid black;
-    width: 200px;
-    border-radius: 10px;
-    width: fit-content;
+    width: 960px;
+    border-radius: 5px;
+    padding: 10px;
+/*     width: fit-content; */
 }
 .review-input-img1 {
     height: 30px;
@@ -172,8 +189,8 @@ h2{
 #fileInfoDisplay {
 	margin-left: 10px;
     color: black;
-    font-size: 16px;
-    font-family: 'Godo';
+    font-size: 14px;
+/*     font-family: 'Godo'; */
     margin-right: 10px;
 }
 
@@ -197,6 +214,7 @@ h2{
 	border: 1px solid black;
 	border-radius: 20px;
     color: black;
+    font-size: 15px;
 }
 
 .file-info-container {
@@ -218,14 +236,16 @@ display: flex;
 
 .qnasubmit, .qnalist {
     width: fit-content;
-    letter-spacing: 2px;
-    font-size: 18px;
+/*     letter-spacing: 2px; */
+    font-size: 14px;
 /*     font-family: 'Godo'; */
     color: white;
     background-color: black;
-    border: 1px solid black;
-    border-radius: 10px;
-
+/*     border: 1px solid black; */
+	border: none;
+    border-radius: 5px;
+	padding: 8px 12px;
+	font-weight: bolder;
 }
 
 td, th {

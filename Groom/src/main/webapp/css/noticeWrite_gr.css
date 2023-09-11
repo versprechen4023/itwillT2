@@ -1,4 +1,9 @@
 @charset "UTF-8";
+
+*{
+	color: black;
+}
+
 /* 윗부분 */
 hr {
     margin-top: 20px;
@@ -61,13 +66,16 @@ height: 300px;
 border: 1px solid black;
 border-radius: 5px;
 resize: none;
+margin-bottom: 10px;
+margin-top: 5px;
 }
 /* 제목 세부 조절 */
 .sub {
 border: 1px solid black;
 border-radius: 5px;
 border-right: 10%;
-/* 		margin-top: 50px; */
+		margin-top: 5px;
+margin-bottom: 30px
 }
 /* 버튼 세부 조절 ()*/
 .nwbtn {

@@ -15,9 +15,10 @@
 }
 
 .groom-info { /* 회사 소개글 */
-	max-width: 900px;
+	max-width: 940px;
 	margin: 0 auto;
-	padding: 50px;
+	padding: 65px;
+	color: black;
 }
 
 .custom-line-height { /* 회사 소개글 줄 간격 */

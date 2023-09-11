@@ -45,7 +45,6 @@ if(id != null){
 					<li><a href="notice.bo">공지사항</a></li>
 					<li><a href="faq.bo">FAQ</a></li>
 					<li><a href="qna.bo">Q&A</a></li>
-					<li><a href="changeRes.my">contact</a></li>
 
 				</ul></li>
 		</ul>

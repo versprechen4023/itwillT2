@@ -42,7 +42,7 @@ OrderinfoDTO orderInfo = (OrderinfoDTO)request.getAttribute("orderInfo");
 </div>
 <div class="form-group">
 	<p>이메일</p>
-	<input type="text" class="form-control form-control2" id="email" name="email" value="<%=orderInfo.getU_name()%>" readonly>
+	<input type="text" class="form-control form-control2" id="email" name="email" value="${param.email}" readonly>
 </div>
 </div><!-- 첫 번째 줄 끝 -->
 
@@ -202,7 +202,7 @@ function callImportAPI() {
             //코드레스나 다른팀에서 api사용하는코드 분석해서 DB에서 값을 가져올 필요가있음
             amount: val, 
             //가격 
-//             buyer_email: 'iamport@siot.do',
+            buyer_email: '${param.email}',
             buyer_name: '<%=orderInfo.getU_name()%>',
 //             buyer_tel: '010-1234-5678',
 //             buyer_addr: '부산광역시 부산진구 부전동',

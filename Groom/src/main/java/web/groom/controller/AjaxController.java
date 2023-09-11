@@ -428,4 +428,4 @@ public class AjaxController extends HttpServlet {
 		request.getRequestDispatcher("/" + folder + "/" + pageName + ".jsp").forward(request, response);
 	}
 
-}
+} //end_of_AjaxController

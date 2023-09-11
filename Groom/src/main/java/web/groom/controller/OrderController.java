@@ -24,7 +24,7 @@ public class OrderController extends HttpServlet {
 		
 		String sPath = request.getServletPath();
 		 
-		 //예약하기페이지 이동
+		 // 예약하기 페이지 order/myorder.jsp
 		 if (sPath.equals("/myorder.or")) {
 			 
 			 //유저 세션 검증
@@ -46,9 +46,6 @@ public class OrderController extends HttpServlet {
 			 // request에 유저 정보 있는 memberInfo 저장
 			 request.setAttribute("memberInfo", memberInfo);
 			 
-			 //임시출력
-			 System.out.println(memberInfo);
-			 
 			 // 멤버인포에 정상적으로 값이 있으면 정보들고 myorder페이지로 페이지이동
 			 if(memberInfo != null) {
 			 webForward(request, response, "order", "myorder");
@@ -58,7 +55,7 @@ public class OrderController extends HttpServlet {
 			 }
 	     } // end_of_myorder.or
 		 
-		 // 사용자가 선택한 예약내역을 다시 보여주게 함
+		 // 예약하기 최종확인 페이지 order/myorderCheckout.jsp
 		 if (sPath.equals("/myorderCheckout.or")) {
 			 
 			 //유저 세션 검증
@@ -84,10 +81,10 @@ public class OrderController extends HttpServlet {
 			 
 	     } // end_of_myorderCheckout.or
 		 
-		 // 예약 처리 및 DB에 저장
+		 // 예약 처리 및 DB에 저장하기 위한 로직
 		 if (sPath.equals("/orderReservation.or")) {
 				 
-				 //정보들을 가지고 오기 위한 메서드 호출
+				 // 예약처리 및 결과값 반환을 위한 메서드 호출
 				 OrderReservationDTO orderReserv = new OrderService().insertOrderReserv(request);
 				 
 				if (orderReserv != null) {
@@ -121,4 +118,4 @@ public class OrderController extends HttpServlet {
 		request.getRequestDispatcher("/"+folder+"/"+pageName+".jsp").forward(request, response);
 	}
 
-}
+} //end_of_OrderController

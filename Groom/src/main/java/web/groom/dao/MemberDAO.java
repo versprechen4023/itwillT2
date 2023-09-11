@@ -458,4 +458,4 @@ public class MemberDAO {
 
 		if (con != null) {try {con.close();} catch (SQLException e) {e.printStackTrace();}}
 	}
-}
+} //end_of_MemberDAO

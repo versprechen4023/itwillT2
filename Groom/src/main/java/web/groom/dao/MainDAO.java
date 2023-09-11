@@ -35,10 +35,11 @@ public class MainDAO {
 
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			// 리스트에 초기저장소 10 할당
 			reviewList = new ArrayList<>();
 
 			while (rs.next()) {
-				ReviewDTO reviewDTO = new ReviewDTO();
+				reviewDTO = new ReviewDTO();
 
 				reviewDTO.setRev_num(rs.getInt("rev_num"));
 				reviewDTO.setRes_num(rs.getInt("res_num"));
@@ -79,4 +80,4 @@ public class MainDAO {
 
 	if (con != null) {try {con.close();} catch (SQLException e) {e.printStackTrace();}}
 	}
-}
+} //end_of_MainDAO

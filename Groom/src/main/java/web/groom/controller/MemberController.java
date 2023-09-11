@@ -16,8 +16,6 @@ import web.groom.service.MemberService;
 @WebServlet("*.me") // .me 멤버 어노테이션 매핑 선언
 public class MemberController extends HttpServlet {
 
-	MemberService ser = null;
-
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -25,7 +23,7 @@ public class MemberController extends HttpServlet {
 
 		// 페이지이동
 
-		// 로그인 페이지 이동
+		// 로그인페이지 member/login.jsp
 		if (sPath.equals("/login.me")) {
 
 			// 유저 세션 검증
@@ -42,11 +40,8 @@ public class MemberController extends HttpServlet {
 		// 로그인 로직 수행
 		if (sPath.equals("/loginPro.me")) {
 
-			// 멤버서비스 객체생성
-			ser = new MemberService();
-
 			// 메서드호출 및 값 넘겨주기
-			MemberDTO memberdto = ser.userCheck(request);
+			MemberDTO memberdto = new MemberService().userCheck(request);
 
 			// 로그인 검증
 			if (memberdto != null && memberdto.getU_disabled() != 1) {
@@ -55,9 +50,6 @@ public class MemberController extends HttpServlet {
 
 				// 값이 존재하면 세션에 id저장
 				HttpSession session = request.getSession();
-
-				// 멤버dto값 출력
-				System.out.println(memberdto);
 
 				// 세션에 id, salt, role, userNum 값 저장
 				session.setAttribute("id", memberdto.getU_Id());
@@ -72,7 +64,7 @@ public class MemberController extends HttpServlet {
 			}
 		} // end_of_loginPro.me
 
-		// 회원가입 페이지 이동
+		// 회원가입 페이지 member/singup.jsp
 		if (sPath.equals("/signup.me")) {
 
 			// 유저 세션 검증
@@ -89,11 +81,8 @@ public class MemberController extends HttpServlet {
 		// 회원가입 로직 수행
 		if (sPath.equals("/signupPro.me")) {
 
-			// 멤버서비스 객체생성
-			ser = new MemberService();
-
 			// 메서드호출(리퀘스트 값 넘겨주기)
-			MemberDTO memberdto = ser.insertMember(request);
+			MemberDTO memberdto = new MemberService().insertMember(request);
 
 			if (memberdto != null) {
 				System.out.println("회원가입 성공");
@@ -108,19 +97,18 @@ public class MemberController extends HttpServlet {
 			response.sendRedirect("login.me");
 
 		} // end_of_singupPro.me
-
+		
+		// 아이디 찾기 페이지 member/findid.jsp
 		if (sPath.equals("/findid.me")) {
 
 			webForward(request, response, "member", "findid");
 		} // end_of_findid.me
-
+		
+		// 아이디 찾기 로직 수행 및 아이디 찾기 결과 반환 페이지 member/findidrsult.jsp
 		if (sPath.equals("/findidresult.me")) {
 
-			// 멤버서비스 객체생성
-			ser = new MemberService();
-
 			// 메서드호출(리퀘스트 값 넘겨주기)
-			MemberDTO memberDTO = ser.findId(request);
+			MemberDTO memberDTO = new MemberService().findId(request);
 
 			// 처리결과 확인
 			if (memberDTO != null) {
@@ -128,7 +116,6 @@ public class MemberController extends HttpServlet {
 				// DTO에 찾은 아이디 값이 있다면 memberDTO 저장 후 result페이지로 이동
 				request.setAttribute("memberDTO", memberDTO);
 				webForward(request, response, "member", "findidresult");
-
 				System.out.println("아이디 찾기 성공 ");
 
 			} else {
@@ -138,18 +125,17 @@ public class MemberController extends HttpServlet {
 			}
 
 		} // end_of_findidresult.me
-
+		
+		// 비밀번호 찾기 페이지 member/findid.jsp
 		if (sPath.equals("/findpass.me")) {
 			webForward(request, response, "member", "findpass");
 		} // end_of_findpass.me
-
+		
+		// 비밀번호 재설정전 리퀘스트 값(회원정보 존재유무) 검증 로직
 		if (sPath.equals("/findpassresult.me")) {
 
-			// 멤버서비스 객체생성
-			ser = new MemberService();
-
 			// 메서드호출(리퀘스트 값 넘겨주기)
-			MemberDTO memberDTO = ser.findPass(request);
+			MemberDTO memberDTO = new MemberService().findPass(request);
 
 			if (memberDTO != null) {
 
@@ -167,14 +153,12 @@ public class MemberController extends HttpServlet {
 			}
 
 		} // end_of_findpassresult.me
-
+		
+		// 비밀번호 재설정 페이지 member/resetpassword.jsp
 		if (sPath.equals("/resetpassword.me")) {
 
-			// 멤버서비스 객체생성
-			ser = new MemberService();
-
 			// 메서드호출(리퀘스트 값 넘겨주기)
-			MemberDTO memberDTO = ser.resetPass(request);
+			MemberDTO memberDTO = new MemberService().resetPass(request);
 
 			// 결과값 확인
 			if (memberDTO != null) {
@@ -200,7 +184,7 @@ public class MemberController extends HttpServlet {
 			// 로그아웃을 위한 세션 초기화
 			request.getSession().invalidate();
 			// 메인으로 이동
-			response.sendRedirect("main.gr");
+			JSForward.locationHref(response, "로그아웃 되었습니다", "main.gr");
 		} // end_of_logout.me
 
 	}
@@ -224,4 +208,4 @@ public class MemberController extends HttpServlet {
 		request.getRequestDispatcher("/" + folder + "/" + pageName + ".jsp").forward(request, response);
 	}
 
-}
+} //end_of_MemberController

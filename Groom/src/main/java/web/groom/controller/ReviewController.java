@@ -151,14 +151,14 @@ public class ReviewController extends HttpServlet {
 		} // reviewDelete.re [리뷰삭제]
 
 		// 현재 포인트 회수는 관리자 페이지에서 이루어지고있으므로 사용안되고 있는 것으로 보임
-//		// 리뷰삭제 및 포인트회수를 위한 관련 로직
-//		if (sPath.equals("/reviewDeletePoint.re")) {
-//			System.out.println("reviewDeletePoint.re");
-//
-//			// 리뷰 삭제를 위한 메서드 호출
-//			new ReviewService().deleteReviewPoint(request);
-//			JSForward.locationHref(response, "리뷰 삭제 완료.\n* 포인트가 회수됩니다.", "reviewList.re");
-//		} // reviewDelete.re [리뷰삭제 + 포인트회수]
+		// 리뷰삭제 및 포인트회수를 위한 관련 로직
+		if (sPath.equals("/reviewDeletePoint.re")) {
+			System.out.println("reviewDeletePoint.re");
+
+			// 리뷰 삭제를 위한 메서드 호출
+			new ReviewService().deleteReviewPoint(request);
+			JSForward.locationHref(response, "리뷰 삭제 완료.\n* 포인트가 회수됩니다.", "reviewList.re");
+		} // reviewDelete.re [리뷰삭제 + 포인트회수]
 
 		// 관리자의 답글 작성 관련 페이지 review/reWrite.jsp
 		if (sPath.equals("/reWrite.re")) {

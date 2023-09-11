@@ -14,9 +14,6 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 <!-- 	리뷰 css 추가 -->
 	<link href="./css/review_gr.css" rel="stylesheet" type="text/css">
-<style>
-.review-active 
-</style>	
 	<body>
 <%
 String id = (String)session.getAttribute("id");

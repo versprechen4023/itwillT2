@@ -23,7 +23,7 @@ Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 
 	<div id="fh5co-main">
 
-<h2 class="headh1" onclick="location.href='faq.bo'">자주 묻는 질문 </h2>
+<h2 class="headh1" onclick="location.href='faq.bo'">FAQ</h2>
 <hr>
 <input type="hidden" name="faq_num" value="<%=boardDTO.getFaq_num() %>">
 <table id="notice" border="1">

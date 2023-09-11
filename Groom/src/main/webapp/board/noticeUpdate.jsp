@@ -45,6 +45,7 @@ Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 				<input type="hidden" name="oldfile" value="<%=boardDTO.getN_img_url() %>">
 				<input type="file" id="fileInput" name="n_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
 				<div id="fileInfoDisplay">　<%=boardDTO.getN_img_url() %></div>
+			
 		</div>			
 		</td></tr>
 	</table>

@@ -38,7 +38,7 @@
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 <!-- 파비콘 적용 코드 -->
-<link rel="icon" href="images/favicon.ico" />
+<link rel="icon" href="images/favi.png" />
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700"
 	rel="stylesheet">

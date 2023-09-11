@@ -46,7 +46,7 @@ String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
 
 </table>
 
-<div class="btn"  style="text-align: left; margin-left: 965px; margin-top: -10px;"> 
+<div class="btn"  style="text-align: left; margin-left: 1037px; margin-top: -10px;"> 
 
 		<%
 		 if( id != null ) {

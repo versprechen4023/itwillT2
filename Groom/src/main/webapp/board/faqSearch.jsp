@@ -130,7 +130,7 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 		
 		<div class="search-form">
 			<form action="faqSearch.bo" method="get">		 	 	
-			 <input type="text" name="search" size=80 placeholder="검색어를 입력하세요" id="searchkey">
+			 <input type="text" name="search" size=60 placeholder="검색어를 입력하세요" id="searchkey">
 			 <input type="submit" value="검색" id="searchbtn">
 			 
 			 </form>

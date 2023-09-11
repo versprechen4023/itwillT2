@@ -29,8 +29,8 @@
     <h1 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft" style="font-size: 30px; margin-right: 10px;">매장 안내</h1>
     
     <!-- 리뷰보기 버튼 -->
-    <button type="button" onclick="location.href='reviewList.re?pro_name= ';" style="background-color: black;
-    color: white; border: none; border-radius: 50px; padding: 6px 11px; cursor: pointer; margin-bottom: 54px; margin-left: 5px;">리뷰보기</button>
+    <button type="button" onclick="location.href='reviewList.re?pro_name= ';" style="background-color: rgb(232, 232, 232);
+    color: dodgerblue; font-weight: bold; border: none; border-radius: 50px; padding: 6px 11px; cursor: pointer; margin-bottom: 54px; margin-left: 5px;">리뷰보기</button>
 </div>
         
         
@@ -43,7 +43,7 @@
                 
                 
                     <!-- 사진 -->
-                    <img src="./images/img-1.jpg" style="display: block; width: 250px; height: 320px; padding-bottom: 20px">
+                    <img src="./images/store1.png" style="display: block; width: 250px; height: 320px; padding-bottom: 20px">
                     
                     
                     <div style="display: flex; align-items: center;">
@@ -64,9 +64,9 @@
                     <!-- 지점 정보 -->
                     <ul>
                         <li style="padding: 2px; color: black;">운영시간 10:00-18:00</li>
-                        <li style="padding: 2px; color: black;">월요일 휴무</li>
-                        <li style="padding: 2px; color: black;">010-1111-1234</li>
-                        <li style="padding: 2px; color: black;">부산광역시 부산진구 동천로</li>
+                        <li style="padding: 2px; color: black;">매주 월요일 휴무</li>
+                        <li style="padding: 2px; color: black;">☎051-803-0909</li>
+                        <li style="padding: 2px; color: black;">부산광역시 부산진구 동천로 109</li>
                     </ul>
                 </div>
                 
@@ -76,7 +76,7 @@
                       
                       
                     <!-- 사진 -->
-                    <img src="./images/img-1.jpg" style="display: block; width: 250px; height: 320px; padding-bottom: 20px">
+                    <img src="./images/store2.png" style="display: block; width: 250px; height: 320px; padding-bottom: 20px">
                     
                     
                     <div style="display: flex; align-items: center;">
@@ -97,9 +97,9 @@
                     <!-- 지점 정보 -->
                     <ul>
                         <li style="padding: 2px; color: black;">운영시간 10:00-18:00</li>
-                        <li style="padding: 2px; color: black;">월요일 휴무</li>
-                        <li style="padding: 2px; color: black;">010-1111-1234</li>
-                        <li style="padding: 2px; color: black;">부산광역시 부산진구 동천로</li>
+                        <li style="padding: 2px; color: black;">매주 목요일 휴무</li>
+                        <li style="padding: 2px; color: black;">☎ 051-715-5766</li>
+                        <li style="padding: 2px; color: black;">부산광역시 강서구 명지6로 168</li>
                     </ul>
                 </div>
 
@@ -109,7 +109,7 @@
                
                
                     <!-- 사진 -->
-                    <img src="./images/img-1.jpg" style="display: block; width: 250px; height: 320px; padding-bottom: 20px">
+                    <img src="./images/store3.png" style="display: block; width: 250px; height: 320px; padding-bottom: 20px">
                     
                     
                     <div style="display: flex; align-items: center;">
@@ -130,9 +130,9 @@
                     <!-- 지점 정보 -->
                     <ul>
                         <li style="padding: 2px; color: black;">운영시간 10:00-18:00</li>
-                        <li style="padding: 2px; color: black;">월요일 휴무</li>
-                        <li style="padding: 2px; color: black;">010-1111-1234</li>
-                        <li style="padding: 2px; color: black;">부산광역시 부산진구 동천로</li>
+                        <li style="padding: 2px; color: black;">매주 금요일 휴무</li>
+                        <li style="padding: 2px; color: black;">☎ 055-531-2209</li>
+                        <li style="padding: 2px; color: black;">경남 김해시 율하로 412-1</li>
                     </ul>
                 </div>
             </div>

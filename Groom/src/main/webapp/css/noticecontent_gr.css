@@ -11,6 +11,8 @@
 /* 		format('woff'); */
 /* } */
 
+
+
 #notice{
 	border-collapse: collapse;
 width: 1000px;
@@ -95,8 +97,8 @@ text-align: center;
 
 .vtitle {
    width: 900px;
-    font-size: 14px;
-    padding-left: 20px;
+    font-size: 20px;
+    padding: 10px;
     background-color: white;
 
 }
@@ -110,12 +112,11 @@ width: 900px;
 
 .vcontent { 
 width: 900px;
-    font-size: 14px;
-    padding-left: 20px;
+    font-size: 20px;
+    padding: 10px;
 	background-color: white;
 	vertical-align: top;
-	padding-bottom: 20px;
-	padding-right: 20px;
+	padding: 10px;
 
 }
 

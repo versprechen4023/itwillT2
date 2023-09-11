@@ -49,21 +49,21 @@
 
 					<div>
 						<p>답변</p>
-						<textarea cols="108" rows="10" placeholder="Input some text."
+						<textarea cols="108" rows="10" placeholder="답변을 입력해주세요"
 							name="re_content" class="qna_title"><%=qnaDTO.getRecontent() %></textarea>
 					</div>
 
-					<div>
-						<div class="review-input-img">
-							<img src="./images/photo.png" class="review-input-img1"
-							style="height: 15px; width: auto; margin-right: 5px;"
-								onclick="triggerFileInput()"> <input type="file"
-								id="fileInput" name="qna_img_url"
-								accept=".png, .jpg, .jpeg, .gif" style="display: none">
-							<div id="fileInfoDisplay">선택된 파일 없음</div>
+<!-- 					<DIV> -->
+<!-- 						<DIV CLASS="REVIEW-INPUT-IMG"> -->
+<!-- 							<IMG SRC="./IMAGES/PHOTO.PNG" CLASS="REVIEW-INPUT-IMG1" -->
+<!-- 							STYLE="HEIGHT: 15PX; WIDTH: AUTO; MARGIN-RIGHT: 5PX;" -->
+<!-- 								ONCLICK="TRIGGERFILEINPUT()"> <INPUT TYPE="FILE" -->
+<!-- 								ID="FILEINPUT" NAME="QNA_IMG_URL" -->
+<!-- 								ACCEPT=".PNG, .JPG, .JPEG, .GIF" STYLE="DISPLAY: NONE"> -->
+<!-- 							<DIV ID="FILEINFODISPLAY">선택된 파일 없음</DIV> -->
 
-						</div>
-					</div>
+<!-- 						</DIV> -->
+<!-- 					</DIV> -->
 
 				</div>
 

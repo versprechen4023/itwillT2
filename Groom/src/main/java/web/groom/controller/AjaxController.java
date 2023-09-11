@@ -24,7 +24,7 @@ import web.groom.service.MemberService;
 import web.groom.service.MypageService;
 import web.groom.service.OrderService;
 
-@WebServlet("*.aj") // .Ajax Ajax관련 어노테이션 매핑 선언
+@WebServlet("*.aj") // .aj Ajax관련 어노테이션 매핑 선언
 public class AjaxController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -35,11 +35,8 @@ public class AjaxController extends HttpServlet {
 		// AJAX관련 아이디중복검사쪽
 		if (sPath.equals("/checkId.aj")) {
 
-			// 아이디 중복검사를 위한 멤버 서비스 객체생성
-			MemberService ser = new MemberService();
-
 			// 아이디 중복검사를 위해 리퀘스트 값 넘김
-			MemberDTO memberdto = ser.searchId(request);
+			MemberDTO memberdto = new MemberService().searchId(request);
 			
 			// memberdto 객체유무로 id중복검증 확인
 			boolean result = (memberdto != null) ? true : false;
@@ -49,16 +46,13 @@ public class AjaxController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(Boolean.toString(result));
 			out.close();
-		}
+		} // end_of_checkId.aj
 		
 		// AJAX관련 전화번호중복검사쪽
 		if (sPath.equals("/checkPhone.aj")) {
 
-			// 전화번호 중복검사를 위한 멤버 서비스 객체생성
-			MemberService ser = new MemberService();
-
 			// 전화번호 중복검사를 위해 리퀘스트 값 넘김
-			MemberDTO memberdto = ser.searchPhone(request);
+			MemberDTO memberdto = new MemberService().searchPhone(request);
 
 			// memberdto 객체유무로 전화번호 중복검증 확인
 			boolean result = (memberdto != null) ? true : false;
@@ -68,16 +62,13 @@ public class AjaxController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(Boolean.toString(result));
 			out.close();
-		}
+		} // end_of_checkPhone.aj
 		
 		// AJAX관련 이메일중복검사쪽
 		if (sPath.equals("/checkEmail.aj")) {
 
-			// 이메일 중복검사를 위한 멤버 서비스 객체생성
-			MemberService ser = new MemberService();
-
 			// 이메일 중복검사를 위해 리퀘스트 값 넘김
-			MemberDTO memberdto = ser.searchEmail(request);
+			MemberDTO memberdto = new MemberService().searchEmail(request);
 
 			// memberdto 객체유무로 이메일 중복검증 확인
 			boolean result = (memberdto != null) ? true : false;
@@ -87,19 +78,18 @@ public class AjaxController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(Boolean.toString(result));
 			out.close();
-		}
+		} // end_of_checkEmail.aj
 
 		// AJAX관련 이메일 인증코드 발송
 		if (sPath.equals("/email.aj")) {
 
-			MemberEmail email = new MemberEmail();
-			email.sendEmail(request); // 이메일 값 넘겨주기
-		}
+			new MemberEmail().sendEmail(request); // 이메일 값 넘겨주기
+		} // end_of_mail.aj
 
 		// AJAX관련 이메일 인증번호 검증
 		if (sPath.equals("/verify.aj")) {
 
-			// 인증번호 가져옴
+			// 이메일 전송없이 이클립스에서 확인하기위해 생성된 인증번호 가져옴
 			String userVerificationCode = request.getParameter("verificationCode");
 
 			// 인증번호테스트하기위한 부분
@@ -114,16 +104,43 @@ public class AjaxController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(Boolean.toString(result));
 			out.close();
-		}
+		} // end_of_verify.aj
 		
 		// AJAX관련 예약에 대한 날짜 비활성화 로직
 		if (sPath.equals("/getDate.aj")) {
+		    
+		    // 예약 비활성화 날짜를 리스트로 받아오기
+		 	List<OrderDTO> serviceDate = new OrderService().getServiceDate(request);
+		 	
+		 	// JSON 배열 객체 생성
+		    JSONArray arr = new JSONArray();
+		    
+		    // 날짜 포맷을 JSON에 맞게 처리하기 위해 변경
+		    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		    
+		    //orderDTO의 내용을 모두 JSON 오브젝트에 삽입
+			for(OrderDTO orderDTO : serviceDate) {
+				JSONObject object = new JSONObject();
+				object.put("date", format.format(orderDTO.getDate()));
+				// 배열 한칸에 저장
+				arr.add(object);
+			}
+			
+			// 콜백함수에 최종결과값 출력
+		    response.setContentType("application/json; charset=UTF-8");
+		    PrintWriter out = response.getWriter();
+		    out.print(arr);
+		    out.close();
+		} // end_of_getDate.aj
+		
+		// AJAX관련 예약에 대한 날짜 비활성화 로직 [Admin 전용]
+		if (sPath.equals("/getAdDate.aj")) {
 		    
 			//오더 관련 처리를 위한 오더 서비스 객체생성
 		    OrderService orderService = new OrderService();
 		    
 		    // 예약 비활성화 날짜를 리스트로 받아오기
-		 	List<OrderDTO> serviceDate = orderService.getServiceDate(request);
+		 	List<OrderDTO> serviceDate = orderService.getAdServiceDate(request);
 		 	
 		 	// JSON 배열 객체 생성
 		    JSONArray arr = new JSONArray();
@@ -148,12 +165,9 @@ public class AjaxController extends HttpServlet {
 		
 		// AJAX관련 예약에 대한 시간 비활성화 로직
 		if (sPath.equals("/getTime.aj")) {
-
-			//오더 관련 처리를 위한 오더 서비스 객체생성
-			OrderService orderService = new OrderService();
 			
 			// 예약 비활성화 시간을 리스트로 받아오기
-		 	List<OrderDTO> serviceTime = orderService.getServiceTime(request);
+		 	List<OrderDTO> serviceTime = new OrderService().getServiceTime(request);
 		 	
 		 	// JSON 배열 객체 생성
 		 	JSONArray arr = new JSONArray();
@@ -176,16 +190,18 @@ public class AjaxController extends HttpServlet {
 		    PrintWriter out = response.getWriter();
 		    out.print(arr);
 		    out.close();
-		}
+		} // end_of_getTime.aj
 		
 		// AJAX관련 서비스 가져오기(서비스명)
 		if (sPath.equals("/getService.aj")) {
 			
-			OrderService orderService = new OrderService();
-		 	List<OrderServiceDTO> serviceList = orderService.getServiceList(request);
-			
+			// 예약 쪽 지원 서비스를 리스트를 가져오기
+		 	List<OrderServiceDTO> serviceList = new OrderService().getServiceList(request);
+		 	
+		 	// JSON 배열 객체 생성
 		 	JSONArray arr = new JSONArray();
 		 	
+		 	//orderServiceDTO의 내용을 모두 JSON 오브젝트에 삽입
 		 	for(OrderServiceDTO orderServiceDTO : serviceList) {
 				
 				JSONObject object = new JSONObject();
@@ -200,16 +216,18 @@ public class AjaxController extends HttpServlet {
 		    PrintWriter out = response.getWriter();
 		    out.print(arr);
 		    out.close();
-		}
+		} // end_of_getService.aj
 		
 		// AJAX관련 서비스 가져오기(무게쪽)
 		if (sPath.equals("/getWeight.aj")) {
 
-			OrderService orderService = new OrderService();
-			List<OrderServiceDTO> weightList = orderService.getWeightList(request);
-
+			// 예약 쪽 견종 무게관련 리스트를 가져오기
+			List<OrderServiceDTO> weightList = new OrderService().getWeightList(request);
+			
+			// JSON 배열 객체 생성
 			JSONArray arr = new JSONArray();
-
+			
+			//orderServiceDTO의 내용을 모두 JSON 오브젝트에 삽입
 			for (OrderServiceDTO orderServiceDTO : weightList) {
 
 				JSONObject object = new JSONObject();
@@ -224,16 +242,18 @@ public class AjaxController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(arr);
 			out.close();
-		}
+		} // end_of_getWeight.aj
 		
 		// AJAX관련 서비스 가져오기(직원명)
 		if (sPath.equals("/getManager.aj")) {
 
-			OrderService orderService = new OrderService();
-			List<OrderServiceDTO> managerList = orderService.getManagerList(request);
-
+			// 직원관련 리스트를 가져오기
+			List<OrderServiceDTO> managerList = new OrderService().getManagerList(request);
+			
+			// JSON 배열 객체 생성
 			JSONArray arr = new JSONArray();
-
+			
+			//orderServiceDTO의 내용을 모두 JSON 오브젝트에 삽입
 			for (OrderServiceDTO orderServiceDTO : managerList) {
 
 				JSONObject object = new JSONObject();
@@ -250,16 +270,14 @@ public class AjaxController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(arr);
 			out.close();
-		}
+		} // end_of_getManager.aj
 				
 				
 		// AJAX관련 서비스 가격 가져오기(상품가격)
 		if (sPath.equals("/getPrice.aj")) {
-					
-			OrderService orderService = new OrderService();
 			
 			// 최종상품 가격을 가져옴
-			int servicePrice = orderService.getServicePrice(request);
+			int servicePrice = new OrderService().getServicePrice(request);
 			
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
@@ -267,7 +285,7 @@ public class AjaxController extends HttpServlet {
 			out.print(Integer.toString(servicePrice));
 			out.close();
 				 	
-		}
+		} // end_of_getPrice.aj
 		
 		
 		// AJAX관련 예약상태 가져오기(상품가격)
@@ -280,7 +298,7 @@ public class AjaxController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(Boolean.toString(result));
 			out.close();
-		}//
+		} // end_of_statusComplete.aj
 		
 		// AJAX관련 예약상태 가져오기(상품가격)
 		if (sPath.equals("/statusCancel.aj")) {
@@ -292,7 +310,7 @@ public class AjaxController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(Boolean.toString(result));
 			out.close();
-		}//		
+		} // end_of_statusCancel.aj
 
 		// AJAX관련 예약상태 가져오기(상품가격)
 		if (sPath.equals("/statusUnprocessed.aj")) {
@@ -304,7 +322,7 @@ public class AjaxController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(Boolean.toString(result));
 			out.close();
-		}//
+		} // end_of_statusUnprocessed.aj
 		
 		if (sPath.equals("/pointConfirm.aj")) {
 			System.out.println("포인트지급");
@@ -328,20 +346,18 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		}// [포인트회수]
 		
-		// AJAX관련 예약 일정 변경 유무 검사
+		// AJAX관련 예약 일정 변경가능 여부 검사
 		if (sPath.equals("/getChange.aj")) {
-
-			OrderService orderService = new OrderService();
 			
-			// 예약 일정 변경 유무 확인
-			boolean result = orderService.getCanChange(request);
+			// 예약 일정 변경가능 여부 확인
+			boolean result = new OrderService().getCanChange(request);
 
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print(Boolean.toString(result));
 			out.close();
-		}
+		} // end_of_getChange.aj
 		
 
 		if (sPath.equals("/del_StoreDisDays.aj")) {
@@ -377,17 +393,18 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		}// del_EmpDisTime.aj [직원 쉬는시간 취소]
 
+		// AJAX관련 예약 취소 관련 로직
 		if (sPath.equals("/cancelRes.aj")) {
-
-			int res_num = Integer.parseInt(request.getParameter("res_num"));
-			MypageService mypageservice = new MypageService();
-			boolean result = mypageservice.cancelRes(request);
+			
+			// 예약 취소 메서드 실행
+			boolean result = new MypageService().cancelRes(request);
+			
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.print(Boolean.toString(result));
 			out.close();
-		}
+		} // end_of_cancelRes.aj
 		
 
 	}
@@ -411,4 +428,4 @@ public class AjaxController extends HttpServlet {
 		request.getRequestDispatcher("/" + folder + "/" + pageName + ".jsp").forward(request, response);
 	}
 
-}
+} //end_of_AjaxController

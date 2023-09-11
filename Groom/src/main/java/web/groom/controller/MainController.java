@@ -1,7 +1,6 @@
 package web.groom.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import web.groom.dto.ReviewDTO;
 import web.groom.service.MainService;
-import web.groom.service.ReviewService;
 
 
 @WebServlet("*.gr") //.gr 메인 어노테이션 매핑 선언
@@ -22,31 +20,24 @@ public class MainController extends HttpServlet {
 		
 		String sPath = request.getServletPath();
 		
-		 //메인화면페이지
+		 // 메인페이지 main/main.gr
 		 if (sPath.equals("/main.gr")) {
 			 
-			 MainService mainService = new MainService();
-			 List<ReviewDTO> reviewList = mainService.getReviewList();
+			 // 메인페이지에 베스트 리뷰(3개)를 보여주기 위한 메서드 호출
+			 List<ReviewDTO> reviewList = new MainService().getReviewList();
 			 
 			 request.setAttribute("reviewList", reviewList);
 			 
 	         webForward(request, response, "main", "main");      
 	     }
 		 
+		 // 매장정보 페이지 main/storeInfo.gr
 		 if (sPath.equals("/storeInfo.gr")) {
 	            webForward(request, response, "main", "storeInfo");
 
 	     }
 		 
-		 if (sPath.equals("/blog.gr")) {
-	            webForward(request, response, "main", "blog");
-
-	     }
-		 if (sPath.equals("/contact.gr")) {
-	            webForward(request, response, "main", "contact");
-
-	     }
-		 
+		 // 회사정보 페이지 main/about.gr
 		 if (sPath.equals("/about.gr")) {
 	            webForward(request, response, "main", "about");
 
@@ -68,4 +59,4 @@ public class MainController extends HttpServlet {
 		request.getRequestDispatcher("/"+folder+"/"+pageName+".jsp").forward(request, response);
 	}
 
-}
+} //end_of_MainController

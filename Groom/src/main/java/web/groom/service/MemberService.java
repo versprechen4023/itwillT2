@@ -12,7 +12,8 @@ public class MemberService {
 
 	MemberDAO memberdao = null;
 	MemberDTO memberdto = null;
-
+	
+	// 멤버 회원가입 처리 서비스
 	public MemberDTO insertMember(HttpServletRequest request) {
 
 		try {
@@ -58,7 +59,8 @@ public class MemberService {
 
 		return memberdto;
 	} // insertmember
-
+	
+	// 로그인 관련 처리 서비스
 	public MemberDTO userCheck(HttpServletRequest request) {
 
 		memberdto = null;
@@ -87,7 +89,8 @@ public class MemberService {
 
 		return memberdto;
 	} // usercheck
-
+	
+	// 아이디 찾기 및 검증 처리 서비스
 	public MemberDTO searchId(HttpServletRequest request) {
 
 		try {
@@ -107,7 +110,8 @@ public class MemberService {
 
 		return memberdto;
 	} // searchid
-
+	
+	// 핸드폰 번호 중복 검증 처리 서비스
 	public MemberDTO searchPhone(HttpServletRequest request) {
 
 		try {
@@ -127,7 +131,8 @@ public class MemberService {
 
 		return memberdto;
 	}// searchPhone
-
+	
+	// 이메일 중복 검증 처리 서비스
 	public MemberDTO searchEmail(HttpServletRequest request) {
 
 		try {
@@ -147,8 +152,9 @@ public class MemberService {
 
 		return memberdto;
 	}// searchEmail
-
-	public MemberDTO findid(HttpServletRequest request) {
+	
+	// 아이디 찾기 처리 서비스
+	public MemberDTO findId(HttpServletRequest request) {
 
 		try {
 			// 한글 인코딩 처리
@@ -159,17 +165,16 @@ public class MemberService {
 			String email = request.getParameter("u_email");
 
 			// MemberDAO에 값을 전달하고 로직처리 수행
-			memberdto = new MemberDAO().findid(name, email);
+			memberdto = new MemberDAO().findId(name, email);
 
 		} catch (Exception e) {
-
 			e.printStackTrace();
-
 		}
 
 		return memberdto;
 	} // finid
-
+	
+	// 비밀번호 찾기 처리 서비스
 	public MemberDTO findPass(HttpServletRequest request) {
 
 		try {
@@ -191,7 +196,8 @@ public class MemberService {
 		return memberdto;
 
 	}// findpass
-
+	
+	// 비밀번호 재설정 관련 처리 서비스
 	public MemberDTO resetPass(HttpServletRequest request) {
 
 		try {
@@ -223,7 +229,8 @@ public class MemberService {
 		return memberdto;
 
 	}// findpass
-
+	
+	// 유저 정보 얻기 관련 처리 서비스
 	public MemberDTO getMemberInfo(HttpServletRequest request) {
 
 		// 유저 번호 가져오기
@@ -234,7 +241,8 @@ public class MemberService {
 
 		return memberdto;
 	}// getMemberInfo
-
+	
+	// 유저 비활성화(탈퇴) 관련 처리 서비스
 	public boolean userDisable(HttpServletRequest request) {
 
 		boolean isDisabled = false;
@@ -265,4 +273,4 @@ public class MemberService {
 
 		return result;
 	}// userDisable
-}
+} // end_of_MemberService

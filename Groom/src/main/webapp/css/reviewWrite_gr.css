@@ -11,8 +11,17 @@ align-items: center;
 justify-content: center;
 }
 .logo {
-	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-top: 25px;
+	margin-bottom: 15px;
+}
+h1 {
+	margin: 0;
+}
+.form-css {
+padding: 0;
+}
+.review-logo {
+width: 160px;
 }
 .divider { 
     height: 1px;
@@ -107,8 +116,8 @@ justify-content: center;
 .buttons input{
 width: 80px;
 height: 35px;
-background: black;
-color: white;
+background: #E1E2CD;
+color: black;
 border: none;
 border-radius: 5px;
 font-size: 14px;

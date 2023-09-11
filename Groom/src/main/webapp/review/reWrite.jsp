@@ -48,29 +48,6 @@ for (int i = 1; i <= 5; i++) {
 			stars += "☆";
 			}
 	}
-//enum > 문자
-// 	String s_location = reviewDTO.getS_location();
-// 	String emp_grade = reviewDTO.getEmp_grade();
-// 		String location = "";
-// 	if (s_location.equals("A")) {
-// 	    location = "서면점";
-// 	} else if (s_location.equals("B")) {
-// 	    location = "명지점";
-// 	} else if (s_location.equals("C")) {
-// 	    location = "율하점";
-// 	} else {
-// 	    location = "알 수 없음";
-// 	}
-// 	String grade = "";
-// 	if (emp_grade.equals("A")) {
-// 		grade = "원장";
-// 	} else if (emp_grade.equals("B")) {
-// 		grade = "실장";
-// 	} else if (emp_grade.equals("C")) {
-// 		grade = "수석";
-// 	} else {
-// 		grade = "알 수 없음";
-// 	}
 %>
 	<div id="fh5co-main"> <!-- 블로그 페이지 이미지 테두리? 변경시  stycle.css 481 .blog-entry .blog-img 에서 css 코드 추가 -->
 	<div class="fh5co-narrow-content">
@@ -112,7 +89,7 @@ if (reviewDTO != null) {
 		String rev_img_url = reviewDTO.getRev_img_url();
 		if (rev_img_url != null) {
 		%>
-		<img src="upload/<%=reviewDTO.getRev_img_url() %>" alt="이미지">
+		<img src="upload/<%=reviewDTO.getRev_img_url() %>" onerror="this.style.display='none'" />
 		<%
 		}else {
 		%>

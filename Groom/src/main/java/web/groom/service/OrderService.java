@@ -18,12 +18,15 @@ import web.groom.dto.OrderinfoDTO;
 public class OrderService {
 	
 	OrderDAO orderDAO = null;
+	OrderReservationDTO orderReserv = null;
+	OrderinfoDTO orderInfoDTO = null;
 	
+	// 예약가능일자 리스트 가져오는 서비스
 	public List<OrderDTO> getServiceDate(HttpServletRequest request) {
 		
 		List<OrderDTO> serviceDate = null;
 		
-		// 리퀘스트 파라미터값 변수에 저장
+		// 변수에 리퀘스트 파라미터값 저장(매장번호,직원번호)
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		int emp_num = Integer.parseInt(request.getParameter("selectedManager"));
 		
@@ -37,12 +40,32 @@ public class OrderService {
 		
 		return serviceDate;
 	} // getServiceDate
-
+	
+	// 예약가능일자 리스트 가져오는 서비스(관리자 관련전용)
+	public List<OrderDTO> getAdServiceDate(HttpServletRequest request) {
+		
+		List<OrderDTO> serviceDate = null;
+		
+		// 변수에 리퀘스트 파라미터값 저장(매장번호)
+		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
+		
+		try {
+			// OrderDAO에 값을 전달하고 로직처리 수행
+			serviceDate = new OrderDAO().getServiceDate(s_num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return serviceDate;
+	} // getAdServiceDate
+	
+	// 예약가능시간 리스트 가져오는 서비스
 	public List<OrderDTO> getServiceTime(HttpServletRequest request) {
 
 		List<OrderDTO> serviceTime = null;
 		
-		// 리퀘스트 파라미터값 변수에 저장
+		// 변수에 리퀘스트 파라미터값 저장(매장번호,직원번호,선택한날짜)
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		int emp_num = Integer.parseInt(request.getParameter("selectedManager"));
 		String dis_daydate = (request.getParameter("selectedDate"));
@@ -69,12 +92,13 @@ public class OrderService {
 		
 		return serviceTime;
 	} // getServiceTime
-
+	
+	// 예약가능 서비스(상품) 리스트 가져오는 서비스
 	public List<OrderServiceDTO> getServiceList(HttpServletRequest request) {
 		
 		List<OrderServiceDTO> serviceList = null;
 		
-		// 리퀘스트 파라미터값 변수에 저장
+		// 변수에 리퀘스트 파라미터값 저장(매장번호)
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 		
 		try {
@@ -91,11 +115,12 @@ public class OrderService {
 		return serviceList;
 	} // getServiceList
 	
+	// 상품(무게) 관련 리스트 가져오는 서비스
 	public List<OrderServiceDTO> getWeightList(HttpServletRequest request) {
 
 		List<OrderServiceDTO> weightList = null;
 		
-		// 리퀘스트 파라미터값 변수에 저장
+		// 변수에 리퀘스트 파라미터값 저장(매장번호)
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 
 		try {
@@ -108,12 +133,13 @@ public class OrderService {
 
 		return weightList;
 	} // getWeightList
-
+	
+	// 직원 관련 리스트 가져오는 서비스
 	public List<OrderServiceDTO> getManagerList(HttpServletRequest request) {
 
 		List<OrderServiceDTO> managerList = null;
 		
-		// 리퀘스트 파라미터값 변수에 저장
+		// 변수에 리퀘스트 파라미터값 저장(매장번호)
 		int s_num = Integer.parseInt(request.getParameter("selectedStore"));
 
 		try {
@@ -126,12 +152,14 @@ public class OrderService {
 
 		return managerList;
 	} // getMangerList
-
+	
+	// 서비스(상품) 가격 관련 서비스
 	public int getServicePrice(HttpServletRequest request) {
 		
-		int pro_price = 0;
-		int pet_extrafee = 0;
-		int emp_extrafee = 0;
+		// 가격계산을 위한 변수 선언 및 초기화
+		int pro_price = 0; // 상품에 따른 요금
+		int pet_extrafee = 0; // 펫 무게에 따른 추가요금
+		int emp_extrafee = 0; // 직원에 따른 추가요금
 		
 		// 최종적으로 사용자가 선택한 서비스 번호(pro_id2의 목욕등)를 변수에 지정
 		int pro_id2 = Integer.parseInt(request.getParameter("selectedPrice"));
@@ -160,16 +188,15 @@ public class OrderService {
 		return pro_price;
 	} // getServicePrice
 
+	// myorderCheckout.jsp에서 예약 최종내역 표시 관련 서비스
 	public OrderinfoDTO getOrderInfo(HttpServletRequest request) {
-		
-		OrderinfoDTO orderInfoDTO = null;
 		
 		try {
 			
 			// 한글 인코딩 처리
 			request.setCharacterEncoding("UTF-8");
 						
-			// 리퀘스트 파라미터값 변수에 저장
+			// 변수에 리퀘스트 파라미터값 저장(매장번호,견종,서비스상품명1,2(상품명,무게),직원번호,최종금액,사용포인트)
 			int s_num = Integer.parseInt(request.getParameter("storelist"));
 			int pro_id1 = Integer.parseInt(request.getParameter("petlist"));
 			int num1 = Integer.parseInt(request.getParameter("servicelist"));
@@ -178,10 +205,11 @@ public class OrderService {
 			int res_price = Integer.parseInt(request.getParameter("price"));
 			int res_point = Integer.parseInt(request.getParameter("point"));
 			
+			// 변수에 리퀘스트 파라미터값 저장(이름, 전화번호, 예약시간, 예약일자, 회원 요구사항)
 			String u_name = request.getParameter("name");
 			String u_phone = request.getParameter("phone");
-			String res_day = request.getParameter("datepicker");
 			String res_time = request.getParameter("timepicker");
+			String res_day = request.getParameter("datepicker");
 			String res_u_req = request.getParameter("res_u_req");
 			
 			// 상품번호 계산(상품종류값+무게값)-1
@@ -196,8 +224,8 @@ public class OrderService {
 			
 			orderInfoDTO.setU_name(u_name);
 			orderInfoDTO.setU_phone(u_phone);
-			orderInfoDTO.setRes_day(res_day);
 			orderInfoDTO.setRes_time(res_time);
+			orderInfoDTO.setRes_day(res_day);
 			orderInfoDTO.setRes_price(res_price);
 			orderInfoDTO.setRes_u_req(res_u_req);
 			orderInfoDTO.setRes_point(res_point);
@@ -214,16 +242,16 @@ public class OrderService {
 		}
 		return orderInfoDTO;
 	} // getOrderInfo
-
+	
+	// 예약 정보 저장 관련 서비스
 	public OrderReservationDTO insertOrderReserv(HttpServletRequest request) {
-		
-		OrderReservationDTO orderReserv = null;
 		
 		//유저 오더 정보 변수에 저장
 		try {
 			// 한글 인코딩 처리
 			request.setCharacterEncoding("UTF-8");
 			
+			// 변수에 리퀘스트 파라미터값 저장(회원번호,서비스상품명1,2(견종,무게+상품번호),지점번호,직원번호,결제한가격,사용포인트)
 			int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));
 			int pro_id1 = Integer.parseInt(request.getParameter("pro_id1"));
 			int pro_id2 = Integer.parseInt(request.getParameter("pro_id2"));
@@ -233,6 +261,7 @@ public class OrderService {
 			int res_point = Integer.parseInt(request.getParameter("res_point"));
 			int u_point = Integer.parseInt(request.getParameter("u_point"));//나중에 포인트 계산을 여기서 할려면 필요
 			
+			// 변수에 리퀘스트 파라미터값 저장(회원 요구사항, 결제수단, 예약시간, 예약일자)
 			String res_u_req = request.getParameter("res_u_req");
 			String res_method = request.getParameter("res_method");
 			String res_time = request.getParameter("res_time");
@@ -253,8 +282,6 @@ public class OrderService {
 			orderReserv.setRes_time(res_time);
 			orderReserv.setRes_day(res_day);
 			
-			System.out.println(orderReserv);
-			
 			orderDAO = new OrderDAO();
 			
 			// 예약내역 값 삽입
@@ -265,11 +292,13 @@ public class OrderService {
 		}
 		return orderReserv;
 	} // insertOrderReserv
-
+	
+	// 예약 정보 변경 가능 여부 반환 관련 서비스
 	public boolean getCanChange(HttpServletRequest request) {
 		
 		boolean result = false;
-					
+		
+		// 변수에 리퀘스트 파라미터값 저장(유저의 예약일자, 예약시간)
 		String userDate = request.getParameter("userDate");
 		String userTime = request.getParameter("userTime");
 		
@@ -308,7 +337,8 @@ public class OrderService {
             	// 예약까지 2시간 미만이라면 예약 일정 변경 불가능
                 result = false;
             }
-            
+        
+        // 날짜가 같지 않다면 시간 계산 수행 필요없이 예약 변경 가능
         } else {
         	result = true;
         }
@@ -316,4 +346,4 @@ public class OrderService {
 		return result;
 	} // getCanChange
 
-}
+} // end_of_OrderService

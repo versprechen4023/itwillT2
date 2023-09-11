@@ -11,15 +11,15 @@
 		format('woff');
 } /*  웹에서 폰트 받아오는 태그 */
 
-* {
-	font-family: 'Godo';
+/** {*/
+/*	font-family: 'Godo';*/
 	
-}
+/*}*/
 
 .myh2{
-	font-family: 'Godo' !important;
-	margin: 35px 0px 0px 40px;
-	
+/*	font-family: 'Godo' !important;*/
+	margin-left: 150px;
+	margin-top: 60px;
 }
 
 
@@ -35,8 +35,9 @@
     margin-left: 100px;
     margin-right: 100px;
     margin-top: 30px;
-    width: 300px;
+    width: 330px;
     height: 350px;
+    
   }
   
    .table-container2 {
@@ -45,6 +46,7 @@
 /*     clear:left; */
     margin-right: 100px;
     margin-top: 30px;
+    margin-left: 100px;
     width: 350px;
     height: 40px;
   }
@@ -63,7 +65,7 @@
   	display: inline-block;
 /* 	float:left; */
 	clear:left;
-	width: 75%;
+	width: 82%;
 	margin-left: 100px;
 	margin-right: 100px;
 	margin-top: 25px;
@@ -79,7 +81,7 @@
   	display: inline-block;
 /* 	float:left; */
 	clear:left;
-    width: 75%;
+    width: 82%;
 	margin-left: 100px;
 	margin-right: 100px;
 	
@@ -97,12 +99,13 @@
   th, td {
     padding: 8px;
     text-align: left;
-    border: 1px solid black;
+    border: 1px solid lightgray;
   }
   
 .h{
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 19px;
+	color: black;
 }
 
 
@@ -112,9 +115,20 @@
 	border: none;
 	color: black;
 	padding: 5px;
-	border-radius: 5px;
+	border-radius: 10px;
 	
 }
+
+
+hr {
+    margin-top: 10px;
+    border: 0;
+    border-top: 1px solid #000;
+    width: 1200px;
+    margin-left: 130px;
+    margin-bottom : 30px;
+}
+
 
 .mbtn-center {
     margin: 0 5px; /* 양쪽으로 조금씩 떨어짐 */
@@ -128,6 +142,7 @@
 
 .bold-cell {
     font-weight: bold;
+    color: black;
 }
 
 .petlist { /* 표 전체 */
@@ -141,46 +156,46 @@
 
 .petlist th, .petlist td {
         padding: 8px;
-        text-align: left;
-        border: 1px solid black;
+        text-align: center;
+        border: 1px solid lightgray;
+        
     }
 .petlist td {
     background-color: white;
 }
 .petlist-next {
 	margin-top: 10px;
-	width: 100%;
+	width: 1100px;
     height: 40px;
     display: flex;
     justify-content: center;
     position: relative;
 }
-.petlist-next a {
+.resCheck-next a {
 	width: 28px;
     height: 28px;
     font-weight: 400;
     font-size: 15px;
-	border-radius: 8px;
 	background: white;
     display: inline-block;
     margin: 0 2px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    line-height: 30px;
     text-align: center;
     justify-content: center;
     text-decoration: none;
     color: black !important;
+    border-radius: 30px;
+	border: 2px solid gray;
     transition: background-color 0.3s;
 }
-.petlist-next a:-webkit-any-link {
+.resCheck-next a:-webkit-any-link {
     color: -webkit-link;
     cursor: pointer;
 }
-.petlist-next a:hover {
+.resCheck-next a:hover {
     background-color: rgba(0, 0, 0, 0.4) ;
 }
-
 /* 펫 정보수정 select 와 정보수정 버튼 사이 간격 조절 */
 .pet-form {
     /* 내부 요소들을 수직으로 중앙 정렬 */
@@ -193,6 +208,6 @@
 .reservation th, .reservation td {
     padding: 8px;
     text-align: center; 
-    border: 1px solid black;
+    border: 1px solid lightgray;
 }
  

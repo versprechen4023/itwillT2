@@ -38,4 +38,18 @@ public class JSForward {
 			e.printStackTrace();
 		}
 	}
+	
+	// 창닫기 라인
+		public static void windowClose(HttpServletResponse response) {
+			try {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.print("<script>");
+				out.print("window.close();");
+				out.print("</script>");
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 }

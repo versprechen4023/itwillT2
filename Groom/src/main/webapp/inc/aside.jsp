@@ -36,7 +36,7 @@ if(id != null){
 	<nav id="fh5co-main-menu" role="navigation">
 		<ul>
 			<li><a href="storeInfo.gr">매장안내</a></li>
-			<li><a href="portfolio.gr">이용안내</a></li>
+			<li><a href="about.gr">이용안내</a></li>
 			<li><a href="myorder.or">예약하기</a></li>
 			<li><a href="reviewList.re">리뷰</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
@@ -45,7 +45,6 @@ if(id != null){
 					<li><a href="notice.bo">공지사항</a></li>
 					<li><a href="faq.bo">FAQ</a></li>
 					<li><a href="qna.bo">Q&A</a></li>
-					<li><a href="changeRes.my">contact</a></li>
 
 				</ul></li>
 		</ul>
@@ -59,7 +58,8 @@ if(id != null){
         주소: 부산광역시 부산진구 동천로 109<br>
 
 <!--         대표전화 : 051-803-0909<br><br> --><br>
-        Copyright © <br>
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script><br>
         All rights reserved Groom<br>
 
 <!--         <a href="about.gr">about</a><br> -->

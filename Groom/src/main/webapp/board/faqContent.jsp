@@ -45,18 +45,41 @@ String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
 
 <div class="bobtn" style="text-align: left; margin-left: 990px;" > 
 
+<%-- <% --%>
+<!-- // if(id != null){ -->
+<!-- // 	if(role.equals("admin")){ -->
+<%-- 		%> --%>
+<!--    <button type="button" value="삭제" class="deletebtn"  -->
+<%-- 	onclick="location.href='faqDelete.bo?faq_num=<%=boardDTO.getFaq_num() %>'"> 삭제</button> --%>
+<!--    <button type="button" value="수정" class="modifybtn"  -->
+<%--    	onclick="location.href='faqUpdate.bo?faq_num=<%=boardDTO.getFaq_num() %>'"> 수정 </button> --%>
+<%--  <% --%>
+<!-- // 	} -->
+<!-- // } -->
+<%-- %> --%>
+
 <%
 if(id != null){
 	if(role.equals("admin")){
 		%>
    <button type="button" value="삭제" class="deletebtn" 
-	onclick="location.href='faqDelete.bo?faq_num=<%=boardDTO.getFaq_num() %>'"> 삭제</button>
+	onclick="confirmDelete(<%=boardDTO.getFaq_num() %>)"> 삭제</button>
    <button type="button" value="수정" class="modifybtn" 
    	onclick="location.href='faqUpdate.bo?faq_num=<%=boardDTO.getFaq_num() %>'"> 수정 </button>
  <%
 	}
 }
 %>
+<!-- JavaScript로 삭제 확인 대화 상자 표시 -->
+<script>
+function confirmDelete(faq_num) {
+    if (confirm("정말로 삭제하시겠습니까?")) {
+        // 확인을 선택한 경우 "faqDelete.bo"로 삭제 요청을 보냅니다.
+        location.href = 'faqDelete.bo?faq_num=' + faq_num;
+    }
+}
+</script>
+
 <!--  <button type="button" value="목록" class="listbtn" onclick="location.href='faq.bo'"> 목록 </button> -->
  
  	</div>

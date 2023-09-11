@@ -11,12 +11,11 @@
 	
 <!-- 	리뷰상세 css 추가 -->
 	<link rel="stylesheet" href="./css/reviewContent_gr.css">
-	
 <body>
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
 <!-- =============================  네비게이션바 ============================= -->
-<form action="reviewUpdatePro.re" method="post" enctype="multipart/form-data">
+<form action="reviewUpdatePro.re" method="post" id="review-update" enctype="multipart/form-data">
 <%
 String id = (String)session.getAttribute("id");
 String role = (String)session.getAttribute("role"); 
@@ -71,9 +70,11 @@ for (int i = 1; i <= 5; i++) {
 		<div class="review-content animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->
 
 		<div class="content-top">
-		<div><p class="user-info"><%=reviewDTO.getU_name() %> / <a><%= stars %></a> / <%=format.format(reviewDTO.getRev_date()) %> / <%=reviewDTO.getU_count() %>번째 방문</p>
-			 <p class="product-info"><%=reviewDTO.getPro_name() %> / <%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %> / <%=reviewDTO.getS_location() %></p></div>
-			 
+		<div><p class="user-info"><%=reviewDTO.getU_name() %> / 
+		<a><%= stars %></a>
+		 / <%=format.format(reviewDTO.getRev_date()) %> / <%=reviewDTO.getU_count() %>번째 방문</p>
+		 <p class="product-info"><%=reviewDTO.getPro_name() %> / <%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %> / <%=reviewDTO.getS_location() %></p>
+		</div>
 		<div>
 <%
 if(id != null){
@@ -81,12 +82,19 @@ if(id != null){
 	if (num.equals(String.valueOf(u_num))) {
 %>		
 <%-- 		<input type="button" value="삭제" onclick="really('<%=reviewDTO.getRev_num()%>')"> --%>
-		<input type="submit" value="수정완료">	
+		<input type="submit" class="submit" value="수정완료">	
 <%}}%>
 		</div>
 		</div>
-		
-		<div class="content-middle">
+		<div class="content-middle content-middle2">
+<div class="review-star">
+    	<div class="star empty-star" data-rating="1"></div>
+    	<div class="star empty-star" data-rating="2"></div>
+    	<div class="star empty-star" data-rating="3"></div>
+    	<div class="star empty-star" data-rating="4"></div>
+    	<div class="star empty-star" data-rating="5"></div>
+</div>
+<input type="text" name="rev_rating" class="star-rating" id="rev-star" name="rev_rating" readonly>
 <%
 if (reviewDTO != null) {
 	String rev_content = reviewDTO.getRev_content();
@@ -104,7 +112,7 @@ if (reviewDTO != null) {
 String rev_img_url = reviewDTO.getRev_img_url();
 if (rev_img_url != null) {
 %>		
-		<img src="upload/<%=reviewDTO.getRev_img_url() %>" alt="이미지">
+		<img src="upload/<%=reviewDTO.getRev_img_url() %>" onerror="this.style.display='none'" />
 <%
 } else {
 %>
@@ -113,7 +121,6 @@ if (rev_img_url != null) {
 }
 %>
 		</div>
-		
 		<!-- 이미지 파일 첨부 -->
 	<div class="review-input-img">
 		<img src="./images/photo.png" class="review-input-img1" onclick="triggerFileInput()">
@@ -129,8 +136,6 @@ if (rev_img_url != null) {
 	</div>
 <input type="hidden" name="rev_num" value="<%=reviewDTO.getRev_num()%>">
 </form>
-
-
 
 <script>
 // function really(rev_num) {
@@ -168,6 +173,33 @@ function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘�
 			const fileInput = document.getElementById('fileInput');
 			fileInput.value = ''; // 파일 선택 해제
 			}
+			
+			
+// // ============================ 별점부분
+const stars = document.querySelectorAll('.star');
+const revRatingInput = document.querySelector('input[name="rev_rating"]');
+	stars.forEach((star, index) => {
+	star.addEventListener('click', () => {
+		const rating = index + 1;
+		for (let i = 0; i < stars.length; i++) {
+			if (i < rating) {
+				stars[i].classList.add('filled-star');
+				stars[i].classList.remove('empty-star');
+				} else {
+					stars[i].classList.remove('filled-star');
+					stars[i].classList.add('empty-star');
+					}
+			}
+		revRatingInput.value = rating; // Set the input value
+		});
+	});	
+	// Submit 버튼을 클릭할 때 별점이 선택되지 않은 경우 메시지 표시
+	document.getElementById('review-update').addEventListener('submit', (e) => {
+	    if (revRatingInput.value === '') {
+	        e.preventDefault(); // 폼 제출 방지
+	        alert("별점을 입력해주세요.");
+	    }
+	});
 </script>
 	
 	<!-- jQuery -->

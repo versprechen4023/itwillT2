@@ -23,4 +23,4 @@ public class SQLConnection {
 		return con;
 	}
 
-}
+} //end_of_SQLConnection

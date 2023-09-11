@@ -38,16 +38,45 @@ color: dodgerblue;
 	color: black;
 }
 div input {
-float: right;
+	float: right;
   	margin-right: 10px;
-  	background-color: lightgrey;
-  	color: white;
-  	border-radius: 7px;
+  	background-color: #E1E2CD;
+/*   	color: white; */
+  	color: black;
+  	font-weight: bold;
+  	border-radius: 5px;
+  	border: 1px solid black;
 }
-
+/* =================================================== 별점 수정 부분 */
+.review-star {
+display: flex;
+}
+.review-star div {
+margin: 0;
+font-size: 36px;
+}
+.star-rating {
+display: none;
+}
+.star {
+font-size: 24px; /* 별의 크기 설정 */
+cursor: pointer;
+margin: 0 10px;
+transition: color 0.2s; /* 색상 변경 시 부드럽게 변화하도록 설정 */
+}
+.empty-star:before {
+content: "\2606"; /* 빈 별(☆)의 문자를 유니코드로 설정 */
+}
+.filled-star:before {
+content: "\2605"; /* 채워진 별(★)의 문자를 유니코드로 설정 */
+color: dodgerblue;
+}
 /* ========================================= 리뷰상세 본문 */
 .content-middle {
 	padding: 20px 35px 50px 35px;
+}
+.content-middle2 {
+	padding: 0 35px 50px 35px;
 }
 .content-middle p {
 	width: 100%;

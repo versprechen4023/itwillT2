@@ -236,12 +236,12 @@ public class MemberDAO {
 	}
 	
 	// 아이디 찾기 메서드
-	public MemberDTO findid(String u_name, String u_email) {
+	public MemberDTO findId(String u_name, String u_email) {
 
 		memberdto = null;
 
 		try {
-
+			// db연결
 			con = new SQLConnection().getConnection();
 
 			String SQL = "SELECT u.u_id FROM user u JOIN user2 u2 on u.u_num = u2.u_num  WHERE u2.u_name=? AND u2.u_email = ? ";
@@ -259,6 +259,7 @@ public class MemberDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			memberdto = null;
 		} finally {
 			dbClose();
 		}
@@ -289,10 +290,9 @@ public class MemberDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			memberdto = null;
 		} finally {
-
 			dbClose();
-
 		}
 		return memberdto;
 	} // findpass
@@ -377,7 +377,7 @@ public class MemberDAO {
 			pstmt.setInt(1, u_num);
 			int rs = pstmt.executeUpdate();
 
-			// 업데이트 성공유무 결정
+			// 업데이트 성공유무 반환
 			isDisabled = (rs != 0) ? true : false;
 
 		} catch (Exception e) {
@@ -401,7 +401,7 @@ public class MemberDAO {
 			con = new SQLConnection().getConnection();
 
 			// SQL 쿼리 실행(유저탈퇴 테이블에 값 삽입)
-			String SQL = "INSERT INTO cancel(s_num, del_date) VALUE(?,?)";
+			String SQL = "INSERT INTO cancel(u_num, del_date) VALUE(?,?)";
 			pstmt = con.prepareStatement(SQL);
 			pstmt.setInt(1, u_num);
 			pstmt.setTimestamp(2, del_date);
@@ -458,4 +458,4 @@ public class MemberDAO {
 
 		if (con != null) {try {con.close();} catch (SQLException e) {e.printStackTrace();}}
 	}
-}
+} //end_of_MemberDAO

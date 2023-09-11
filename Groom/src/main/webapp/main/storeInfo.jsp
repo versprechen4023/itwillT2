@@ -24,10 +24,19 @@
 <!-- 매장 안내 -->
 
 <div id="fh5co-main">
-    <div class="fh5co-narrow-content">
-        <h1 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft" style="font-size: 30px;">매장 안내</h1>
+
+        <div class="fh5co-narrow-content" style="display: flex; align-items: center; flex-direction: row;">
+    <h1 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft" style="font-size: 30px; margin-right: 10px;">매장 안내</h1>
+    
+    <!-- 리뷰보기 버튼 -->
+    <button type="button" onclick="location.href='reviewList.re?pro_name= ';" style="background-color: black;
+    color: white; border: none; border-radius: 50px; padding: 6px 11px; cursor: pointer; margin-bottom: 54px; margin-left: 5px;">리뷰보기</button>
+</div>
+        
+        
+        
         <div class="row">
-            <div style="padding-left: 190px; padding-top: 30px" class="this">
+            <div style="padding-left: 250px; padding-top: 0px" class="this">
             
 <!-- 서면점-->
                 <div style="display: inline-block; vertical-align: top; margin-right: 110px;">
@@ -42,8 +51,9 @@
                        
                        
                     <!-- 리뷰보기 버튼 -->
-                        <button type="button" onclick="location.href='reviewList.re?pro_name= ';" style="background-color: #ccc; color: white; border: none;
-                                border-radius: 5px; padding: 6px 11px; cursor: pointer; margin-top: 12px; margin-left: 100px;">리뷰보기</button>
+                        <button type="button" onclick="location.href='reviewList.re?pro_name= ';"
+                        style="background-color: #FDFDFC; color: #FDFDFC; border: none;
+                               border-radius: 5px; padding: 6px 11px; cursor: pointer; margin-top: 12px; margin-left: 100px;"></button>
                     </div>
                     
                     
@@ -74,8 +84,9 @@
                         
                         
                     <!-- 리뷰보기 버튼 -->
-                        <button type="button" onclick="location.href='reviewList.re?pro_name= ';" style="background-color: #ccc; color: white; border: none;
-                               border-radius: 5px; padding: 6px 11px; cursor: pointer; margin-top: 12px; margin-left: 100px;">리뷰보기</button>
+                        <button type="button" onclick="location.href='reviewList.re?pro_name= ';"
+                        style="background-color: #FDFDFC; color: #FDFDFC; border: none;
+                               border-radius: 5px; padding: 6px 11px; cursor: pointer; margin-top: 12px; margin-left: 100px;"></button>
                     </div>
                     
                     
@@ -105,9 +116,10 @@
                         <h1 style="font-size: 21px; margin-left: 8px; margin-top: 17px; margin-bottom: 20px; font-weight: bold;">율하점</h1>
                         
                         
-                    <!-- 리뷰보기 버튼 -->   
-                        <button type="button" onclick="location.href='reviewList.re?pro_name= ';" style="background-color: #ccc; color: white; border: none;
-                               border-radius: 5px; padding: 6px 11px; cursor: pointer; margin-top: 12px; margin-left: 100px;">리뷰보기</button>
+                    <!-- 리뷰보기 버튼 -->
+                        <button type="button" onclick="location.href='reviewList.re?pro_name= ';"
+                        style="background-color: #FDFDFC; color: #FDFDFC; border: none;
+                               border-radius: 5px; padding: 6px 11px; cursor: pointer; margin-top: 12px; margin-left: 100px;"></button>
                     </div>
                     
                     
@@ -124,18 +136,22 @@
                     </ul>
                 </div>
             </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+    <button type="button" onclick="location.href='myorder.or';" style="background-color: #E1E2CD; width: 1000px; margin-left: -80px;
+    color: black; border: none; border-radius: 13px; padding: 14px 30px; cursor: pointer; margin-top: 40px;
+    font-size: 15px; font-weight: bold;">예약하기</button>
+</div>
         </div>
     </div>
   
     
-<!--  예약하기 버튼 -->
 
-    <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
-    <button type="button" onclick="location.href='myorder.or';"style="background-color: #E1E2CD; color: black; border: none; margin-left: -50px;
-           border-radius: 5px; padding: 14px 9px; cursor: pointer; width: 1000px; font-size: 15px; font-weight: bold;">예약하기</button>
+
+
 </div>
-</div>
-</div>
+
+
+
 
 
 

@@ -54,6 +54,36 @@ public class OrderDAO {
 		return serviceDate;
 	}
     
+	// 데이트 피커 날짜 비활성화를 위한 메서드 [Admin 전용] @오버로딩
+	public List<OrderDTO> getServiceDate(int s_num) {
+		
+		List<OrderDTO> serviceDate = null;
+		
+		try {
+			
+			con = new SQLConnection().getConnection();
+			
+			String sql = "SELECT off_day FROM store_offdays WHERE s_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, s_num);
+			rs = pstmt.executeQuery();
+			// 리스트에 초기저장소 10 할당
+			serviceDate = new ArrayList<>();
+
+			while(rs.next()) {
+				orderDTO = new OrderDTO();
+				orderDTO.setDate(rs.getDate("off_day"));
+
+				serviceDate.add(orderDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return serviceDate;
+	}
+	
 	// 타임 피커 날짜 비활성화를 위한 메서드
 	public List<OrderDTO> getServiceTime(int s_num, int emp_num, String dis_daydate) {
 		
@@ -65,15 +95,16 @@ public class OrderDAO {
 			
 			String sql = "SELECT dis_time FROM disabled_time WHERE s_num = ? and emp_num = ? and dis_daydate = ?\r\n"
 					+ "UNION\r\n"
-					+ "SELECT res_time FROM reservation WHERE s_num = ? and emp_num = ?";
+					+ "SELECT res_time FROM reservation WHERE s_num = ? and emp_num = ? and res_day = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, s_num);
 			pstmt.setInt(2, emp_num);
 			pstmt.setString(3, dis_daydate);
 			pstmt.setInt(4, s_num);
 			pstmt.setInt(5, emp_num);
+			pstmt.setString(6, dis_daydate);
 			rs = pstmt.executeQuery();
-
+			// 리스트에 초기저장소 10 할당
 			serviceTime = new ArrayList<>();
 
 			while(rs.next()) {
@@ -130,11 +161,11 @@ public class OrderDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, s_num);
 			rs = pstmt.executeQuery();
-
+			// 리스트에 초기저장소 10 할당
 			serviceList = new ArrayList<>();
 			
 			int startingNumber = startNum;
-			int increment = 4;
+			int increment = 4; // 서비스 종류가 4개이므로 4씩 증가 수정된다면 이 번호는 DB에서 가져와야함
 			
 			while(rs.next()) {
 				orderServiceDTO = new OrderServiceDTO();
@@ -168,9 +199,10 @@ public class OrderDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, s_num);
 			rs = pstmt.executeQuery();
-
+			// 리스트에 초기저장소 10 할당
 			weightList = new ArrayList<>();
-
+			
+			// 무게에 번호를 부여하기위한 변수선언
 			int startingNumber = 1;
 			int increment = 1;
 
@@ -206,7 +238,7 @@ public class OrderDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, s_num);
 			rs = pstmt.executeQuery();
-
+			// 리스트에 초기저장소 10 할당
 			serviceList = new ArrayList<>();
 
 			while (rs.next()) {
@@ -465,4 +497,4 @@ public class OrderDAO {
 		if (con != null) {try {con.close();} catch (SQLException e) {e.printStackTrace();}}
 	}
 
-}
+} //end_of_OrderDAO

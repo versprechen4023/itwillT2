@@ -12,10 +12,25 @@
 
 	</head>
 	
+
 	<!-- 메인페이지 css 오버라이드  -->
 	<link href="./css/review_gr.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="./css/main_gr.css">
-	
+
+<style>
+.main-container{
+width: 1120px;
+display: flex;
+justify-content: center;
+}
+.image-width{
+width: 555px;
+margin-right: 30px
+}
+.main-content-middle {
+margin-left: 200px;
+}
+</style>	
 	<body> <!--  옆에 사이드바(네비바) 주소는 aside.jsp에서 수정해야함.  -->
 	<div id="fh5co-page">
         <!-- 사이드바호출 -->
@@ -38,74 +53,70 @@
 			</section>
             <!-- 비디오관련태그 끝-->
             
-            <!-- 둥근이미지관련태그 -->
+            <div class="main-content-middle">
+            <!-- 둥근이미지관련태그 ////////////////////////////////////////////////////////////////////////////////// -->
 			<section id="둥근이미지">
-				<div class="container px-5">
-					<div class="row gx-5 align-items-center">
-						<div class="col-lg-6">
+				<div class=""> <!--  -->
+					<div class="main-container">
+						<div class="image-width">
 							<div class="text-center1">
 								<p class="circle-text">
 								<h1>반려동물 미용</h1>
-								미용은 반려동물의 외모뿐만 아니라 <br>생활과 건강에도 큰 영향을 미칩니다.<br>
-								정기적인 미용은 반려동물의 피부와 <br>털을 건강하게 유지하는 데 도움을 주며,<br>
-								털, 발톱, 귀 등을 깔끔하게 관리하고 <br>점검하여 특정 질병이나 감염을<br>
-								조기에 발견하고 예방할 수 있습니다. <br>또한 관리되지 않은 긴 털과 발톱을<br>
-								정리하여 반려동물의 편안함을 <br>증진시킬 수 있습니다.<br></p>
+								미용은 반려동물의 외모뿐만 아니라<br>생활과 건강에도 중요한 영향을 미칩니다.<br> 
+								정기적인 미용은 피부와 털을 <br>건강하게 유지하고
+								특정 질병이나 감염을<br>조기에 발견하여 예방하는데 도움을 줍니다. <br>
+								또한 긴 털과 발톱을 정리하여 반려동물의 <br>편안함을 증진시킬 수 있습니다.</p>
 							</div>
 						</div>
-						<div class="col-lg-6">
-							<div class="p-5">
+						<div class="image-width">
+							<div class="">
 								<img class="img-responsive img-circle" src="./images/mainimage1.jpg">
 									
 							</div>
 						</div>
 					</div>
-				</div>
+				</div><!--  -->
 			</section>
 
 			<section id="둥근이미지">
-				<div class="container px-5">
-					<div class="row gx-5 align-items-center">
-						<div class="col-lg-6 order-lg-2">
-							<div class="p-5">
+				<div class="">
+					<div class="main-container">
+						<div class="image-width">
+							<div class="">
 								<img class="img-responsive img-circle" src="./images/mainimage4.png">
 							</div>
 						</div>
-						<div class="col-lg-6 order-lg-1">
+						<div class="image-width">
 							<div class="text-center2">
 								<p class="circle-text">
 								<h1>반려동물 목욕</h1>
-								목욕은 피부 문제 예방 및 건강을 개선하는 데 도움을 줍니다.<br>
-								목욕을 통해 먼지, 땀 그리고 다른 미생물로부터<br>반려견의 피부를 깨끗이 유지하며
-								알레르기 유발 물질을<br> 제거하고 진드기와 벼룩과 같은 해충의 예방에도 도움을 줄 수 있습니다.
-								또한 반려동물의 체취를 제거하고 털을 청결하게 관리하며
-								정기적인 목욕은 반려동물의 자연적인 <br>피부 기름층을 유지하는 데 도움이 됩니다.
-								<br>이는 피부와 털을 보호하는 역할을 합니다.</p>
-							</div>
+								목욕은 반려동물의 피부 건강을 <br>개선하고 문제를 예방합니다.<br> 
+								먼지, 땀, 미생물로부터 피부를 깨끗하게<br>유지하며 알레르기 
+								유발 물질 제거와 <br>해충 예방에 도움을 줍니다.<br> 
+								피부 기름층을 유지하여 피부와 털을 보호하며 <br>
+								체취를 제거하고 털을 청결하게 관리합니다.</p>
 						</div>
 					</div>
 				</div>
 			</section>
 			
 			<section id="둥근이미지">
-				<div class="container px-5">
-					<div class="row gx-5 align-items-center">
-						<div class="col-lg-6">
+				<div class="">
+					<div class="main-container">
+						<div class="image-width">
 							<div class="text-center3">
 							<br>
 							<h1>스포팅컷</h1>
 								<p class="circle-text">
-								다리에 볼륨감을 주는 미용법입니다.<br>
-								털이 엉키거나 이물질이 묻기 쉬운 몸통은 <br>상대적으로 짧게 자르고 
-								다리털은 둥글게 다듬어 <br>실용성과 심미성을 모두 잡습니다.<br> 
-								스포팅컷은 반려견의 체형을 보정하기에도 좋은 스타일입니다.<br> 
-								질병 및 수술등으로 한쪽 다리가 왜소해진 강아지라면<br> 
-								스포팅컷을 통해 양쪽 다리의 균형감을 맞출 수 있습니다.
+							얼굴과 다리를 남기고 몸 전체를 짧게 미는 미용법<br>
+							다리털을 둥글게 다듬어 볼륨감을 주어 <br>실용성과 심미성을 동시에 살립니다.<br>
+							이 스타일은 반려견의 체형을 조절하고<br>
+							반려견의 다리 균형감을 맞추기에 효과적입니다.
 								</p>
 							</div>
 						</div>
-						<div class="col-lg-6">
-							<div class="p-5">
+						<div class="image-width">
+							<div class="">
 								<img class="img-responsive img-circle" src="./images/mainimage3.png">
 							</div>
 						</div>
@@ -113,6 +124,7 @@
 				</div>
 			</section>
             <!-- 둥근이미지관련태그 끝-->
+            </div>
             
 			<div class="fh5co-narrow-content">
 				<div class="row row-bottom-padded-md">

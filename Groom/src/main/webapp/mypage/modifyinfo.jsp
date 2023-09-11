@@ -29,10 +29,11 @@ MypageDTO mypageInfo = (MypageDTO)request.getAttribute("mypageInfo");
 	// MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 	%>
 <!-- 로고 자리 -->
-    <h1 class="h1"> Groom(로고) </h1>
+   <h1 id="fh5co-logo1"><a href="main.gr">
+	<img src="./images/LOGO.png" style="margin-top:80px; margin-bottom: 10px;"></a></h1>
        
 <!-- 내정보 수정 텍스트 -->  
-    <p class="text"  class="myinfo">내 정보 수정</p>
+    <p class="text"  class="myinfo" style="margin-top: 50px;">내 정보 수정</p>
     
 <!-- 가로선 -->  
     <div class="separator"></div>

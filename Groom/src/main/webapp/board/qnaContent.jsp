@@ -27,6 +27,21 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 
 <h2 class="headh1" onclick="location.href='qna.bo'">Q&A</h2>
 <hr>
+
+
+<%
+	if (id != null) {
+	if (role.equals("admin")) {
+%>
+	<input type="button" value="(관리자)&#10;삭제"
+	onclick="really1('<%=qnaDTO.getQnanum()%>')"
+	style="font-size: 5px; padding: 1px; background: black; border-radius: 5px; color: white; margin-left: 1160px; margin-bottom: -150px;">
+<%
+	}
+}
+%>
+
+
 <table id="notice" border="1">
 
 <tr><td class="qnawriter">글쓴이</td><td class="vwriter"><%=qnaDTO.getId() %></td></tr>
@@ -46,15 +61,15 @@ String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
 
 </table>
 
-<div class="btn"  style="text-align: left; margin-left: 1037px; margin-top: -10px;"> 
+<div class="btn"  style="text-align: left; margin-left: 1035px; margin-top: -10px;"> 
+
 
 		<%
 		 if( id != null ) {
 			 if(id.equals(qnaDTO.getId())) {
 				%>
-				  <button type="button" value="삭제" class="deletebtn" onclick="location.href='qnaDelete.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 삭제</button>
-   <button type="button" value="수정" class="modifybtn" onclick="location.href='qnaUpdate.bo?qna_num=<%=qnaDTO.getQnanum()%>'"> 수정 </button>
-<!-- 				<button type="button" value="목록" class="listbtn" onclick="location.href='qna.bo'"> 목록 </button> -->
+<input type="button" value="삭제" class="deletebtn" onclick="really1('<%=qnaDTO.getQnanum()%>')">
+<button type="button" value="수정" class="modifybtn" onclick="location.href='qnaUpdate.bo?qna_num=<%=qnaDTO.getQnanum()%>'">수정</button>
 				<%  
 			 }
 		 }
@@ -125,7 +140,7 @@ if ( id != null ) {
    }
    }
 %>
-
+<br><br><br><br><br>
    </div> 
   
 

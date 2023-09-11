@@ -20,7 +20,11 @@
 	padding: 50px;
 	margin-left: 387px;
 	margin-top: -75px;
-	
+	max-width: 940px;
+	margin: 0 auto;
+	padding: 65px;
+	color: black;
+
 }
 
 

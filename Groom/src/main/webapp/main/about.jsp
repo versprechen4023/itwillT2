@@ -27,7 +27,9 @@
 				<div class="row row-bottom-padded-md">
 					<div class="col-md-6">
 <!-- 						<img src="./images/grooming.jpg" width="380" height="530" style="margin-left: 220px; margin-top: 95px">회사 이미지	 -->
-<img src="./images/grooming.jpg" width="380" style="margin-top: 30px">
+
+<img src="./images/grooming.jpg" width="380" height="500" style="margin-top: 105px; margin-left: 65px;">
+
 					</div>
 								
    <div class="groom-info"><br><br><br><br><!-- 회사 소개글 -->
@@ -50,7 +52,7 @@
 <!-- 		   	요금표 추가 -->
 		   	
 		   	</div><!-- //groom-info -->
-		   	<img src="./images/price.png" width="800px" style="float: left;  margin-top:150px; margin-left: 20px">
+		   	<img src="./images/price.png" width="800px" style="float: left; margin-left: -50px; margin-top: 100px;">
 					</div>
 				</div>
 			</div>
@@ -89,8 +91,16 @@
 <!--     </div> -->
 <!--     </div> -->
 <!--         <div style="height: 25px;"></div>맨 아래 간격 조절 -->
+<<<<<<< HEAD
 							
 				
+=======
+							</div>
+						</div>
+					</div>
+				</div>
+		   </div><br><br>
+>>>>>>> refs/heads/KMU
 <!-- 	  </div> -->
 
 	<!-- jQuery -->

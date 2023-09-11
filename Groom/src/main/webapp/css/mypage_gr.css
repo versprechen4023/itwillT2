@@ -75,6 +75,7 @@
     display: flex;          /* 내부 요소를 가로로 배치 */
     justify-content: flex-end;  /* 내부 요소들을 오른쪽으로 정렬 */
     align-items: center;    /* 내부 요소들을 수직으로 중앙 정렬 */
+    margin-top: -30px;
 }
   
     .table-container4{
@@ -186,12 +187,13 @@ hr {
     text-decoration: none;
     color: black !important;
     border-radius: 30px;
-	border: 2px solid gray;
+	border: 1px solid black;
     transition: background-color 0.3s;
 }
 .resCheck-next a:-webkit-any-link {
     color: -webkit-link;
     cursor: pointer;
+    margin-left: 510px;
 }
 .resCheck-next a:hover {
     background-color: rgba(0, 0, 0, 0.4) ;

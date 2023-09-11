@@ -48,9 +48,7 @@ public class ReviewController extends HttpServlet {
 
 		// 리뷰리스트 유저가적은리뷰 받아오는 페이지 review/reviewList.jsp
 		if (sPath.equals("/myReviewList.re")) {
-			// 유저번호는 가능하면 세션에서 받아오는 것이 좋으므로 물어보고 처리
-			int u_num = Integer.parseInt(request.getParameter("u_num"));
-			List<ReviewDTO> reviewList = new ReviewService().getMyReviewList(u_num);
+			List<ReviewDTO> reviewList = new ReviewService().getMyReviewList(request);
 			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
 			request.setAttribute("reviewList", reviewList);
 			System.out.println("reviewList.re");
@@ -59,60 +57,48 @@ public class ReviewController extends HttpServlet {
 
 		// 리뷰리스트 목욕관련 받아오는 페이지 review/reviewList1.jsp
 		if (sPath.equals("/reviewList1.re")) {
-			// 상품 종류 얻어오기
-			String proName = request.getParameter("pro_name");
 			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(proName);
+			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList1");
 		} // reviewList1.re [리뷰목록1]
 
 		// 리뷰리스트 부분미용 관련 받아오는 페이지 review/reviewList2.jsp
 		if (sPath.equals("/reviewList2.re")) {
-			// 상품 종류 얻어오기
-			String proName = request.getParameter("pro_name");
 			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(proName);
+			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList2");
 		} // reviewList2.re [리뷰목록2]
 
 		// 리뷰리스트 부분+목욕 관련 받아오는 페이지 review/reviewList3.jsp
 		if (sPath.equals("/reviewList3.re")) {
-			// 상품 종류 얻어오기
-			String proName = request.getParameter("pro_name");
 			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(proName);
+			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList3");
 		} // reviewList3.re [리뷰목록3]
 
 		// 리뷰리스트 전체미용 관련 받아오는 페이지 review/reviewList4.jsp
 		if (sPath.equals("/reviewList4.re")) {
-			// 상품 종류 얻어오기
-			String proName = request.getParameter("pro_name");
 			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(proName);
+			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList4");
 		} // reviewList4.re [리뷰목록4]
 
 		// 리뷰리스트 스포팅 관련 받아오는 페이지 review/reviewList5.jsp
 		if (sPath.equals("/reviewList5.re")) {
-			// 상품 종류 얻어오기
-			String proName = request.getParameter("pro_name");
 			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(proName);
+			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList5");
 		} // reviewList5.re [리뷰목록5]
 
 		// 리뷰리스트 가위컷 관련 받아오는 페이지 review/reviewList6.jsp
 		if (sPath.equals("/reviewList6.re")) {
-			// 상품 종류 얻어오기
-			String proName = request.getParameter("pro_name");
 			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(proName);
+			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList6");
 		} // reviewList6.re [리뷰목록6]
@@ -141,8 +127,13 @@ public class ReviewController extends HttpServlet {
 		// 리뷰작성 관련 로직
 		if (sPath.equals("/reviewWritePro.re")) {
 			System.out.println("reviewWritePro.re");
-			// 리뷰 작성을 위한 메서드 호출
-			new ReviewService().insertReview(request);
+			// 리뷰 작성을 위한 메서드 호출하고 결과값을 반환
+			boolean result = new ReviewService().insertReview(request);
+			if (result) {
+				System.out.println("리뷰작성완료");
+			} else {
+				System.out.println("리뷰작성실패");
+			}
 			JSForward.windowClose(response); // 창닫기 라인
 		} // writereviewPro.re [리뷰작성 후 등록]
 
@@ -270,7 +261,7 @@ public class ReviewController extends HttpServlet {
 		// 리뷰 수정 관련 페이지 review/reviewUpdate.jsp
 		if (sPath.equals("/reviewUpdate.re")) {
 			System.out.println("reviewUpdate.re");
-			
+
 			// 기존의 리뷰내용을 불러오기위한 메서드 호출
 			ReviewDTO reviewDTO = new ReviewService().getReview(request);
 			// 리퀘스트에 리뷰내용을 저장후 페이지이동
@@ -285,7 +276,7 @@ public class ReviewController extends HttpServlet {
 			boolean result = new ReviewService().updateReview(request);
 			// 정상처리 되었을 경우 출력
 			if (result) {
-			JSForward.locationHref(response, "리뷰 수정 완료.", "reviewList.re");
+				JSForward.locationHref(response, "리뷰 수정 완료.", "reviewList.re");
 			} else {
 				JSForward.locationHref(response, "리뷰를 수정하는데 문제가 발생했습니다.", "reviewList.re");
 			}

@@ -193,7 +193,7 @@ hr {
 .resCheck-next a:-webkit-any-link {
     color: -webkit-link;
     cursor: pointer;
-    margin-left: 510px;
+    margin-left: 50px;
 }
 .resCheck-next a:hover {
     background-color: rgba(0, 0, 0, 0.4) ;

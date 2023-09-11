@@ -65,7 +65,7 @@
                     <ul>
                         <li style="padding: 2px; color: black;">운영시간 10:00-18:00</li>
                         <li style="padding: 2px; color: black;">매주 월요일 휴무</li>
-                        <li style="padding: 2px; color: black;">☎051-803-0909</li>
+                        <li style="padding: 2px; color: black;">☎ 051-803-0909</li>
                         <li style="padding: 2px; color: black;">부산광역시 부산진구 동천로 109</li>
                     </ul>
                 </div>

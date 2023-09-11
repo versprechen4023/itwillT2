@@ -116,7 +116,6 @@ width: 900px;
     padding-left: 10px;
     background-color: white;
 
-
 }
 
 .btn {
@@ -136,7 +135,6 @@ width: 900px;
     -o-transition: 0.5s;
     transition: 0.5s;
     padding: 8px 20px !important;
-    
 /*     float: right; */
 /*     margin-right:255px; */
 /*     font-family: 'Godo' !important; */
@@ -151,8 +149,6 @@ width: 900px;
     cursor: pointer; /* 커서 스타일을 포인터로 변경하여 버튼처럼 보이게 함 */
     margin-left : 10px;
     border-radius:5px;
-    background-color: #E8E8E8;
-    color: black;
 }
 
 /* 수정 버튼 스타일 */
@@ -165,8 +161,6 @@ width: 900px;
     cursor: pointer; /* 커서 스타일을 포인터로 변경하여 버튼처럼 보이게 함 */
     margin-left : 10px;
     border-radius:5px;
-    background-color: #E8E8E8;
-    color: black;
     margin-bottom: 50px;
     
 }

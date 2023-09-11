@@ -143,15 +143,13 @@ public class QnaService {
 		return qnaDTO;
 	}// getQna(qna상세)
 
-	public boolean insertQna(HttpServletRequest request) {
-		
-		boolean result = false;
-		
+	public QnaDTO insertQna(HttpServletRequest request) {
 		try {
 			
+			request.setCharacterEncoding("utf-8");
 			// qnawrite에서 받는 값
 			String uploadPath = request.getRealPath("/upload");
-			int maxSize = 10*1024*1024;
+			int maxSize = 1010241024;
 			MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "utf-8",
 					new DefaultFileRenamePolicy());
 
@@ -181,38 +179,30 @@ public class QnaService {
 
 
 			// DAO생성해서 얘로 DTO값을 넘겨줌
-			result = new QnaDAO().insertqnaBoard(qnaDTO);
+			QnaDAO qnaDAO = new QnaDAO();
+			qnaDAO.insertqnaBoard(qnaDTO);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		return qnaDTO;
 
 	}// insertQna(qna작성)
 
 
-	public boolean deleteQna(HttpServletRequest request) {
+	public void deleteQna(HttpServletRequest request) {
 		System.out.println("QnaService deleteQna()");
-		
-		boolean result = false;
-		
 		try {
-			// 변수에 리퀘스트 파라미터값 저장(QNA 글번호)
 			int qna_num = Integer.parseInt(request.getParameter("qna_num"));
-			// deleteQna(qna_num) 메서드 호출
-			result = new QnaDAO().deleteQna(qna_num);
+			qnaDAO = new QnaDAO();
+			qnaDAO.deleteQna(qna_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return result;
 	}// deleteQna(qna삭제)
 
-	public boolean updateQna(HttpServletRequest request) {
+	public void updateQna(HttpServletRequest request) {
 		System.out.println("QnaService updateQna()");
-		
-		boolean result = false;
-		
 		try {
 			String uploadPath = request.getRealPath("/upload");
 			int maxSize = 10 * 1024 * 1024;
@@ -245,19 +235,16 @@ public class QnaService {
 			System.out.println("큐엔에이서비스 qna_num" + title);
 			System.out.println("큐엔에이서비스 qna_num" + qnaimgurl);
 			
-			// updateQna(qnaDTO) 메서드 호출
-			result = new QnaDAO().updateQna(qnaDTO);
+			QnaDAO qnaDAO = new QnaDAO();
+			// updateBoard(boardDTO) 메서드 호출
+			qnaDAO.updateQna(qnaDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return result;
 	}// updateQna(qna수정)
 
-	public boolean writeRe(HttpServletRequest request) {
+	public void writeRe(HttpServletRequest request) {
 		System.out.println("QnaService writeRe()");
-		
-		boolean result = false;
 
 		try {
 			String uploadPath = request.getRealPath("/upload");
@@ -274,17 +261,14 @@ public class QnaService {
 			qnaDTO.setRecontent(re_content);
 			qnaDTO.setRedate(re_date);
 
+			qnaDAO = new QnaDAO();
 			System.out.println("qanservice writere ++++++++" + qna_num);
 			System.out.println("qanservice writere ++++++++" + re_content);
 			System.out.println("qanservice writere ++++++++" + re_date);
-			
-			result = new QnaDAO().writeRe(qnaDTO);
-			
+			qnaDAO.writeRe(qnaDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return result;
 	}// writeRe(답글작성)
 
 	public void updateRe(HttpServletRequest request) {
@@ -294,7 +278,7 @@ public class QnaService {
 			String recontent = request.getParameter("re_content");
 			String id = request.getParameter("u_id");
 	
-			QnaDTO qnaDTO = new QnaDTO();
+			QnaDTO reviewDTO = new QnaDTO();
 			qnaDTO.setQnanum(qnanum);
 			qnaDTO.setRecontent(recontent);
 

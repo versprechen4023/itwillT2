@@ -23,13 +23,11 @@
 
 		<div id="fh5co-main">
 			<div class="fh5co-narrow-content">
-			<h1 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft" style="font-size: 30px; margin-right: 10px;">이용 안내</h1>
+			    <h1 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft" style="font-size: 30px; margin-right: 10px;">이용 안내</h1>
 				<div class="row row-bottom-padded-md">
 					<div class="col-md-6">
 <!-- 						<img src="./images/grooming.jpg" width="380" height="530" style="margin-left: 220px; margin-top: 95px">회사 이미지	 -->
-
-<img src="./images/grooming.jpg" width="380" height="500" style="margin-top: 105px; margin-left: 65px;">
-
+<img src="./images/grooming.jpg" width="380" height="500" style="margin-top: 60px; margin-left: 55px;">
 					</div>
 								
    <div class="groom-info"><br><br><br><br><!-- 회사 소개글 -->
@@ -50,16 +48,8 @@
                 </div>
 		   	
 <!-- 		   	요금표 추가 -->
+		   	<img src="./images/price.png" width="800px" style="float: left; margin-left: -50px; margin-top: 105px;">
 		   	
-		   	</div><!-- //groom-info -->
-		   	<img src="./images/price.png" width="800px" style="float: left; margin-left: -50px; margin-top: 100px;">
-					</div>
-				</div>
-			</div>
-		   </div>
-		   
-		   
-		   
 <!--    <div class="fh5co-narrow-content" style="display: flex; justify-content: center; align-items: center;"> -->
 <!--        <h2 class="fh5co-heading" style="margin: 0; font-size: 13.5px;">S  e  r  v  i  c  e</h2> -->
 <!--            </div> -->
@@ -91,16 +81,11 @@
 <!--     </div> -->
 <!--     </div> -->
 <!--         <div style="height: 25px;"></div>맨 아래 간격 조절 -->
-<<<<<<< HEAD
-							
-				
-=======
 							</div>
 						</div>
 					</div>
 				</div>
-		   </div><br><br>
->>>>>>> refs/heads/KMU
+		   </div><br>
 <!-- 	  </div> -->
 
 	<!-- jQuery -->

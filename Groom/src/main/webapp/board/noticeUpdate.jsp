@@ -8,8 +8,8 @@
 </head>
 <!-- noticeWrite css 추가 -->
 <link rel="stylesheet" href="./css/noticeWrite_gr.css">
-<link rel="stylesheet" href="./css/style.css">
-<link rel="stylesheet" href="./css/aside_gr.css">
+<!-- <link rel="stylesheet" href="./css/style.css"> -->
+<!-- <link rel="stylesheet" href="./css/aside_gr.css"> -->
 <body>
 
 <!-- 사이드바호출 -->
@@ -21,7 +21,7 @@
 String role = (String)session.getAttribute("role");
 Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 %>
-<h2  onclick="location.href='notice.bo'">공지사항 수정</h2>
+<h2  onclick="location.href='notice.bo'">공지사항</h2>
 <hr>
 
 <form id="nwf" method="post" action="noticeUpdatePro.bo" enctype="multipart/form-data">

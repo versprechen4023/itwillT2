@@ -36,14 +36,13 @@ String imgURL = boardDTO.getFaq_img_url(); // 이미지 URL 가져오기
 
 String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
 %>
-
 <%= imgTag %>
-	<br>
-	<%=boardDTO.getFaq_content() %></td></tr>
+<br>
+<%=boardDTO.getFaq_content() %></td></tr>
 
 </table>
 
-<div class="bobtn" style="text-align: left; margin-left: 990px;" > 
+<div class="bobtn" style="text-align: left; margin-left: 1060px;" > 
 
 <%-- <% --%>
 <!-- // if(id != null){ -->

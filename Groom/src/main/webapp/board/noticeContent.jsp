@@ -45,7 +45,7 @@ String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\" >" : "";
 %>
 <%= imgTag %>
 <br>
-	<%=boardDTO.getN_content() %> </td></tr>
+<%=boardDTO.getN_content() %> </td></tr>
 
 
 </table>

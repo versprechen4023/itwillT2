@@ -436,7 +436,7 @@ public class MypageDAO {
 			pstmt.setInt(2, u_num);
 			int rs = pstmt.executeUpdate();
 
-			// 업데이트 성공유무 결정
+			// 업데이트 성공유무 반환
 			result = (rs != 0) ? true : false;
 
 		} catch (Exception e) {

@@ -292,7 +292,7 @@ String format_res_time = res_time.substring(0, 5);
     	<td class="status font-bold"><%=status %></td>
     	<td>
     	    <input type="button" value="취소" class="status-button"
-    	     onclick="isCanceled(<%=orderReservationDTO.getRes_num()%>)">
+    	     onclick="isCanceled(<%=orderReservationDTO.getRes_num()%>,<%=orderReservationDTO.getRes_status()%>)">
         </td>
     <td>
     	    <input type="button" value="변경" class="status-button"
@@ -301,7 +301,8 @@ String format_res_time = res_time.substring(0, 5);
     	</td>
     	<td>
 		<input type="button" value="작성" class="status-button"
-  		onclick="openReviewWrite(<%=mypageInfo.getNum() %>,<%=orderReservationDTO.getRes_num()%>)">
+  		onclick="openReviewWrite(<%=mypageInfo.getNum() %>,<%=orderReservationDTO.getRes_num()%>,
+  		<%=orderReservationDTO.getRes_status()%>)">
     	</td>
     	<td><%=point_status %></td>
     	</tr>
@@ -332,15 +333,23 @@ String format_res_time = res_time.substring(0, 5);
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
-function openReviewWrite(u_num, res_num) {
-    var url = 'reviewWrite.re?u_num='+u_num+'&res_num='+res_num;
-    var newWindow = window.open(url, '_blank', 'width=630px, height=940px');
+// 리뷰작성 버튼. 예약완료시에만 작성 가능.
+function openReviewWrite(u_num, res_num, res_status) {
+
+    if (res_status == 1) {
+        var url = 'reviewWrite.re?u_num=' + u_num + '&res_num=' + res_num;
+        var newWindow = window.open(url, '_blank', 'width=630px, height=940px');
+    } else {
+        alert("예약완료 시에만 리뷰 작성이 가능합니다.")
+    }
 }
 
 //예약 취소 AJAX처리
-function isCanceled(res_num ) {
+function isCanceled(res_num, res_status ) {
 // alert (res_num);	
-
+//alert(res_status);
+if (res_status == 0) {
+	
 $.ajax({
   type: "GET",
   url: 'cancelRes.aj',
@@ -358,10 +367,13 @@ $.ajax({
   }
   
 });// end ajax
+}else{
+	alert("예약 대기 상태일 경우만 예약 취소가 가능합니다.")
+}
 }//function
 
 function isCanChange(userDate, userTime, res_num, s_num, emp_num,res_status) {
-// 	alert(res_status)
+ 	//alert(res_status);
 if (res_status == 0) {
 	
 
@@ -384,7 +396,7 @@ if (res_status == 0) {
 	
 	});// end ajax
 }else {
-	alert("예약 완료 및 취소 시에는 일정 변경이 불가능합니다.")
+	alert("예약 대기 상태일 경우만 일정 변경이 가능합니다.")
 }
 }// end function
 </script>

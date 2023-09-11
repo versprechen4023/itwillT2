@@ -237,8 +237,11 @@ public class QnaDAO {
 	
 	
 	
-	public void insertqnaBoard (QnaDTO qnaDTO) { // DB에서 처리하는 값들		
-		System.out.println("QNA 인서트 요청");	
+	public boolean insertqnaBoard (QnaDTO qnaDTO) { // DB에서 처리하는 값들		
+		System.out.println("QNA 인서트 요청");
+		
+		boolean result = false;
+		
 		try {			
 			con = new SQLConnection().getConnection();
 			
@@ -261,45 +264,57 @@ public class QnaDAO {
 //			pstmt.setInt(10, qnaDTO.getQreans());
 //			pstmt.setString(11, qnaDTO.getRecontent());
 //			pstmt.setTimestamp(12, qnaDTO.getRedate());
-			int result = pstmt.executeUpdate();
-			if (result != 0 ) {
-				System.out.println("저장 완료");
-			} else {	
-				System.out.println("저장 실패");
-			}
+			int rs = pstmt.executeUpdate();
+			
+			// QNA 작성 성공유무 반환
+			result = (rs != 0) ? true : false;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
-		}	
+		}
+		
+		return result;
  } //insertqnaBoard(qna작성)
 	
 	
 	
-	public void deleteQna(int qnanum) {
+	public boolean deleteQna(int qnanum) {
 		System.out.println("QnaDAO deleteQna()");
+		
+		boolean result = false;
+		
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "delete from qna where qna_num=?";
+			String sql = "DELETE FROM qna WHERE qna_num = ?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, qnanum);	
-			pstmt.executeUpdate();
+			int rs = pstmt.executeUpdate();
+			
+			// QNA 삭제 성공유무 반환
+			result = (rs != 0) ? true : false;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			dbClose();
 		}
+		
+		return result;
 	}//deleteQna(qna삭제)
 	
 	
 	
-	public void updateQna(QnaDTO qnaDTO) {
+	public boolean updateQna(QnaDTO qnaDTO) {
 		System.out.println("QnaDAO updateQna()");
+		
+		boolean result = false;
+		
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "update qna"
-					+ "   set qna_title=?, qna_content=?,qna_img_url=?, qna_category=?"
-					+ "   where qna_num=?";
+			String sql = "UPDATE qna"
+					+ "   SET qna_title=?, qna_content=?,qna_img_url=?, qna_category=?"
+					+ "   WHERE qna_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, qnaDTO.getTitle());
 			pstmt.setString(2, qnaDTO.getContent());
@@ -307,12 +322,17 @@ public class QnaDAO {
 			pstmt.setString(4, qnaDTO.getCategory());
 			pstmt.setInt(5, qnaDTO.getQnanum());
 			
-			pstmt.executeUpdate();
+			int rs = pstmt.executeUpdate();
+			
+			// QNA 수정 성공유무 반환
+			result = (rs != 0) ? true : false;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			dbClose();
 		}
+		
+		return result;
 	}//updateQna(qna수정)
 	
 	
@@ -320,21 +340,31 @@ public class QnaDAO {
 	
 	
 	
-	public void writeRe(QnaDTO qnaDTO) {
+	public boolean writeRe(QnaDTO qnaDTO) {
+		
 		System.out.println("QnaDAO writeRe()");
+		
+		boolean result = false;
+		
 		try {
 			con = new SQLConnection().getConnection();
-			String sql = "update qna set re_content=? ,re_date=?, qna_isanswered=1  where qna_num=?";
+			String sql = "UPDATE qna SET re_content=? ,re_date=?, qna_isanswered=1 WHERE qna_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, qnaDTO.getRecontent());
 			pstmt.setTimestamp(2, qnaDTO.getRedate());
 			pstmt.setInt(3, qnaDTO.getQnanum());
-			pstmt.executeUpdate();
+			int rs = pstmt.executeUpdate();
+			
+			// 답글 작성 성공유무 반환
+			result = (rs != 0) ? true : false;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
+		
+		return result;
 	}//writeRe(답글작성)
 	
 	

@@ -89,7 +89,7 @@ public class OrderController extends HttpServlet {
 				 
 				if (orderReserv != null) {
 					System.out.println("예약처리 완료");
-					JSForward.locationHref(response, "예약이 완료되었습니다", "main.gr");
+					JSForward.locationHref(response, "예약이 완료되었습니다", "mypage.my");
 				} else {
 					System.out.println("예약처리 에러발생");
 					JSForward.locationHref(response, "예약을 처리하지 못했습니다", "main.gr");

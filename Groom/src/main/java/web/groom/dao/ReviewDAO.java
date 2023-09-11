@@ -55,6 +55,7 @@ public class ReviewDAO {
 				reviewDTO.setRe_content(rs.getString("re_content"));
 				reviewDTO.setRe_date(rs.getTimestamp("re_date"));
 				reviewDTO.setU_point(rs.getInt("u_point"));
+//				reviewDTO.setTotal_review(rs.getInt("total_review"));
 				
 				reviewList.add(reviewDTO);
 			}
@@ -74,7 +75,8 @@ public class ReviewDAO {
 			con = new SQLConnection().getConnection();
 			String sql = "SELECT a.rev_num, b.res_num, c.u_num, c.u_name, c.u_count, d.pro_name, e.emp_grade, e.emp_name,"
 					+ "          f.s_location, a.rev_rating, a.rev_content, a.rev_img_url, a.rev_count, a.rev_date,"
-					+ "          a.re_ref, a.re_lev, a.re_seq, a.re_content, a.re_date, c.u_point"
+					+ "          a.re_ref, a.re_lev, a.re_seq, a.re_content, a.re_date, c.u_point,"
+					+ "          (SELECT count(*) FROM review) as total_review"
 					+ "   FROM review a JOIN reservation b ON a.res_num = b.res_num"
 					+ "                 JOIN user2 c ON b.u_num = c.u_num"
 					+ "                 JOIN product2 d ON b.pro_id2 = d.pro_id2"
@@ -108,6 +110,7 @@ public class ReviewDAO {
 				reviewDTO.setRe_content(rs.getString("re_content"));
 				reviewDTO.setRe_date(rs.getTimestamp("re_date"));
 				reviewDTO.setU_point(rs.getInt("u_point"));
+				reviewDTO.setTotal_review(rs.getInt("total_review"));
 				reviewList.add(reviewDTO);
 			}
 		} catch (Exception e) {
@@ -126,7 +129,8 @@ public class ReviewDAO {
 			con = new SQLConnection().getConnection();
 			String sql = "SELECT a.rev_num, b.res_num, c.u_num, c.u_name, c.u_count, d.pro_name, e.emp_grade, e.emp_name,"
 					+ "          f.s_location, a.rev_rating, a.rev_content, a.rev_img_url, a.rev_count, a.rev_date,"
-					+ "          a.re_ref, a.re_lev, a.re_seq, a.re_content, a.re_date, c.u_point"
+					+ "          a.re_ref, a.re_lev, a.re_seq, a.re_content, a.re_date, c.u_point,"
+					+ "          (SELECT count(*) FROM review) as total_review"
 					+ "   FROM review a JOIN reservation b ON a.res_num = b.res_num"
 					+ "                 JOIN user2 c ON b.u_num = c.u_num"
 					+ "                 JOIN product2 d ON b.pro_id2 = d.pro_id2"
@@ -160,6 +164,7 @@ public class ReviewDAO {
 				reviewDTO.setRe_content(rs.getString("re_content"));
 				reviewDTO.setRe_date(rs.getTimestamp("re_date"));
 				reviewDTO.setU_point(rs.getInt("u_point"));
+				reviewDTO.setTotal_review(rs.getInt("total_review"));
 				reviewList.add(reviewDTO);
 			}
 		} catch (Exception e) {
@@ -325,34 +330,33 @@ public class ReviewDAO {
 		return result;
 	}// deleteReview() [리뷰삭제]
 	
-	//현재 관리자 페이지에서 처리하고있으므로 사용하지 않음
-//	public void deleteReviewPoint(int rev_num) {
-//		System.out.println("ReviewDAO deleteReviewPoint()");
-//		try {
-//			con = new SQLConnection().getConnection();
-//			String sql1 = "UPDATE user2"
-//					+ "    SET u_point = u_point - 1000"
-//					+ "    WHERE u_num = (SELECT u_num FROM review"
-//					+ "                   WHERE rev_num = ?);";
-//			
-//			String sql2 = "DELETE FROM review WHERE rev_num=?";
-//			
-//			PreparedStatement pstmt1 = null;
-//			pstmt1 = con.prepareStatement(sql1);
-//			pstmt1.setInt(1, rev_num);
-//			pstmt1.executeUpdate();
-//			
-//			PreparedStatement pstmt2 = null;
-//			pstmt2 = con.prepareStatement(sql2);
-//			pstmt2.setInt(1, rev_num);
-//			pstmt2.executeUpdate();
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			dbClose();
-//		}
-//	}// deleteReviewPoint() [리뷰삭제 + 포인트회수]
+	public void deleteReviewPoint(int rev_num) {
+		System.out.println("ReviewDAO deleteReviewPoint()");
+		try {
+			con = new SQLConnection().getConnection();
+			String sql1 = "UPDATE user2"
+					+ "    SET u_point = u_point - 1000"
+					+ "    WHERE u_num = (SELECT u_num FROM review"
+					+ "                   WHERE rev_num = ?);";
+			
+			String sql2 = "DELETE FROM review WHERE rev_num=?";
+			
+			PreparedStatement pstmt1 = null;
+			pstmt1 = con.prepareStatement(sql1);
+			pstmt1.setInt(1, rev_num);
+			pstmt1.executeUpdate();
+			
+			PreparedStatement pstmt2 = null;
+			pstmt2 = con.prepareStatement(sql2);
+			pstmt2.setInt(1, rev_num);
+			pstmt2.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+	}// deleteReviewPoint() [리뷰삭제 + 포인트회수]
 
 	// 답글 작성하는 메서드
 	public boolean writeRe(ReviewDTO reviewDTO) {
@@ -452,6 +456,27 @@ public class ReviewDAO {
 		if (pstmt != null) {try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}}
 
 		if (con != null) {try {con.close();} catch (SQLException e) {e.printStackTrace();}}
+	}
+
+	
+	
+	
+	//// 리뷰개수
+	public ReviewDTO Get_Total_review() {
+		ReviewDTO reviewDTO = null;
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "SELECT count(*) as total_review FROM review";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reviewDTO = new ReviewDTO();
+				reviewDTO.setTotal_review(rs.getInt("total_review"));
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reviewDTO;
 	}
 	
 	

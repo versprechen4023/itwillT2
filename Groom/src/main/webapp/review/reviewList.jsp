@@ -23,7 +23,7 @@ String num = (String)session.getAttribute("num");
 
 List<ReviewDTO> reviewList
 =(List<ReviewDTO>)request.getAttribute("reviewList");
-
+ReviewDTO reviewDTO3 = (ReviewDTO)request.getAttribute("reviewDTO");
 %>
 <!-- =============================  네비게이션바 ============================= -->	
 <jsp:include page="../inc/aside.jsp"></jsp:include>
@@ -36,7 +36,9 @@ List<ReviewDTO> reviewList
 	<div class="row row-bottom-padded-md">
 <!-- 리뷰 분류 -->
 		<h3 class="review-select animate-box" data-animate-effect="fadeInLeft">
-		<a href="reviewList.re" class="review-active"> 전체 </a>
+
+		<a href="reviewList.re" class="review-active">전체 <%=reviewDTO3.getTotal_review() %></a>
+
 		<a href="reviewList1.re?pro_name=목욕">목욕</a>
 		<a href="reviewList2.re?pro_name=부분미용">부분미용</a>
 		<a href="reviewList3.re?pro_name=부분%2B목욕">부분+목욕</a>
@@ -71,7 +73,6 @@ if (i <= rating) {
 		stars += "☆";
 		}
 }
-
 %>		
 <!-- 리뷰 목록  -->
 		<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft"> <!-- fadeinleft가 왼쪽에서부터 보여지게 -->

@@ -210,13 +210,14 @@ $j(document).ready(function() {
 	//포인트 관련 함수
 	$j('#point').keyup(function() {
 		  point = $j('#point').val();//포인트 입력값 갱신
-		  $j('#pointcheck').prop('checked', false);//입력값 갱신될때마다 포인트사용체크해제
 		  managerlist.value = "";//금액을 재설정하기위해 초기화
 		  datepicker.value = "";
 		  timepicker.value ="";
 		  price.value= "";
 		  realprice.value ="";
 		  $j("#datepicker").attr('disabled','disabled');
+		  $j("#timepicker").attr('disabled','disabled');
+		  $j("#datepicker").css("background-color", "#EEEEEE");
 	});
 	
 	$j('#pointcheck').change(function() {
@@ -226,6 +227,8 @@ $j(document).ready(function() {
 		price.value= "";
 		realprice.value ="";
 		$j("#datepicker").attr('disabled','disabled');//날짜 입력 초기화
+		$j("#timepicker").attr('disabled','disabled');
+		$j("#datepicker").css("background-color", "#EEEEEE");
 	});
 	
 	$j('#point').on('input', function() {
@@ -289,6 +292,7 @@ $j(document).ready(function() {
 		
 		$j("#datepicker").attr('disabled','disabled');
     	$j("#timepicker").attr('disabled','disabled');
+    	$j("#datepicker").css("background-color", "#EEEEEE");
     	
 		// 지점선택 서비스 밸류값 가져오기
         var selectedStore = $j(this).val();
@@ -438,10 +442,12 @@ $j(document).ready(function() {
     	datepicker.value = "";
 		timepicker.value ="";
 		
+		if(selectedService == "" || selectedWeight == "" || selectedPet == "" || selectedManager == "" || selectedStore == ""){
 		// 모든 값 입력 안되면 비활성화
 		$j("#datepicker").attr('disabled','disabled');
     	$j("#timepicker").attr('disabled','disabled');
-    	
+    	$j("#datepicker").css("background-color", "#EEEEEE");
+		}
         // 서비스 가격 계산을 위한 밸류값 가져오기
         var selectedService = $j("#servicelist").val();
         var selectedWeight = $j("#weightlist").val();
@@ -492,6 +498,7 @@ $j(document).ready(function() {
                     dataType: 'json',
                     success: function(result) {
                     	$j("#datepicker").removeAttr("disabled");
+                    	$j("#datepicker").css("background-color", "white");
                     	disabledDates = result.map(function(item) {
                             return item.date;
                         });

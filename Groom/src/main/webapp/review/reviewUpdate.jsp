@@ -25,29 +25,6 @@ SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
 // 줄바꿈 자동으로해서 출력해주는 코드 ㄱ
 int rev_num = Integer.parseInt(request.getParameter("rev_num"));
 ReviewDTO reviewDTO=(ReviewDTO)request.getAttribute("reviewDTO");
-//enum > 문자
-// 	String s_location = reviewDTO.getS_location();
-// 	String emp_grade = reviewDTO.getEmp_grade();
-// 		String location = "";
-// 	if (s_location.equals("A")) {
-// 	    location = "서면점";
-// 	} else if (s_location.equals("B")) {
-// 	    location = "명지점";
-// 	} else if (s_location.equals("C")) {
-// 	    location = "율하점";
-// 	} else {
-// 	    location = "알 수 없음";
-// 	}
-// 	String grade = "";
-// 	if (emp_grade.equals("A")) {
-// 		grade = "원장";
-// 	} else if (emp_grade.equals("B")) {
-// 		grade = "실장";
-// 	} else if (emp_grade.equals("C")) {
-// 		grade = "수석";
-// 	} else {
-// 		grade = "알 수 없음";
-// 	}
 // 별점 받아서 별출력하는 코드 ㄱ
 //     int rating = reviewDTO.getRev_rating(); // rev_rating 값 int로 바꾸면 수정하도록
 int rating = Integer.parseInt(reviewDTO.getRev_rating());
@@ -112,6 +89,7 @@ if (reviewDTO != null) {
 String rev_img_url = reviewDTO.getRev_img_url();
 if (rev_img_url != null) {
 %>		
+		<input type="hidden" name="oldfile" value="<%=reviewDTO.getRev_img_url() %>">
 		<img src="upload/<%=reviewDTO.getRev_img_url() %>" onerror="this.style.display='none'" />
 <%
 } else {

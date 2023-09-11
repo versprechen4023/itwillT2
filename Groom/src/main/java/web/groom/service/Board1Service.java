@@ -66,11 +66,12 @@ public class Board1Service {
 	}
 	
 
-	public void insertNotice(HttpServletRequest request) {
+	public boolean insertNotice(HttpServletRequest request) {
+		
+		boolean result = false;
+		
 		try {
 			System.out.println("BoardService insertNotice()");
-			// request 한글처리
-			request.setCharacterEncoding("utf-8");
 			
 			//업로드 폴더 경로 => 물리적경로
 			String uploadPath = request.getRealPath("/upload");
@@ -90,7 +91,7 @@ public class Board1Service {
 			//첨부파일이름 가져오기
 			String n_img_url = multi.getFilesystemName("n_img_url");
 			Timestamp n_date = new Timestamp(System.currentTimeMillis());
-			boardDAO = new Board1DAO();
+			
 			// BoardDTO 객체생성
 			Board1DTO boardDTO = new Board1DTO();
 			// set메서드 호출 파라미터값 저장
@@ -104,13 +105,13 @@ public class Board1Service {
 			System.out.println("n_content"+n_content);
 			System.out.println("n_date"+n_date);
 			// 리턴할형없음 insertNotice(boardDTO) 호출
-			boardDAO.insertNotice(boardDTO);
+			result = new Board1DAO().insertNotice(boardDTO);
 			
-			// 값 받아오는지 확인하기 위함 지워도 상관없음 
-            System.out.println("");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 		
 	}//insertNotice//
 
@@ -118,8 +119,6 @@ public class Board1Service {
 		System.out.println("BoardService getNotice()");
 		Board1DTO boardDTO = null;
 		try {
-			// request 한글처리
-			request.setCharacterEncoding("utf-8");
 			// request 파라미터 가져오기 => int num 저장
 			int n_num = Integer.parseInt(request.getParameter("n_num"));
 			// BoardDAO 객체생성
@@ -161,11 +160,12 @@ public class Board1Service {
 		}
 		return count;
 	}//getBoardCountSearch
-	public void updateNotice(HttpServletRequest request) {
+	public boolean updateNotice(HttpServletRequest request) {
 		System.out.println("BoardService updateNotice()");
+		
+		boolean result = false;
+		
 		try {
-			// request 한글처리
-//			request.setCharacterEncoding("utf-8");
 			
 			//파일업로드
 			// 업로드할 파일경로(upload폴더 있어야함)
@@ -194,29 +194,33 @@ public class Board1Service {
 			boardDTO.setN_content(n_content);
 			//파일
 			boardDTO.setN_img_url(n_img_url);
-			//BoardDAO 객체생성
-			Board1DAO boardDAO = new Board1DAO();
+	
 			//updateBoard(boardDTO) 메서드 호출
-			boardDAO.updateNotice(boardDTO);
+			result = new Board1DAO().updateNotice(boardDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}
 
-	public void deleteNotice(HttpServletRequest request) {
+	public boolean deleteNotice(HttpServletRequest request) {
 		System.out.println("Board1Service  deleteNotice");
+		
+		boolean result = false;
+		
 		try {
-			request.setCharacterEncoding("utf-8");
+			// 변수에 리퀘스트 파라미터값 저장(공지사항 글번호)
 			int n_num = Integer.parseInt(request.getParameter("n_num"));
-			Board1DTO boardDTO = new Board1DTO();
-			boardDTO.setN_num(n_num);
-			
-			boardDAO = new Board1DAO();
-			boardDAO.deleteNotice(n_num);
+
+			// deleteNotice(u_num) 메서드 호출
+			result = new Board1DAO().deleteNotice(n_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}
 	
 	//FAQ
@@ -271,11 +275,12 @@ public class Board1Service {
 	}
 	
 
-	public void insertFaq(HttpServletRequest request) {
+	public boolean insertFaq(HttpServletRequest request) {
+		
+		boolean result = false;
+		
 		try {
 			System.out.println("BoardService insertFaq()");
-			// request 한글처리
-			request.setCharacterEncoding("utf-8");
 			
 			//업로드 폴더 경로 => 물리적경로
 			String uploadPath = request.getRealPath("/upload");
@@ -295,7 +300,7 @@ public class Board1Service {
 			//첨부파일이름 가져오기
 			String faq_img_url = multi.getFilesystemName("faq_img_url");
 			Timestamp faq_date = new Timestamp(System.currentTimeMillis());
-			boardDAO = new Board1DAO();
+
 			// BoardDTO 객체생성
 			Board1DTO boardDTO = new Board1DTO();
 			// set메서드 호출 파라미터값 저장
@@ -309,13 +314,13 @@ public class Board1Service {
 			System.out.println("faq_content"+faq_content);
 			System.out.println("faq_date"+faq_date);
 			// 리턴할형없음 insertFaq(boardDTO) 호출
-			boardDAO.insertFaq(boardDTO);
+			result = new Board1DAO().insertFaq(boardDTO);
 			
-			// 값 받아오는지 확인하기 위함 지워도 상관없음 
-            System.out.println("");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 		
 	}//insertFaq//
 
@@ -323,8 +328,6 @@ public class Board1Service {
 		System.out.println("BoardService getFaq()");
 		Board1DTO boardDTO = null;
 		try {
-			// request 한글처리
-			request.setCharacterEncoding("utf-8");
 			// request 파라미터 가져오기 => int num 저장
 			int faq_num = Integer.parseInt(request.getParameter("faq_num"));
 			System.out.println(faq_num);
@@ -369,11 +372,12 @@ public class Board1Service {
 		return count;
 	}//getBoardCountSearch
 
-	public void updateFaq(HttpServletRequest request) {
+	public boolean updateFaq(HttpServletRequest request) {
 		System.out.println("BoardService updateFaq()");
+		
+		boolean result = false;
+		
 		try {
-			// request 한글처리
-//			request.setCharacterEncoding("utf-8");
 			
 			//파일업로드
 			// 업로드할 파일경로(upload폴더 있어야함)
@@ -405,26 +409,30 @@ public class Board1Service {
 			//BoardDAO 객체생성
 			Board1DAO boardDAO = new Board1DAO();
 			//updateBoard(boardDTO) 메서드 호출
-			boardDAO.updateFaq(boardDTO);
+			result = new Board1DAO().updateFaq(boardDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}
 
-	public void deleteFaq(HttpServletRequest request) {
+	public boolean deleteFaq(HttpServletRequest request) {
 		System.out.println("Board1Service  deleteFaq");
+		
+		boolean result = false;
 		try {
-			request.setCharacterEncoding("utf-8");
+			// 변수에 리퀘스트 파라미터값 저장(FAQ 글번호)
 			int faq_num = Integer.parseInt(request.getParameter("faq_num"));
-			Board1DTO boardDTO = new Board1DTO();
-			boardDTO.setFaq_num(faq_num);
 			
-			boardDAO = new Board1DAO();
-			boardDAO.deleteFaq(faq_num);
+			// deleteFAQ(faq_num) 메서드 호출
+			result = new Board1DAO().deleteFaq(faq_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}
 	
 	

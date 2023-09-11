@@ -13,7 +13,8 @@ public class OrderReservationDTO {
 	private int used_point;
 	private int res_status; //
 	private int res_point_status; //
-
+	private int this_review; 
+	
 	private String res_u_req;
 	private String res_method;
 	private String res_time;
@@ -35,6 +36,14 @@ public class OrderReservationDTO {
 	public void setRes_point_status(int res_point_status) {
 		this.res_point_status = res_point_status;
 	}
+	
+	public int getThis_review() {
+		return this_review;
+	}
+	public void setThis_review(int this_review) {
+		this.this_review = this_review;
+	}
+	
 	public String getPro_name() {
 		return pro_name;
 	}
@@ -169,6 +178,8 @@ public class OrderReservationDTO {
 	public void setRes_day(String res_day) {
 		this.res_day = res_day;
 	}
+	
+	
 	
 	@Override
 	public String toString() {

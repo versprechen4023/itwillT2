@@ -314,10 +314,22 @@ List<OrderReservationDTO> visibleItems = reservationList.subList(startIndex, end
 								onclick="isCanChange('<%=orderReservationDTO.getRes_day()%>', '<%=orderReservationDTO.getRes_time()%>', <%=orderReservationDTO.getRes_num()%>, 
     		 <%=orderReservationDTO.getS_num()%>, <%=orderReservationDTO.getEmp_num()%>,<%=orderReservationDTO.getRes_status()%>)">
 							</td>
-							<td><input type="button" value="작성" class="status-button"
-								onclick="openReviewWrite(<%=mypageInfo.getNum() %>,<%=orderReservationDTO.getRes_num()%>,
-  		<%=orderReservationDTO.getRes_status()%>)">
-							</td>
+							<td>
+                            <%
+                            int this_review = orderReservationDTO.getThis_review();
+                            if(this_review == 0){
+                            %>
+                            <input type="button" value="작성" class="status-button"
+                                onclick="openReviewWrite(<%=mypageInfo.getNum() %>,<%=orderReservationDTO.getRes_num()%>,
+                                                           <%=orderReservationDTO.getRes_status()%>)">
+                              <%
+                              }else {
+                              %>
+                              <input type="button" value="작성" class="status-button" style="background: gray; border-radius: 3px;">
+                              <%
+                              }
+                            %>
+                            </td>
 							<td><%=point_status%></td>
 							<td id=<%=orderReservationDTO.getRes_num()%>
 								data-value="<%=dayAndTime%>" data-value2="<%=res_status%>"

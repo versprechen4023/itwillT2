@@ -351,7 +351,9 @@ public class MypageDAO {
 			
 			String sql = "SELECT a.res_num, a.res_day, a.res_time, a.s_num, a.emp_num, b.pro_name, c.pet_size, b.pet_weight,"
 					+ "          d.s_location, e.emp_grade, e.emp_name, f.u_name, f.u_phone, a.res_point,"
-					+ "          a.res_price, a.res_status, a.res_method, a.res_point_status" + "   FROM reservation a"
+					+ "          a.res_price, a.res_status, a.res_method, a.res_point_status,"
+					+ "			(SELECT COUNT(*) FROM review WHERE res_num = a.res_num AND u_num = f.u_num) AS this_review" 
+					+ "   FROM reservation a"
 					+ "   JOIN product2 b ON a.pro_id2 = b.pro_id2" + "   JOIN product1 c ON a.pro_id1 = c.pro_id1"
 					+ "   JOIN store d ON a.s_num = d.s_num" + "   JOIN employees e ON a.emp_num = e.emp_num"
 					+ "   JOIN user2 f ON a.u_num = f.u_num" + "   WHERE f.u_num = ?" + "   ORDER BY a.res_num desc;";
@@ -380,6 +382,7 @@ public class MypageDAO {
 				orderReservationDTO.setRes_status(rs.getInt("res_status"));
 				orderReservationDTO.setRes_method(rs.getString("res_method"));
 				orderReservationDTO.setRes_point_status(rs.getInt("res_point_status"));
+				orderReservationDTO.setThis_review(rs.getInt("this_review"));
 				reservationList.add(orderReservationDTO);
 			}
 		} catch (Exception e) {

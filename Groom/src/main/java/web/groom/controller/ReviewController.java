@@ -28,10 +28,14 @@ public class ReviewController extends HttpServlet {
 		// 리뷰리스트 전체 받아오는 페이지 review/reviewList.jsp
 		if (sPath.equals("/reviewList.re")) {
 //			 String proName = request.getParameter("pro_name");
-
+			// 리뷰 서비스 객체생성
+			reviewService = new ReviewService();
 			// 리뷰 전체 리스트를 가져오기 위한 메서드 호출
-			List<ReviewDTO> reviewList = new ReviewService().getReviewListAll();
-			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
+			List<ReviewDTO> reviewList = reviewService.getReviewListAll();
+			// 리뷰카운터(전체개수)를 가져오기 위한 메서드 호출
+			ReviewDTO reviewDTO = reviewService.Get_Total_review(request);
+			// 리퀘스트에 리뷰리스트, 리뷰카운트(전체개수)를 저장후 페이지이동
+			request.setAttribute("reviewDTO", reviewDTO);		
 			request.setAttribute("reviewList", reviewList);
 			System.out.println("reviewList.re");
 			webForward(request, response, "review", "reviewList");
@@ -48,8 +52,14 @@ public class ReviewController extends HttpServlet {
 
 		// 리뷰리스트 유저가적은리뷰 받아오는 페이지 review/reviewList.jsp
 		if (sPath.equals("/myReviewList.re")) {
-			List<ReviewDTO> reviewList = new ReviewService().getMyReviewList(request);
-			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
+			// 리뷰 서비스 객체생성
+			reviewService = new ReviewService();
+			// 내리뷰 전체 리스트를 가져오기 위한 메서드 호출
+			List<ReviewDTO> reviewList = reviewService.getMyReviewList(request);
+			// 리뷰카운터(전체개수)를 가져오기 위한 메서드 호출
+			ReviewDTO reviewDTO = reviewService.Get_Total_review(request);
+			// 리퀘스트에 리뷰리스트, 리뷰카운트(전체개수)를 저장후 페이지이동
+			request.setAttribute("reviewDTO", reviewDTO);
 			request.setAttribute("reviewList", reviewList);
 			System.out.println("reviewList.re");
 			webForward(request, response, "review", "reviewList");
@@ -57,48 +67,84 @@ public class ReviewController extends HttpServlet {
 
 		// 리뷰리스트 목욕관련 받아오는 페이지 review/reviewList1.jsp
 		if (sPath.equals("/reviewList1.re")) {
-			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
+			// 리뷰 서비스 객체생성
+			reviewService = new ReviewService();
+			// 목욕 관련 리뷰 전체 리스트를 가져오기 위한 메서드 호출
+			List<ReviewDTO> reviewList = reviewService.getReviewList(request);
+			// 리뷰카운터(전체개수)를 가져오기 위한 메서드 호출
+			ReviewDTO reviewDTO = reviewService.Get_Total_review(request);
+			// 리퀘스트에 리뷰리스트, 리뷰카운트(전체개수)를 저장후 페이지이동
+			request.setAttribute("reviewDTO", reviewDTO);		
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList1");
 		} // reviewList1.re [리뷰목록1]
 
 		// 리뷰리스트 부분미용 관련 받아오는 페이지 review/reviewList2.jsp
 		if (sPath.equals("/reviewList2.re")) {
-			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
+			// 리뷰 서비스 객체생성
+			reviewService = new ReviewService();
+			// 부분미용 관련 리뷰 전체 리스트를 가져오기 위한 메서드 호출
+			List<ReviewDTO> reviewList = reviewService.getReviewList(request);
+			// 리뷰카운터(전체개수)를 가져오기 위한 메서드 호출
+			ReviewDTO reviewDTO = reviewService.Get_Total_review(request);
+			// 리퀘스트에 리뷰리스트, 리뷰카운트(전체개수)를 저장후 페이지이동
+			request.setAttribute("reviewDTO", reviewDTO);		
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList2");
 		} // reviewList2.re [리뷰목록2]
 
 		// 리뷰리스트 부분+목욕 관련 받아오는 페이지 review/reviewList3.jsp
 		if (sPath.equals("/reviewList3.re")) {
-			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
+			// 리뷰 서비스 객체생성
+			reviewService = new ReviewService();
+			// 부분+목욕 관련 리뷰 전체 리스트를 가져오기 위한 메서드 호출
+			List<ReviewDTO> reviewList = reviewService.getReviewList(request);
+			// 리뷰카운터(전체개수)를 가져오기 위한 메서드 호출
+			ReviewDTO reviewDTO = reviewService.Get_Total_review(request);
+			// 리퀘스트에 리뷰리스트, 리뷰카운트(전체개수)를 저장후 페이지이동
+			request.setAttribute("reviewDTO", reviewDTO);		
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList3");
 		} // reviewList3.re [리뷰목록3]
 
 		// 리뷰리스트 전체미용 관련 받아오는 페이지 review/reviewList4.jsp
 		if (sPath.equals("/reviewList4.re")) {
-			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
+			// 리뷰 서비스 객체생성
+			reviewService = new ReviewService();
+			// 전체미용 리뷰 전체 리스트를 가져오기 위한 메서드 호출
+			List<ReviewDTO> reviewList = reviewService.getReviewList(request);
+			// 리뷰카운터(전체개수)를 가져오기 위한 메서드 호출
+			ReviewDTO reviewDTO = reviewService.Get_Total_review(request);
+			// 리퀘스트에 리뷰리스트, 리뷰카운트(전체개수)를 저장후 페이지이동
+			request.setAttribute("reviewDTO", reviewDTO);		
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList4");
 		} // reviewList4.re [리뷰목록4]
 
 		// 리뷰리스트 스포팅 관련 받아오는 페이지 review/reviewList5.jsp
 		if (sPath.equals("/reviewList5.re")) {
-			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
+			// 리뷰 서비스 객체생성
+			reviewService = new ReviewService();
+			// 스포팅 관련 리뷰 전체 리스트를 가져오기 위한 메서드 호출
+			List<ReviewDTO> reviewList = reviewService.getReviewList(request);
+			// 리뷰카운터(전체개수)를 가져오기 위한 메서드 호출
+			ReviewDTO reviewDTO = reviewService.Get_Total_review(request);
+			// 리퀘스트에 리뷰리스트, 리뷰카운트(전체개수)를 저장후 페이지이동
+			request.setAttribute("reviewDTO", reviewDTO);		
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList5");
 		} // reviewList5.re [리뷰목록5]
 
 		// 리뷰리스트 가위컷 관련 받아오는 페이지 review/reviewList6.jsp
 		if (sPath.equals("/reviewList6.re")) {
-			// 리퀘스트에 리뷰리스트를 저장후 페이지이동
-			List<ReviewDTO> reviewList = new ReviewService().getReviewList(request);
+			// 리뷰 서비스 객체생성
+			reviewService = new ReviewService();
+			// 가위컷 관련 리뷰 전체 리스트를 가져오기 위한 메서드 호출
+			List<ReviewDTO> reviewList = reviewService.getReviewList(request);
+			// 리뷰카운터(전체개수)를 가져오기 위한 메서드 호출
+			ReviewDTO reviewDTO = reviewService.Get_Total_review(request);
+			// 리퀘스트에 리뷰리스트, 리뷰카운트(전체개수)를 저장후 페이지이동
+			request.setAttribute("reviewDTO", reviewDTO);		
 			request.setAttribute("reviewList", reviewList);
 			webForward(request, response, "review", "reviewList6");
 		} // reviewList6.re [리뷰목록6]

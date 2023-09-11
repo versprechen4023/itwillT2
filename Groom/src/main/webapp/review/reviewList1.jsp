@@ -22,6 +22,7 @@ String num = (String)session.getAttribute("num");
 
 List<ReviewDTO> reviewList
 =(List<ReviewDTO>)request.getAttribute("reviewList");
+ReviewDTO reviewDTO3 = (ReviewDTO)request.getAttribute("reviewDTO");
 
 %>
 <!-- =============================  네비게이션바 ============================= -->	
@@ -36,20 +37,7 @@ List<ReviewDTO> reviewList
 	<div class="row row-bottom-padded-md">
 <!-- 리뷰 분류 -->
 		<h3 class="review-select animate-box" data-animate-effect="fadeInLeft">
-<%
-//reviewList가 비어있지 않은지 확인
-if (reviewList != null && !reviewList.isEmpty()) {
-ReviewDTO reviewDTO2 = reviewList.get(0); // 첫 번째 ReviewDTO 객체를 가져옴
-int totalReview = reviewDTO2.getTotal_review();
-%>
-		<a href="reviewList.re">전체 <%=reviewDTO2.getTotal_review() %></a>
-<%
-} else {
-%>
-		<a href="reviewList.re">전체 0</a>
-<%
-}
-%>
+		<a href="reviewList.re">전체 <%=reviewDTO3.getTotal_review() %></a>
 		<a href="reviewList1.re?pro_name=목욕" class="review-active">목욕</a>
 		<a href="reviewList2.re?pro_name=부분미용">부분미용</a>
 		<a href="reviewList3.re?pro_name=부분%2B목욕">부분+목욕</a>

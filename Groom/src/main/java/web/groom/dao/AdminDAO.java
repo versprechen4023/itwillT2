@@ -266,11 +266,27 @@ public class AdminDAO {
 		boolean result = false;
 		try {
 			con = new SQLConnection().getConnection();
-			String SQL = "UPDATE reservation SET res_point_status = 1" + "   WHERE res_num = ?;";
-			pstmt = con.prepareStatement(SQL);
-			pstmt.setInt(1, i);
-			int rs = pstmt.executeUpdate();
-			result = (rs != 0) ? true : false;
+			String SQL1 = "UPDATE reservation SET res_point_status = 1" + "   WHERE res_num = ?;";
+			PreparedStatement pstmt1 = null;
+			pstmt1 = con.prepareStatement(SQL1);
+			pstmt1.setInt(1, i);
+			int rs1 = pstmt1.executeUpdate();
+
+			String SQL2 = "UPDATE reservation"
+					+ "    SET user_res_count = (SELECT u_count"
+					+ "                          FROM user2"
+					+ "			         		 WHERE u_num = (SELECT u_num"
+					+ "									        FROM (SELECT res_num, u_num"
+					+ "                                               FROM reservation) as subquery"
+					+ "                                         WHERE res_num = ?)) + 1"
+					+ "    WHERE res_num = ?;";
+			PreparedStatement pstmt2 = null;
+			pstmt2 = con.prepareStatement(SQL2);
+			pstmt2.setInt(1, i);
+			pstmt2.setInt(2, i);
+			int rs2 = pstmt2.executeUpdate();
+			
+			result = (rs1 != 0 && rs2 !=0) ? true : false;
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = false;
@@ -286,11 +302,27 @@ public class AdminDAO {
 		boolean result = false;
 		try {
 			con = new SQLConnection().getConnection();
-			String SQL = "UPDATE reservation SET res_point_status = 0" + "   WHERE res_num = ?;";
-			pstmt = con.prepareStatement(SQL);
-			pstmt.setInt(1, i);
-			int rs = pstmt.executeUpdate();
-			result = (rs != 0) ? true : false;
+			String SQL1 = "UPDATE reservation SET res_point_status = 0" + "   WHERE res_num = ?;";
+			PreparedStatement pstmt1 = null;
+			pstmt1 = con.prepareStatement(SQL1);
+			pstmt1.setInt(1, i);
+			int rs1 = pstmt1.executeUpdate();
+			
+			String SQL2 = "UPDATE reservation"
+					+ "    SET user_res_count = (SELECT u_count"
+					+ "                          FROM user2"
+					+ "			         		 WHERE u_num = (SELECT u_num"
+					+ "									        FROM (SELECT res_num, u_num"
+					+ "                                               FROM reservation) as subquery"
+					+ "                                         WHERE res_num = ?)) - 1"
+					+ "    WHERE res_num = ?;";
+			PreparedStatement pstmt2 = null;
+			pstmt2 = con.prepareStatement(SQL2);
+			pstmt2.setInt(1, i);
+			pstmt2.setInt(2, i);
+			int rs2 = pstmt2.executeUpdate();
+			
+			result = (rs1 != 0 && rs2 !=0) ? true : false;
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = false;

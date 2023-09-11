@@ -79,7 +79,7 @@ if (i <= rating) {
 		<div class="blog-entry">
 		<div class="img-wrapper">                           
 			<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img">
-			<img src="upload/<%=reviewDTO.getRev_img_url()%>" class="img-responsive" alt="이미지" onerror="this.src='images/LOGO.png'" /></a>
+			<img src="upload/<%=reviewDTO.getRev_img_url()%>" class="img-responsive" alt="이미지" onerror="this.src='images/empty_image.jpg'" /></a>
 		</div>
 		<div class="review-desc">
 			<h3><a><%=reviewDTO.getPro_name() %></a><br>

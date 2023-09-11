@@ -327,7 +327,11 @@ public class AjaxController extends HttpServlet {
 		if (sPath.equals("/pointConfirm.aj")) {
 			System.out.println("포인트지급");
 			AdminService adminService = new AdminService();
-			boolean result = adminService.pointStatusConfirm(request);
+			boolean result1 = adminService.pointStatusConfirm(request);
+			boolean result2 = adminService.addUcount(request);
+			boolean result = (result1 && result2) ? true : false;
+			System.out.println("point변경 결과 : "+result1);
+			System.out.println("u_count변경 결과 : "+result2);
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -338,7 +342,11 @@ public class AjaxController extends HttpServlet {
 		if (sPath.equals("/pointReturn.aj")) {
 			System.out.println("포인트회수");
 			AdminService adminService = new AdminService();
-			boolean result = adminService.pointStatusReturn(request);
+			boolean result1 = adminService.pointStatusReturn(request);
+			boolean result2 = adminService.subUcount(request);
+			boolean result = (result1 && result2) ? true : false;
+			System.out.println("point변경 결과 : "+result1);
+			System.out.println("u_count변경 결과 : "+result2);
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

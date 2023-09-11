@@ -29,7 +29,15 @@ public class ReviewDTO {
 	private String u_name;
 	private String u_count; // 리뷰목록
 	
+	private int total_review;
 	
+	
+	public int getTotal_review() {
+		return total_review;
+	}
+	public void setTotal_review(int total_review) {
+		this.total_review = total_review;
+	}
 	public int getRev_num() {
 		return rev_num;
 	}

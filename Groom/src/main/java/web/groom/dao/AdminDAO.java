@@ -337,7 +337,49 @@ public class AdminDAO {
 			dbClose();
 		}
 	}// PointCancle() [결제포인트 회수]
-
+	
+	public boolean addUcount(int res_num) {
+		boolean result = false;
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "UPDATE user2"
+					+ "   SET u_count = u_count + 1"
+					+ "   WHERE u_num = (SELECT u_num"
+					+ "                  FROM reservation"
+					+ "                  WHERE res_num = ?);";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, res_num);
+			int rs = pstmt.executeUpdate();
+			result = (rs!=0) ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return result;
+	}// addUcount [유저 방문(예약)횟수 증가]
+	
+	public boolean subUcount(int res_num) {
+		boolean result = false;
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "UPDATE user2"
+					+ "   SET u_count = u_count - 1"
+					+ "   WHERE u_num = (SELECT u_num"
+					+ "                  FROM reservation"
+					+ "                  WHERE res_num = ?);";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, res_num);
+			int rs = pstmt.executeUpdate();
+			result = (rs!=0) ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return result;
+	}// subUcount [유저 방문(예약)횟수 감소]
+	
 	// 여기서부터 추가했음
 	// ===================================================================================
 	// 매장 휴무일 추가하는메서드
@@ -571,5 +613,7 @@ public class AdminDAO {
 
 		if (con != null) {try {con.close();} catch (SQLException e) {e.printStackTrace();}}
 	}
+
+
 
 }// class

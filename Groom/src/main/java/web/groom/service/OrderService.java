@@ -192,9 +192,6 @@ public class OrderService {
 	public OrderinfoDTO getOrderInfo(HttpServletRequest request) {
 		
 		try {
-			
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
 						
 			// 변수에 리퀘스트 파라미터값 저장(매장번호,견종,서비스상품명1,2(상품명,무게),직원번호,최종금액,사용포인트)
 			int s_num = Integer.parseInt(request.getParameter("storelist"));
@@ -248,8 +245,6 @@ public class OrderService {
 		
 		//유저 오더 정보 변수에 저장
 		try {
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
 			
 			// 변수에 리퀘스트 파라미터값 저장(회원번호,서비스상품명1,2(견종,무게+상품번호),지점번호,직원번호,결제한가격,사용포인트)
 			int u_num = Integer.parseInt((String)request.getSession().getAttribute("num"));

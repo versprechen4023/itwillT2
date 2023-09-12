@@ -88,13 +88,13 @@ public class MemberController extends HttpServlet {
 				System.out.println("회원가입 성공");
 				// 세션초기화
 				request.getSession().invalidate();
+				JSForward.locationHref(response, "회원 가입이 완료되었습니다", "login.me");
 			} else {
 				System.out.println("회원가입 실패");
 				// 세션초기화
 				request.getSession().invalidate();
+				JSForward.locationHref(response, "회원 가입에 문제가 발생했습니다", "main.gr");
 			}
-			// 로그인 화면이동
-			response.sendRedirect("login.me");
 
 		} // end_of_singupPro.me
 		

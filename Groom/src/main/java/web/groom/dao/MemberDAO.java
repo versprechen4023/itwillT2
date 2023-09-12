@@ -32,7 +32,7 @@ public class MemberDAO {
 			// 솔트 생성 및 해시비밀번호 입력 준비
 			String salt = security.generateSalt();
 			String hashedPassword = security.hashPassword(memberdto.getU_Pass(), salt);
-			String role = "admin";
+			String role = "user";
 
 			// SQL 쿼리 실행(첫번째 유저테이블에 값삽입)
 			String SQL = "INSERT INTO user(u_id, u_pass, u_salt, u_role) VALUE(?,?,?,?)";

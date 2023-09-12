@@ -104,6 +104,22 @@ function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘�
 			}
 
 </script>
+
+<script type="text/javascript">
+//제목 텍스트 상자가 비어있을 때 메시지 표시
+document.getElementById('nwf').addEventListener('submit', function(event) {
+    const titleInput = document.querySelector('input[name="n_title"]');
+    const contentTextArea = document.querySelector('textarea[name="n_content"]');
+    if (titleInput.value.trim() === '') {
+        alert('제목을 입력해 주세요.'); // 또는 원하는 위치에 메시지를 표시할 수 있습니다.
+        event.preventDefault(); // 폼 제출을 중단합니다.
+    }else if (contentTextArea.value.trim() === '') {
+        alert('내용을 입력해 주세요.'); // 또는 원하는 위치에 메시지를 표시할 수 있습니다.
+        event.preventDefault(); // 폼 제출을 중단합니다.
+    }
+});
+</script>
+
 </div>
 </div>
 </body>

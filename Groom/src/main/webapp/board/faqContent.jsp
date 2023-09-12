@@ -34,10 +34,10 @@ Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 	<%
 String imgURL = boardDTO.getFaq_img_url(); // 이미지 URL 가져오기
 
-String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
+String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\"><br>" : "";
 %>
 <%= imgTag %>
-<br>
+
 <%=boardDTO.getFaq_content() %></td></tr>
 
 </table>

@@ -15,28 +15,19 @@
 }
 
 .groom-info { /* 회사 소개글 */
-	width: 500px;
-/* 	margin: 0 auto; */
-	padding: 50px;
-	margin-left: 387px;
-	margin-top: -75px;
 	max-width: 940px;
 	margin: 0 auto;
 	padding: 65px;
 	color: black;
-
+	margin-top: -60px;
+	margin-left: 100px;
 }
-
 
 .custom-line-height { /* 회사 소개글 줄 간격 */
 	line-height: 1.7;
+
 }
 
 .row-bottom-padded-md{
 	margin-left: 100px;
-}
-
-.col-md-6{
-	margin-left: 10px;
-	width: 60px;
 }

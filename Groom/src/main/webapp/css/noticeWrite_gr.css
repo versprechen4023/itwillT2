@@ -79,8 +79,8 @@ margin-bottom: 30px
 }
 /* 버튼 세부 조절 ()*/
 .nwbtn {
-background-color: black;
-color: white;
+background-color: rgb(232, 232, 232);
+color: black;
 padding:8px 15px;
 border: none;
 border-radius: 5px;

@@ -753,13 +753,15 @@ public class Board1Controller extends HttpServlet {
 		if (sPath.equals("/qnaRe.bo")) {
 			System.out.println("qnaRe.bo");
 			// QnaDTO qnaDTO = getQna(request) 메서드 호출
-			QnaDTO qnaDTO = qnaService.getQna(request);
+			QnaDTO qnaDTO = new QnaService().getQna(request);
 			
+			if(qnaDTO.getRecontent() != null) {
 			// 엔터키(\r\n)를 => <br>택로 변경하는 작업
 			String reContent = qnaDTO.getRecontent();
 			reContent = reContent.replace("\r\n", "<br>");
 			qnaDTO.setRecontent(reContent);
-						
+			}
+			
 			// request에 "boardDTO",boardDTO 담아서
 			request.setAttribute("qnaDTO", qnaDTO);
 			// 주소변경없이 이동

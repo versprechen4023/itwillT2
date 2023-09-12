@@ -63,7 +63,6 @@ String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
 
 <div class="btn"  style="text-align: left; margin-left: 1035px; margin-top: -10px;"> 
 
-
 		<%
 		 if( id != null ) {
 			 if(id.equals(qnaDTO.getId())) {

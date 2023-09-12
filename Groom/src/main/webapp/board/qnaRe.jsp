@@ -49,8 +49,20 @@
 
 					<div>
 						<p>답변</p>
-						<textarea cols="108" rows="10" placeholder="답변을 입력해주세요"
+						<%
+						if(qnaDTO.getRecontent() != null){
+							%>
+							<textarea cols="108" rows="10" placeholder="답변을 입력해주세요"
 							name="re_content" class="qna_title"><%=qnaDTO.getRecontent() %></textarea>
+							<% 
+						}else{
+							%>
+							<textarea cols="108" rows="10" placeholder="답변을 입력해주세요"
+							name="re_content" class="qna_title"></textarea>
+							<% 
+						}
+						%>
+						
 					</div>
 
 <!-- 					<DIV> -->

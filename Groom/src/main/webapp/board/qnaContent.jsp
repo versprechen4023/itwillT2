@@ -52,11 +52,11 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
     <%
 String imgURL = qnaDTO.getQnaimgurl(); // 이미지 URL 가져오기
 
-String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\">" : "";
+String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\"><br>" : "";
 %>
 
 <%= imgTag %>
-    <br> 
+     
     <%=qnaDTO.getContent() %> </td></tr>
 
 </table>

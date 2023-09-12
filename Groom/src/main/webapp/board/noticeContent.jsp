@@ -41,10 +41,10 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 	<%
 String imgURL = boardDTO.getN_img_url(); // 이미지 URL 가져오기
 
-String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\" >" : "";
+String imgTag = (imgURL != null) ? "<img src=\"upload/" + imgURL + "\" ><br>" : "";
 %>
 <%= imgTag %>
-<br>
+
 <%=boardDTO.getN_content() %> </td></tr>
 
 

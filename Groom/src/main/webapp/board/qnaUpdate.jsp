@@ -63,9 +63,19 @@
                   style="height: 15px; width: auto; margin-right: 5px;"
                   onclick="triggerFileInput()">
 <!--             <p class="img_text" style="margin: 0;">사진/동영상 추가</p> -->
+				<% if(qnaDTO.getQnaimgurl() != null){
+				%>
 				<input type="hidden" name="oldfile" value="<%=qnaDTO.getQnaimgurl() %>">
-                <input type="file" id="fileInput" name="qna_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
-                <div id="fileInfoDisplay">　<%=qnaDTO.getQnaimgurl() %></div>
+				<input type="file" id="fileInput" name="qna_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
+				<div id="fileInfoDisplay">　<%=qnaDTO.getQnaimgurl() %></div>
+				<% 		
+				}else{
+				%>
+				<input type="file" id="fileInput" name="qna_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
+				<div id="fileInfoDisplay">선택된 파일 없음</div>
+				<%
+				}
+				%>
         </div>
 					</div>
 

@@ -60,7 +60,7 @@ public class MemberEmail {
 		    message.setContent(content, "text/html; charset=UTF-8"); //내용설정
 
 		    // 이메일 전송
-//		    Transport.send(message);
+		    Transport.send(message);
 		    System.out.println("이메일 전송 완료");
 
 		} catch (MessagingException e) {

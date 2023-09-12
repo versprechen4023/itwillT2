@@ -178,7 +178,7 @@ if (i <= rating) {
 					<!-- HOME 페이지 RECENT BLOG 이미지 칸 -->
 					<div class="img-wrapper"> 
 						<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img">
-						<img src="upload/<%=reviewDTO.getRev_img_url()%>" class="img-responsive" alt="이미지없음"></a>
+						<img src="upload/<%=reviewDTO.getRev_img_url()%>" class="img-responsive" alt="이미지" onerror="this.src='images/empty_image.jpg'" /></a>
 					</div>	
 					<div class="desc">
 						<h3><a><%=reviewDTO.getPro_name() %></a><br>

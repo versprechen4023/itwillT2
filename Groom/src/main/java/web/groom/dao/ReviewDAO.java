@@ -28,7 +28,8 @@ public class ReviewDAO {
 					+ "                 JOIN user2 c ON b.u_num = c.u_num"
 					+ "                 JOIN product2 d ON b.pro_id2 = d.pro_id2"
 					+ "                 JOIN employees e ON b.emp_num = e.emp_num"
-					+ "                 JOIN store f ON b.s_num = f.s_num;";
+					+ "                 JOIN store f ON b.s_num = f.s_num"
+					+ "   ORDER BY a.rev_num DESC;";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			// 리스트에 초기저장소 10 할당
@@ -82,7 +83,8 @@ public class ReviewDAO {
 					+ "                 JOIN product2 d ON b.pro_id2 = d.pro_id2"
 					+ "                 JOIN employees e ON b.emp_num = e.emp_num"
 					+ "                 JOIN store f ON b.s_num = f.s_num"
-					+ "   WHERE d.pro_name = ?;";
+					+ "   WHERE d.pro_name = ?"
+					+ "   ORDER BY a.rev_num DESC;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proName); // 프로덕트 이름 설정
 			rs = pstmt.executeQuery();
@@ -136,7 +138,8 @@ public class ReviewDAO {
 					+ "                 JOIN product2 d ON b.pro_id2 = d.pro_id2"
 					+ "                 JOIN employees e ON b.emp_num = e.emp_num"
 					+ "                 JOIN store f ON b.s_num = f.s_num"
-					+ "   WHERE b.u_num = ?;";
+					+ "   WHERE b.u_num = ?"
+					+ "   ORDER BY a.rev_num DESC;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, u_num); // 프로덕트 이름 설정
 			rs = pstmt.executeQuery();
@@ -274,6 +277,8 @@ public class ReviewDAO {
 			result = (rs !=0) ? true : false;
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			dbClose();
 		}
 		
 		return result;
@@ -302,6 +307,8 @@ public class ReviewDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			dbClose();
 		}
 		
 		return result;
@@ -475,6 +482,8 @@ public class ReviewDAO {
 				}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			dbClose();
 		}
 		return reviewDTO;
 	}

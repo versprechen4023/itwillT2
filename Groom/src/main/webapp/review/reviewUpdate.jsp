@@ -1,5 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="web.groom.dto.ReviewDTO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -103,7 +104,13 @@ if (rev_img_url != null) {
 	<div class="review-input-img">
 		<img src="./images/photo.png" class="review-input-img1" onclick="triggerFileInput()">
 		<input type="file" id="fileInput" name="rev_img_url" accept=".png, .jpg, .jpeg, .gif" style="display: none">
-		<div id="fileInfoDisplay">　<%=reviewDTO.getRev_img_url() %>
+		<div id="fileInfoDisplay">
+		<c:if test="${empty reviewDTO.rev_img_url}">
+		　이미지 없음
+		</c:if>
+		<c:if test="${not empty reviewDTO.rev_img_url}">
+		<%=reviewDTO.getRev_img_url() %>
+		</c:if>
 		</div>
 	</div><br>
 		</div>

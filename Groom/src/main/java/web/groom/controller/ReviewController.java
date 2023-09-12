@@ -239,7 +239,7 @@ public class ReviewController extends HttpServlet {
 				boolean result = new ReviewService().writeRe(request);
 				// 정상처리 되었을 경우 출력
 				if (result) {
-					JSForward.locationHref(response, "답글 작성 완료.\n* 포인트가 지급됩니다.", "reviewList.re");
+					JSForward.locationHref(response, "답글 작성 완료, 포인트 지급 완료", "reviewList.re");
 				} else {
 					JSForward.locationHref(response, "답글 작성에 문제발생", "reviewList.re");
 				}

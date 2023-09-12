@@ -21,7 +21,8 @@ public class Board1DAO {
 	ResultSet rs = null;
 
 	// ========================================================================
-
+	
+	// 공지사항 리스트를 가져오기 위한 메서드
 	public List<Board1DTO> getNotice(PageDTO pageDTO) {//
 		System.out.println("BoardDAO getNotice()");
 		List<Board1DTO> notice = null;
@@ -29,14 +30,14 @@ public class Board1DAO {
 		try {
 			// 1,2 디비연결
 			con = new SQLConnection().getConnection();
-			String sql = "select * from notice order by n_num desc limit ?, ?";
+			String sql = "SELECT * FROM notice ORDER BY n_num desc LIMIT ?, ?";
 //				String sql = "select * from notice";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, pageDTO.getStartRow() - 1);// 시작행-1
 			pstmt.setInt(2, pageDTO.getPageSize());// 몇개
 			// 4 실행 => 결과 저장
 			rs = pstmt.executeQuery();
-			// boardList 객체생성
+			// 리스트에 초기저장소 10 할당
 			notice = new ArrayList<>();
 			// 5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
 			// => 배열 한칸에 저장
@@ -57,7 +58,7 @@ public class Board1DAO {
 		return notice;
 	}// getNotice()//
 
-	// 검색
+	// 공지사항을 검색했을때 리스트를 가져오기 위한 메서드
 	public List<Board1DTO> getNoticeSearch(PageDTO pageDTO) {//
 		System.out.println("BoardDAO getNotice()");
 		List<Board1DTO> notice = null;
@@ -67,14 +68,14 @@ public class Board1DAO {
 			con = new SQLConnection().getConnection();
 //				String sql="select * from notice order by n_num desc limit ?, ?";
 //				String sql = "select * from notice";
-			String sql = "select * from notice where n_title like ? order by n_num desc limit ?, ?";
+			String sql = "SELECT * FROM notice WHERE n_title LIKE ? ORDER BY n_num desc LIMIT ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + pageDTO.getSearch() + "%");
 			pstmt.setInt(2, pageDTO.getStartRow() - 1);// 시작행-1
 			pstmt.setInt(3, pageDTO.getPageSize());// 몇개
 			// 4 실행 => 결과 저장
 			rs = pstmt.executeQuery();
-			// boardList 객체생성
+			// 리스트에 초기저장소 10 할당
 			notice = new ArrayList<>();
 			// 5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
 			// => 배열 한칸에 저장
@@ -95,33 +96,35 @@ public class Board1DAO {
 		return notice;
 	}// getNoticeSearch()
 
-	public int getMaxNum() {
-		System.out.println("Board1DAO getMaxNum()");
-		int n_num = 0;
-		try {
-			// 1단계 JDBC 프로그램 가져오기
-			// 2단계 DB연결
-			con = new SQLConnection().getConnection();
-
-			// 3단계 문자열을 -> sql구문으로 변경
-			String sql = "select max(n_num) from notice ";
-			pstmt = con.prepareStatement(sql);
-
-			// 4단계 sql구문 실행 => 실행결과 ResultSet 내장객체에 저장
-			rs = pstmt.executeQuery();
-
-			// 5단계 : if 다음행 => 열데이터 가져와서 num 저장
-			if (rs.next()) {
-				n_num = rs.getInt("max(n_num)");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			dbClose();
-		}
-		return n_num;
-	}
-
+	// 맥스넘은 사용되지 않음
+//	public int getMaxNum() {
+//		System.out.println("Board1DAO getMaxNum()");
+//		int n_num = 0;
+//		try {
+//			// 1단계 JDBC 프로그램 가져오기
+//			// 2단계 DB연결
+//			con = new SQLConnection().getConnection();
+//
+//			// 3단계 문자열을 -> sql구문으로 변경
+//			String sql = "select max(n_num) from notice ";
+//			pstmt = con.prepareStatement(sql);
+//
+//			// 4단계 sql구문 실행 => 실행결과 ResultSet 내장객체에 저장
+//			rs = pstmt.executeQuery();
+//
+//			// 5단계 : if 다음행 => 열데이터 가져와서 num 저장
+//			if (rs.next()) {
+//				n_num = rs.getInt("max(n_num)");
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			dbClose();
+//		}
+//		return n_num;
+//	}
+	
+	// 공지사항 작성하기 위한 메서드
 	public boolean insertNotice(Board1DTO boardDTO) {
 
 		boolean result = false;
@@ -130,7 +133,7 @@ public class Board1DAO {
 			// 1,2 디비연결
 			con = new SQLConnection().getConnection();
 			// 3 sql insert
-			String sql = "insert into notice(n_num,n_title,n_content,n_date,n_img_url) values(?,?,?,?,?)";
+			String sql = "INSERT INTO notice(n_num,n_title,n_content,n_date,n_img_url) VALUES(?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, boardDTO.getN_num());
 			pstmt.setString(2, boardDTO.getN_title());
@@ -152,14 +155,15 @@ public class Board1DAO {
 
 		return result;
 	}// insertNotice//
-
+	
+	// 공지사항 내용 가져오기 위한 메서드
 	public Board1DTO getBoard(int n_num) {
 		Board1DTO boardDTO = null;
 		try {
 			// 1,2 디비연결
 			con = new SQLConnection().getConnection();
 			// 3 sql select * from board where num = ?
-			String sql = "select * from notice where n_num = ?";
+			String sql = "SELECT * FROM notice WHERE n_num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, n_num);
 			// 4 실행 => 결과 저장
@@ -182,14 +186,15 @@ public class Board1DAO {
 		}
 		return boardDTO;
 	}// getBoard//
-
+	
+	// 공지사항 전체 글 개수 구하기 위한 메서드
 	public int getBoardCount() {
 		int count = 0;
 		try {
 			// 1,2 디비연결
 			con = new SQLConnection().getConnection();
 			// 3 sql select count(*) from board
-			String sql = "select count(*) from notice;"; // faq-> notice로 수정
+			String sql = "SELECT count(*) FROM notice;"; // faq-> notice로 수정
 			pstmt = con.prepareStatement(sql);
 			// 4 실행 => 결과저장
 			rs = pstmt.executeQuery();
@@ -205,14 +210,14 @@ public class Board1DAO {
 		return count;
 	}// getBoardCount
 
-	// 검색
+	// 공지사항 검색할때 전체 글 개수 구하기 위한 메서드
 	public int getBoardCountSearch(PageDTO pageDTO) {
 		int count = 0;
 		try {
 			// 1,2 디비연결
 			con = new SQLConnection().getConnection();
 			// 3 sql select count(*) from board
-			String sql = "select count(*) from notice where n_title like ?;";
+			String sql = "SELECT count(*) FROM notice WHERE n_title LIKE ?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + pageDTO.getSearch() + "%");
 			// 4 실행 => 결과저장
@@ -228,7 +233,8 @@ public class Board1DAO {
 		}
 		return count;
 	}// getBoardCountSearch
-
+	
+	// 공지사항 글 수정하기 위한 메서드
 	public boolean updateNotice(Board1DTO boardDTO) {
 		System.out.println("Board1DTO boardDTO");
 
@@ -259,8 +265,9 @@ public class Board1DAO {
 		}
 
 		return result;
-	}
-
+	}// updateNotice
+	
+	// 공지사항 글 삭제하기 위한 메서드
 	public boolean deleteNotice(int n_num) {
 
 		boolean result = false;
@@ -284,11 +291,12 @@ public class Board1DAO {
 		}
 
 		return result;
-	}
+	}// deleteNotice
 
 //FAQ
 //===================================================================
-
+	
+	// FAQ 리스트를 가져오기 위한 메서드
 	public List<Board1DTO> getFaq(PageDTO pageDTO) {//
 		System.out.println("BoardDAO getFaq()");
 		List<Board1DTO> faq = null;
@@ -296,14 +304,14 @@ public class Board1DAO {
 		try {
 			// 1,2 디비연결
 			con = new SQLConnection().getConnection();
-			String sql = "select * from faq order by faq_num desc limit ?, ?";
+			String sql = "SELECT * FROM faq ORDER BY faq_num desc LIMIT ?, ?";
 //				String sql = "select * from faq";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, pageDTO.getStartRow() - 1);// 시작행-1
 			pstmt.setInt(2, pageDTO.getPageSize());// 몇개
 			// 4 실행 => 결과 저장
 			rs = pstmt.executeQuery();
-			// boardList 객체생성
+			// 리스트에 초기저장소 10 할당
 			faq = new ArrayList<>();
 			// 5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
 			// => 배열 한칸에 저장
@@ -324,7 +332,7 @@ public class Board1DAO {
 		return faq;
 	}// getFaq()//
 
-	// 검색
+	// FAQ를 검색했을때 리스트를 가져오기 위한 메서드
 	public List<Board1DTO> getFaqSearch(PageDTO pageDTO) {//
 		System.out.println("BoardDAO getFaq()");
 		List<Board1DTO> faq = null;
@@ -334,14 +342,14 @@ public class Board1DAO {
 			con = new SQLConnection().getConnection();
 //				String sql="select * from faq order by faq_num desc limit ?, ?";
 //				String sql = "select * from faq";
-			String sql = "select * from faq where faq_title like ? order by faq_num desc limit ?, ?";
+			String sql = "SELECT * FROM faq WHERE faq_title LIKE ? ORDER BY faq_num desc LIMIT ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + pageDTO.getSearch() + "%");
 			pstmt.setInt(2, pageDTO.getStartRow() - 1);// 시작행-1
 			pstmt.setInt(3, pageDTO.getPageSize());// 몇개
 			// 4 실행 => 결과 저장
 			rs = pstmt.executeQuery();
-			// boardList 객체생성
+			// 리스트에 초기저장소 10 할당
 			faq = new ArrayList<>();
 			// 5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
 			// => 배열 한칸에 저장
@@ -361,34 +369,36 @@ public class Board1DAO {
 		}
 		return faq;
 	}// getFaqSearch()
-
-	public int getMaxNum2() {
-		System.out.println("Board1DAO getMaxNum()");
-		int faq_num = 0;
-		try {
-			// 1단계 JDBC 프로그램 가져오기
-			// 2단계 DB연결
-			con = new SQLConnection().getConnection();
-
-			// 3단계 문자열을 -> sql구문으로 변경
-			String sql = "select max(faq_num) from faq ";
-			pstmt = con.prepareStatement(sql);
-
-			// 4단계 sql구문 실행 => 실행결과 ResultSet 내장객체에 저장
-			rs = pstmt.executeQuery();
-
-			// 5단계 : if 다음행 => 열데이터 가져와서 num 저장
-			if (rs.next()) {
-				faq_num = rs.getInt("max(faq_num)");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			dbClose();
-		}
-		return faq_num;
-	}
-
+	
+	// 맥스넘은 사용되지 않음
+//	public int getMaxNum2() {
+//		System.out.println("Board1DAO getMaxNum()");
+//		int faq_num = 0;
+//		try {
+//			// 1단계 JDBC 프로그램 가져오기
+//			// 2단계 DB연결
+//			con = new SQLConnection().getConnection();
+//
+//			// 3단계 문자열을 -> sql구문으로 변경
+//			String sql = "select max(faq_num) from faq ";
+//			pstmt = con.prepareStatement(sql);
+//
+//			// 4단계 sql구문 실행 => 실행결과 ResultSet 내장객체에 저장
+//			rs = pstmt.executeQuery();
+//
+//			// 5단계 : if 다음행 => 열데이터 가져와서 num 저장
+//			if (rs.next()) {
+//				faq_num = rs.getInt("max(faq_num)");
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			dbClose();
+//		}
+//		return faq_num;
+//	}
+	
+	// FAQ 작성하기 위한 메서드
 	public boolean insertFaq(Board1DTO boardDTO) {
 		
 		boolean result = false;
@@ -419,14 +429,15 @@ public class Board1DAO {
 		
 		return result;
 	}// insertFaq//
-
+	
+	// FAQ 내용 가져오기 위한 메서드
 	public Board1DTO getBoard2(int faq_num) {
 		Board1DTO boardDTO = null;
 		try {
 			// 1,2 디비연결
 			con = new SQLConnection().getConnection();
 			// 3 sql select * from board where num = ?
-			String sql = "select * from faq where faq_num = ?";
+			String sql = "SELECT * FROM faq WHERE faq_num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, faq_num);
 			// 4 실행 => 결과 저장
@@ -449,14 +460,15 @@ public class Board1DAO {
 		}
 		return boardDTO;
 	}// getBoard//
-
+	
+	// FAQ 전체 글 개수 구하기 위한 메서드
 	public int getBoardCount2() {
 		int count = 0;
 		try {
 			// 1,2 디비연결
 			con = new SQLConnection().getConnection();
 			// 3 sql select count(*) from board
-			String sql = "select count(*) from faq;";
+			String sql = "SELECT count(*) FROM faq;";
 			pstmt = con.prepareStatement(sql);
 			// 4 실행 => 결과저장
 			rs = pstmt.executeQuery();
@@ -472,14 +484,14 @@ public class Board1DAO {
 		return count;
 	}// getBoardCount
 
-	// 검색
+	// FAQ 검색할때 전체 글 개수 구하기 위한 메서드
 	public int getBoardCountSearch2(PageDTO pageDTO) {
 		int count = 0;
 		try {
 			// 1,2 디비연결
 			con = new SQLConnection().getConnection();
 			// 3 sql select count(*) from board
-			String sql = "select count(*) from faq where faq_title like ?;";
+			String sql = "SELECT count(*) FROM faq WHERE faq_title LIKE ?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + pageDTO.getSearch() + "%");
 			// 4 실행 => 결과저장
@@ -495,7 +507,8 @@ public class Board1DAO {
 		}
 		return count;
 	}// getBoardCountSearch
-
+	
+	// FAQ 글 수정하기 위한 메서드
 	public boolean updateFaq(Board1DTO boardDTO) {
 		System.out.println("Board1DTO boardDTO");
 		
@@ -526,7 +539,7 @@ public class Board1DAO {
 		}
 		
 		return result;
-	}
+	} // updateFaq
 
 	public boolean deleteFaq(int faq_num) {
 		
@@ -551,7 +564,7 @@ public class Board1DAO {
 		}
 		
 		return result;
-	}
+	} // deleteFaq
 	
 	//기억장소 해제 메서드()
 	public void dbClose() {

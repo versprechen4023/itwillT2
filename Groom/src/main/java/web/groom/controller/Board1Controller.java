@@ -571,7 +571,7 @@ public class Board1Controller extends HttpServlet {
 			// 주소변경없이 이동
 			webForward(request, response, "board", "qnaSearch");
 		} // qnaSearch.bo
-		
+
 		// QNA 리스트 페이지 이동 board/qna.jsp
 		if (sPath.equals("/qna.bo")) {
 
@@ -587,13 +587,13 @@ public class Board1Controller extends HttpServlet {
 			}
 			// 페이지 번호를 => 정수형으로 변경
 			int currentPage = Integer.parseInt(pageNum);
-			
+
 			// pageDTO에 담음
 			PageDTO pageDTO = new PageDTO();
 			pageDTO.setPageSize(pageSize);
 			pageDTO.setPageNum(pageNum);
 			pageDTO.setCurrentPage(currentPage);
-			
+
 			// QNA서비스 객체생성
 			qnaService = new QnaService();
 			// List<QnaDTO> qna = getQnaList(); 메서드 호출
@@ -624,21 +624,21 @@ public class Board1Controller extends HttpServlet {
 		// QNA 내용 페이지 이동 board/noticeContent.jsp
 		if (sPath.equals("/qnaContent.bo")) {
 			System.out.println("qnaContent.bo");
-			
+
 			// QnaDTO qnaDTO = getQna(request) 메서드 호출
 			QnaDTO qnaDTO = new QnaService().getQna(request);
-			
+
 			// 엔터키(\r\n)를 => <br>택로 변경하는 작업
 			String content = qnaDTO.getContent();
 			content = content.replace("\r\n", "<br>");
 			qnaDTO.setContent(content);
-			
+
 			// request에 "qnaDTO",qnaDTO 담아서
 			request.setAttribute("qnaDTO", qnaDTO);
 			// 주소변경없이 이동
 			webForward(request, response, "board", "qnaContent");
 		} // qna상세
-		
+
 		// QNA 내용 페이지 이동(답변안된거) board/noticeNoanswer.jsp
 		if (sPath.equals("/qnaNoanswer.bo")) {
 			System.out.println("qnaNoanswer.bo");
@@ -653,13 +653,13 @@ public class Board1Controller extends HttpServlet {
 			}
 			// 페이지 번호를 => 정수형으로 변경
 			int currentPage = Integer.parseInt(pageNum);
-			
+
 			// pageDTO에 담음
 			PageDTO pageDTO = new PageDTO();
 			pageDTO.setPageSize(pageSize);
 			pageDTO.setPageNum(pageNum);
 			pageDTO.setCurrentPage(currentPage);
-			
+
 			// QnaService 객체생성
 			qnaService = new QnaService();
 			// List<QnaDTO> qna = getNoanswer(); 메서드 호출
@@ -688,13 +688,13 @@ public class Board1Controller extends HttpServlet {
 			request.setAttribute("qna", qna);
 			webForward(request, response, "board", "qnaNoanswer");
 		} // qna 답글X
-		
+
 		// QNA 작성 페이지 이동 board/qnaWrite.jsp
 		if (sPath.equals("/qnaWrite.bo")) {
 			System.out.println("qnaWrite.bo");
 			webForward(request, response, "board", "qnaWrite");
 		} // qna작성
-		
+
 		// QNA 작성 관련 매핑
 		if (sPath.equals("/qnaWritePro.bo")) {
 			System.out.println("qnaWritePro.bo");
@@ -707,7 +707,7 @@ public class Board1Controller extends HttpServlet {
 				JSForward.locationHref(response, "QNA 작성에 문제가 발생했습니다", "qna.bo");
 			}
 		} // qna작성 후 등록
-		
+
 		// QNA 삭제 관련 매핑
 		if (sPath.equals("/qnaDelete.bo")) {
 			System.out.println("qnaDelete.bo");
@@ -719,7 +719,7 @@ public class Board1Controller extends HttpServlet {
 			} else {
 				JSForward.locationHref(response, "QNA 삭제에 문제가 발생했습니다", "qna.bo");
 			}
-			
+
 		} // qna삭제
 
 		// QNA 수정 페이지 이동 board/qnaUpdate.jsp
@@ -746,44 +746,52 @@ public class Board1Controller extends HttpServlet {
 				JSForward.locationHref(response, "QNA 수정에 문제가 발생했습니다", "qna.bo");
 			}
 		} // qna수정 후 등록
-		
+
 		// 답글 ============================================================
-		
+
 		// QNA 답변 수정(작성)관련 페이지 이동 board/qnaRE.jsp
 		if (sPath.equals("/qnaRe.bo")) {
 			System.out.println("qnaRe.bo");
-			// QnaDTO qnaDTO = getQna(request) 메서드 호출
-			QnaDTO qnaDTO = new QnaService().getQna(request);
-			
-			if(qnaDTO.getRecontent() != null) {
-			// 엔터키(\r\n)를 => <br>택로 변경하는 작업
-			String reContent = qnaDTO.getRecontent();
-			reContent = reContent.replace("\r\n", "<br>");
-			qnaDTO.setRecontent(reContent);
+			// 유저 세션 검증
+			String id = (String) request.getSession().getAttribute("id");
+			String role = (String) request.getSession().getAttribute("role");
+			// 세션에 id값이 존재하지않거나 role이 admin이 아닐 경우 로그인 페이지로 이동
+			if (id == null || !role.equals("admin")) {
+				JSForward.locationHref(response, "비정상적인 접근입니다.", "main.gr");
+			} else {
+				// QnaDTO qnaDTO = getQna(request) 메서드 호출
+				QnaDTO qnaDTO = new QnaService().getQna(request);
+				// request에 "boardDTO",boardDTO 담아서
+				request.setAttribute("qnaDTO", qnaDTO);
+				// 주소변경없이 이동
+				webForward(request, response, "board", "qnaRe");
 			}
-			
-			// request에 "boardDTO",boardDTO 담아서
-			request.setAttribute("qnaDTO", qnaDTO);
-			// 주소변경없이 이동
-			webForward(request, response, "board", "qnaRe");
-			
+
 		} // qna답글 수정(작성)하는 페이지
-		
+
 		// QNA 작성 관련 매핑
 		if (sPath.equals("/qnaReWritePro.bo")) {
 			System.out.println("qnaReWritePro.bo");
-			// 공지사항 작성을 위한 서비스에 리퀘스트 전달후 결과값 반환
-			boolean result = new QnaService().writeRe(request);
-			// 정상처리 되었을 경우 출력
-			if (result) {
-				JSForward.locationHref(response, "QNA 작성이 완료되었습니다", "qna.bo");
+			// 유저 세션 검증
+			String id = (String) request.getSession().getAttribute("id");
+			String role = (String) request.getSession().getAttribute("role");
+			// 세션에 id값이 존재하지않거나 role이 admin이 아닐 경우 로그인 페이지로 이동
+			if (id == null || !role.equals("admin")) {
+				JSForward.locationHref(response, "비정상적인 접근입니다.", "main.gr");
 			} else {
-				JSForward.locationHref(response, "QNA 작성에 문제가 발생했습니다", "qna.bo");
+				// QNA 답변 작성(수정)을 위한 서비스에 리퀘스트 전달후 결과값 반환
+				boolean result = new QnaService().writeRe(request);
+				// 정상처리 되었을 경우 출력
+				if (result) {
+					JSForward.locationHref(response, "QNA 답변 작성이 완료되었습니다", "qna.bo");
+				} else {
+					JSForward.locationHref(response, "QNA 답변 작성에 문제가 발생했습니다", "qna.bo");
+				}
 			}
 		} // qna답변 작성 후 등록
-		
-		// 사용되지 않는 것으로 보임 
-		
+
+		// 사용되지 않는 것으로 보임
+
 //		if (sPath.equals("/reWrite.bo")) {
 //			System.out.println("reWrite.bo");
 //			qnaService = new QnaService();
@@ -842,4 +850,4 @@ public class Board1Controller extends HttpServlet {
 		request.getRequestDispatcher("/" + folder + "/" + pageName + ".jsp").forward(request, response);
 	}
 
-}
+} //end_of_Board1Controller

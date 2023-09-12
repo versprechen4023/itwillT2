@@ -192,14 +192,14 @@ function callImportAPI() {
                 'vbank':가상계좌,
                 'phone':휴대폰소액결제 
             */
-            merchant_uid: 'merchant_' + new Date().getTime(),
+            merchant_uid: '고유주문번호 : ' + new Date().getTime(),
             /* 
                 merchant_uid에 // 상점에서 생성한 고유 주문번호가 들어가야한다고 가이드에되어있는데 고유주문번호는 내DB에서쓰는건가?
+                		//보기에는 시간만 보임
                 
              */
             name: name,
-            //결제창에서 보여질 이름
-            //코드레스나 다른팀에서 api사용하는코드 분석해서 DB에서 값을 가져올 필요가있음
+            //결제창에서 보여질 이름 일단 DB에서 가져옴
             amount: val, 
             //가격 
             buyer_email: '${param.email}',
@@ -207,7 +207,7 @@ function callImportAPI() {
 //             buyer_tel: '010-1234-5678',
 //             buyer_addr: '부산광역시 부산진구 부전동',
 //             buyer_postcode: '123-456',
-            m_redirect_url: 'https://www.yourdomain.com/payments/complete'
+            m_redirect_url: 'mypage.my'
             /*  
                 모바일 결제시,
                 결제가 끝나고 리디렉션될 URL 지정
@@ -217,28 +217,28 @@ function callImportAPI() {
         }, function (response) {
             console.log(response); //ajax처럼 콜백 성공유무
             if (response.success) {
-                var msg = '결제완료시 내용 표시 가능 ';
-                msg += '고유ID : ' + response.imp_uid;
-                msg += '상점 거래ID : ' + response.merchant_uid;
-                msg += '결제 금액 : ' + response.paid_amount;
-                msg += '카드 승인번호 : ' + response.apply_num;
+//                 var msg = '결제완료시 내용 표시 가능 ';
+//                 msg += '고유ID : ' + response.imp_uid;
+//                 msg += '상점 거래ID : ' + response.merchant_uid;
+//                 msg += '결제 금액 : ' + response.paid_amount;
+//                 msg += '카드 승인번호 : ' + response.apply_num;
+            	if(payment == "html5_inicis"){
+                	res_method = "카드결제";
+                } else if(payment == "kakaopay"){
+                	res_method = "카카오페이 결제"
+                }
+            	
+            	//결제 수단 변수 삽입
+                document.getElementById("res_method").value = res_method;
+            	
+             	// submit 실행
+                document.getElementById("checkout").submit();
+            	
             } else {
-                var msg = '결제실패 내용들어가는곳 : ';
-                msg += response.error_msg;
+//                 var msg = '결제실패 내용들어가는곳 : ';
+//                 msg += response.error_msg;
             }
-            alert(msg); // 최종메세지 출력
-            
-            if(payment == "html5_inicis"){
-            	res_method = "카드결제";
-            } else if(payment == "kakaopay"){
-            	res_method = "카카오페이 결제"
-            }
-            
-            //결제 수단 변수 삽입
-            document.getElementById("res_method").value = res_method;
-            
-            // submit 실행
-            document.getElementById("checkout").submit();
+//             alert(msg); // 최종메세지 출력
         });
     }
 </script>

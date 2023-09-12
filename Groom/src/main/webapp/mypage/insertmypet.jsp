@@ -52,7 +52,7 @@
     <!-- 성별 및 중성화여부 라디오 버튼 그룹 -->
       <label for="gender" class="labelstyle">성별</label>
     <div class="select">
-      <input type="radio" value="M" id="male" name="petgender"><label for="male">수컷</label>
+      <input type="radio" value="M" id="male" name="petgender" checked><label for="male">수컷</label>
       <input type="radio" value="F" id="female" name="petgender"><label for="female">암컷</label><br>
     </div><br>
 
@@ -60,7 +60,7 @@
     <label for="neuter" class="labelstyle">중성화 여부</label>
     <div class="select">
       <input type="radio" value="Y" id="yes" name="petneuter"><label for="yes">유</label>
-      <input type="radio" value="N" id="no" name="petneuter"><label for="no">무</label><br>
+      <input type="radio" value="N" id="no" name="petneuter" checked><label for="no">무</label><br>
     </div><br>
 
     

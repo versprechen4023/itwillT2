@@ -5,26 +5,12 @@
 <title>Groom</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description"
-	content="Free HTML5 Website Template by FreeHTML5.co" />
+	content="itwill Team2 First Project Groom" />
 <meta name="keywords"
-	content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-<meta name="author" content="FreeHTML5.co" />
+	content="itwill Team2 First Project Groom" />
+<meta name="author" content="Groom" />
 
-<!-- 
-	//////////////////////////////////////////////////////
 
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FreeHTML5.co
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	-->
-
-<!-- Facebook and Twitter integration -->
 <meta property="og:title" content="" />
 <meta property="og:image" content="" />
 <meta property="og:url" content="" />
@@ -35,7 +21,6 @@
 <meta name="twitter:url" content="" />
 <meta name="twitter:card" content="" />
 
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 <!-- 파비콘 적용 코드 -->
 <link rel="icon" href="images/favi.png" />

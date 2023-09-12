@@ -312,7 +312,7 @@ $j(document).ready(function() {
             	    servicelist.appendChild(option);
             	});
             }
-        });////endAJAX(서비스리스트)
+        });//endAJAX(서비스리스트)
         
      	// 무게 쪽을 얻기 위한 AJAX 요청.
         $j.ajax({

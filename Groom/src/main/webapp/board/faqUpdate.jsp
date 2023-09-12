@@ -38,8 +38,7 @@ Board1DTO boardDTO = (Board1DTO)request.getAttribute("boardDTO");
 	</table>
 	<table>	
 		<tr><th class="nwth">내용</th></tr>
-		<tr><td><textarea class="cont" name="faq_content">
-			<%=boardDTO.getFaq_content()%></textarea></td></tr>
+		<tr><td><textarea class="cont" name="faq_content"><%=boardDTO.getFaq_content()%></textarea></td></tr>
 		
 		<tr><td>
 		<!-- 아이콘(이미지) -->

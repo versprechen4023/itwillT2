@@ -193,7 +193,7 @@ var point = parseInt(document.getElementById("point").value);
 //제이쿼리 함수 시작 지점
 $j(document).ready(function() {
 	
-	//서브밋 기능 제어 함수 //셀렉트태그 부분 null이라고 잘뜨는데 if문안됨
+	//서브밋 기능 제어 함수
     $j('#checkout').submit(function() {
 		
     	if($j('#datepicker').val() == ""){

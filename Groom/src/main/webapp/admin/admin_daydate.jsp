@@ -42,6 +42,16 @@ var currentYear = currentDate.getFullYear();
 var currentMonth = currentDate.getMonth();
 var currentDateVal = currentDate.getDate();
 
+//서브밋 기능 제어 함수
+$('#admin_disday').submit(function() {
+	
+	if($('#datepicker').val() == ""){
+		alert("날짜를 선택해 주십시오"); 
+		return false;
+	}
+
+});//submit기능 제어 끝
+
 // 데이트피커 초기화
 $("#datepicker").datepicker({
   dateFormat: 'yy-mm-dd',

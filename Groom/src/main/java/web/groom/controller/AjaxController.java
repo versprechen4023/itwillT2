@@ -288,11 +288,11 @@ public class AjaxController extends HttpServlet {
 		} // end_of_getPrice.aj
 		
 		
-		// AJAX관련 예약상태 가져오기(상품가격)
+		// AJAX관련 예약상태 변경(완료)
 		if (sPath.equals("/statusComplete.aj")) {
 			System.out.println("예약상태변경");
-			AdminService adminService = new AdminService();
-			boolean result = adminService.statusComplete(request);
+			
+			boolean result = new AdminService().statusComplete(request);
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -300,11 +300,11 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		} // end_of_statusComplete.aj
 		
-		// AJAX관련 예약상태 가져오기(상품가격)
+		// AJAX관련 예약상태 변경(취소)
 		if (sPath.equals("/statusCancel.aj")) {
 			System.out.println("예약상태변경");
-			AdminService adminService = new AdminService();
-			boolean result = adminService.statusCancel(request);
+
+			boolean result = new AdminService().statusCancel(request);
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -312,11 +312,11 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		} // end_of_statusCancel.aj
 
-		// AJAX관련 예약상태 가져오기(상품가격)
+		// AJAX관련 예약상태 변경(예약중)
 		if (sPath.equals("/statusUnprocessed.aj")) {
 			System.out.println("예약상태변경");
-			AdminService adminService = new AdminService();
-			boolean result = adminService.statusUnprocessed(request);
+	
+			boolean result = new AdminService().statusUnprocessed(request);
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -324,6 +324,7 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		} // end_of_statusUnprocessed.aj
 		
+		// AJAX관련 포인트 지급처리
 		if (sPath.equals("/pointConfirm.aj")) {
 			System.out.println("포인트지급");
 			AdminService adminService = new AdminService();
@@ -339,6 +340,7 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		}// [포인트지급]
 		
+		// AJAX관련 포인트 회수처리
 		if (sPath.equals("/pointReturn.aj")) {
 			System.out.println("포인트회수");
 			AdminService adminService = new AdminService();
@@ -367,11 +369,11 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		} // end_of_getChange.aj
 		
-
+		// AJAX관련 매장 휴무일 취소 관련
 		if (sPath.equals("/del_StoreDisDays.aj")) {
 			System.out.println("del_StoreDisDays.aj");
-			AdminService adminService = new AdminService();
-			boolean result = adminService.del_StoreDisDays(request);
+	
+			boolean result = new AdminService().del_StoreDisDays(request);
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -379,10 +381,11 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		}// del_StoreDisDays.aj [매장 휴무일 취소]
 		
+		// AJAX관련 직원 휴무일 취소 관련
 		if (sPath.equals("/del_EmpDisDays.aj")) {
 			System.out.println("del_EmpDisDays.aj");
-			AdminService adminService = new AdminService();
-			boolean result = adminService.del_EmpDisDays(request);
+		
+			boolean result = new AdminService().del_EmpDisDays(request);
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -390,10 +393,11 @@ public class AjaxController extends HttpServlet {
 			out.close();
 		}// del_EmpDisDays.aj [직원 휴무일 취소]
 		
+		// AJAX관련 직원 휴무시간 취소 관련
 		if (sPath.equals("/del_EmpDisTime.aj")) {
 			System.out.println("del_EmpDisTime.aj");
-			AdminService adminService = new AdminService();
-			boolean result = adminService.del_EmpDisTime(request);
+			;
+			boolean result = new AdminService().del_EmpDisTime(request);
 			// 콜백함수에 최종결과값 출력
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

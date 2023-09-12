@@ -281,6 +281,10 @@ public class OrderService {
 			
 			// 예약내역 값 삽입
 			orderReserv = orderDAO.insertOrderReserv(orderReserv);
+			// 포인트 처리
+			if(orderReserv != null && res_point != 0) {
+				orderReserv = orderDAO.useUserPoint(orderReserv);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

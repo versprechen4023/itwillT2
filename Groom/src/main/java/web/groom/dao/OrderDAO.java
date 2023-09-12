@@ -445,7 +445,8 @@ public class OrderDAO {
 		
 		return orderInfoDTO;
 	}
-
+	
+	// 결제 정보 삽입하는 메서드
 	public OrderReservationDTO insertOrderReserv(OrderReservationDTO orderReserv) {
 		try {
 
@@ -488,6 +489,34 @@ public class OrderDAO {
 
 	}
 	
+	// 결제시 유저 사용포인트 처리하는 메서드
+	public OrderReservationDTO useUserPoint(OrderReservationDTO orderReserv) {
+		
+		try {
+			con = new SQLConnection().getConnection();
+			String sql = "UPDATE user2 SET u_point = u_point - ? WHERE u_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, orderReserv.getRes_point());
+			pstmt.setInt(2, orderReserv.getU_num());
+			
+			int rs = pstmt.executeUpdate();
+
+			if (rs != 0) {
+				System.out.println("포인트 차감 처리 완료");
+			} else {
+				System.out.println("포인트 차감 처리 실패");
+				orderReserv = null;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		
+		return orderReserv;
+	}
+	
 	public void dbClose() {
 
 		if (rs != null) {try {rs.close();} catch (SQLException e) {e.printStackTrace();}}
@@ -496,5 +525,6 @@ public class OrderDAO {
 
 		if (con != null) {try {con.close();} catch (SQLException e) {e.printStackTrace();}}
 	}
+
 
 } //end_of_OrderDAO

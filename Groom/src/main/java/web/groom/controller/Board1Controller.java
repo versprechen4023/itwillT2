@@ -208,8 +208,6 @@ public class Board1Controller extends HttpServlet {
 		if (sPath.equals("/noticeSearch.bo")) {
 			System.out.println("뽑은 가상주소 비교 : /noticeSearch.bo");
 
-			// request 한글처리
-			request.setCharacterEncoding("UTF-8");
 			// request 검색어 뽑아오기//
 			String search = request.getParameter("search"); // notice.jsp의 검색창부분 name="search"
 			System.out.println("search" + search);
@@ -447,8 +445,6 @@ public class Board1Controller extends HttpServlet {
 		if (sPath.equals("/faqSearch.bo")) {
 			System.out.println("뽑은 가상주소 비교 : /faqSearch.bo");
 
-			// request 한글처리
-			request.setCharacterEncoding("UTF-8");
 			// request 검색어 뽑아오기//
 			String search = request.getParameter("search"); // faq.jsp의 검색창부분 name="search"
 			System.out.println("search" + search);
@@ -513,8 +509,6 @@ public class Board1Controller extends HttpServlet {
 		if (sPath.equals("/qnaSearch.bo")) {
 			System.out.println("뽑은 가상주소 비교 : /qnaSearch.bo");
 
-			// request 한글처리
-			request.setCharacterEncoding("UTF-8");
 			// request 검색어 뽑아오기//
 			String search = request.getParameter("search"); // notice.jsp의 검색창부분 name="search"
 			System.out.println("search" + search);

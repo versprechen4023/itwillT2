@@ -315,8 +315,11 @@ function sendVerificationEmail() {
       if (canCallFunction) {
       alert("이메일로 인증번호가 전송되었습니다.");  
       canCallFunction = false;
-      
+      $('#emailtest').text("");
+      $("#verificationCode").removeAttr("readonly");
+      $('#verificationCode').attr('placeholder','인증번호를 입력해주세요'); 
       // 60초후에 인증번호 다시 발송 할 수 있게 setTimeout 함수 사용
+      
       setTimeout(function() {
           canCallFunction = true;
       }, 60000);
@@ -325,9 +328,7 @@ function sendVerificationEmail() {
         url: "email.aj",
         data: {"u_email": email },
         success: function(response) {
-          $('#emailtest').text("");
-          $("#verificationCode").removeAttr("readonly");
-          $('#verificationCode').attr('placeholder','인증번호를 입력해주세요'); 
+        	
         }//success 콜백함수 종료지점
       });// ajax
       } else {

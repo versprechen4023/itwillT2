@@ -203,21 +203,21 @@ for(AdminDTO adminDTO : visibleItems) {
 	<script src="./js/main.js"></script>
 <script type="text/javascript">
 function openDisDayDate1(){
-	window.open('storeDisDay.ad?s_num=1', '_blank', 'width=360px, height=360px, left=600px, top=300px');
+	window.open('storeDisDay.ad?s_num=1', '_blank', 'width=468px, height=360px, left=600px, top=300px');
 }
 function openDisDayDate2(){
-	window.open('storeDisDay.ad?s_num=2', '_blank', 'width=360px, height=360px, left=600px, top=300px');
+	window.open('storeDisDay.ad?s_num=2', '_blank', 'width=468px, height=360px, left=600px, top=300px');
 }
 function openDisDayDate3(){
-	window.open('storeDisDay.ad?s_num=3', '_blank', 'width=360px, height=360px, left=600px, top=300px');
+	window.open('storeDisDay.ad?s_num=3', '_blank', 'width=468px, height=360px, left=600px, top=300px');
 }
 function openDisDaytime(emp_num, s_num) {
     var url = 'empDisTime.ad?emp_num='+emp_num+'&s_num='+s_num;
-    var newWindow = window.open(url, '_blank', 'width=360px, height=360px, left=600px, top=300px');
+    var newWindow = window.open(url, '_blank', 'width=468px, height=360px, left=600px, top=300px');
 }
 function openDisDay(emp_num, s_num) {
     var url = 'empDisDay.ad?emp_num='+emp_num+'&s_num='+s_num;
-    var newWindow = window.open(url, '_blank', 'width=360px, height=360px, left=600px, top=300px');
+    var newWindow = window.open(url, '_blank', 'width=468px, height=360px, left=600px, top=300px');
 }
 //
 function openStoreDisdays(){

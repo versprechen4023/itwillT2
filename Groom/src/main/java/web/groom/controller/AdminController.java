@@ -141,7 +141,7 @@ public class AdminController extends HttpServlet {
 				boolean result = new AdminService().insertDisDay(request);
 				if (result) {
 					System.out.println("휴무일 업데이트 성공");
-					JSForward.windowClose(response); // 창닫기 라인
+					JSForward.windowClose(response, "휴무일 입력 완료."); // 창닫기 라인
 //				response.getWriter().println("<script>window.close();</script>");
 				} else {
 					System.out.println("휴무일 업데이트 실패");
@@ -169,7 +169,7 @@ public class AdminController extends HttpServlet {
 			boolean result = new AdminService().insertDisDayTime(request);
 			if (result) {
 				System.out.println("휴무시간 업데이트 성공");
-				JSForward.windowClose(response); // 창닫기 라인
+				JSForward.windowClose(response, "휴무시간 입력 완료."); // 창닫기 라인
 			} else {
 				System.out.println("휴무시간 업데이트 실패");
 			}
@@ -194,7 +194,7 @@ public class AdminController extends HttpServlet {
 			boolean result = new AdminService().insertDisDayEmp(request);
 			if (result) {
 				System.out.println("휴무시간 업데이트 성공");
-				JSForward.windowClose(response); // 창닫기 라인
+				JSForward.windowClose(response, "휴무일 입력 완료."); // 창닫기 라인
 			} else {
 				System.out.println("휴무시간 업데이트 실패");
 			}

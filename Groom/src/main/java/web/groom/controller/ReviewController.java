@@ -177,10 +177,12 @@ public class ReviewController extends HttpServlet {
 			boolean result = new ReviewService().insertReview(request);
 			if (result) {
 				System.out.println("리뷰작성완료");
+				JSForward.windowClose(response, "리뷰 작성 완료."); // 창닫기 라인
 			} else {
 				System.out.println("리뷰작성실패");
+				JSForward.windowClose(response, "에러"); // 창닫기 라인
 			}
-			JSForward.windowClose(response); // 창닫기 라인
+			
 		} // writereviewPro.re [리뷰작성 후 등록]
 
 		// 리뷰삭제를 위한 관련 로직

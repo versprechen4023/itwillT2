@@ -474,7 +474,7 @@ if (res_status == 0) {
 		  
 		  if(result=="true"){
 // 		  location.href = 'changeRes.my?res_num='+res_num+'&s_num='+s_num+'&emp_num='+emp_num;
-		  window.open('changeRes.my?res_num='+res_num+'&s_num='+s_num+'&emp_num='+emp_num, '_blank', 'width=360px, height=360px, left=600px, top=300px');
+		  window.open('changeRes.my?res_num='+res_num+'&s_num='+s_num+'&emp_num='+emp_num, '_blank', 'width=468px, height=360px, left=600px, top=300px');
 		  
  		  }else if ( result=="false"){
  		  alert("예약시간까지 2시간 미만일경우 예약 일정을 변경 하실 수 없습니다");

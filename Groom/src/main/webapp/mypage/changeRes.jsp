@@ -49,6 +49,19 @@ var currentYear = currentDate.getFullYear();
 var currentMonth = currentDate.getMonth();
 var currentDateVal = currentDate.getDate();
 
+$('#changeRes').submit(function() {
+	
+	if($('#datepicker').val() == ""){
+		alert("모든 값을 선택해 주십시오"); 
+		return false;
+	}
+	if($('#timepicker').val() == ""){
+		alert("모든 값을 선택해 주십시오"); 
+		return false;
+	}
+
+});
+
 // 데이트피커 초기화
 $("#datepicker").datepicker({
   dateFormat: 'yy-mm-dd',
@@ -127,6 +140,7 @@ $.ajax({
     disabledDates = result.map(function(item) {
       return item.date;
     });
+    $("#datepicker").focus();//
   }
 });
 </script>

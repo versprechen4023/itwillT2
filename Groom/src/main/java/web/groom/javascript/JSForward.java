@@ -40,16 +40,32 @@ public class JSForward {
 	}
 	
 	// 창닫기 라인
-		public static void windowClose(HttpServletResponse response) {
-			try {
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.print("<script>");
-				out.print("window.close();");
-				out.print("</script>");
-				out.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+	public static void windowClose(HttpServletResponse response) {
+		try {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("window.close();");
+			out.print("</script>");
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+	}
+	
+	// 창닫기 라인 자식창이 완료되면 부모창 리로드 @오버로딩
+	public static void windowClose(HttpServletResponse response, String msg) {
+		try {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('" + msg + "');");
+			out.print("window.close();");
+			out.print("window.opener.location.reload();");
+			out.print("</script>");
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

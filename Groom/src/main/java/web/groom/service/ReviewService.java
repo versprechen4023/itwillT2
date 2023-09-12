@@ -168,7 +168,11 @@ public class ReviewService {
 			String rev_content = multi.getParameter("rev_content");
 			String rev_img_url = multi.getFilesystemName("rev_img_url");
 			String rev_rating = multi.getParameter("rev_rating"); // 잠시
-
+			//첨부파일 없는 경우
+			if(rev_img_url == null) {
+				//기존파일 이름 가져오기
+				rev_img_url = multi.getParameter("oldfile");
+			}
 			// 리뷰 DTO에 변경할 값들을 저장
 			ReviewDTO reviewDTO = new ReviewDTO();
 			reviewDTO.setRev_num(rev_num);
@@ -204,16 +208,16 @@ public class ReviewService {
 	}// deleteReview() [리뷰삭제]
 
 //  포인트 관리는 현재 관리자 페이지에서 되고 있으므로 사용되지 않는 것으로 보임
-//	public void deleteReviewPoint(HttpServletRequest request) {
-//		System.out.println("ReviewService deleteReviewPoint()");
-//		try {
-//			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
-//			reviewDAO = new ReviewDAO();
-//			reviewDAO.deleteReviewPoint(rev_num);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}// deleteReviewPoint() [리뷰삭제 + 포인트회수]
+	public void deleteReviewPoint(HttpServletRequest request) {
+		System.out.println("ReviewService deleteReviewPoint()");
+		try {
+			int rev_num = Integer.parseInt(request.getParameter("rev_num"));
+			reviewDAO = new ReviewDAO();
+			reviewDAO.deleteReviewPoint(rev_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}// deleteReviewPoint() [리뷰삭제 + 포인트회수]
 
 	// 관리자 답글 작성 관련 서비스
 	public boolean writeRe(HttpServletRequest request) { // 여기도 multi로 해야하는지 확인할것
@@ -285,5 +289,20 @@ public class ReviewService {
 
 		return result;
 	}// deleteRe [답글삭제]
+
+	
+	
+	
+	//// 리뷰개수
+	public ReviewDTO Get_Total_review(HttpServletRequest request) {
+		ReviewDTO reviewDTO = null;
+		try {
+			reviewDAO = new ReviewDAO();
+			reviewDTO = reviewDAO.Get_Total_review();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reviewDTO;
+	}
 
 }// class

@@ -148,7 +148,35 @@ public class AdminService {
 		}
 		return result;
 	}// pointStatusConfirm [포인트지급상태 "미지급"]
-
+	
+	// 유저 방문(예약)횟수 증가 서비스
+	public boolean addUcount(HttpServletRequest request) {
+		boolean result = false;
+		try {
+			// 리퀘스트로 부터 취소할 휴무일을 가져옴
+			int res_num = Integer.parseInt(request.getParameter("res_num_a"));
+			// adminDAO에 값을 전달하고 로직처리 수행
+			result = new AdminDAO().addUcount(res_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}// addUcount [유저 방문(예약)횟수 증가]
+	
+	// 유저 방문(예약)횟수 감소 서비스
+	public boolean subUcount(HttpServletRequest request) {
+		boolean result = false;
+		try {
+			// 리퀘스트로 부터 취소할 휴무일을 가져옴
+			int res_num = Integer.parseInt(request.getParameter("res_num_b"));
+			// adminDAO에 값을 전달하고 로직처리 수행
+			result = new AdminDAO().subUcount(res_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}// subUcount [유저 방문(예약)횟수 감소]
+	
 	// 여기서부터 추가했음
 	// ===================================================================================
 	// 매장 휴무일 추가 관련 서비스
@@ -282,5 +310,7 @@ public class AdminService {
 		}
 		return result;
 	}// del_StoreDisDays() [매장 휴무일 취소]
+
+
 
 }// class

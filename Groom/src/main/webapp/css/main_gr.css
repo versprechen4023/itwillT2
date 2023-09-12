@@ -89,12 +89,13 @@ h2{
 	
 }
 
-.text-center3{
-	text-align: center;
-	font-size: 22px;
-	width: 566px;
-	margin-top: 40px;
-	color: #A1887F;
+.text-center3 {
+    text-align: center;
+    font-size: 22px;
+    width: 621px;
+    margin-top: 40px;
+    color: #A1887F;
+    margin-left: -72px;
 }
 
 /* 	맨아래 글자 관련 쪽*/

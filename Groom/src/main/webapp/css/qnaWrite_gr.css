@@ -239,8 +239,8 @@ display: flex;
 /*     letter-spacing: 2px; */
     font-size: 14px;
 /*     font-family: 'Godo'; */
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: rgb(232, 232, 232);
 /*     border: 1px solid black; */
 	border: none;
     border-radius: 5px;

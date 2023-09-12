@@ -18,9 +18,6 @@ public class MemberService {
 
 		try {
 
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
-
 			// 리퀘스트 파라미터값 변수에 저장
 			String getId = request.getParameter("u_id");
 			String getPass = request.getParameter("u_pass");
@@ -67,9 +64,6 @@ public class MemberService {
 
 		try {
 
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
-
 			// 리퀘스트 파라미터값 변수에 저장
 			String getid = request.getParameter("u_id");
 			String getpass = request.getParameter("u_pass");
@@ -95,9 +89,6 @@ public class MemberService {
 
 		try {
 
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
-
 			// 리퀘스트 파라미터값 변수에 저장
 			String getId = request.getParameter("u_id");
 
@@ -115,9 +106,6 @@ public class MemberService {
 	public MemberDTO searchPhone(HttpServletRequest request) {
 
 		try {
-
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
 
 			// 리퀘스트 파라미터값 변수에 저장
 			String getPhone = request.getParameter("u_phone");
@@ -137,9 +125,6 @@ public class MemberService {
 
 		try {
 
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
-
 			// 리퀘스트 파라미터값 변수에 저장
 			String getEmail = request.getParameter("u_email");
 
@@ -157,8 +142,6 @@ public class MemberService {
 	public MemberDTO findId(HttpServletRequest request) {
 
 		try {
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
 
 			// 리퀘스트 파라미터값 변수에 저장
 			String name = request.getParameter("u_name");
@@ -179,9 +162,6 @@ public class MemberService {
 
 		try {
 
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
-
 			// 리퀘스트 파라미터값 변수에 저장
 			String getId = request.getParameter("u_id");
 			String getEmail = request.getParameter("u_email");
@@ -201,9 +181,6 @@ public class MemberService {
 	public MemberDTO resetPass(HttpServletRequest request) {
 
 		try {
-
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
 
 			// 입력받은 비밀번호, 유저번호 변수에저장
 			String getPass = request.getParameter("u_pass");
@@ -249,9 +226,6 @@ public class MemberService {
 
 		boolean result = false;
 		try {
-
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
 
 			// 유저번호 변수에저장
 			int u_num = Integer.parseInt((String) request.getSession().getAttribute("num"));

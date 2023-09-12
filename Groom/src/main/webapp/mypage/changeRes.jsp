@@ -89,8 +89,10 @@ $("#datepicker").datepicker({
           success: function(result) {
           	
           	// 변수 초기화 작업
-              disabledTimes = [];
+            disabledTimes = [];
           	
+            document.getElementById("timepicker").value = "";
+            
           	// json 배열만큼 변수에 값추가 반복 첫번째값은 time1(17:00:00등) 두번째인자값은 time2(17:01:00)
           	for (var i = 0; i < result.length; i++) {
                   disabledTimes.push([result[i].time1, result[i].time2]);

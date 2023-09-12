@@ -354,7 +354,7 @@ public class MypageController extends HttpServlet {
 			boolean result = ser.changeRes(request);
 
 			if (result) {
-				JSForward.locationHref(response, "예약 일정 변경 처리가 완료되었습니다", "mypage.my");
+				JSForward.windowClose(response, "예약 일정 변경 처리가 완료되었습니다");
 			} else {
 				JSForward.locationHref(response, "예약 일정 변경 처리에 실패했습니다", "mypage.my");
 			}

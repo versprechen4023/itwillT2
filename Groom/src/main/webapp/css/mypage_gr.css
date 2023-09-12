@@ -65,7 +65,7 @@
   	display: inline-block;
 /* 	float:left; */
 	clear:left;
-	width: 82%;
+	width: 90%;
 	margin-left: 100px;
 	margin-right: 100px;
 	margin-top: 25px;
@@ -75,13 +75,14 @@
     display: flex;          /* 내부 요소를 가로로 배치 */
     justify-content: flex-end;  /* 내부 요소들을 오른쪽으로 정렬 */
     align-items: center;    /* 내부 요소들을 수직으로 중앙 정렬 */
+    margin-top: -30px;
 }
   
     .table-container4{
   	display: inline-block;
 /* 	float:left; */
 	clear:left;
-    width: 82%;
+    width: 90%;
 	margin-left: 100px;
 	margin-right: 100px;
 	
@@ -163,7 +164,7 @@ hr {
 .petlist td {
     background-color: white;
 }
-.petlist-next {
+.resCheck-next {
 	margin-top: 10px;
 	width: 1100px;
     height: 40px;
@@ -186,12 +187,13 @@ hr {
     text-decoration: none;
     color: black !important;
     border-radius: 30px;
-	border: 2px solid gray;
+	border: 1px solid black;
     transition: background-color 0.3s;
 }
 .resCheck-next a:-webkit-any-link {
     color: -webkit-link;
     cursor: pointer;
+    margin-left: 50px;
 }
 .resCheck-next a:hover {
     background-color: rgba(0, 0, 0, 0.4) ;

@@ -22,6 +22,7 @@ String num = (String)session.getAttribute("num");
 
 List<ReviewDTO> reviewList
 =(List<ReviewDTO>)request.getAttribute("reviewList");
+ReviewDTO reviewDTO3 = (ReviewDTO)request.getAttribute("reviewDTO");
 
 %>
 <!-- =============================  네비게이션바 ============================= -->	
@@ -36,7 +37,7 @@ List<ReviewDTO> reviewList
 	<div class="row row-bottom-padded-md">
 <!-- 리뷰 분류 -->
 		<h3 class="review-select animate-box" data-animate-effect="fadeInLeft">
-		<a href="reviewList.re"> 전체 </a>
+		<a href="reviewList.re">전체 <%=reviewDTO3.getTotal_review() %></a>
 		<a href="reviewList1.re?pro_name=목욕" class="review-active">목욕</a>
 		<a href="reviewList2.re?pro_name=부분미용">부분미용</a>
 		<a href="reviewList3.re?pro_name=부분%2B목욕">부분+목욕</a>
@@ -77,7 +78,7 @@ if (i <= rating) {
 		<div class="blog-entry">
 		<div class="img-wrapper">
 			<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="blog-img">
-			<img src="upload/<%=reviewDTO.getRev_img_url()%>" class="img-responsive" alt="이미지" onerror="this.src='images/LOGO.png'" /></a>
+			<img src="upload/<%=reviewDTO.getRev_img_url()%>" class="img-responsive" alt="이미지" onerror="this.src='images/empty_image.jpg'" /></a>
 		</div>
 		<div class="review-desc">
 			<h3><a><%=reviewDTO.getPro_name() %></a><br>

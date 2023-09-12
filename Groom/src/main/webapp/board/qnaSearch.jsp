@@ -73,9 +73,9 @@ PageDTO pageDTO=(PageDTO)request.getAttribute("pageDTO");
             <td><%=format.format(qnaDTO.getDate()) %>	</td>
             <% 
             if(qnaDTO.getQreans()==0){
-            %><td>X</td>
+            %><td id="answer">미답변</td>
             <% }else {%>
-            	<td>O</td><%
+            	<td id="answer">답변완료</td><%
             	
             }%>
         </tr>
@@ -141,63 +141,28 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 			
 		 <input type="text" name="search" size=45 placeholder="검색어를 입력하세요" id="searchkey">
 		 <input type="submit" value="검색" id="searchbtn">
-		 <input type="button" value="글쓰기" onclick="location.href='qnaWrite.bo'" id="writebtn">
-<!-- 		 <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn"> -->
-
-
-		 </form>
 		 
-		 
-		 <script>
-
-// ============================ 파일첨부	
-function triggerFileInput() { // 이미지 클릭 시 파일 입력(input) 엘리먼트 클릭
-	const fileInput = document.getElementById('fileInput');
-	fileInput.click(); // 파일 입력 엘리먼트 클릭 이벤트 발생
-	}
-// 파일 입력(input) 엘리먼트의 값이 변경되었을 때 실행되는 함수
-	document.getElementById('fileInput').addEventListener('change', function(event) {
-		const selectedFile = event.target.files[0]; // 선택된 파일 가져오기
-		const fileInfoDisplay = document.getElementById('fileInfoDisplay');
-		if (selectedFile) {
-// 선택된 파일이 허용된 확장자를 가지는지 검증
-			const allowedExtensions = /(\.png|\.jpg|\.jpeg|\.gif)$/i;
-			if (!allowedExtensions.exec(selectedFile.name)) {
-				alert('png, jpg, gif 파일만 첨부할 수 있습니다.');
-				resetFileInput();
-				return;
-				}
-// 파일명을 표시
-			fileInfoDisplay.textContent = selectedFile.name;
-			} else {
-// 파일 선택이 해제되었을 때
-				fileInfoDisplay.textContent = '선택된 파일 없음';
-				}
-		});
-// 파일 입력(input) 엘리먼트 초기화
-		function resetFileInput() {
-			const fileInput = document.getElementById('fileInput');
-			fileInput.value = ''; // 파일 선택 해제
-			}
-</script>
-		 
-		 <%
-if(id != null){
-	if(role.equals("admin")){
+		 		 		 <%
+if(id != null){{
 		%>
-			    <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn">
+		<input type="button" value="글쓰기" onclick="location.href='qnaWrite.bo'" id="writebtn">
+			  
 
 <%
 	}
 }
 %>
 		 
+		 
+<!-- 		 <input type="button" value="글쓰기" onclick="location.href='qnaWrite.bo'" id="writebtn"> -->
+<!-- 		 <input type="button" value="답글X" onclick="location.href='qnaNoanswer.bo'" id="rebtn"> -->
 
+
+		 </form>
+		 
 	</td></tr>
 	
 	</table>
-</div>
-</div>
 	</body>
 </html>
 

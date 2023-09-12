@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+img {
+ margin-top: 0; 
+ margin-bottom: 0;
+ width: 180px;
+ height: auto;
+}
 body {
 	min-height: 100vh;
 	background: rgb(241, 241, 241);

@@ -29,9 +29,6 @@ public class MypageService {
 
 		try {
 
-			// 한글 인코딩 처리
-			request.setCharacterEncoding("UTF-8");
-
 			// 리퀘스트 파라미터값 변수에 저장
 			String getPetName = request.getParameter("petname");
 			String getPetBreed = request.getParameter("petbreed");
@@ -100,8 +97,7 @@ public class MypageService {
 		System.out.println("MypageService updateMypetinfo()");
 		
 		try {
-			// request 한글처리
-			request.setCharacterEncoding("utf-8");
+
 			// 리퀘스트 파라미터값 변수에 저장
 			String getPetName = request.getParameter("petname");
 			String getPetBreed = request.getParameter("petbreed");
@@ -198,8 +194,7 @@ public class MypageService {
 		boolean result = false;
 		
 		try {
-			// request 한글처리
-			request.setCharacterEncoding("utf-8");
+
 			// request 파라미터 가져오기(phone, email, u_num)
 			String phone = request.getParameter("phone");
 			String email = request.getParameter("email");

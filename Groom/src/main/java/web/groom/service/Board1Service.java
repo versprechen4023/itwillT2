@@ -1,5 +1,6 @@
 package web.groom.service;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -72,6 +73,19 @@ public class Board1Service {
 			
 			//업로드 폴더 경로 => 물리적경로
 			String uploadPath = request.getRealPath("/upload");
+			
+			// 업로드 폴더 경로를 기반으로 File 객체 생성
+			File uploadDir = new File(uploadPath);
+
+			// 업로드 폴더가 존재하지 않으면 생성
+			if (!uploadDir.exists()) {
+			    if (uploadDir.mkdirs()) {
+			        System.out.println("업로드 폴더 생성.");
+			    } else {
+			        System.out.println("업로드 폴더를 생성에 문제 발생.");
+			    }
+			}
+			
 			//이클립스에 실행하면 이클립스 가상경로
 			System.out.println(uploadPath);
 			//파일 최대 크기 지정 10M
@@ -165,6 +179,19 @@ public class Board1Service {
 			//파일업로드
 			// 업로드할 파일경로(upload폴더 있어야함)
 			String uploadPath = request.getRealPath("/upload");
+			
+			// 업로드 폴더 경로를 기반으로 File 객체 생성
+			File uploadDir = new File(uploadPath);
+
+			// 업로드 폴더가 존재하지 않으면 생성
+			if (!uploadDir.exists()) {
+			    if (uploadDir.mkdirs()) {
+			        System.out.println("업로드 폴더 생성.");
+			    } else {
+			        System.out.println("업로드 폴더를 생성에 문제 발생.");
+			    }
+			}
+			
 			int maxSize = 10*1024*1024;
 			MultipartRequest multi 
 				= new MultipartRequest(request, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
@@ -277,6 +304,19 @@ public class Board1Service {
 			
 			//업로드 폴더 경로 => 물리적경로
 			String uploadPath = request.getRealPath("/upload");
+			
+			// 업로드 폴더 경로를 기반으로 File 객체 생성
+			File uploadDir = new File(uploadPath);
+
+			// 업로드 폴더가 존재하지 않으면 생성
+			if (!uploadDir.exists()) {
+			    if (uploadDir.mkdirs()) {
+			        System.out.println("업로드 폴더 생성.");
+			    } else {
+			        System.out.println("업로드 폴더를 생성에 문제 발생.");
+			    }
+			}
+			
 			//이클립스에 실행하면 이클립스 가상경로
 			System.out.println(uploadPath);
 			//파일 최대 크기 지정 10M
@@ -372,6 +412,19 @@ public class Board1Service {
 			//파일업로드
 			// 업로드할 파일경로(upload폴더 있어야함)
 			String uploadPath = request.getRealPath("/upload");
+			
+			// 업로드 폴더 경로를 기반으로 File 객체 생성
+			File uploadDir = new File(uploadPath);
+
+			// 업로드 폴더가 존재하지 않으면 생성
+			if (!uploadDir.exists()) {
+			    if (uploadDir.mkdirs()) {
+			        System.out.println("업로드 폴더 생성.");
+			    } else {
+			        System.out.println("업로드 폴더를 생성에 문제 발생.");
+			    }
+			}
+			
 			int maxSize = 10*1024*1024;
 			MultipartRequest multi 
 				= new MultipartRequest(request, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());

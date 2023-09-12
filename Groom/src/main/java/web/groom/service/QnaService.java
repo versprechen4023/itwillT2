@@ -1,5 +1,6 @@
 package web.groom.service;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -148,6 +149,18 @@ public class QnaService {
 			
 			// qnawrite에서 받는 값
 			String uploadPath = request.getRealPath("/upload");
+			
+			// 업로드 폴더 경로를 기반으로 File 객체 생성
+			File uploadDir = new File(uploadPath);
+
+			// 업로드 폴더가 존재하지 않으면 생성
+			if (!uploadDir.exists()) {
+			    if (uploadDir.mkdirs()) {
+			        System.out.println("업로드 폴더 생성.");
+			    } else {
+			        System.out.println("업로드 폴더를 생성에 문제 발생.");
+			    }
+			}
 			// 파일 최대 크기 지정 10M
 			int maxSize = 10*1024*1024;
 			MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "utf-8",
@@ -216,6 +229,19 @@ public class QnaService {
 		
 		try {
 			String uploadPath = request.getRealPath("/upload");
+			
+			// 업로드 폴더 경로를 기반으로 File 객체 생성
+			File uploadDir = new File(uploadPath);
+
+			// 업로드 폴더가 존재하지 않으면 생성
+			if (!uploadDir.exists()) {
+			    if (uploadDir.mkdirs()) {
+			        System.out.println("업로드 폴더 생성.");
+			    } else {
+			        System.out.println("업로드 폴더를 생성에 문제 발생.");
+			    }
+			}
+			
 			// 파일 최대 크기 지정 10M
 			int maxSize = 10 * 1024 * 1024;
 			MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "utf-8",
@@ -265,6 +291,19 @@ public class QnaService {
 
 		try {
 			String uploadPath = request.getRealPath("/upload");
+			
+			// 업로드 폴더 경로를 기반으로 File 객체 생성
+			File uploadDir = new File(uploadPath);
+
+			// 업로드 폴더가 존재하지 않으면 생성
+			if (!uploadDir.exists()) {
+			    if (uploadDir.mkdirs()) {
+			        System.out.println("업로드 폴더 생성.");
+			    } else {
+			        System.out.println("업로드 폴더를 생성에 문제 발생.");
+			    }
+			}
+			
 			// 파일 최대 크기 지정 10M
 			int maxSize = 10 * 1024 * 1024;
 			

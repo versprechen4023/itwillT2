@@ -52,11 +52,11 @@ var currentDateVal = currentDate.getDate();
 $('#changeRes').submit(function() {
 	
 	if($('#datepicker').val() == ""){
-		alert("모든 값을 선택해 주십시오"); 
+		alert("날짜를 선택해 주십시오"); 
 		return false;
 	}
 	if($('#timepicker').val() == ""){
-		alert("모든 값을 선택해 주십시오"); 
+		alert("시간을 선택해 주십시오"); 
 		return false;
 	}
 

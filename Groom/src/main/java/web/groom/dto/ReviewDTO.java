@@ -30,8 +30,15 @@ public class ReviewDTO {
 	private String u_count; // 리뷰목록
 	
 	private int total_review;
+	private int user_res_count;
 	
 	
+	public int getUser_res_count() {
+		return user_res_count;
+	}
+	public void setUser_res_count(int user_res_count) {
+		this.user_res_count = user_res_count;
+	}
 	public int getTotal_review() {
 		return total_review;
 	}

@@ -85,7 +85,7 @@ if (i <= rating) {
 			<h3><a><%=reviewDTO.getPro_name() %></a><br>
 			<small><%=reviewDTO.getEmp_grade() %> <%=reviewDTO.getEmp_name() %></small><small> / <%=reviewDTO.getS_location() %></small></h3>
 			<h3><%=stars %></h3>
-			<span class="review_text1"><a><%=reviewDTO.getU_name() %></a> / <a><%=format.format(reviewDTO.getRev_date()) %></a> / <a><%=reviewDTO.getU_count() %>번째 방문</a></span>
+			<span class="review_text1"><a><%=reviewDTO.getU_name() %></a> / <a><%=format.format(reviewDTO.getRev_date()) %></a> / <a><%=reviewDTO.getUser_res_count() %>번째 방문</a></span>
 			<p class="review_text2"><%=reviewDTO.getRev_content() %></p>
 			<a href="reviewContent.re?rev_num=<%=reviewDTO.getRev_num() %>" class="lead">더보기 <i class="icon-arrow-right3"></i></a>
 <%

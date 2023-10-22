@@ -418,7 +418,7 @@ $j(document).ready(function() {
             	// 타임피커 선택을 가능하게하기 위해 disabled 해제
             	$j("#timepicker").removeAttr("disabled");
             	
-                // 날짜가 제대로 입력되고 비활성화 할 시간이 적용되었다면 타임피커 호출
+                // 날짜가 제대로 입력되고 비활성화 할 날짜가 적용되었다면 타임피커 호출
                 $j('#timepicker').timepicker({
                   timeFormat: 'H:i',
                   step: 60,
@@ -476,7 +476,7 @@ $j(document).ready(function() {
             	realprice.value = result;
             	//포인트가 0이아니고 포인트 사용에 체크되어있으면 가격 계산
             	if(!point == "" && $('#pointcheck').prop('checked')){
-            		//포인트 금액이 기존 금액에서 추가될경우 금액 강제 상한으로 변경
+            		//포인트 금액이 기존 금액에서 초과될경우 금액 강제 상한으로 변경
             		if(parseInt(result) < parseInt(point)){
             			point = result;
             			$j('#point').val(result);
@@ -488,7 +488,7 @@ $j(document).ready(function() {
             	//날짜선택에 대한 AJAX처리(비활성화 날짜)
             	
             	// 변수 초기화 작업
-                disabledTimes = [];
+                disabledDates = [];
             	
             	//가격값 반환시 날짜 입력 선택 활성
             	$j.ajax({
